@@ -1,0 +1,283 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  x:Class="Sadora.Ventas.UscCajas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sadora.Ventas"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="1024" d:DesignHeight="768"
+             TextElement.Foreground="{DynamicResource SecundaryAccentForegroundBrush}" Loaded="UserControl_Loaded" Initialized="UserControl_Initialized"  
+             Tag="Configuracion de Cajas">
+    <Grid>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Padding="0" Grid.Column="0" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnPrimerRegistro" Padding="0" Click="BtnPrimerRegistro_Click" Height="59" ToolTip="Pulsar para ir al primer registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="ArrowUpBold" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="First" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border Padding="0" Grid.Column="1" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnAnteriorRegistro" Padding="0" Click="BtnAnteriorRegistro_Click" Height="59" ToolTip="Pulsar para ir al registro anterior" Style="{StaticResource MaterialDesignFlatButton}" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" >
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="ArrowLeftBold" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Back" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+                <Border Padding="0" Grid.Column="2" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnProximoRegistro" Padding="0" Click="BtnProximoRegistro_Click" Height="59" ToolTip="Pulsar para ir al proximo registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel >
+                            <materialDesign:PackIcon Kind="ArrowRightBold" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Next" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+                <Border Padding="0" Grid.Column="3"  BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnUltimoRegistro" Padding="0" Click="BtnUltimoRegistro_Click" Height="59" ToolTip="Pulsar para ir al ultimo registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel >
+                            <materialDesign:PackIcon Kind="ArrowDownBold" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Last" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+                <Border Padding="0" Grid.Column="4" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnBuscar" Padding="0" Click="BtnBuscar_Click" Height="59" ToolTip="Pulsar para buscar un registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel >
+                            <materialDesign:PackIcon Kind="Search" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Search" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+                <Border Padding="0" Grid.Column="5" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnAgregar" Padding="0" Click="BtnAgregar_Click" Height="59" ToolTip="Pulsar para agregar un registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"  Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel>
+                            <materialDesign:PackIcon  Kind="AddThick" Width="auto" Height="36" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkBrush}"></materialDesign:PackIcon>
+                            <TextBlock Text="Add" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border Padding="0" Grid.Column="6" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnEditar" Padding="0" Click="BtnEditar_Click" Height="59" ToolTip="Pulsar para editar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Edit" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Edit" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+
+                <Border Padding="0" Grid.Column="7" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnAnular" Padding="0" IsEnabled="False" Click="BtnCancelar_Click" Height="59" ToolTip="Pulsar para anular el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="LockReset" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Undo" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+
+                <Border Padding="0" Grid.Column="8" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnCancelar" Padding="0" Click="BtnCancelar_Click" Height="59" ToolTip="Pulsar para cancelar los cambios efectuados " Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Cancel" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Cancel" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border Padding="0" Grid.Column="9" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnGuardar" Padding="0" Click="BtnGuardar_Click" Height="59" ToolTip="Pulsar para guardar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}" TabIndex="4" >
+                        <StackPanel>
+                            <materialDesign:PackIcon  Kind="ContentSave" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Save" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border Padding="0" Grid.Column="10" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
+                    <Button x:Name="BtnImprimir" Padding="0" Click="BtnImprimir_Click" Height="59" ToolTip="Pulsar para imprimir el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Printer" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Print" HorizontalAlignment="Center" FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+                <Border Padding="0"  Grid.Column="11"  BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="40" VerticalAlignment="Bottom" Margin="3">
+                    <TextBlock x:Name="lIconEstado" Padding="0" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon x:Name="IconEstado"  Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="OrangeRed"></materialDesign:PackIcon>
+                    </TextBlock>
+                </Border>
+
+            </Grid>
+            
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    
+                <Grid Margin="50 10 50 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <StackPanel Orientation="Vertical" Width="auto">
+
+                                <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+                                    <StackPanel Orientation="Vertical">
+                                    <TextBlock x:Name="lCajaID" Margin="10 5 0 0" Text="Caja ID" FontWeight="Bold"></TextBlock>
+                                        <TextBox x:Name="txtCajaID" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="1" KeyUp="txtCajaID_KeyUp"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!--<Grid Margin="15 15 15 15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" TextElement.FontSize="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+                                        <Grid>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock x:Name="lEmpleadoID" Margin="10 5 0 0" Text="Empleado ID   " FontWeight="Bold"></TextBlock>
+                                                <Grid>
+                                                    <TextBox x:Name="txtEmpleadoID" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="6" KeyUp="txtEmpleadoID_KeyUp" KeyDown="txtEmpleadoID_KeyDown"/>
+                                                    <Button x:Name="btnEmpleadoID" HorizontalAlignment="Right" Padding="0" Height="30" Click="btnEmpleadoID_Click">
+                                                        <materialDesign:PackIcon Kind="Magnify" Padding="0" Height="30" Width="25" />
+                                                    </Button>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                    <Border Grid.Column="1" TextElement.FontSize="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="0 0 0 2" CornerRadius="5">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10 5 0 0" Text=" " FontWeight="Bold"></TextBlock>
+                                            <TextBox x:Name="tbxEmpleadoID" IsReadOnly="True" Height="30" Padding="0" Margin="2 0 0 0" IsReadOnlyCaretVisible="True" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </Grid>
+
+                                <Grid Margin="15 15 15 15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" TextElement.FontSize="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+                                        <Grid>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock x:Name="lGrupoID" Margin="10 5 0 0" Text="Grupo ID   " FontWeight="Bold"></TextBlock>
+                                                <Grid>
+                                                    <TextBox x:Name="txtGrupoID" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="6" KeyUp="txtGrupoID_KeyUp" KeyDown="txtGrupoID_KeyDown"/>
+                                                    <Button x:Name="btnGrupoID" HorizontalAlignment="Right" Padding="0" Height="30" Click="btnGrupoID_Click">
+                                                        <materialDesign:PackIcon Kind="Magnify" Padding="0" Height="30" Width="25" />
+                                                    </Button>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                    <Border Grid.Column="1" TextElement.FontSize="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="0 0 0 2" CornerRadius="5">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10 5 0 0" Text=" " FontWeight="Bold"></TextBlock>
+                                        <TextBox x:Name="tbxGrupoID" IsReadOnly="True" Height="30" Padding="0" Margin="2 0 0 0" IsReadOnlyCaretVisible="True" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </Grid>-->
+
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <StackPanel Orientation="Vertical" Width="auto">
+
+                                <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock x:Name="lNombre" Margin="10 5 0 0" Text="Nombre" FontWeight="Bold"></TextBlock>
+                                        <TextBox x:Name="txtNombre" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="2" KeyUp="txtNombre_KeyUp"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!--<Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock x:Name="lPassword" Margin="10 5 0 0" Text="Contraseña" FontWeight="Bold"></TextBlock>
+                                        <PasswordBox x:Name="txtPassword" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Background="#4CEDEDED" TabIndex="7" KeyUp="txtPassword_KeyUp"/>
+                                    </StackPanel>
+                                </Border>-->
+
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+
+                            <StackPanel Orientation="Vertical" Width="auto">
+
+                            <Border HorizontalAlignment="Right" Padding="5" TextElement.FontSize="15" Margin="15 34 15 15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2" CornerRadius="5">
+                                <StackPanel x:Name="CheckActivar" Orientation="Horizontal">
+                                    <CheckBox x:Name="cActivar" materialDesign:CheckBoxAssist.CheckBoxSize="25" KeyUp="cActivar_KeyUp" TabIndex="3"></CheckBox>
+                                    <TextBlock VerticalAlignment="Center" Text="Activo" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <materialDesign:PopupBox x:Name="BtnOpciones" PlacementMode="LeftAndAlignTopEdges" ToolTip="Pulsar para ver opciones avanzadas" HorizontalAlignment="Right" Background="{DynamicResource PrimaryHueDarkBrush}" StaysOpen="False" Margin="10">
+                                    <StackPanel Width="auto">
+                                    <Button x:Name="BtnConfiguracionCajaLocal" Content="Configurar caja local" Click="BtnConfiguracionCajaLocal_Click" ToolTip="Pulsar para configurar la caja visualizada de manera local"/>
+                                        <!--<Button Content="Account"/>
+                                                    <Button Content="Help"/>
+                                                    <Separator/>
+                                                    <Button Content="Logout"/>-->
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+
+                        </StackPanel>
+
+                        </Grid>
+
+                    </Grid>
+
+            </ScrollViewer>
+
+            <Grid Grid.Row="2">
+                <dxg:GridControl x:Name="GridMain"  AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowTotalSummary="True" ShowAutoFilterRow="True"  ShowGroupPanel="False" AutoWidth="True"/>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </Grid>
+        </Grid>
+        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarThree" Background="{StaticResource PrimaryHueDarkBrush}"/>
+    </Grid>
+</UserControl>

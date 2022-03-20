@@ -1,0 +1,286 @@
+﻿<Window x:Class="Sadora.Inventario.FrmMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sadora.Inventario"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        Title="MainWindow" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="#FFD8D9DE"
+        xmlns:r="clr-namespace:Wpf.Controls;assembly=Wpf.TabControl" Tag="Menu Inventario">
+
+    <Window.Resources>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Width)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="270"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.27" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Width)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.27" Value="270"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Height="42" VerticalAlignment="Top" Background="#FF13293D" TextElement.Foreground="{StaticResource PrimaryHueMidForegroundBrush}" Grid.Row="0" >
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
+                    </Grid.Effect>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" x:Name="lNombreUsuario" VerticalAlignment="Center" FontSize="16"/>
+                        <!--<materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" Background="{DynamicResource PrimaryHueDarkBrush}" StaysOpen="False" Margin="10">
+                            <StackPanel Width="150">
+                                <Button Content="Settings"/>
+                                <Button Content="Account"/>
+                                <Button Content="Help"/>
+                                <Separator/>
+                                <Button Content="Logout"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>-->
+                        <Button x:Name="ButtonMinimizar" Click="ButtonMinimizar_Click" TextElement.Foreground="{StaticResource PrimaryHueMidForegroundBrush}"  Margin="0 5 5 5" Style="{StaticResource MaterialDesignOutlinedButton}" >
+                            <materialDesign:PackIcon Kind="Minus"  Width="25" Height="25"/>
+                        </Button>
+                        <Button x:Name="ButtonCerrar"  TextElement.Foreground="{StaticResource PrimaryHueMidForegroundBrush}"  Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonCerrar_Click" >
+                            <materialDesign:PackIcon Kind="WindowClose"  Width="25" Height="25"/>
+                        </Button>
+                    </StackPanel>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Text="{Binding NombreEmpresa, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </Grid>
+
+                <r:TabControl Grid.Row="1" x:Name="TabMain" TabItemMinWidth="100" TabItemMaxWidth="300" TabItemMinHeight="30" 
+                              TabItemMaxHeight="50"  AllowAddNew="False" AllowDelete="False">
+
+                    <r:TabControl.TabItemNormalBackground>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFFCFDFD" Offset="0"/>
+                            <GradientStop Color="#FFE5EAF5" Offset="0.3"/>
+                            <GradientStop Color="#FFCFD7EB" Offset="0.3"/>
+                            <GradientStop Color="#FFE0E5F5" Offset="0.7"/>
+                            <GradientStop Color="#FFECEEFC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </r:TabControl.TabItemNormalBackground>
+
+                    <r:TabControl.TabItemSelectedBackground>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFFBFDFE" Offset="0"/>
+                            <GradientStop Color="#FFEAF6FB" Offset="0.3"/>
+                            <GradientStop Color="#FFCEE7FA" Offset="0.3"/>
+                            <GradientStop Color="#FFB9D1FA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </r:TabControl.TabItemSelectedBackground>
+
+                    <r:TabControl.TabItemMouseOverBackground>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFFCFDFD" Offset="0"/>
+                            <GradientStop Color="#FFC6DDF7" Offset="0.3"/>
+                            <GradientStop Color="#FF99C6EE" Offset="0.3"/>
+                            <GradientStop Color="#FFB6D6F1" Offset="0.7"/>
+                            <GradientStop Color="#FFD9E9F9" Offset="1"/>
+                        </LinearGradientBrush>
+                    </r:TabControl.TabItemMouseOverBackground>
+
+                    <r:TabItem x:Name="tab" Width="auto" AllowDelete="False">
+
+                        <r:TabItem.Header>
+                            <TextBlock Text="Inicio" FontSize="18.5" FontWeight="SemiBold" FontFamily="{materialDesign:MaterialDesignFont}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                        </r:TabItem.Header>
+
+                        <r:TabItem.Icon>
+                            <materialDesign:PackIcon Margin="7 0 0 0" Width="24" Height="24" Kind="Home" ></materialDesign:PackIcon>
+                        </r:TabItem.Icon>
+
+                    </r:TabItem>
+                </r:TabControl>
+
+            </Grid>
+
+            <Grid x:Name="grid" Width="60" Background="#FF13293D"  RenderTransformOrigin="0.5,0.5" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Border BorderBrush="{DynamicResource PrimaryHueMidForegroundBrush}" BorderThickness="0 0 1 1">
+                            <Grid>
+                                <Button x:Name="ButtonOpenMenu"  HorizontalAlignment="Right"  VerticalAlignment="Top" TextElement.Foreground="{StaticResource PrimaryHueMidForegroundBrush}" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonOpenMenu_Click_1" >
+                                    <materialDesign:PackIcon Kind="Menu"  Width="25" Height="25"/>
+                                </Button>
+
+                                <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" HorizontalAlignment="Right" TextElement.Foreground="{StaticResource PrimaryHueMidForegroundBrush}" VerticalAlignment="Top" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Click="ButtonCloseMenu_Click" >
+                                    <materialDesign:PackIcon Kind="ArrowLeft"  Width="25" Height="25"/>
+                                </Button>
+                            </Grid>
+                        </Border>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer Padding="0 10 0 0"   VerticalScrollBarVisibility="Auto">
+
+                            <TreeView ScrollViewer.HorizontalScrollBarVisibility="Disabled" FlowDirection="RightToLeft" Width="262" TextElement.Foreground="{StaticResource PrimaryHueMidForegroundBrush}">
+
+                                <!--TRANSACCIONES-->
+                                <TreeViewItem  Cursor="Hand">
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal" ToolTip="MODULO DE INVENTARIO">
+                                            <TextBlock Margin="0 0 16 0" FontSize="18" FontFamily="Segoe UI Semibold" Width="160">
+                                                    Transacciones
+                                            </TextBlock>
+                                            <materialDesign:PackIcon Kind="Cogs"  Height="25" Width="25"/>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+
+                                    <!--REGISTRO DE ARTICULOS-->
+                                    <TreeViewItem x:Name="btnMenuRegistroArticulos" ToolTip="REGISTRO DE ARTICULOS" MouseUp="btnMenuRegistroArticulos_MouseUp">
+                                        <TreeViewItem.Header>
+                                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="-10 0 0 0">
+                                                <materialDesign:PackIcon x:Name="iconMenuRegistroArticulos" Kind="CartOutline" Height="25" Width="25" VerticalAlignment="Center"/>
+                                                <TextBlock Margin="16 0 0 0"  FontSize="14.5" FontFamily="Segoe UI Semibold" Width="155">
+                                                    Registro de Articulos
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+
+                                    <!--MOVIMIENTOS AL INVENTARIO-->
+                                    <TreeViewItem x:Name="btnMenuMovimientoInventario" ToolTip="MOVIMIENTOS AL INVENTARIO" MouseUp="btnMenuMovimientoInventario_MouseUp">
+                                        <TreeViewItem.Header>
+                                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="-10 0 0 0">
+                                                <materialDesign:PackIcon x:Name="iconMenuMovimientoInventario" Kind="Warehouse" Height="25" Width="25" VerticalAlignment="Center"/>
+                                                <TextBlock Margin="16 0 0 0"  FontSize="14.5" FontFamily="Segoe UI Semibold" Width="155">
+                                                    Movimientos al Inventario
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+
+                                    <!--REGISTRO DE CAJAS-->
+                                    <TreeViewItem x:Name="btnMenuRegistroCajas" ToolTip="REGISTRO DE CAJAS" MouseUp="btnMenuRegistroCajas_MouseUp">
+                                        <TreeViewItem.Header>
+                                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="-10 0 0 0">
+                                                <materialDesign:PackIcon x:Name="iconMenuRegistroCajas" Kind="DesktopClassic" Height="25" Width="25" VerticalAlignment="Center"/>
+                                                <TextBlock Margin="16 0 0 0"  FontSize="14.5" FontFamily="Segoe UI Semibold" Width="155">
+                                                    Registro de Cajas
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+
+                                </TreeViewItem>
+
+                                <Separator Width="260"/>
+
+                                <!--CONFIGURACION-->
+                                <TreeViewItem  Cursor="Hand">
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal" ToolTip="CONFIGURACION">
+                                            <TextBlock Margin="0 0 16 0" FontSize="18" FontFamily="Segoe UI Semibold" Width="160">
+                                                CONFIGURACION
+                                            </TextBlock>
+                                            <materialDesign:PackIcon Kind="Cog"  Height="25" Width="25"/>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+
+                                    <!--CLASES DE ARTICULOS-->
+                                    <TreeViewItem x:Name="btnMenuClaseArticulos" ToolTip="CLASES DE ARTICULOS" MouseUp="btnMenuClaseArticulos_MouseUp">
+                                        <TreeViewItem.Header>
+                                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="-10 0 0 0">
+                                                <materialDesign:PackIcon x:Name="iconMenuClaseArticulos" Kind="CogBox" Height="25" Width="25" VerticalAlignment="Center"/>
+                                                <TextBlock Margin="16 0 0 0"  FontSize="14.5" FontFamily="Segoe UI Semibold" Width="155">
+                                                    Clases de Articulos
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+
+                                    <!--CONFIGURACION DE MARCAS-->
+                                    <TreeViewItem x:Name="btnMenuConfiguracionMarcas" ToolTip="CONFIGURACION DE MARCAS" MouseUp="btnMenuConfiguracionMarcas_MouseUp">
+                                        <TreeViewItem.Header>
+                                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="-10 0 0 0">
+                                                <materialDesign:PackIcon x:Name="iconMenuConfiguracionMarcas" Kind="MarkerCheck" Height="25" Width="25" VerticalAlignment="Center"/>
+                                                <TextBlock Margin="16 0 0 0"  FontSize="14.5" FontFamily="Segoe UI Semibold" Width="155">
+                                                    Configuracion de Marcas
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+
+                                    <!--CONFIGURACION DE DEPARTAMENTOS-->
+                                    <TreeViewItem x:Name="btnMenuConfiguracionDepartamentos" ToolTip="CONFIGURACION DE DEPARTAMENTOS" MouseUp="btnMenuConfiguracionDepartamentos_MouseUp">
+                                        <TreeViewItem.Header>
+                                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="-10 0 0 0">
+                                                <materialDesign:PackIcon x:Name="iconMenuConfiguracionDepartamentos" Kind="InboxMultiple" Height="25" Width="25" VerticalAlignment="Center"/>
+                                                <TextBlock Margin="16 0 0 0"  FontSize="14.5" FontFamily="Segoe UI Semibold" Width="155">
+                                                    Configuracion de Departamentos
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+
+                                </TreeViewItem>
+
+
+                            </TreeView>
+
+                        </ScrollViewer>
+
+                        <TextBlock Grid.Row="1" Name="TblModulo" Margin="5" FontSize="20" TextAlignment="Center" Text="Inventario" Foreground="{StaticResource MaterialDesignDarkForeground}" FontWeight="Bold"/>
+
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarThree" Background="{StaticResource PrimaryHueDarkBrush}"/>
+
+        <materialDesign:DialogHost x:Name="MiniDialogo" BorderBrush="{DynamicResource MaterialDesignDarkBackground}">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="300" Height="200" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 5 0 0">
+                            <materialDesign:PackIcon Kind="ClockFast" VerticalAlignment="Center" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0 5 0 0">
+                            <TextBlock x:Name="lblAlerta" Foreground="Gray" FontSize="20" Width="250" Margin="30 0 0 0" TextWrapping="Wrap" FontFamily="Segoe UI Semibold" TextDecorations="{x:Null}">
+                            Comming Soon! Esta ventana se encuentra en desarrollo.
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 7 0 0">
+                            <Button FontSize="20" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                                ACEPTAR
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿<Application x:Class="Sadora.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Sadora"
+             StartupUri="Administracion/FrmSplash.xaml">
+    <Application.Resources>
+        <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.blue.xaml" />-->
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.blue.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+            <!--PRIMARY-->
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#FF13293D"/>
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FF13293D"/>
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#FF13293D"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="WhiteSmoke"/>
+            <!--ACCENT-->
+            <SolidColorBrush x:Key="SecundaryAccentBrush" Color="#FFD8D9DE"/>
+            <SolidColorBrush x:Key="SecundaryAccentForegroundBrush" Color="#FF13293D"/>
+            <FontFamily x:Key="MaterialDesignFont">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
