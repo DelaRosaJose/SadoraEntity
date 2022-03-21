@@ -76,6 +76,12 @@
     <Reference Include="DevExpress.XtraEditors.v19.1, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v19.1.Core, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v19.1, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.7.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.7\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -87,6 +93,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -127,6 +135,7 @@
     <Compile Include="Administracion\UscEmpresa.xaml.cs">
       <DependentUpon>UscEmpresa.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Clases\ObservableObject.cs" />
     <Compile Include="Clientes\Reportes\RpCuentasXCobrar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -150,6 +159,114 @@
     </Compile>
     <Compile Include="Inventario\UscMovimientoInventario.xaml.cs">
       <DependentUpon>UscMovimientoInventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SadoraDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SadoraDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SadoraDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SadoraDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SadoraDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TcliClaseCliente.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TcliCliente.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TcliMovimientosCuenta.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TcliMovimientosCuentasDetalle.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TcliTransaccione.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TconComprobante.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinvArticulo.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinvClaseArticulo.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinvDepartamento.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinvMarca.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinvMovimientoInventario.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinvMovimientoInventarioDetalle.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinvServicioArticulo.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TrhnEmpleado.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsupClaseProveedore.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsupMovimientosCuenta.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsupMovimientosCuentasDetalle.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsupProveedore.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsupTransaccione.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsysAcceso.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsysEmpresa.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsysFormulario.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsysGruposAcceso.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsysGruposUsuario.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TsysUsuario.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TvenCaja.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TvenCajasDetalle.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TvenDesglosePago.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TvenFactura.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TvenFacturasDetalle.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TvenMetodoPago.cs">
+      <DependentUpon>SadoraDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Proveedores\FrmMenu.xaml.cs">
       <DependentUpon>FrmMenu.xaml</DependentUpon>
@@ -190,6 +307,7 @@
     <Compile Include="Ventas\UscCajas.xaml.cs">
       <DependentUpon>UscCajas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Clientes\UscClientesVM.cs" />
     <Page Include="Administracion\FrmControlAccesos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -389,6 +507,13 @@
       <DependentUpon>RpFacturacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\SadoraDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SadoraDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\SadoraDB.edmx.diagram">
+      <DependentUpon>SadoraDB.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -419,6 +544,22 @@
   <ItemGroup>
     <Resource Include="SadoraCircle.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\SadoraDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SadoraDB.Context.cs</LastGenOutput>
+      <DependentUpon>SadoraDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SadoraDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SadoraDB.edmx</DependentUpon>
+      <LastGenOutput>SadoraDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

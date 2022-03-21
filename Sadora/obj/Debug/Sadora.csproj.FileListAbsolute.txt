@@ -806,7 +806,6 @@ E:\SadoraEntity\Sadora\bin\Debug\de\DevExpress.DataAccess.v19.1.resources.dll
 E:\SadoraEntity\Sadora\bin\Debug\es\DevExpress.DataAccess.v19.1.resources.dll
 E:\SadoraEntity\Sadora\bin\Debug\ja\DevExpress.DataAccess.v19.1.resources.dll
 E:\SadoraEntity\Sadora\bin\Debug\ru\DevExpress.DataAccess.v19.1.resources.dll
-E:\SadoraEntity\Sadora\obj\Debug\Sadora.csproj.AssemblyReference.cache
 E:\SadoraEntity\Sadora\obj\Debug\Clientes\UscTransacciones.baml
 E:\SadoraEntity\Sadora\obj\Debug\Inventario\UscArticulos.baml
 E:\SadoraEntity\Sadora\obj\Debug\Inventario\UscMovimientoInventario.baml
@@ -888,3 +887,9 @@ E:\SadoraEntity\Sadora\obj\Debug\es-DO\Sadora.resources.dll
 E:\SadoraEntity\Sadora\obj\Debug\Sadora.csproj.CopyComplete
 E:\SadoraEntity\Sadora\obj\Debug\Sadora.exe
 E:\SadoraEntity\Sadora\obj\Debug\Sadora.pdb
+E:\SadoraEntity\Sadora\bin\Debug\EntityFramework.dll
+E:\SadoraEntity\Sadora\bin\Debug\EntityFramework.SqlServer.dll
+E:\SadoraEntity\Sadora\bin\Debug\EntityFramework.xml
+E:\SadoraEntity\Sadora\bin\Debug\EntityFramework.SqlServer.xml
+E:\SadoraEntity\Sadora\obj\Debug\Sadora_Content.g.cs
+E:\SadoraEntity\Sadora\obj\Debug\Sadora.csproj.AssemblyReference.cache

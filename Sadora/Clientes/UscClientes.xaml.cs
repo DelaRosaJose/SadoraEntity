@@ -1,20 +1,15 @@
 ﻿using Sadora.Clases;
+using Sadora.Models;
+using Sadora.ViewModels.Clientes;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Sadora.Clientes
 {
@@ -29,125 +24,139 @@ namespace Sadora.Clientes
             Name = "UscClientes";
         }
 
-        bool Imprime;
-        bool Agrega;
-        bool Modifica;
+        bool Imprime, Modifica, Agrega;
 
         bool Inicializador = false;
         DataTable tabla;
         SqlDataReader reader;
-        string Estado;
-        string Lista;
-        int ClienteID;
-        int LastClienteID;
-        string last;
+        string Estado, Lista, last;
+        int ClienteID, LastClienteID;
 
-        private void UserControl_Initialized(object sender, EventArgs e)
+        List<TcliCliente> lst = new List<TcliCliente>();
+        new TcliCliente lstv2;
+
+        private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
+
+        private void Refresh()
         {
-            Inicializador = true;
+            using SadoraEntities db = new SadoraEntities();
+            lst = db.TcliClientes.ToList();
+            lstv2 = lst.Last();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (Inicializador == true)
             {
+                Inicializador = false;
                 Imprime = ClassVariables.Imprime;
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
 
-                this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                Inicializador = false;
+                Refresh();
+                this.DataContext = lstv2;
+                //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
 
         }
 
         private void BtnPrimerRegistro_Click(object sender, RoutedEventArgs e)
         {
-            List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-            {
-               txtRNC,txtNombre
-            };
-            ClassControl.ClearControl(listaControl);
+            //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
+            //{
+            //   txtRNC,txtNombre
+            //};
+            //ClassControl.ClearControl(listaControl);
             SetEnabledButton("Modo Consulta");
-            setDatos(0, "1");
-            BtnPrimerRegistro.IsEnabled = false;
-            BtnAnteriorRegistro.IsEnabled = false;
+            //setDatos(0, "1");
+            BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
+            lstv2 = lst.FirstOrDefault();
+            //this.DataContext = lst.FirstOrDefault();
         }
 
         private void BtnAnteriorRegistro_Click(object sender, RoutedEventArgs e)
         {
-            List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-            {
-               txtRNC,txtNombre
-            };
-            ClassControl.ClearControl(listaControl);
+            //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
+            //{
+            //   txtRNC,txtNombre
+            //};
+            //ClassControl.ClearControl(listaControl);
+            //SetEnabledButton("Modo Consulta");
+            //try
+            //{
+            //    ClienteID = Convert.ToInt32(txtClienteID.Text) - 1;
+            //}
+            //catch (Exception exception)
+            //{
+            //    ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
+            //}
+
+
+            //if (ClienteID <= 1)
+            //{
+            //    BtnPrimerRegistro.IsEnabled = false;
+            //    BtnAnteriorRegistro.IsEnabled = false;
+            //    setDatos(0, "1");
+            //}
+            //else
+            //{
+            //    setDatos(0, ClienteID.ToString());
+            //}
             SetEnabledButton("Modo Consulta");
-            try
-            {
-                ClienteID = Convert.ToInt32(txtClienteID.Text) - 1;
-            }
-            catch (Exception exception)
-            {
-                ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
-            }
-
-
-            if (ClienteID <= 1)
-            {
-                BtnPrimerRegistro.IsEnabled = false;
-                BtnAnteriorRegistro.IsEnabled = false;
-                setDatos(0, "1");
-            }
-            else
-            {
-                setDatos(0, ClienteID.ToString());
-            }
+            BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
+            //this.DataContext = lst.FirstOrDefault();
         }
 
         private void BtnProximoRegistro_Click(object sender, RoutedEventArgs e)
         {
-            List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-            {
-               txtRNC,txtNombre
-            };
-            ClassControl.ClearControl(listaControl);
-            SetEnabledButton("Modo Consulta");
+            //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
+            //{
+            //   txtRNC,txtNombre
+            //};
+            //ClassControl.ClearControl(listaControl);
+            //SetEnabledButton("Modo Consulta");
+
             //txtClienteID.Text += "p";
             //int result = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClassControl.TryCastInt(txtClienteID.Text) + 1;
             //ClienteID = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClienteID + 1;//Convert.ToInt32(txtClienteID.Text) + 1;
 
-            try
-            {
-                ClienteID = Convert.ToInt32(txtClienteID.Text) + 1;
-            }
-            catch (Exception exception)
-            {
-                ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
-            }
+            //try
+            //{
+            //    ClienteID = Convert.ToInt32(txtClienteID.Text) + 1;
+            //}
+            //catch (Exception exception)
+            //{
+            //    ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
+            //}
 
-            if (ClienteID >= LastClienteID)
-            {
-                BtnUltimoRegistro.IsEnabled = false;
-                BtnProximoRegistro.IsEnabled = false;
-                setDatos(0, LastClienteID.ToString());
-            }
-            else
-            {
-                setDatos(0, ClienteID.ToString());
-            }
+            //if (ClienteID >= LastClienteID)
+            //{
+            //    BtnUltimoRegistro.IsEnabled = false;
+            //    BtnProximoRegistro.IsEnabled = false;
+            //    setDatos(0, LastClienteID.ToString());
+            //}
+            //else
+            //{
+            //    setDatos(0, ClienteID.ToString());
+            //}
+
+            SetEnabledButton("Modo Consulta");
+            var result = this.DataContext;
+
         }
 
         private void BtnUltimoRegistro_Click(object sender, RoutedEventArgs e)
         {
-            List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-            {
-               txtRNC,txtNombre
-            };
-            ClassControl.ClearControl(listaControl);
+            //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
+            //{
+            //   txtRNC,txtNombre
+            //};
+            //ClassControl.ClearControl(listaControl);
+            //SetEnabledButton("Modo Consulta");
+            //setDatos(-1, "1");
             SetEnabledButton("Modo Consulta");
-            setDatos(-1, "1");
-            BtnUltimoRegistro.IsEnabled = false;
-            BtnProximoRegistro.IsEnabled = false;
+            BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
+            lstv2 = lst.LastOrDefault();
         }
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
@@ -491,86 +500,86 @@ namespace Sadora.Clientes
 
         void setDatos(int Flag, string Cliente) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
         {
-            if (Cliente == null) //si el parametro llega nulo intentamos llenarlo para que no presente ningun error el sistema
-            {
-                if (txtClienteID.Text == "")
-                    ClienteID = 0;
-                else
-                {
-                    //ClienteID = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClienteID + 1;
-                    try
-                    {
-                        ClienteID = Convert.ToInt32(txtClienteID.Text);
-                    }
-                    catch (Exception exception)
-                    {
-                        ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString(); //Enviamos la excepcion que nos brinda el sistema en caso de que no pueda convertir el id del cliente
-                    }
-                }
-            }
-            else //Si pasamos un cliente, lo convertimos actualizamos la variable cliente principal
-            {
-                //ClienteID = ClassControl.TryCastInt(Cliente) == 0 ? ClienteID : ClienteID + 1;
-                ClienteID = Convert.ToInt32(Cliente);
-            }
+            //if (Cliente == null) //si el parametro llega nulo intentamos llenarlo para que no presente ningun error el sistema
+            //{
+            //    if (txtClienteID.Text == "")
+            //        ClienteID = 0;
+            //    else
+            //    {
+            //        //ClienteID = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClienteID + 1;
+            //        try
+            //        {
+            //            ClienteID = Convert.ToInt32(txtClienteID.Text);
+            //        }
+            //        catch (Exception exception)
+            //        {
+            //            ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString(); //Enviamos la excepcion que nos brinda el sistema en caso de que no pueda convertir el id del cliente
+            //        }
+            //    }
+            //}
+            //else //Si pasamos un cliente, lo convertimos actualizamos la variable cliente principal
+            //{
+            //    //ClienteID = ClassControl.TryCastInt(Cliente) == 0 ? ClienteID : ClienteID + 1;
+            //    ClienteID = Convert.ToInt32(Cliente);
+            //}
 
-            List<SqlParameter> listSqlParameter = new List<SqlParameter>() //Creamos una lista de parametros con cada parametro de sql, donde indicamos el nombre en sql y le indicamos el valor o el campo de donde sacara el valor que enviaremos.
-            {
-                new SqlParameter("Flag",Flag),
-                new SqlParameter("@ClienteID",ClienteID),
-                new SqlParameter("@RNC",txtRNC.Text),
-                new SqlParameter("@Nombre",txtNombre.Text),
-                new SqlParameter("@Representante",txtRepresentante.Text),
-                new SqlParameter("@ClaseID",txtClaseID.Text),
-                new SqlParameter("@ClaseComprobanteID",txtComprobanteID.Text),
-                new SqlParameter("@DiasCredito",txtDiasCredito.Text),
-                new SqlParameter("@Direccion",txtDireccion.Text),
-                new SqlParameter("@CorreoElectronico",txtCorreoElectronico.Text),
-                new SqlParameter("@Telefono",txtTelefono.Text),
-                new SqlParameter("@Celular",txtCelular.Text),
-                new SqlParameter("@Activo",cActivar.IsChecked),
-                new SqlParameter("@UsuarioID",ClassVariables.UsuarioID)
-            };
+            //List<SqlParameter> listSqlParameter = new List<SqlParameter>() //Creamos una lista de parametros con cada parametro de sql, donde indicamos el nombre en sql y le indicamos el valor o el campo de donde sacara el valor que enviaremos.
+            //{
+            //    new SqlParameter("Flag",Flag),
+            //    new SqlParameter("@ClienteID",ClienteID),
+            //    new SqlParameter("@RNC",txtRNC.Text),
+            //    new SqlParameter("@Nombre",txtNombre.Text),
+            //    new SqlParameter("@Representante",txtRepresentante.Text),
+            //    new SqlParameter("@ClaseID",txtClaseID.Text),
+            //    new SqlParameter("@ClaseComprobanteID",txtComprobanteID.Text),
+            //    new SqlParameter("@DiasCredito",txtDiasCredito.Text),
+            //    new SqlParameter("@Direccion",txtDireccion.Text),
+            //    new SqlParameter("@CorreoElectronico",txtCorreoElectronico.Text),
+            //    new SqlParameter("@Telefono",txtTelefono.Text),
+            //    new SqlParameter("@Celular",txtCelular.Text),
+            //    new SqlParameter("@Activo",cActivar.IsChecked),
+            //    new SqlParameter("@UsuarioID",ClassVariables.UsuarioID)
+            //};
 
-            tabla = Clases.ClassData.runDataTable("sp_cliclientes", listSqlParameter, "StoredProcedure"); //recibimos el resultado que nos retorne la transaccion digase, consulta, agregar,editar,eliminar en una tabla.
+            //tabla = Clases.ClassData.runDataTable("sp_cliclientes", listSqlParameter, "StoredProcedure"); //recibimos el resultado que nos retorne la transaccion digase, consulta, agregar,editar,eliminar en una tabla.
 
-            if (ClassVariables.GetSetError != null) //Si el intento anterior presenta algun error aqui aparece el mismo
-            {
-                Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost(ClassVariables.GetSetError);
-                frm.ShowDialog();
-                ClassVariables.GetSetError = null;
-            }
+            //if (ClassVariables.GetSetError != null) //Si el intento anterior presenta algun error aqui aparece el mismo
+            //{
+            //    Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost(ClassVariables.GetSetError);
+            //    frm.ShowDialog();
+            //    ClassVariables.GetSetError = null;
+            //}
 
-            if (tabla.Rows.Count == 1) //evaluamos si la tabla actualizada previamente tiene datos, de ser asi actualizamos los controles en los que mostramos esa info.
-            {
-                txtClienteID.Text = tabla.Rows[0]["ClienteID"].ToString();
-                txtRNC.Text = tabla.Rows[0]["RNC"].ToString();
-                txtNombre.Text = tabla.Rows[0]["Nombre"].ToString();
-                txtRepresentante.Text = tabla.Rows[0]["Representante"].ToString();
-                txtClaseID.Text = tabla.Rows[0]["ClaseID"].ToString();
-                txtComprobanteID.Text = tabla.Rows[0]["ClaseComprobanteID"].ToString();
-                txtDireccion.Text = tabla.Rows[0]["Direccion"].ToString();
-                txtCorreoElectronico.Text = tabla.Rows[0]["CorreoElectronico"].ToString();
-                txtTelefono.Text = tabla.Rows[0]["Telefono"].ToString();
-                txtCelular.Text = tabla.Rows[0]["Celular"].ToString();
-                cActivar.IsChecked = Convert.ToBoolean(tabla.Rows[0]["Activo"].ToString());
-                txtDiasCredito.Text = tabla.Rows[0]["DiasCredito"].ToString();
+            //if (tabla.Rows.Count == 1) //evaluamos si la tabla actualizada previamente tiene datos, de ser asi actualizamos los controles en los que mostramos esa info.
+            //{
+            //    txtClienteID.Text = tabla.Rows[0]["ClienteID"].ToString();
+            //    txtRNC.Text = tabla.Rows[0]["RNC"].ToString();
+            //    txtNombre.Text = tabla.Rows[0]["Nombre"].ToString();
+            //    txtRepresentante.Text = tabla.Rows[0]["Representante"].ToString();
+            //    txtClaseID.Text = tabla.Rows[0]["ClaseID"].ToString();
+            //    txtComprobanteID.Text = tabla.Rows[0]["ClaseComprobanteID"].ToString();
+            //    txtDireccion.Text = tabla.Rows[0]["Direccion"].ToString();
+            //    txtCorreoElectronico.Text = tabla.Rows[0]["CorreoElectronico"].ToString();
+            //    txtTelefono.Text = tabla.Rows[0]["Telefono"].ToString();
+            //    txtCelular.Text = tabla.Rows[0]["Celular"].ToString();
+            //    cActivar.IsChecked = Convert.ToBoolean(tabla.Rows[0]["Activo"].ToString());
+            //    txtDiasCredito.Text = tabla.Rows[0]["DiasCredito"].ToString();
 
-                if (Flag == -1) //si pulsamos el boton del ultimo registro se ejecuta el flag -1 es decir que tenemos una busqueda especial
-                {
-                    try
-                    {
-                        LastClienteID = Convert.ToInt32(txtClienteID.Text); //intentamos convertir el id del cliente
-                    }
-                    catch (Exception exception)
-                    {
-                        ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString(); //si presenta un error al intentar convertirlo lo enviamos
-                    }
-                }
-                ClassControl.setValidador("select * from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID); //ejecutamos el metodo validador con el campo seleccionado para que lo busque y muestre una vez se guarde el registro
-                ClassControl.setValidador("select * from TconComprobantes where ComprobanteID =", txtComprobanteID, tbxComprobanteID); //ejecutamos el metodo validador con el campo seleccionado para que lo busque y muestre una vez se guarde el registro
-            }
-            listSqlParameter.Clear(); //Limpiamos la lista de parametros.
+            //    if (Flag == -1) //si pulsamos el boton del ultimo registro se ejecuta el flag -1 es decir que tenemos una busqueda especial
+            //    {
+            //        try
+            //        {
+            //            LastClienteID = Convert.ToInt32(txtClienteID.Text); //intentamos convertir el id del cliente
+            //        }
+            //        catch (Exception exception)
+            //        {
+            //            ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString(); //si presenta un error al intentar convertirlo lo enviamos
+            //        }
+            //    }
+            //    ClassControl.setValidador("select * from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID); //ejecutamos el metodo validador con el campo seleccionado para que lo busque y muestre una vez se guarde el registro
+            //    ClassControl.setValidador("select * from TconComprobantes where ComprobanteID =", txtComprobanteID, tbxComprobanteID); //ejecutamos el metodo validador con el campo seleccionado para que lo busque y muestre una vez se guarde el registro
+            //}
+            //listSqlParameter.Clear(); //Limpiamos la lista de parametros.
         }
 
         void SetControls(bool Habilitador, string Modo, bool Editando) //Este metodo se encarga de controlar cada unos de los controles del cuerpo de la ventana como los textbox
