@@ -120,44 +120,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Administracion\FrmControlAccesos.xaml.cs">
+    <Compile Include="Views\Administracion\FrmControlAccesos.xaml.cs">
       <DependentUpon>FrmControlAccesos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\UscConsultorLogs.xaml.cs">
+    <Compile Include="Views\Administracion\UscConsultorLogs.xaml.cs">
       <DependentUpon>UscConsultorLogs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\UscMantenimientoGeneral.xaml.cs">
+    <Compile Include="Views\Administracion\UscMantenimientoGeneral.xaml.cs">
       <DependentUpon>UscMantenimientoGeneral.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\UscGruposUsuarios.xaml.cs">
+    <Compile Include="Views\Administracion\UscGruposUsuarios.xaml.cs">
       <DependentUpon>UscGruposUsuarios.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\UscEmpresa.xaml.cs">
+    <Compile Include="Views\Administracion\UscEmpresa.xaml.cs">
       <DependentUpon>UscEmpresa.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clases\ObservableObject.cs" />
-    <Compile Include="Clientes\Reportes\RpCuentasXCobrar.cs">
+    <Compile Include="Views\Clientes\Reportes\RpCuentasXCobrar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Clientes\Reportes\RpCuentasXCobrar.Designer.cs">
+    <Compile Include="Views\Clientes\Reportes\RpCuentasXCobrar.Designer.cs">
       <DependentUpon>RpCuentasXCobrar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\UscTransacciones.xaml.cs">
+    <Compile Include="Views\Clientes\UscTransacciones.xaml.cs">
       <DependentUpon>UscTransacciones.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Contabilidad\FrmMenu.xaml.cs">
+    <Compile Include="Views\Contabilidad\FrmMenu.xaml.cs">
       <DependentUpon>FrmMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Inventario\FrmMenu.xaml.cs">
+    <Compile Include="Views\Inventario\FrmMenu.xaml.cs">
       <DependentUpon>FrmMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Inventario\UscArticulos.xaml.cs">
+    <Compile Include="Views\Inventario\UscArticulos.xaml.cs">
       <DependentUpon>UscArticulos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Inventario\UscClaseArticulos.xaml.cs">
+    <Compile Include="Views\Inventario\UscClaseArticulos.xaml.cs">
       <DependentUpon>UscClaseArticulos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Inventario\UscMovimientoInventario.xaml.cs">
+    <Compile Include="Views\Inventario\UscMovimientoInventario.xaml.cs">
       <DependentUpon>UscMovimientoInventario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\SadoraDB.Context.cs">
@@ -268,19 +268,19 @@
     <Compile Include="Models\TvenMetodoPago.cs">
       <DependentUpon>SadoraDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Proveedores\FrmMenu.xaml.cs">
+    <Compile Include="Views\Proveedores\FrmMenu.xaml.cs">
       <DependentUpon>FrmMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Proveedores\UscTransacciones.xaml.cs">
+    <Compile Include="Views\Proveedores\UscTransacciones.xaml.cs">
       <DependentUpon>UscTransacciones.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Proveedores\UscProveedores.xaml.cs">
+    <Compile Include="Views\Proveedores\UscProveedores.xaml.cs">
       <DependentUpon>UscProveedores.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Recursos Humanos\FrmMenu.xaml.cs">
+    <Compile Include="Views\Recursos Humanos\FrmMenu.xaml.cs">
       <DependentUpon>FrmMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Recursos Humanos\UscEmpleados.xaml.cs">
+    <Compile Include="Views\Recursos Humanos\UscEmpleados.xaml.cs">
       <DependentUpon>UscEmpleados.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reportes\RpFacturacion.cs">
@@ -289,107 +289,107 @@
     <Compile Include="Reportes\RpFacturacion.Designer.cs">
       <DependentUpon>RpFacturacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ventas\FrmControlFormaPago.xaml.cs">
+    <Compile Include="Views\Ventas\FrmControlFormaPago.xaml.cs">
       <DependentUpon>FrmControlFormaPago.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventas\FrmControlComprobantes.xaml.cs">
+    <Compile Include="Views\Ventas\FrmControlComprobantes.xaml.cs">
       <DependentUpon>FrmControlComprobantes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventas\FrmMenu.xaml.cs">
+    <Compile Include="Views\Ventas\FrmMenu.xaml.cs">
       <DependentUpon>FrmMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Contabilidad\UscComprobantes.xaml.cs">
+    <Compile Include="Views\Contabilidad\UscComprobantes.xaml.cs">
       <DependentUpon>UscComprobantes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventas\UscFacturacion.xaml.cs">
+    <Compile Include="Views\Ventas\UscFacturacion.xaml.cs">
       <DependentUpon>UscFacturacion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventas\UscCajas.xaml.cs">
+    <Compile Include="Views\Ventas\UscCajas.xaml.cs">
       <DependentUpon>UscCajas.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Clientes\UscClientesVM.cs" />
-    <Page Include="Administracion\FrmControlAccesos.xaml">
+    <Page Include="Views\Administracion\FrmControlAccesos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Administracion\FrmValidarAccion.xaml">
+    <Page Include="Views\Administracion\FrmValidarAccion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Administracion\FrmCompletarCamposHost.xaml">
+    <Page Include="Views\Administracion\FrmCompletarCamposHost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Administracion\FrmLogin.xaml">
+    <Page Include="Views\Administracion\FrmLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Administracion\FrmMain.xaml">
+    <Page Include="Views\Administracion\FrmMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Administracion\FrmMenu.xaml">
+    <Page Include="Views\Administracion\FrmMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Administracion\FrmMostrarDatosHost.xaml">
+    <Page Include="Views\Administracion\FrmMostrarDatosHost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Administracion\FrmSplash.xaml">
+    <Page Include="Views\Administracion\FrmSplash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Administracion\UscConsultorLogs.xaml">
+    <Page Include="Views\Administracion\UscConsultorLogs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Administracion\UscMantenimientoGeneral.xaml">
+    <Page Include="Views\Administracion\UscMantenimientoGeneral.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Administracion\UscGruposUsuarios.xaml">
+    <Page Include="Views\Administracion\UscGruposUsuarios.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Administracion\UscEmpresa.xaml">
+    <Page Include="Views\Administracion\UscEmpresa.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Administracion\UscUsuarios.xaml">
+    <Page Include="Views\Administracion\UscUsuarios.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Clientes\FrmMenu.xaml">
+    <Page Include="Views\Clientes\FrmMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Clientes\UscClientes.xaml">
+    <Page Include="Views\Clientes\UscClientes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Administracion\FrmValidarAccion.xaml.cs">
+    <Compile Include="Views\Administracion\FrmValidarAccion.xaml.cs">
       <DependentUpon>FrmValidarAccion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\FrmCompletarCamposHost.xaml.cs">
+    <Compile Include="Views\Administracion\FrmCompletarCamposHost.xaml.cs">
       <DependentUpon>FrmCompletarCamposHost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\FrmLogin.xaml.cs">
+    <Compile Include="Views\Administracion\FrmLogin.xaml.cs">
       <DependentUpon>FrmLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\FrmMain.xaml.cs">
+    <Compile Include="Views\Administracion\FrmMain.xaml.cs">
       <DependentUpon>FrmMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\FrmMenu.xaml.cs">
+    <Compile Include="Views\Administracion\FrmMenu.xaml.cs">
       <DependentUpon>FrmMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\FrmMostrarDatosHost.xaml.cs">
+    <Compile Include="Views\Administracion\FrmMostrarDatosHost.xaml.cs">
       <DependentUpon>FrmMostrarDatosHost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\FrmSplash.xaml.cs">
+    <Compile Include="Views\Administracion\FrmSplash.xaml.cs">
       <DependentUpon>FrmSplash.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Administracion\UscUsuarios.xaml.cs">
+    <Compile Include="Views\Administracion\UscUsuarios.xaml.cs">
       <DependentUpon>UscUsuarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -399,77 +399,77 @@
     <Compile Include="Clases\ClassControl.cs" />
     <Compile Include="Clases\ClassData.cs" />
     <Compile Include="Clases\ClassVariables.cs" />
-    <Compile Include="Clientes\FrmMenu.xaml.cs">
+    <Compile Include="Views\Clientes\FrmMenu.xaml.cs">
       <DependentUpon>FrmMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\UscClientes.xaml.cs">
+    <Compile Include="Views\Clientes\UscClientes.xaml.cs">
       <DependentUpon>UscClientes.xaml</DependentUpon>
     </Compile>
-    <Page Include="Clientes\UscTransacciones.xaml">
+    <Page Include="Views\Clientes\UscTransacciones.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Contabilidad\FrmMenu.xaml">
+    <Page Include="Views\Contabilidad\FrmMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Inventario\FrmMenu.xaml">
+    <Page Include="Views\Inventario\FrmMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Inventario\UscArticulos.xaml">
+    <Page Include="Views\Inventario\UscArticulos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Inventario\UscClaseArticulos.xaml">
+    <Page Include="Views\Inventario\UscClaseArticulos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Inventario\UscMovimientoInventario.xaml">
+    <Page Include="Views\Inventario\UscMovimientoInventario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Proveedores\FrmMenu.xaml">
+    <Page Include="Views\Proveedores\FrmMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Proveedores\UscTransacciones.xaml">
+    <Page Include="Views\Proveedores\UscTransacciones.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Proveedores\UscProveedores.xaml">
+    <Page Include="Views\Proveedores\UscProveedores.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Recursos Humanos\FrmMenu.xaml">
+    <Page Include="Views\Recursos Humanos\FrmMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Recursos Humanos\UscEmpleados.xaml">
+    <Page Include="Views\Recursos Humanos\UscEmpleados.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventas\FrmControlFormaPago.xaml">
+    <Page Include="Views\Ventas\FrmControlFormaPago.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventas\FrmControlComprobantes.xaml">
+    <Page Include="Views\Ventas\FrmControlComprobantes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventas\FrmMenu.xaml">
+    <Page Include="Views\Ventas\FrmMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Contabilidad\UscComprobantes.xaml">
+    <Page Include="Views\Contabilidad\UscComprobantes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventas\UscFacturacion.xaml">
+    <Page Include="Views\Ventas\UscFacturacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventas\UscCajas.xaml">
+    <Page Include="Views\Ventas\UscCajas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -488,10 +488,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Clientes\Reportes\RpCuentasXCobrar.es-DO.resx">
+    <EmbeddedResource Include="Views\Clientes\Reportes\RpCuentasXCobrar.es-DO.resx">
       <DependentUpon>RpCuentasXCobrar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Reportes\RpCuentasXCobrar.resx">
+    <EmbeddedResource Include="Views\Clientes\Reportes\RpCuentasXCobrar.resx">
       <DependentUpon>RpCuentasXCobrar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -539,7 +539,7 @@
     <Resource Include="Sadora.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Administracion\LogoSadora.png" />
+    <Resource Include="Views\Administracion\LogoSadora.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SadoraCircle.ico" />
