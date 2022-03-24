@@ -283,10 +283,10 @@
     <Compile Include="Views\Recursos Humanos\UscEmpleados.xaml.cs">
       <DependentUpon>UscEmpleados.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\RpFacturacion.cs">
+    <Compile Include="Views\Reportes\RpFacturacion.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reportes\RpFacturacion.Designer.cs">
+    <Compile Include="Views\Reportes\RpFacturacion.Designer.cs">
       <DependentUpon>RpFacturacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\FrmControlFormaPago.xaml.cs">
@@ -500,10 +500,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\RpFacturacion.es-DO.resx">
+    <EmbeddedResource Include="Views\Reportes\RpFacturacion.es-DO.resx">
       <DependentUpon>RpFacturacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\RpFacturacion.resx">
+    <EmbeddedResource Include="Views\Reportes\RpFacturacion.resx">
       <DependentUpon>RpFacturacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
