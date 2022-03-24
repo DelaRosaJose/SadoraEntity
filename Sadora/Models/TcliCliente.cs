@@ -9,32 +9,24 @@
 
 namespace Sadora.Models
 {
-    using Sadora.Clases;
     using System;
     using System.Collections.Generic;
-
     
-    public partial class TcliCliente : ObservableObject
+    public partial class TcliCliente
     {
-        #region Declaracion de variables
-        private int? _cliente, _claseID, _usuarioID, _diascredito;
-        private int _clasecomprobanteID;
-        private string _rnc, _nombre, _representante, _direccion, _correoelectronico, _telefono, _celular;
-        private bool? _activo;
-        #endregion
         public int RowID { get; set; }
-        public Nullable<int> ClienteID { get { return _cliente; } set { _cliente = value; OnPropertyChanged(); } }
-        public string RNC { get { return _rnc; } set { _rnc = value; OnPropertyChanged(); } }
-        public string Nombre { get { return _nombre; } set { _nombre = value; OnPropertyChanged(); } }
-        public string Representante { get { return _representante; } set { _representante = value; OnPropertyChanged(); } }
-        public Nullable<int> ClaseID { get { return _claseID; } set { _claseID = value; OnPropertyChanged(); } }
-        public string Direccion { get { return _direccion; } set { _direccion = value; OnPropertyChanged(); } }
-        public string CorreoElectronico { get { return _correoelectronico; } set { _correoelectronico = value; OnPropertyChanged(); } }
-        public string Telefono { get { return _telefono; } set { _telefono = value; OnPropertyChanged(); } }
-        public string Celular { get { return _celular; } set { _celular = value; OnPropertyChanged(); } }
-        public Nullable<bool> Activo { get { return _activo; } set { _activo = value; OnPropertyChanged(); } }
-        public Nullable<int> UsuarioID { get { return _usuarioID; } set { _usuarioID = value; OnPropertyChanged(); } }
-        public int ClaseComprobanteID { get { return _clasecomprobanteID; } set { _clasecomprobanteID = value; OnPropertyChanged(); } }
-        public Nullable<int> DiasCredito { get { return _diascredito; } set { _diascredito = value; OnPropertyChanged(); } }
+        public Nullable<int> ClienteID { get; set; }
+        public string RNC { get; set; }
+        public string Nombre { get; set; }
+        public string Representante { get; set; }
+        public Nullable<int> ClaseID { get; set; }
+        public string Direccion { get; set; }
+        public string CorreoElectronico { get; set; }
+        public string Telefono { get; set; }
+        public string Celular { get; set; }
+        public Nullable<bool> Activo { get; set; }
+        public Nullable<int> UsuarioID { get; set; }
+        public int ClaseComprobanteID { get; set; }
+        public Nullable<int> DiasCredito { get; set; }
     }
 }

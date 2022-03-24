@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SadoraModelStoreContainer" CdmEntityContainer="SadoraEntities">
+    <EntitySetMapping Name="TcliClaseClientes">
+      <EntityTypeMapping TypeName="SadoraModel.TcliClaseCliente">
+        <MappingFragment StoreEntitySet="TcliClaseClientes">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TcliClientes">
+      <EntityTypeMapping TypeName="SadoraModel.TcliCliente">
+        <MappingFragment StoreEntitySet="TcliClientes">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+          <ScalarProperty Name="RNC" ColumnName="RNC" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Representante" ColumnName="Representante" />
+          <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="ClaseComprobanteID" ColumnName="ClaseComprobanteID" />
+          <ScalarProperty Name="DiasCredito" ColumnName="DiasCredito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TconComprobantes">
+      <EntityTypeMapping TypeName="SadoraModel.TconComprobante">
+        <MappingFragment StoreEntitySet="TconComprobantes">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="ComprobanteID" ColumnName="ComprobanteID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Auxiliar" ColumnName="Auxiliar" />
+          <ScalarProperty Name="Nomenclatura" ColumnName="Nomenclatura" />
+          <ScalarProperty Name="Desde" ColumnName="Desde" />
+          <ScalarProperty Name="Hasta" ColumnName="Hasta" />
+          <ScalarProperty Name="NextNCF" ColumnName="NextNCF" />
+          <ScalarProperty Name="Disponibles" ColumnName="Disponibles" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="SinComprobantes" ColumnName="SinComprobantes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinvArticulos">
+      <EntityTypeMapping TypeName="SadoraModel.TinvArticulo">
+        <MappingFragment StoreEntitySet="TinvArticulos">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="ArticuloID" ColumnName="ArticuloID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="ClaseArticuloID" ColumnName="ClaseArticuloID" />
+          <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
+          <ScalarProperty Name="MarcaID" ColumnName="MarcaID" />
+          <ScalarProperty Name="Tarjeta" ColumnName="Tarjeta" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="HaveServices" ColumnName="HaveServices" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinvClaseArticulos">
+      <EntityTypeMapping TypeName="SadoraModel.TinvClaseArticulo">
+        <MappingFragment StoreEntitySet="TinvClaseArticulos">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+          <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinvDepartamentoes">
+      <EntityTypeMapping TypeName="SadoraModel.TinvDepartamento">
+        <MappingFragment StoreEntitySet="TinvDepartamento">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinvMarcas">
+      <EntityTypeMapping TypeName="SadoraModel.TinvMarca">
+        <MappingFragment StoreEntitySet="TinvMarca">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MarcaID" ColumnName="MarcaID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinvMovimientoInventarios">
+      <EntityTypeMapping TypeName="SadoraModel.TinvMovimientoInventario">
+        <MappingFragment StoreEntitySet="TinvMovimientoInventario">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MovimientoID" ColumnName="MovimientoID" />
+          <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+          <ScalarProperty Name="FechaMovimiento" ColumnName="FechaMovimiento" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinvMovimientoInventarioDetalles">
+      <EntityTypeMapping TypeName="SadoraModel.TinvMovimientoInventarioDetalle">
+        <MappingFragment StoreEntitySet="TinvMovimientoInventarioDetalle">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MovimientoID" ColumnName="MovimientoID" />
+          <ScalarProperty Name="ArticuloID" ColumnName="ArticuloID" />
+          <ScalarProperty Name="TarjetaID" ColumnName="TarjetaID" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="CantidadPrevia" ColumnName="CantidadPrevia" />
+          <ScalarProperty Name="CantidadPostMovimiento" ColumnName="CantidadPostMovimiento" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinvServicioArticulos">
+      <EntityTypeMapping TypeName="SadoraModel.TinvServicioArticulo">
+        <MappingFragment StoreEntitySet="TinvServicioArticulos">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="ArticuloID" ColumnName="ArticuloID" />
+          <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Alta" ColumnName="Alta" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrhnEmpleados">
+      <EntityTypeMapping TypeName="SadoraModel.TrhnEmpleado">
+        <MappingFragment StoreEntitySet="TrhnEmpleados">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsupClaseProveedores">
+      <EntityTypeMapping TypeName="SadoraModel.TsupClaseProveedore">
+        <MappingFragment StoreEntitySet="TsupClaseProveedores">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsupMovimientosCuentas">
+      <EntityTypeMapping TypeName="SadoraModel.TsupMovimientosCuenta">
+        <MappingFragment StoreEntitySet="TsupMovimientosCuentas">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MovimientoID" ColumnName="MovimientoID" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Debito" ColumnName="Debito" />
+          <ScalarProperty Name="Credito" ColumnName="Credito" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsupMovimientosCuentasDetalles">
+      <EntityTypeMapping TypeName="SadoraModel.TsupMovimientosCuentasDetalle">
+        <MappingFragment StoreEntitySet="TsupMovimientosCuentasDetalle">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MovimientoID" ColumnName="MovimientoID" />
+          <ScalarProperty Name="Debito" ColumnName="Debito" />
+          <ScalarProperty Name="Credito" ColumnName="Credito" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsupProveedores">
+      <EntityTypeMapping TypeName="SadoraModel.TsupProveedore">
+        <MappingFragment StoreEntitySet="TsupProveedores">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+          <ScalarProperty Name="RNC" ColumnName="RNC" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Representante" ColumnName="Representante" />
+          <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsupTransacciones">
+      <EntityTypeMapping TypeName="SadoraModel.TsupTransaccione">
+        <MappingFragment StoreEntitySet="TsupTransacciones">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="TransaccionID" ColumnName="TransaccionID" />
+          <ScalarProperty Name="TipoTransaccion" ColumnName="TipoTransaccion" />
+          <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="MontoExcento" ColumnName="MontoExcento" />
+          <ScalarProperty Name="MontoGravado" ColumnName="MontoGravado" />
+          <ScalarProperty Name="ITBIS" ColumnName="ITBIS" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsysAccesos">
+      <EntityTypeMapping TypeName="SadoraModel.TsysAcceso">
+        <MappingFragment StoreEntitySet="TsysAccesos">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Visualiza" ColumnName="Visualiza" />
+          <ScalarProperty Name="Imprime" ColumnName="Imprime" />
+          <ScalarProperty Name="Agrega" ColumnName="Agrega" />
+          <ScalarProperty Name="Modifica" ColumnName="Modifica" />
+          <ScalarProperty Name="Anula" ColumnName="Anula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsysEmpresas">
+      <EntityTypeMapping TypeName="SadoraModel.TsysEmpresa">
+        <MappingFragment StoreEntitySet="TsysEmpresa">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="EmpresaID" ColumnName="EmpresaID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="RNC" ColumnName="RNC" />
+          <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsysFormularios">
+      <EntityTypeMapping TypeName="SadoraModel.TsysFormulario">
+        <MappingFragment StoreEntitySet="TsysFormularios">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsysGruposAccesos">
+      <EntityTypeMapping TypeName="SadoraModel.TsysGruposAcceso">
+        <MappingFragment StoreEntitySet="TsysGruposAccesos">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Visualiza" ColumnName="Visualiza" />
+          <ScalarProperty Name="Imprime" ColumnName="Imprime" />
+          <ScalarProperty Name="Agrega" ColumnName="Agrega" />
+          <ScalarProperty Name="Modifica" ColumnName="Modifica" />
+          <ScalarProperty Name="Anula" ColumnName="Anula" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsysGruposUsuarios">
+      <EntityTypeMapping TypeName="SadoraModel.TsysGruposUsuario">
+        <MappingFragment StoreEntitySet="TsysGruposUsuarios">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TsysUsuarios">
+      <EntityTypeMapping TypeName="SadoraModel.TsysUsuario">
+        <MappingFragment StoreEntitySet="TsysUsuarios">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+          <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TvenCajas">
+      <EntityTypeMapping TypeName="SadoraModel.TvenCaja">
+        <MappingFragment StoreEntitySet="TvenCajas">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="CajaID" ColumnName="CajaID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TvenCajasDetalles">
+      <EntityTypeMapping TypeName="SadoraModel.TvenCajasDetalle">
+        <MappingFragment StoreEntitySet="TvenCajasDetalle">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="CajaID" ColumnName="CajaID" />
+          <ScalarProperty Name="MetodoID" ColumnName="MetodoID" />
+          <ScalarProperty Name="Alta" ColumnName="Alta" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TvenDesglosePagoes">
+      <EntityTypeMapping TypeName="SadoraModel.TvenDesglosePago">
+        <MappingFragment StoreEntitySet="TvenDesglosePago">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MetodoPagoID" ColumnName="MetodoPagoID" />
+          <ScalarProperty Name="TransaccionID" ColumnName="TransaccionID" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TvenFacturas">
+      <EntityTypeMapping TypeName="SadoraModel.TvenFactura">
+        <MappingFragment StoreEntitySet="TvenFacturas">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="FacturaID" ColumnName="FacturaID" />
+          <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+          <ScalarProperty Name="RNC" ColumnName="RNC" />
+          <ScalarProperty Name="ClaseNCF" ColumnName="ClaseNCF" />
+          <ScalarProperty Name="NCF" ColumnName="NCF" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="ITBIS" ColumnName="ITBIS" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TvenFacturasDetalles">
+      <EntityTypeMapping TypeName="SadoraModel.TvenFacturasDetalle">
+        <MappingFragment StoreEntitySet="TvenFacturasDetalles">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="FacturaID" ColumnName="FacturaID" />
+          <ScalarProperty Name="ArticuloID" ColumnName="ArticuloID" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="ITBIS" ColumnName="ITBIS" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="NombreArticulo" ColumnName="NombreArticulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TvenMetodoPagos">
+      <EntityTypeMapping TypeName="SadoraModel.TvenMetodoPago">
+        <MappingFragment StoreEntitySet="TvenMetodoPagos">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MetodoID" ColumnName="MetodoID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Audits">
+      <EntityTypeMapping TypeName="SadoraModel.Audit">
+        <MappingFragment StoreEntitySet="Audit">
+          <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="PrimaryKeyField" ColumnName="PrimaryKeyField" />
+          <ScalarProperty Name="PrimaryKeyValue" ColumnName="PrimaryKeyValue" />
+          <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+          <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+          <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TcliMovimientosCuentas">
+      <EntityTypeMapping TypeName="SadoraModel.TcliMovimientosCuenta">
+        <MappingFragment StoreEntitySet="TcliMovimientosCuentas">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MovimientoID" ColumnName="MovimientoID" />
+          <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Debito" ColumnName="Debito" />
+          <ScalarProperty Name="Credito" ColumnName="Credito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TcliMovimientosCuentasDetalles">
+      <EntityTypeMapping TypeName="SadoraModel.TcliMovimientosCuentasDetalle">
+        <MappingFragment StoreEntitySet="TcliMovimientosCuentasDetalle">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="MovimientoID" ColumnName="MovimientoID" />
+          <ScalarProperty Name="Debito" ColumnName="Debito" />
+          <ScalarProperty Name="Credito" ColumnName="Credito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TcliTransacciones">
+      <EntityTypeMapping TypeName="SadoraModel.TcliTransaccione">
+        <MappingFragment StoreEntitySet="TcliTransacciones">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="TransaccionID" ColumnName="TransaccionID" />
+          <ScalarProperty Name="TipoTransaccion" ColumnName="TipoTransaccion" />
+          <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="MontoExcento" ColumnName="MontoExcento" />
+          <ScalarProperty Name="MontoGravado" ColumnName="MontoGravado" />
+          <ScalarProperty Name="ITBIS" ColumnName="ITBIS" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FacturaID" ColumnName="FacturaID" />
+          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="DiasCredito" ColumnName="DiasCredito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

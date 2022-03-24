@@ -36,7 +36,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Padding="0" Grid.Column="0" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnPrimerRegistro" Padding="0" Click="BtnPrimerRegistro_Click" Height="59" ToolTip="Pulsar para ir al primer registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+                    <Button x:Name="BtnPrimerRegistro" Command="{Binding CustomerCommand}" Padding="0" Click="BtnPrimerRegistro_Click" Height="59" ToolTip="Pulsar para ir al primer registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                         <StackPanel>
                             <materialDesign:PackIcon Kind="ArrowUpBold" Width="auto" Height="36" HorizontalAlignment="Center"/>
                             <TextBlock Text="First" HorizontalAlignment="Center" FontSize="17"/>
@@ -158,28 +158,28 @@
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lClienteID" Margin="10 5 0 0" Text="Cliente ID" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtClienteID" Text="{Binding ClienteID}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="1" KeyUp="txtClienteID_KeyUp"/>
+                                    <TextBox x:Name="txtClienteID" Text="{Binding Cliente.ClienteID}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="1" KeyUp="txtClienteID_KeyUp"/>
                                 </StackPanel>
                             </Border>
 
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lNombre" Margin="10 5 0 0" Text="Nombre" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtNombre" Text="{Binding Nombre}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="4" KeyUp="txtNombre_KeyUp"/>
+                                    <TextBox x:Name="txtNombre" Text="{Binding Cliente.Nombre}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="4" KeyUp="txtNombre_KeyUp"/>
                                 </StackPanel>
                             </Border>
 
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lDireccion" Margin="10 5 0 0" Text="Direccion" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtDireccion" Text="{Binding Direccion}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="7" KeyUp="txtDireccion_KeyUp"/>
+                                    <TextBox x:Name="txtDireccion" Text="{Binding Cliente.Direccion}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="7" KeyUp="txtDireccion_KeyUp"/>
                                 </StackPanel>
                             </Border>
 
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lTelefono" Margin="10 5 0 0" Text="Telefono" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtTelefono" Text="{Binding Telefono}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="9" KeyUp="txtTelefono_KeyUp" KeyDown="txtTelefono_KeyDown"/>
+                                    <TextBox x:Name="txtTelefono" Text="{Binding Cliente.Telefono}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="9" KeyUp="txtTelefono_KeyUp" KeyDown="txtTelefono_KeyDown"/>
                                 </StackPanel>
                             </Border>
 
@@ -194,28 +194,28 @@
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lRNC" Margin="10 5 0 0" Text="RNC" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtRNC" Text="{Binding RNC}" MaxLength="13" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="2" KeyUp="txtRNC_KeyUp"/>
+                                    <TextBox x:Name="txtRNC" Text="{Binding Cliente.RNC}" MaxLength="13" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="2" KeyUp="txtRNC_KeyUp"/>
                                 </StackPanel>
                             </Border>
 
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lRepresentante" Margin="10 5 0 0" Text="Representante" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtRepresentante" Text="{Binding Representante}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="5" KeyUp="txtRepresentante_KeyUp"/>
+                                    <TextBox x:Name="txtRepresentante" Text="{Binding Cliente.Representante}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="5" KeyUp="txtRepresentante_KeyUp"/>
                                 </StackPanel>
                             </Border>
 
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lCorreoElectronico" Margin="10 5 0 0" Text="Correo Electronico" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtCorreoElectronico" Text="{Binding CorreoElectronico}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="8" KeyUp="txtCorreoElectronico_KeyUp"/>
+                                    <TextBox x:Name="txtCorreoElectronico" Text="{Binding Cliente.CorreoElectronico}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="8" KeyUp="txtCorreoElectronico_KeyUp"/>
                                 </StackPanel>
                             </Border>
 
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lCelular" Margin="10 5 0 0" Text="Celular" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtCelular" Text="{Binding Celular}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="10" KeyUp="txtCelular_KeyUp" KeyDown="txtCelular_KeyDown"/>
+                                    <TextBox x:Name="txtCelular" Text="{Binding Cliente.Celular}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="10" KeyUp="txtCelular_KeyUp" KeyDown="txtCelular_KeyDown"/>
                                 </StackPanel>
                             </Border>
 
@@ -229,7 +229,7 @@
 
                             <Border HorizontalAlignment="Right" Padding="5" TextElement.FontSize="15" Margin="15 34 15 15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2" CornerRadius="5">
                                 <StackPanel x:Name="CheckActivar" Orientation="Horizontal">
-                                    <CheckBox x:Name="cActivar" IsChecked="{Binding Activo}" materialDesign:CheckBoxAssist.CheckBoxSize="25" KeyUp="cActivar_KeyUp" TabIndex="3"/>
+                                    <CheckBox x:Name="cActivar" IsChecked="{Binding Cliente.Activo}" materialDesign:CheckBoxAssist.CheckBoxSize="25" KeyUp="cActivar_KeyUp" TabIndex="3"/>
                                     <TextBlock VerticalAlignment="Center" Text="Activo" FontWeight="Bold"/>
                                 </StackPanel>
                             </Border>
@@ -245,7 +245,7 @@
                                         <StackPanel Orientation="Vertical">
                                             <TextBlock x:Name="lClaseID" Margin="10 5 0 0" Text="Clase ID        " FontWeight="Bold"/>
                                             <Grid>
-                                                <TextBox x:Name="txtClaseID" Text="{Binding ClaseID}" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="6" KeyUp="txtClaseID_KeyUp" KeyDown="txtClaseID_KeyDown"/>
+                                                <TextBox x:Name="txtClaseID" Text="{Binding Cliente.ClaseID}" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="6" KeyUp="txtClaseID_KeyUp" KeyDown="txtClaseID_KeyDown"/>
                                                 <Button x:Name="btnClaseID" HorizontalAlignment="Right" Padding="0" Height="30" Click="btnClaseID_Click">
                                                     <materialDesign:PackIcon Kind="Magnify" Padding="0" Height="30" Width="25" />
                                                 </Button>
@@ -279,7 +279,7 @@
                                 <Border Grid.Row="1" Grid.Column="0" TextElement.FontSize="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="0 5 5 5">
                                     <StackPanel Orientation="Vertical" >
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBox x:Name="txtComprobanteID" Text="{Binding ClaseComprobanteID}" Width="75" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignTextBox}" Background="#4CEDEDED" TabIndex="6" KeyUp="txtComprobanteID_KeyUp" KeyDown="txtComprobanteID_KeyDown"/>
+                                            <TextBox x:Name="txtComprobanteID" Text="{Binding Cliente.ClaseComprobanteID}" Width="75" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignTextBox}" Background="#4CEDEDED" TabIndex="6" KeyUp="txtComprobanteID_KeyUp" KeyDown="txtComprobanteID_KeyDown"/>
                                             <Button x:Name="btnComprobanteID" HorizontalAlignment="Right" Padding="0" Height="30" Click="btnComprobanteID_Click">
                                                 <materialDesign:PackIcon Kind="Magnify" Padding="0" Height="30" Width="25" />
                                             </Button>
@@ -294,7 +294,7 @@
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lDiasCredito" Margin="10 5 0 0" Text="Dias de Credito" FontWeight="Bold"/>
-                                    <TextBox x:Name="txtDiasCredito" Text="{Binding DiasCredito}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="11" KeyDown="txtDiasCredito_KeyDown" KeyUp="txtDiasCredito_KeyUp"/>
+                                    <TextBox x:Name="txtDiasCredito" Text="{Binding Cliente.DiasCredito}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="11" KeyDown="txtDiasCredito_KeyDown" KeyUp="txtDiasCredito_KeyUp"/>
                                 </StackPanel>
                             </Border>
                             

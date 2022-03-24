@@ -3,7 +3,7 @@ using System;
 
 namespace Sadora.ViewModels.Clientes
 {
-    class UscClientesVM : ObservableObject
+    class UscClientesVM : BaseViewModel
     {
         #region Declaracion de variables
         private int? _cliente, _claseID, _usuarioID, _diascredito; 

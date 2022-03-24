@@ -1,5 +1,4 @@
 ﻿using Sadora.Clases;
-using Sadora.Models;
 using Sadora.ViewModels.Clientes;
 using System;
 using System.Collections.Generic;
@@ -18,10 +17,13 @@ namespace Sadora.Clientes
     /// </summary>
     public partial class UscClientes : UserControl
     {
+        ViewModels.Clientes.ClientesViewModel Cli = new ViewModels.Clientes.ClientesViewModel();
         public UscClientes()
         {
             InitializeComponent();
             Name = "UscClientes";
+            this.DataContext = Cli;
+
         }
 
         bool Imprime, Modifica, Agrega;
@@ -32,17 +34,15 @@ namespace Sadora.Clientes
         string Estado, Lista, last;
         int ClienteID, LastClienteID;
 
-        List<TcliCliente> lst = new List<TcliCliente>();
-        new TcliCliente lstv2;
 
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
 
-        private void Refresh()
-        {
-            using SadoraEntities db = new SadoraEntities();
-            lst = db.TcliClientes.ToList();
-            lstv2 = lst.Last();
-        }
+        //private void Refresh()
+        //{
+        //    using SadoraEntities db = new SadoraEntities();
+        //    lst = db.TcliClientes.ToList();
+        //    lstv2 = lst.Last();
+        //}
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -53,8 +53,9 @@ namespace Sadora.Clientes
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
 
-                Refresh();
-                this.DataContext = lstv2;
+               
+                //Refresh();
+                //this.DataContext = lstv2;
                 //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
 
@@ -69,9 +70,10 @@ namespace Sadora.Clientes
             //ClassControl.ClearControl(listaControl);
             SetEnabledButton("Modo Consulta");
             //setDatos(0, "1");
-            BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
-            lstv2 = lst.FirstOrDefault();
+            //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
+            //lstv2 = lst.FirstOrDefault();
             //this.DataContext = lst.FirstOrDefault();
+            var ew = Cli;
         }
 
         private void BtnAnteriorRegistro_Click(object sender, RoutedEventArgs e)
@@ -141,7 +143,7 @@ namespace Sadora.Clientes
             //}
 
             SetEnabledButton("Modo Consulta");
-            var result = this.DataContext;
+            //var result = this.DataContext;
 
         }
 
@@ -156,7 +158,6 @@ namespace Sadora.Clientes
             //setDatos(-1, "1");
             SetEnabledButton("Modo Consulta");
             BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
-            lstv2 = lst.LastOrDefault();
         }
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
