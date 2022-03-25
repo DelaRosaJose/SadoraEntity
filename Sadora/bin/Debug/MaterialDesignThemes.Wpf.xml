@@ -648,6 +648,8 @@
         <member name="M:MaterialDesignThemes.Wpf.Extensions.GetVisualAncestry(System.Windows.DependencyObject)">
             <summary>
             Returns full visual ancestry, starting at the leaf.
+            <para>If element is not of <see cref="T:System.Windows.Media.Visual"/> or <see cref="T:System.Windows.Media.Media3D.Visual3D"/> the
+            logical ancestry is used.</para>
             </summary>
             <param name="leaf"></param>
             <returns></returns>
@@ -745,6 +747,11 @@
             <param name="promote">The message will promoted to the front of the queue.</param>
             <param name="neverConsiderToBeDuplicate">The message will never be considered a duplicate.</param>
             <param name="durationOverride">Message show duration override.</param>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.ListBoxItemAssist.CornerRadiusProperty">
+            <summary>
+            Controls the corner radius of the selection box.
+            </summary>
         </member>
         <member name="T:MaterialDesignThemes.Wpf.MessageQueueExtension">
             <summary>

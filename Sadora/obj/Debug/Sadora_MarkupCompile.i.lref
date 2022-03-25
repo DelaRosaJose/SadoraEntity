@@ -1,4 +1,30 @@
-﻿
-
+﻿E:\SadoraEntity\Sadora\obj\Debug\GeneratedInternalTypeHelper.g.i.cs
+FE:\SadoraEntity\Sadora\App.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\FrmControlAccesos.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\FrmValidarAccion.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\FrmCompletarCamposHost.xaml;;
 FE:\SadoraEntity\Sadora\Views\Administracion\FrmLogin.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\FrmMain.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\FrmMenu.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\FrmMostrarDatosHost.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\FrmSplash.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\UscConsultorLogs.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\UscMantenimientoGeneral.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\UscGruposUsuarios.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\UscEmpresa.xaml;;
+FE:\SadoraEntity\Sadora\Views\Administracion\UscUsuarios.xaml;;
+FE:\SadoraEntity\Sadora\Views\Clientes\FrmMenu.xaml;;
+FE:\SadoraEntity\Sadora\Views\Clientes\UscClientes.xaml;;
+FE:\SadoraEntity\Sadora\Views\Contabilidad\FrmMenu.xaml;;
+FE:\SadoraEntity\Sadora\Views\Inventario\FrmMenu.xaml;;
+FE:\SadoraEntity\Sadora\Views\Inventario\UscClaseArticulos.xaml;;
+FE:\SadoraEntity\Sadora\Views\Proveedores\FrmMenu.xaml;;
+FE:\SadoraEntity\Sadora\Views\Proveedores\UscProveedores.xaml;;
+FE:\SadoraEntity\Sadora\Views\Recursos Humanos\FrmMenu.xaml;;
+FE:\SadoraEntity\Sadora\Views\Recursos Humanos\UscEmpleados.xaml;;
+FE:\SadoraEntity\Sadora\Views\Ventas\FrmControlFormaPago.xaml;;
+FE:\SadoraEntity\Sadora\Views\Ventas\FrmControlComprobantes.xaml;;
+FE:\SadoraEntity\Sadora\Views\Ventas\FrmMenu.xaml;;
+FE:\SadoraEntity\Sadora\Views\Ventas\UscFacturacion.xaml;;
+FE:\SadoraEntity\Sadora\Views\Ventas\UscCajas.xaml;;
 
