@@ -212,7 +212,7 @@
 
                                 <Button x:Name="BtnPay" IsEnabled="False" Padding="0" Click="BtnPay_Click" Height="59" Width="100" ToolTip="Pulsar para cancelar los cambios efectuados " Style="{StaticResource MaterialDesignFlatButton}" Background="#FF75AC57">
                                     <StackPanel>
-                                        <materialDesign:PackIcon Kind="CurrencyUsdCircleOutline" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                                        <materialDesign:PackIcon Kind="CurrencyUsd" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
                                         <TextBlock Text="PAY" HorizontalAlignment="Center" FontSize="17"/>
                                     </StackPanel>
                                 </Button>

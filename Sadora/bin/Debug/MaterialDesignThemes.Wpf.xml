@@ -199,6 +199,16 @@
             <param name="culture"></param>
             <returns></returns>
         </member>
+        <member name="M:MaterialDesignThemes.Wpf.Converters.PickerInnerPaddingConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Sets the left padding for the inner picker button to zero
+            </summary>
+        </member>
+        <member name="M:MaterialDesignThemes.Wpf.Converters.PickerInnerPaddingConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Adds the width of the inner picker button to the right of inner padding 
+            </summary>
+        </member>
         <member name="M:MaterialDesignThemes.Wpf.Converters.CardClipConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
             <summary>
             1 - Content presenter render size,
@@ -353,6 +363,20 @@
             </summary>
             <param name="dialogIdentifier"> of the instance where the dialog should be closed. Typically this will match an identifer set in XAML. </param>
             <param name="parameter"> to provide to close handler</param>
+        </member>
+        <member name="M:MaterialDesignThemes.Wpf.DialogHost.GetDialogSession(System.Object)">
+            <summary>
+            Retrieve the current dialog session for a DialogHost
+            </summary>
+            <param name="dialogIdentifier">The identifier to use to retrieve the DialogHost</param>
+            <returns>The DialogSession if one is in process, or null</returns>
+        </member>
+        <member name="M:MaterialDesignThemes.Wpf.DialogHost.IsDialogOpen(System.Object)">
+            <summary>
+            dialog instance exists
+            </summary>
+            <param name="dialogIdentifier">of the instance where the dialog should be closed. Typically this will match an identifer set in XAML.</param>
+            <returns></returns>
         </member>
         <member name="P:MaterialDesignThemes.Wpf.DialogHost.Identifier">
             <summary>
@@ -523,7 +547,7 @@
             <summary>
             Shows a dialog using the parent/ancestor <see cref="T:MaterialDesignThemes.Wpf.DialogHost"/> of the a given <see cref="T:System.Windows.DependencyObject"/>.
             </summary>
-            <param name="childDependencyObject">Dependency object which should be a visual child of a <see cref="T:MaterialDesignThemes.Wpf.DialogHost"/>, where the dialog will be shown.</param>        
+            <param name="childDependencyObject">Dependency object which should be a visual child of a <see cref="T:MaterialDesignThemes.Wpf.DialogHost"/>, where the dialog will be shown.</param>
             <param name="content">Content to show (can be a control or view model).</param>
             <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
             <exception cref="T:System.InvalidOperationException">
@@ -535,7 +559,7 @@
             <summary>
             Shows a dialog using the parent/ancestor <see cref="T:MaterialDesignThemes.Wpf.DialogHost"/> of the a given <see cref="T:System.Windows.DependencyObject"/>.
             </summary>
-            <param name="childDependencyObject">Dependency object which should be a visual child of a <see cref="T:MaterialDesignThemes.Wpf.DialogHost"/>, where the dialog will be shown.</param>        
+            <param name="childDependencyObject">Dependency object which should be a visual child of a <see cref="T:MaterialDesignThemes.Wpf.DialogHost"/>, where the dialog will be shown.</param>
             <param name="content">Content to show (can be a control or view model).</param>
             <param name="openedEventHandler">Allows access to opened event which would otherwise have been subscribed to on a instance.</param>
             <param name="closingEventHandler">Allows access to closing event which would otherwise have been subscribed to on a instance.</param>
@@ -591,35 +615,42 @@
             <param name="parameter">Result parameter which will be returned in <see cref="P:MaterialDesignThemes.Wpf.DialogClosingEventArgs.Parameter"/> or from <see cref="M:MaterialDesignThemes.Wpf.DialogHost.Show(System.Object)"/> method.</param>
             <exception cref="T:System.InvalidOperationException">Thrown if the dialog session has ended, or a close operation is currently in progress.</exception>
         </member>
+        <member name="M:MaterialDesignThemes.Wpf.DrawerClosingEventArgs.Cancel">
+            <summary>
+            Cancel the close.
+            </summary>
+        </member>
+        <member name="P:MaterialDesignThemes.Wpf.DrawerClosingEventArgs.IsCancelled">
+            <summary>
+            Indicates if the close has already been cancelled.
+            </summary>
+        </member>
+        <member name="P:MaterialDesignThemes.Wpf.DrawerClosingEventArgs.Dock">
+            <summary>
+            Allows interation with the current dialog session.
+            </summary>
+        </member>
+        <member name="E:MaterialDesignThemes.Wpf.DrawerHost.DrawerOpened">
+            <summary>
+            Raised when a drawer is opened.
+            </summary>
+        </member>
+        <member name="E:MaterialDesignThemes.Wpf.DrawerHost.DrawerClosing">
+            <summary>
+            Raised when a drawer is closing.
+            </summary>
+        </member>
+        <member name="P:MaterialDesignThemes.Wpf.DrawerOpenedEventArgs.Dock">
+            <summary>
+            Allows interation with the current dialog session.
+            </summary>
+        </member>
         <member name="M:MaterialDesignThemes.Wpf.Extensions.GetVisualAncestry(System.Windows.DependencyObject)">
             <summary>
             Returns full visual ancestry, starting at the leaf.
             </summary>
             <param name="leaf"></param>
             <returns></returns>
-        </member>
-        <member name="T:MaterialDesignThemes.Wpf.Icon">
-            <summary>
-            Displays an icon image/path, according to the specified <see cref="P:MaterialDesignThemes.Wpf.Icon.Type"/> name.
-            </summary>
-            <remarks>
-            All icons sourced from Material Design Icons Font - https://materialdesignicons.com/ - in accordance of 
-            https://github.com/Templarian/MaterialDesign/blob/master/LICENSE.
-            </remarks>
-        </member>
-        <member name="P:MaterialDesignThemes.Wpf.Icon.Type">
-            <summary>
-            Gets or sets the name of icon being displayed.
-            </summary>
-        </member>
-        <member name="T:MaterialDesignThemes.Wpf.IconType">
-            <summary>
-            List of available icons for use with <see cref="T:MaterialDesignThemes.Wpf.Icon"/>.
-            </summary>
-            <remarks>
-            All icons sourced from Material Design Icons Font - https://materialdesignicons.com/ - in accordance of 
-            https://github.com/Templarian/MaterialDesign/blob/master/LICENSE.
-            </remarks>
         </member>
         <member name="T:MaterialDesignThemes.Wpf.IHintProxy">
             <summary>
@@ -998,6 +1029,33 @@
             Raises <see cref="F:MaterialDesignThemes.Wpf.PopupBox.ClosedEvent"/>.
             </summary>
         </member>
+        <member name="T:MaterialDesignThemes.Wpf.PopupEx">
+            <summary>
+            This class was initially based on work done in ControlzEx
+            https://github.com/ControlzEx/ControlzEx
+            
+            This custom popup can be used by validation error templates or something else.
+            It provides some additional nice features:
+                - repositioning if host-window size or location changed
+                - repositioning if host-window gets maximized and vice versa
+                - it's only topmost if the host-window is activated
+            </summary>
+        </member>
+        <member name="P:MaterialDesignThemes.Wpf.PopupEx.CloseOnMouseLeftButtonDown">
+            <summary>
+            Gets/sets if the popup can be closed by left mouse button down.
+            </summary>
+        </member>
+        <member name="M:MaterialDesignThemes.Wpf.PopupEx.RefreshPosition">
+            <summary>
+            Causes the popup to update it's position according to it's current settings.
+            </summary>
+        </member>
+        <member name="T:MaterialDesignThemes.Wpf.PopupEx.SWP">
+            <summary>
+            SetWindowPos options
+            </summary>
+        </member>
         <member name="T:MaterialDesignThemes.Wpf.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -1235,10 +1293,10 @@
             Gets the <see cref="T:System.Windows.Threading.Dispatcher"/> this <see cref="T:MaterialDesignThemes.Wpf.SnackbarMessageQueue"/> is associated with.
             </summary>
         </member>
-        <member name="P:MaterialDesignThemes.Wpf.SnackbarMessageQueue.IgnoreDuplicate">
+        <member name="P:MaterialDesignThemes.Wpf.SnackbarMessageQueue.DiscardDuplicates">
             <summary>
             Gets or sets a value that indicates whether this message queue displays messages without discarding duplicates. 
-            True to show every message even if there are duplicates.
+            False to show every message even if there are duplicates.
             </summary>
         </member>
         <member name="M:MaterialDesignThemes.Wpf.SnackbarMessageQueue.Clear">
@@ -1277,17 +1335,10 @@
             Promote the message, pushing it in front of any message that is not promoted.
             </summary>
         </member>
-        <member name="P:MaterialDesignThemes.Wpf.SnackbarMessageQueueItem.IgnoreDuplicate">
+        <member name="P:MaterialDesignThemes.Wpf.SnackbarMessageQueueItem.AlwaysShow">
             <summary>
-            Still display this message even if it is a duplicate.
+            Always show this message, even if it's a duplicate
             </summary>
-        </member>
-        <member name="M:MaterialDesignThemes.Wpf.SnackbarMessageQueueItem.IsDuplicate(MaterialDesignThemes.Wpf.SnackbarMessageQueueItem)">
-            <summary>
-            Checks if given item is a duplicate to this
-            </summary>
-            <param name="item">Item to check for duplicate</param>
-            <returns><c>true</c> if given item is a duplicate to this, <c>false</c> otherwise</returns>
         </member>
         <member name="F:MaterialDesignThemes.Wpf.TextBlockAssist.AutoToolTipProperty">
             <summary>
@@ -1390,11 +1441,6 @@
             Automatically inserts spelling suggestions into the text box context menu.
             </summary>
         </member>
-        <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.HasClearButtonProperty">
-            <summary>
-            Controls the visbility of the clear button.
-            </summary>
-        </member>
         <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.SuffixTextProperty">
             <summary>
             SuffixText dependency property
@@ -1403,6 +1449,41 @@
         <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.PrefixTextProperty">
             <summary>
             PrefixText dependency property
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.HasClearButtonProperty">
+            <summary>
+            Controls the visbility of the clear button.
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.HasLeadingIconProperty">
+            <summary>
+            Controls visibility of the leading icon
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.LeadingIconProperty">
+            <summary>
+            Controls the leading icon
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.LeadingIconSizeProperty">
+            <summary>
+            Controls the size of the leading icon
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.HasTrailingIconProperty">
+            <summary>
+            Controls visibility of the trailing icon
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.TrailingIconProperty">
+            <summary>
+            Controls the trailing icon
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.TextFieldAssist.TrailingIconSizeProperty">
+            <summary>
+            Controls the size of the trailing icon
             </summary>
         </member>
         <member name="M:MaterialDesignThemes.Wpf.TextFieldAssist.ApplyTextBoxViewMargin(System.Windows.Controls.Control,System.Windows.Thickness)">
@@ -1489,6 +1570,26 @@
             Allows an on (IsChecked) template to be provided on supporting <see cref="T:System.Windows.Controls.Primitives.ToggleButton"/> styles.
             </summary>
         </member>
+        <member name="T:MaterialDesignThemes.Wpf.TransitionAssist">
+            <summary>
+            Allows transitions to be disabled where supported.
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.TransitionAssist.DisableTransitionsProperty">
+            <summary>
+            Allows transitions to be disabled where supported.  Note this is an inheritable property.
+            </summary>
+        </member>
+        <member name="M:MaterialDesignThemes.Wpf.TransitionAssist.SetDisableTransitions(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Allows transitions to be disabled where supported.  Note this is an inheritable property.
+            </summary>
+        </member>
+        <member name="M:MaterialDesignThemes.Wpf.TransitionAssist.GetDisableTransitions(System.Windows.DependencyObject)">
+            <summary>
+            Allows transitions to be disabled where supported.  Note this is an inheritable property.
+            </summary>
+        </member>
         <member name="P:MaterialDesignThemes.Wpf.Transitions.FadeWipe.Duration">
             <summary>
             Duration of the animation
@@ -1511,26 +1612,6 @@
         <member name="P:MaterialDesignThemes.Wpf.Transitions.SlideWipe.Duration">
             <summary>
             Duration of the animation
-            </summary>
-        </member>
-        <member name="T:MaterialDesignThemes.Wpf.Transitions.TransitionAssist">
-            <summary>
-            Allows transitions to be disabled where supported.
-            </summary>
-        </member>
-        <member name="F:MaterialDesignThemes.Wpf.Transitions.TransitionAssist.DisableTransitionsProperty">
-            <summary>
-            Allows transitions to be disabled where supported.  Note this is an inheritable property.
-            </summary>
-        </member>
-        <member name="M:MaterialDesignThemes.Wpf.Transitions.TransitionAssist.SetDisableTransitions(System.Windows.DependencyObject,System.Boolean)">
-            <summary>
-            Allows transitions to be disabled where supported.  Note this is an inheritable property.
-            </summary>
-        </member>
-        <member name="M:MaterialDesignThemes.Wpf.Transitions.TransitionAssist.GetDisableTransitions(System.Windows.DependencyObject)">
-            <summary>
-            Allows transitions to be disabled where supported.  Note this is an inheritable property.
             </summary>
         </member>
         <member name="T:MaterialDesignThemes.Wpf.Transitions.Transitioner">
@@ -1686,30 +1767,6 @@
         <member name="M:MaterialDesignThemes.Wpf.ValidationAssist.GetSuppress(System.Windows.DependencyObject)">
             <summary>
             Framework use only.
-            </summary>
-        </member>
-        <member name="T:ControlzEx.PopupEx">
-            <summary>
-            This custom popup can be used by validation error templates or something else.
-            It provides some additional nice features:
-                - repositioning if host-window size or location changed
-                - repositioning if host-window gets maximized and vice versa
-                - it's only topmost if the host-window is activated
-            </summary>
-        </member>
-        <member name="P:ControlzEx.PopupEx.CloseOnMouseLeftButtonDown">
-            <summary>
-            Gets/sets if the popup can be closed by left mouse button down.
-            </summary>
-        </member>
-        <member name="M:ControlzEx.PopupEx.RefreshPosition">
-            <summary>
-            Causes the popup to update it's position according to it's current settings.
-            </summary>
-        </member>
-        <member name="T:ControlzEx.PopupEx.SWP">
-            <summary>
-            SetWindowPos options
             </summary>
         </member>
     </members>

@@ -827,7 +827,6 @@ E:\SadoraEntity\Sadora\bin\Debug\EntityFramework.dll
 E:\SadoraEntity\Sadora\bin\Debug\EntityFramework.SqlServer.dll
 E:\SadoraEntity\Sadora\bin\Debug\EntityFramework.xml
 E:\SadoraEntity\Sadora\bin\Debug\EntityFramework.SqlServer.xml
-E:\SadoraEntity\Sadora\obj\Debug\Sadora.csproj.AssemblyReference.cache
 E:\SadoraEntity\Sadora\obj\Debug\Views\Clientes\UscTransacciones.baml
 E:\SadoraEntity\Sadora\obj\Debug\Views\Inventario\UscArticulos.baml
 E:\SadoraEntity\Sadora\obj\Debug\Views\Inventario\UscMovimientoInventario.baml
@@ -893,3 +892,4 @@ E:\SadoraEntity\Sadora\obj\Debug\Views\Ventas\FrmMenu.baml
 E:\SadoraEntity\Sadora\obj\Debug\Views\Ventas\UscFacturacion.baml
 E:\SadoraEntity\Sadora\obj\Debug\Views\Ventas\UscCajas.baml
 E:\SadoraEntity\Sadora\obj\Debug\Sadora_Content.g.cs
+E:\SadoraEntity\Sadora\obj\Debug\Sadora.csproj.AssemblyReference.cache
