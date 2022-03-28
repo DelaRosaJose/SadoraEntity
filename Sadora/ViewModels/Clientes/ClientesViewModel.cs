@@ -13,16 +13,11 @@ namespace Sadora.ViewModels.Clientes
 
         public List<Models.TcliCliente> Clientes
         {
-            get
-            {
-                return _clientes;
-            }
-            set
+            get { return _clientes; }
+            set 
             {
                 if (_clientes == value)
-                {
                     return;
-                }
                 _clientes = value;
                 OnPropertyChanged("Clientes");
             }
@@ -31,16 +26,11 @@ namespace Sadora.ViewModels.Clientes
 
         public Models.TcliCliente Cliente
         {
-            get
-            {
-                return _cliente;
-            }
+            get { return _cliente; }
             set
             {
                 if (_cliente == value)
-                {
                     return;
-                }
                 _cliente = value;
                 OnPropertyChanged("Cliente");
             }
@@ -67,36 +57,17 @@ namespace Sadora.ViewModels.Clientes
 
         #endregion
 
-        public ClientesViewModel()
-        {
-        }
+        public ClientesViewModel() { }
 
         private void CustomerCommandExecute()
         {
             using (Models.SadoraEntities db = new Models.SadoraEntities())
-            {
-                Clientes = db.TcliClientes.ToList();
                 Cliente = db.TcliClientes.OrderByDescending(x=>x.ClienteID).FirstOrDefault();
+            //{
+            //    Clientes = db.TcliClientes.ToList();
 
-            }
+            //}
 
-            //var result = db.
-            //var lst = (from d in db.TcliClientes
-            //           select new Models.TcliCliente
-            //           {
-            //               Name = d.Name,
-            //               Age = d.Age,
-            //               Id = d.Id
-            //           }).ToList();
-
-
-
-
-            //var customerService = new CustomerService();
-
-            //var result = customerService.GetCustomer();
-
-            //Customers = new List<Customer>(result);
         }
     }
 }

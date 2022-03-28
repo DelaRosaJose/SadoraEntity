@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Sadora.Clientes"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Sadora.Clientes.UscClientes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             x:Class="Sadora.Clientes.UscClientes"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              mc:Ignorable="d" 
+             xmlns:Sadora="clr-namespace:Sadora.CustomElements"
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="1024" d:DesignHeight="768"
              TextElement.Foreground="{DynamicResource SecundaryAccentForegroundBrush}" Loaded="UserControl_Loaded" Initialized="UserControl_Initialized"
              Tag="Maestra de Clientes">
@@ -20,7 +22,11 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Margin="15">
-                <Grid.ColumnDefinitions>
+
+
+                <Sadora:UscBotonesGenerales x:Name="ControlesGenerales" ButtonBase.Click="UscBotones_Click" />
+
+                <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -136,7 +142,7 @@
                     <TextBlock x:Name="lIconEstado" Padding="0" HorizontalAlignment="Center"><InlineUIContainer>
                             <materialDesign:PackIcon x:Name="IconEstado"  Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="OrangeRed"/>
                         </InlineUIContainer></TextBlock>
-                </Border>
+                </Border>-->
 
             </Grid>
 

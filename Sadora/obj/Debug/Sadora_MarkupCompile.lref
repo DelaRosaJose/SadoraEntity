@@ -8,6 +8,7 @@ FE:\SadoraEntity\Sadora\Views\Administracion\FrmMain.xaml;;
 FE:\SadoraEntity\Sadora\Views\Administracion\FrmMenu.xaml;;
 FE:\SadoraEntity\Sadora\Views\Administracion\FrmMostrarDatosHost.xaml;;
 FE:\SadoraEntity\Sadora\Views\Administracion\FrmSplash.xaml;;
+FE:\SadoraEntity\Sadora\CustomElements\UscBotonesGenerales.xaml;;
 FE:\SadoraEntity\Sadora\Views\Administracion\UscConsultorLogs.xaml;;
 FE:\SadoraEntity\Sadora\Views\Administracion\UscMantenimientoGeneral.xaml;;
 FE:\SadoraEntity\Sadora\Views\Administracion\UscGruposUsuarios.xaml;;

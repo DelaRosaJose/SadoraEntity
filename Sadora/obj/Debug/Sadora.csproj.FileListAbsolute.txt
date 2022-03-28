@@ -893,3 +893,6 @@ E:\SadoraEntity\Sadora\obj\Debug\Views\Ventas\UscFacturacion.baml
 E:\SadoraEntity\Sadora\obj\Debug\Views\Ventas\UscCajas.baml
 E:\SadoraEntity\Sadora\obj\Debug\Sadora_Content.g.cs
 E:\SadoraEntity\Sadora\obj\Debug\Sadora.csproj.AssemblyReference.cache
+E:\SadoraEntity\Sadora\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\SadoraEntity\Sadora\obj\Debug\CustomElements\UscBotonesGenerales.g.cs
+E:\SadoraEntity\Sadora\obj\Debug\CustomElements\UscBotonesGenerales.baml

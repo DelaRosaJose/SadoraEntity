@@ -53,7 +53,7 @@ namespace Sadora.Clientes
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
 
-               
+
                 //Refresh();
                 //this.DataContext = lstv2;
                 //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
@@ -105,7 +105,7 @@ namespace Sadora.Clientes
             //    setDatos(0, ClienteID.ToString());
             //}
             SetEnabledButton("Modo Consulta");
-            BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
+            //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
             //this.DataContext = lst.FirstOrDefault();
         }
 
@@ -157,7 +157,7 @@ namespace Sadora.Clientes
             //SetEnabledButton("Modo Consulta");
             //setDatos(-1, "1");
             SetEnabledButton("Modo Consulta");
-            BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
+            //BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
         }
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
@@ -204,8 +204,8 @@ namespace Sadora.Clientes
                 }
                 else if (tabla.Rows.Count < 1)
                 {
-                    BtnProximoRegistro.IsEnabled = false;
-                    BtnAnteriorRegistro.IsEnabled = false;
+                    //BtnProximoRegistro.IsEnabled = false;
+                    //BtnAnteriorRegistro.IsEnabled = false;
 
                     if (SnackbarThree.MessageQueue is { } messageQueue)
                     {
@@ -224,7 +224,7 @@ namespace Sadora.Clientes
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             SetEnabledButton("Modo Agregar");
         }
 
@@ -236,7 +236,7 @@ namespace Sadora.Clientes
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             SetEnabledButton("Modo Consulta");
-            this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         }
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
@@ -499,6 +499,34 @@ namespace Sadora.Clientes
             }
         }
 
+        private void UscBotones_Click(object sender, RoutedEventArgs e)
+        {
+            int intValue;
+            using (Models.SadoraEntities db = new Models.SadoraEntities())
+            {
+                switch (((Button)e.OriginalSource).Name)
+                {
+                    case "BtnPrimerRegistro":
+                        Cli.Cliente = db.TcliClientes.OrderBy(x => x.ClienteID).FirstOrDefault();
+                        break;
+
+                    case "BtnAnteriorRegistro":
+                        intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
+                        Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
+                        break;
+
+                    case "BtnProximoRegistro":
+                        intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
+                        Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
+                        break;
+
+                    case "BtnUltimoRegistro":
+                        Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
+                        break;
+                }
+            }
+        }
+
         void setDatos(int Flag, string Cliente) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
         {
             //if (Cliente == null) //si el parametro llega nulo intentamos llenarlo para que no presente ningun error el sistema
@@ -627,71 +655,71 @@ namespace Sadora.Clientes
         void SetEnabledButton(String status) //Este metodo se encarga de crear la interacion de los botones de la ventana segun el estado en el que se encuentra
         {
             Estado = status;
-            lIconEstado.ToolTip = Estado;
+            //lIconEstado.ToolTip = Estado;
 
             if (Estado != "Modo Agregar" && Estado != "Modo Editar") //Si el sistema se encuentra en modo consulta o busqueda entra el validador
             {
-                BtnPrimerRegistro.IsEnabled = true;
-                BtnAnteriorRegistro.IsEnabled = true;
-                BtnProximoRegistro.IsEnabled = true;
-                BtnUltimoRegistro.IsEnabled = true;
-                BtnBuscar.IsEnabled = true;
-                BtnImprimir.IsEnabled = true;
-                BtnAgregar.IsEnabled = true;
-                BtnEditar.IsEnabled = true;
+                //BtnPrimerRegistro.IsEnabled = true;
+                //BtnAnteriorRegistro.IsEnabled = true;
+                //BtnProximoRegistro.IsEnabled = true;
+                //BtnUltimoRegistro.IsEnabled = true;
+                //BtnBuscar.IsEnabled = true;
+                //BtnImprimir.IsEnabled = true;
+                //BtnAgregar.IsEnabled = true;
+                //BtnEditar.IsEnabled = true;
 
-                BtnCancelar.IsEnabled = false;
-                BtnGuardar.IsEnabled = false;
+                //BtnCancelar.IsEnabled = false;
+                //BtnGuardar.IsEnabled = false;
                 if (Estado == "Modo Consulta") //Si el estado es modo consulta enviamos a ejecutar otro metodo parametizado de forma especial
                 {
                     SetControls(true, null, false);
-                    IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.EyeOutline;
+                    //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.EyeOutline;
                 }
                 else //Si el estado es modo busqueda enviamos a ejecutar el mismo metodo parametizado de forma especial y cambiamos el estado de los botones
                 {
-                    BtnProximoRegistro.IsEnabled = false;
-                    BtnAnteriorRegistro.IsEnabled = false;
-                    BtnImprimir.IsEnabled = false;
-                    BtnEditar.IsEnabled = false;
+                    //BtnProximoRegistro.IsEnabled = false;
+                    //BtnAnteriorRegistro.IsEnabled = false;
+                    //BtnImprimir.IsEnabled = false;
+                    //BtnEditar.IsEnabled = false;
                     SetControls(false, null, false);
-                    IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Search;
+                    //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Search;
                 }
             }
             else  //Si el sistema se encuentra en modo Agregar o Editar entra el validador
             {
-                BtnPrimerRegistro.IsEnabled = false;
-                BtnAnteriorRegistro.IsEnabled = false;
-                BtnProximoRegistro.IsEnabled = false;
-                BtnUltimoRegistro.IsEnabled = false;
+                //BtnPrimerRegistro.IsEnabled = false;
+                //BtnAnteriorRegistro.IsEnabled = false;
+                //BtnProximoRegistro.IsEnabled = false;
+                //BtnUltimoRegistro.IsEnabled = false;
 
-                BtnBuscar.IsEnabled = false;
-                BtnImprimir.IsEnabled = false;
+                //BtnBuscar.IsEnabled = false;
+                //BtnImprimir.IsEnabled = false;
 
-                BtnAgregar.IsEnabled = false;
-                BtnEditar.IsEnabled = false;
+                //BtnAgregar.IsEnabled = false;
+                //BtnEditar.IsEnabled = false;
 
-                BtnCancelar.IsEnabled = true;
-                BtnGuardar.IsEnabled = true;
+                //BtnCancelar.IsEnabled = true;
+                //BtnGuardar.IsEnabled = true;
                 if (Estado == "Modo Agregar") //Si el estado es modo Agregar enviamos a ejecutar otro metodo parametizado de forma especial
                 {
                     SetControls(false, null, false);
-                    IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.AddThick;
+                    //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.AddThick;
                     txtClienteID.Text = (LastClienteID + 1).ToString();
                     txtRNC.Focus();
                 }
                 else //Si el estado es modo Editar enviamos a ejecutar el mismo metodo parametizado de forma especial
                 {
                     SetControls(true, null, true);
-                    IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Edit;
+                    //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Edit;
                 }
                 txtClienteID.IsReadOnly = true;
             }
-            if (Imprime == false)
-                BtnImprimir.IsEnabled = Imprime;
-            if (Agrega == false)
-                BtnAgregar.IsEnabled = Agrega;
-            if (Modifica == false)
-                BtnEditar.IsEnabled = Modifica;
+            //if (Imprime == false)
+            //    BtnImprimir.IsEnabled = Imprime;
+            //if (Agrega == false)
+            //    BtnAgregar.IsEnabled = Agrega;
+            //if (Modifica == false)
+            //    BtnEditar.IsEnabled = Modifica;
         }
 
         private void txtDiasCredito_KeyUp(object sender, KeyEventArgs e)
