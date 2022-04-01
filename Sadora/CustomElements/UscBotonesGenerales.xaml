@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <Border Padding="0" Grid.Column="0" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnPrimerRegistro" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para ir al primer registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnPrimerRegistro" Padding="0" Height="59" ToolTip="Pulsar para ir al primer registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel>
                     <materialDesign:PackIcon Kind="ArrowUpBold" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="First" HorizontalAlignment="Center" FontSize="17"/>
@@ -33,7 +33,7 @@
         </Border>
         
         <Border Padding="0" Grid.Column="1" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnAnteriorRegistro" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para ir al registro anterior" Style="{StaticResource MaterialDesignFlatButton}" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" >
+            <Button x:Name="BtnAnteriorRegistro" Padding="0" Height="59" ToolTip="Pulsar para ir al registro anterior" Style="{StaticResource MaterialDesignFlatButton}" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" >
                 <StackPanel>
                     <materialDesign:PackIcon Kind="ArrowLeftBold" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Back" HorizontalAlignment="Center" FontSize="17"/>
@@ -42,7 +42,7 @@
         </Border>
 
         <Border Padding="0" Grid.Column="2" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnProximoRegistro" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para ir al proximo registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnProximoRegistro" Padding="0" Height="59" ToolTip="Pulsar para ir al proximo registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel >
                     <materialDesign:PackIcon Kind="ArrowRightBold" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Next" HorizontalAlignment="Center" FontSize="17"/>
@@ -51,7 +51,7 @@
         </Border>
 
         <Border Padding="0" Grid.Column="3"  BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnUltimoRegistro" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para ir al ultimo registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnUltimoRegistro" Padding="0" Height="59" ToolTip="Pulsar para ir al ultimo registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel >
                     <materialDesign:PackIcon Kind="ArrowDownBold" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Last" HorizontalAlignment="Center" FontSize="17"/>
@@ -60,7 +60,7 @@
         </Border>
 
         <Border Padding="0" Grid.Column="4" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnBuscar" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para buscar un registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnBuscar" Padding="0" Height="59" ToolTip="Pulsar para buscar un registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel >
                     <materialDesign:PackIcon Kind="Search" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Search" HorizontalAlignment="Center" FontSize="17"/>
@@ -69,7 +69,7 @@
         </Border>
 
         <Border Padding="0" Grid.Column="5" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnAgregar" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para agregar un registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"  Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnAgregar" Padding="0" Height="59" ToolTip="Pulsar para agregar un registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"  Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel>
                     <materialDesign:PackIcon  Kind="AddThick" Width="auto" Height="36" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
                     <TextBlock Text="Add" HorizontalAlignment="Center" FontSize="17"/>
@@ -77,7 +77,7 @@
             </Button>
         </Border>
         <Border Padding="0" Grid.Column="6" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnEditar" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para editar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnEditar" Padding="0" Height="59" ToolTip="Pulsar para editar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel>
                     <materialDesign:PackIcon Kind="Edit" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Edit" HorizontalAlignment="Center" FontSize="17"/>
@@ -87,7 +87,7 @@
 
 
         <Border Padding="0" Grid.Column="7" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnAnular" Click="BtnGeneral_Click" Padding="0" IsEnabled="False" Height="59" ToolTip="Pulsar para anular el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnAnular" Padding="0" IsEnabled="False" Height="59" ToolTip="Pulsar para anular el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel>
                     <materialDesign:PackIcon Kind="LockReset" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Undo" HorizontalAlignment="Center" FontSize="17"/>
@@ -97,7 +97,7 @@
 
 
         <Border Padding="0" Grid.Column="8" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnCancelar" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para cancelar los cambios efectuados " Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnCancelar" Padding="0" Height="59" ToolTip="Pulsar para cancelar los cambios efectuados " Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel>
                     <materialDesign:PackIcon Kind="Cancel" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Cancel" HorizontalAlignment="Center" FontSize="17"/>
@@ -105,7 +105,7 @@
             </Button>
         </Border>
         <Border Padding="0" Grid.Column="9" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnGuardar" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para guardar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}" TabIndex="11" >
+            <Button x:Name="BtnGuardar" Padding="0" Height="59" ToolTip="Pulsar para guardar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}" TabIndex="11" >
                 <StackPanel>
                     <materialDesign:PackIcon  Kind="ContentSave" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Save" HorizontalAlignment="Center" FontSize="17"/>
@@ -113,7 +113,7 @@
             </Button>
         </Border>
         <Border Padding="0" Grid.Column="10" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnImprimir" Click="BtnGeneral_Click" Padding="0" Height="59" ToolTip="Pulsar para imprimir el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
+            <Button x:Name="BtnImprimir" Padding="0" Height="59" ToolTip="Pulsar para imprimir el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel>
                     <materialDesign:PackIcon Kind="Printer" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Print" HorizontalAlignment="Center" FontSize="17"/>
