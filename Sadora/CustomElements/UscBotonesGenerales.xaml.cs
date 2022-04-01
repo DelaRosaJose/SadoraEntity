@@ -8,65 +8,15 @@ namespace Sadora.CustomElements
     {
         string Estado;
 
-        public UscBotonesGenerales()
+        public UscBotonesGenerales() => InitializeComponent();
+
+        public void HabilitadorDesabilitadorBotones(string BotonEstadoConsultaEjecutado) //Este metodo se encarga de crear la interacion de los botones de la ventana segun el estado en el que se encuentra
         {
-            InitializeComponent();
-        }
-
-        //private void BtnGeneral_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //string ButtonName = ((Button)e.OriginalSource).Name;
-
-        //    //switch (ButtonName)
-        //    //{
-        //    //    case string name when "BtnPrimerRegistro, BtnAnteriorRegistro, BtnProximoRegistro, BtnUltimoRegistro".Contains(name):
-        //    //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Consulta", BotonEstadoConsultaEjecutado: ButtonName);
-        //    //        break;
-        //    //    case "BtnBuscar":
-        //    //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Busqueda");
-        //    //        break;
-        //    //    case "BtnAgregar":
-        //    //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Agregar");
-        //    //        break;
-        //    //    case "BtnEditar":
-        //    //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Editar");
-        //    //        break;
-        //    //    case "BtnCancelar":
-        //    //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Consulta", BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
-        //    //        break;
-        //    //    //case "BtnGuardar":
-        //    //    //    HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Consulta", BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
-        //    //    //    break;
-
-        //    //        //case "BtnAnteriorRegistro":
-        //    //        //    SetEnabledButton("Modo Consulta", e);
-        //    //        //    //BtnPrimerRegistro.IsEnabled = BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = true;
-        //    //        //    //BtnCancelar.IsEnabled = BtnGuardar.IsEnabled = false;
-        //    //        //    break;
-
-        //    //        //case "BtnProximoRegistro":
-        //    //        //    SetEnabledButton("Modo Consulta", e);
-        //    //        //    //BtnPrimerRegistro.IsEnabled = BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = true;
-        //    //        //    //BtnCancelar.IsEnabled = BtnGuardar.IsEnabled = false;
-        //    //        //    break;
-
-        //    //        //case "BtnUltimoRegistro":
-        //    //        //    SetEnabledButton("Modo Consulta", e);
-        //    //        //    //BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = BtnCancelar.IsEnabled = BtnGuardar.IsEnabled = false;
-        //    //        //    //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = true;
-        //    //        //    break;
-        //    //}
-        //}
-
-        public void HabilitadorDesabilitadorBotones(/*string EstadoVentana,*/ string BotonEstadoConsultaEjecutado) //Este metodo se encarga de crear la interacion de los botones de la ventana segun el estado en el que se encuentra
-        {
-            string EstadoVentana =
+            lIconEstado.ToolTip = Estado =
                 new string[] { "BtnPrimerRegistro", "BtnAnteriorRegistro", "BtnProximoRegistro", "BtnUltimoRegistro", "BtnCancelar" }.Contains(BotonEstadoConsultaEjecutado) ? "Modo Consulta" :
                 BotonEstadoConsultaEjecutado.Contains("BtnBuscar") ? "Modo Busqueda" :
                 BotonEstadoConsultaEjecutado.Contains("BtnAgregar") ? "Modo Agregar" :
                 BotonEstadoConsultaEjecutado.Contains("BtnEditar") ? "Modo Consulta" : default;
-
-            lIconEstado.ToolTip = Estado = EstadoVentana;
 
             BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = BtnUltimoRegistro.IsEnabled = BtnBuscar.IsEnabled =
             BtnImprimir.IsEnabled = BtnAgregar.IsEnabled = BtnEditar.IsEnabled = BtnAnular.IsEnabled = BtnCancelar.IsEnabled = BtnGuardar.IsEnabled = true;
@@ -81,8 +31,6 @@ namespace Sadora.CustomElements
                 else if (Estado == "Modo Consulta") //Si el estado es modo consulta evaluamos el boton ejecutado y cambiamos el estado de los botones
                 {
                     if (BotonEstadoConsultaEjecutado == "BtnPrimerRegistro") BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
-                    //else if (BotonEstadoConsultaEjecutado == "BtnAnteriorRegistro") BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
-                    //else if (BotonEstadoConsultaEjecutado == "BtnProximoRegistro") BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
                     else if (BotonEstadoConsultaEjecutado == "BtnUltimoRegistro") BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
                 }
             }
@@ -94,23 +42,5 @@ namespace Sadora.CustomElements
                 IconEstado.Kind = Estado == "Modo Agregar" ? MaterialDesignThemes.Wpf.PackIconKind.AddThick : IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Edit;
             }
         }
-
-        //public static readonly DependencyProperty FirstButtonStyleProperty =
-        //DependencyProperty.Register("FirstButtonStyle", typeof(Style), typeof(UscBotonesGenerales));
-
-        //public Style FirstButtonStyle
-        //{
-        //    get { return (Style)GetValue(FirstButtonStyleProperty); }
-        //    set { SetValue(FirstButtonStyleProperty, value); }
-        //}
-
-        //public static readonly DependencyProperty SecondButtonStyleProperty =
-        //    DependencyProperty.Register("SecondButtonStyle", typeof(Style), typeof(UscBotonesGenerales));
-
-        //public Style SecondButtonStyle
-        //{
-        //    get { return (Style)GetValue(SecondButtonStyleProperty); }
-        //    set { SetValue(SecondButtonStyleProperty, value); }
-        //}
     }
 }

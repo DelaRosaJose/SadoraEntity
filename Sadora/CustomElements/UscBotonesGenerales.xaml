@@ -31,7 +31,7 @@
                 </StackPanel>
             </Button>
         </Border>
-        
+
         <Border Padding="0" Grid.Column="1" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
             <Button x:Name="BtnAnteriorRegistro" Padding="0" Height="59" ToolTip="Pulsar para ir al registro anterior" Style="{StaticResource MaterialDesignFlatButton}" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" >
                 <StackPanel>
@@ -128,14 +128,4 @@
         </Border>
 
     </Grid>
-    <!--<Grid>
-        <Border Padding="0" Grid.Column="0" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnPrimerRegistro" Command="{Binding CustomerCommand}" Padding="0" Height="59" ToolTip="Pulsar para ir al primer registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                <StackPanel>
-                    <materialDesign:PackIcon Kind="ArrowUpBold" Width="auto" Height="36" HorizontalAlignment="Center"/>
-                    <TextBlock Text="First" HorizontalAlignment="Center" FontSize="17"/>
-                </StackPanel>
-            </Button>
-        </Border>
-    </Grid>-->
 </UserControl>

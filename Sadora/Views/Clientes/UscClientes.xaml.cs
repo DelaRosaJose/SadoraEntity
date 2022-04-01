@@ -12,16 +12,13 @@ using System.Windows.Input;
 
 namespace Sadora.Clientes
 {
-    /// <summary>
-    /// Lógica de interacción para UscClientes.xaml
-    /// </summary>
     public partial class UscClientes : UserControl
     {
         ViewModels.Clientes.ClientesViewModel Cli = new ViewModels.Clientes.ClientesViewModel();
         public UscClientes()
         {
             InitializeComponent();
-            Name = "UscClientes";
+            Name = nameof(UscClientes);
             this.DataContext = Cli;
 
         }
@@ -38,13 +35,6 @@ namespace Sadora.Clientes
 
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
 
-        //private void Refresh()
-        //{
-        //    using SadoraEntities db = new SadoraEntities();
-        //    lst = db.TcliClientes.ToList();
-        //    lstv2 = lst.Last();
-        //}
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (Inicializador == true)
@@ -54,11 +44,6 @@ namespace Sadora.Clientes
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
 
-                //ControlesGenerales.HabilitadorDesabilitadorBotones(EstadoVentana: null, Imprime: Imprime, Agrega: Agrega, Modifica: Modifica);
-
-                //Refresh();
-                //this.DataContext = lstv2;
-                //this.ControlesGenerales.BtnPrimerRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
                 using (Models.SadoraEntities db = new Models.SadoraEntities())
                     _FistClienteID = db.TcliClientes.FirstOrDefault().ClienteID;
                 this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
@@ -68,29 +53,6 @@ namespace Sadora.Clientes
 
         private void UscBotones_Click(object sender, RoutedEventArgs e)
         {
-
-            #region Code
-            //switch (ButtonName)
-            //{
-            //    case string name when "BtnPrimerRegistro, BtnAnteriorRegistro, BtnProximoRegistro, BtnUltimoRegistro".Contains(name):
-            //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Consulta", BotonEstadoConsultaEjecutado: ButtonName);
-            //        break;
-            //    case "BtnBuscar":
-            //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Busqueda");
-            //        break;
-            //    case "BtnAgregar":
-            //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Agregar");
-            //        break;
-            //    case "BtnEditar":
-            //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Editar");
-            //        break;
-            //    case "BtnCancelar":
-            //        HabilitadorDesabilitadorBotones(EstadoVentana: "Modo Consulta", BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
-            //        break;
-            //}
-            #endregion
-
-
             int intValue;
             using (Models.SadoraEntities db = new Models.SadoraEntities())
             {
@@ -101,43 +63,40 @@ namespace Sadora.Clientes
                     case "BtnPrimerRegistro":
                         Cli.Cliente = db.TcliClientes.OrderBy(x => x.ClienteID).FirstOrDefault();
                         _FistClienteID = Cli.Cliente.ClienteID;
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(/*EstadoVentana: "Modo Consulta", */BotonEstadoConsultaEjecutado: ButtonName);
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
 
                     case "BtnAnteriorRegistro":
                             intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
                             Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(/*EstadoVentana: "Modo Consulta", */BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
-                            break; /*_FistClienteID != null &&*/
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
+                            break;
 
                     case "BtnProximoRegistro":
                             intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
                             Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(/*EstadoVentana: "Modo Consulta", */BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
                         break;
 
                     case "BtnUltimoRegistro":
                         Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
                         _LastClienteID = Cli.Cliente.ClienteID;
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(/*EstadoVentana: "Modo Consulta", */BotonEstadoConsultaEjecutado: ButtonName);
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
                     case "BtnBuscar":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(/*EstadoVentana: "Modo Busqueda"*/BotonEstadoConsultaEjecutado: ButtonName);
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
                     case "BtnAgregar":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(/*EstadoVentana: "Modo Agregar"*/BotonEstadoConsultaEjecutado: ButtonName);
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
                     case "BtnEditar":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(/*EstadoVentana: "Modo Editar"*/BotonEstadoConsultaEjecutado: ButtonName);
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
                     case "BtnCancelar":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(/*EstadoVentana: "Modo Consulta",*/ BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
                         break;
-
                 }
             }
-
-
 
             if (Imprime == false)
                 ControlesGenerales.BtnImprimir.IsEnabled = Imprime;
@@ -145,7 +104,6 @@ namespace Sadora.Clientes
                 ControlesGenerales.BtnAgregar.IsEnabled = Agrega;
             if (Modifica == false)
                 ControlesGenerales.BtnEditar.IsEnabled = Modifica;
-
         }
 
 
