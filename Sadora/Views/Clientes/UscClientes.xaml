@@ -12,9 +12,9 @@
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="1024" d:DesignHeight="768"
              TextElement.Foreground="{DynamicResource SecundaryAccentForegroundBrush}" Loaded="UserControl_Loaded" Initialized="UserControl_Initialized"
              Tag="Maestra de Clientes">
-    <Grid>
+    <Grid x:Name="MainView">
 
-        <Grid>
+        <Grid >
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

@@ -24,6 +24,7 @@ namespace Sadora.Clientes
         }
 
         bool Imprime, Modifica, Agrega;
+        bool PuedeUsarBotonAnular = false;
 
         bool Inicializador = false;
         DataTable tabla;
@@ -43,12 +44,13 @@ namespace Sadora.Clientes
                 Imprime = ClassVariables.Imprime;
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
+                Task.Run(() => {
+                    using (Models.SadoraEntities db = new Models.SadoraEntities())
+                        _FistClienteID = db.TcliClientes.FirstOrDefault().ClienteID;
+                });//busqueda de Primer Registro
 
-                using (Models.SadoraEntities db = new Models.SadoraEntities())
-                    _FistClienteID = db.TcliClientes.FirstOrDefault().ClienteID;
                 this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
-
         }
 
         private void UscBotones_Click(object sender, RoutedEventArgs e)
@@ -67,15 +69,15 @@ namespace Sadora.Clientes
                         break;
 
                     case "BtnAnteriorRegistro":
-                            intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
-                            Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
-                            break;
+                        intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
+                        Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
+                        break;
 
                     case "BtnProximoRegistro":
-                            intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
-                            Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
+                        intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
+                        Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
                         break;
 
                     case "BtnUltimoRegistro":
@@ -88,11 +90,15 @@ namespace Sadora.Clientes
                         break;
                     case "BtnAgregar":
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
+                        LimpiadorGeneral(MainView.Children);
                         break;
                     case "BtnEditar":
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
                     case "BtnCancelar":
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
+                        break;
+                    case "BtnGuardar":
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
                         break;
                 }
@@ -104,228 +110,276 @@ namespace Sadora.Clientes
                 ControlesGenerales.BtnAgregar.IsEnabled = Agrega;
             if (Modifica == false)
                 ControlesGenerales.BtnEditar.IsEnabled = Modifica;
+            if (PuedeUsarBotonAnular == false)
+                ControlesGenerales.BtnAnular.IsEnabled = PuedeUsarBotonAnular;
         }
 
 
-        private void BtnPrimerRegistro_Click(object sender, RoutedEventArgs e)
+
+        void LimpiadorGeneral(UIElementCollection view) 
         {
-            //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-            //{
-            //   txtRNC,txtNombre
-            //};
-            //ClassControl.ClearControl(listaControl);
-            SetEnabledButton("Modo Consulta");
-            //setDatos(0, "1");
-            //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
-            //lstv2 = lst.FirstOrDefault();
-            //this.DataContext = lst.FirstOrDefault();
-            var ew = Cli;
-        }
-
-        private void BtnAnteriorRegistro_Click(object sender, RoutedEventArgs e)
-        {
-            //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-            //{
-            //   txtRNC,txtNombre
-            //};
-            //ClassControl.ClearControl(listaControl);
-            //SetEnabledButton("Modo Consulta");
-            //try
-            //{
-            //    ClienteID = Convert.ToInt32(txtClienteID.Text) - 1;
-            //}
-            //catch (Exception exception)
-            //{
-            //    ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
-            //}
-
-
-            //if (ClienteID <= 1)
-            //{
-            //    BtnPrimerRegistro.IsEnabled = false;
-            //    BtnAnteriorRegistro.IsEnabled = false;
-            //    setDatos(0, "1");
-            //}
-            //else
-            //{
-            //    setDatos(0, ClienteID.ToString());
-            //}
-            SetEnabledButton("Modo Consulta");
-            //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
-            //this.DataContext = lst.FirstOrDefault();
-        }
-
-        private void BtnProximoRegistro_Click(object sender, RoutedEventArgs e)
-        {
-            //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-            //{
-            //   txtRNC,txtNombre
-            //};
-            //ClassControl.ClearControl(listaControl);
-            //SetEnabledButton("Modo Consulta");
-
-            //txtClienteID.Text += "p";
-            //int result = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClassControl.TryCastInt(txtClienteID.Text) + 1;
-            //ClienteID = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClienteID + 1;//Convert.ToInt32(txtClienteID.Text) + 1;
-
-            //try
-            //{
-            //    ClienteID = Convert.ToInt32(txtClienteID.Text) + 1;
-            //}
-            //catch (Exception exception)
-            //{
-            //    ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
-            //}
-
-            //if (ClienteID >= LastClienteID)
-            //{
-            //    BtnUltimoRegistro.IsEnabled = false;
-            //    BtnProximoRegistro.IsEnabled = false;
-            //    setDatos(0, LastClienteID.ToString());
-            //}
-            //else
-            //{
-            //    setDatos(0, ClienteID.ToString());
-            //}
-
-            SetEnabledButton("Modo Consulta");
-            //var result = this.DataContext;
-
-        }
-
-        private void BtnUltimoRegistro_Click(object sender, RoutedEventArgs e)
-        {
-            //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-            //{
-            //   txtRNC,txtNombre
-            //};
-            //ClassControl.ClearControl(listaControl);
-            //SetEnabledButton("Modo Consulta");
-            //setDatos(-1, "1");
-            SetEnabledButton("Modo Consulta");
-            //BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
-        }
-
-        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (Estado == "Modo Consulta")
+            for (int i = 0; i < view.Count; i++)
             {
-                last = txtClienteID.Text;
-                SetEnabledButton("Modo Busqueda");
-            }
-            else if (Estado == "Modo Busqueda")
-            {
-                List<Control> listaControles = new List<Control>() //Estos son los controles que desahilitaremos al dar click en el boton buscar, los controles que no esten en esta lista se quedaran habilitados para poder buscar un registro por ellos.
+                var Elemente = view[i].GetType();
+
+                if (view[i] is Grid)
+                    LimpiadorGeneral((view[i] as Grid).Children);
+                else if (view[i] is TextBox)
                 {
-                    txtRepresentante,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar
-                };
-                Clases.ClassControl.ActivadorControlesReadonly(null, true, false, false, listaControles);
-
-                setDatos(0, null);
-
-                List<String> ListName = new List<String>() //Estos son los campos que saldran en la ventana de busqueda, solo si se le pasa esta lista de no ser asi, se mostrarian todos
-                {
-                    "Cliente ID","RNC","Nombre","Representante","Direccion","Activo"
-                };
-
-                SetEnabledButton("Modo Consulta");
-
-                if (tabla.Rows.Count > 1)
-                {
-                    Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost(null, tabla, ListName);
-                    frm.ShowDialog();
-
-                    if (frm.GridMuestra.SelectedItem != null)
-                    {
-                        DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-                        txtClienteID.Text = item.Row.ItemArray[0].ToString();
-                        setDatos(0, txtClienteID.Text);
-                        frm.Close();
-                    }
-                    else
-                    {
-                        setDatos(0, last);
-                    }
+                    var Element = view[i] as TextBox;
                 }
-                else if (tabla.Rows.Count < 1)
-                {
-                    //BtnProximoRegistro.IsEnabled = false;
-                    //BtnAnteriorRegistro.IsEnabled = false;
-
-                    if (SnackbarThree.MessageQueue is { } messageQueue)
-                    {
-                        var message = "No se encontraron datos";
-                        Task.Factory.StartNew(() => messageQueue.Enqueue(message));
-                    }
-                }
-
+                else if (view[i] is ScrollViewer && (view[i] as ScrollViewer).Content is Grid)
+                        LimpiadorGeneral(((view[i] as ScrollViewer).Content as Grid).Children);
+                else if (view[i] is StackPanel)
+                    LimpiadorGeneral((view[i] as StackPanel).Children);
             }
+            //var Childs1 = view.;
+
+
+            //Control Control;
+
+            //Control = view;
+
+            //var result = Control.GetType();
+
+            //if (view is UserControl)
+            //{
+            //    //Control = Control as UserControl;//.IsReadOnly = !funcion;
+            //    //var result1 = Control.GetType();
+                
+            //    var result4 = (view as UserControl).Content;
+            //    foreach (var item in (view as UserControl))
+            //    {
+
+            //    }
+            //}
+            //if (view is TextBox)
+            //    view.tex
+
         }
 
-        private void BtnImprimir_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
-        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
-        {
-            //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-            SetEnabledButton("Modo Agregar");
-        }
 
-        private void BtnEditar_Click(object sender, RoutedEventArgs e)
-        {
-            SetEnabledButton("Modo Editar");
-        }
+        //private void BtnPrimerRegistro_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
+        //    //{
+        //    //   txtRNC,txtNombre
+        //    //};
+        //    //ClassControl.ClearControl(listaControl);
+        //    SetEnabledButton("Modo Consulta");
+        //    //setDatos(0, "1");
+        //    //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
+        //    //lstv2 = lst.FirstOrDefault();
+        //    //this.DataContext = lst.FirstOrDefault();
+        //    var ew = Cli;
+        //}
 
-        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            SetEnabledButton("Modo Consulta");
-            //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-        }
+        //private void BtnAnteriorRegistro_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
+        //    //{
+        //    //   txtRNC,txtNombre
+        //    //};
+        //    //ClassControl.ClearControl(listaControl);
+        //    //SetEnabledButton("Modo Consulta");
+        //    //try
+        //    //{
+        //    //    ClienteID = Convert.ToInt32(txtClienteID.Text) - 1;
+        //    //}
+        //    //catch (Exception exception)
+        //    //{
+        //    //    ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
+        //    //}
+
+
+        //    //if (ClienteID <= 1)
+        //    //{
+        //    //    BtnPrimerRegistro.IsEnabled = false;
+        //    //    BtnAnteriorRegistro.IsEnabled = false;
+        //    //    setDatos(0, "1");
+        //    //}
+        //    //else
+        //    //{
+        //    //    setDatos(0, ClienteID.ToString());
+        //    //}
+        //    SetEnabledButton("Modo Consulta");
+        //    //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
+        //    //this.DataContext = lst.FirstOrDefault();
+        //}
+
+        //private void BtnProximoRegistro_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
+        //    //{
+        //    //   txtRNC,txtNombre
+        //    //};
+        //    //ClassControl.ClearControl(listaControl);
+        //    //SetEnabledButton("Modo Consulta");
+
+        //    //txtClienteID.Text += "p";
+        //    //int result = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClassControl.TryCastInt(txtClienteID.Text) + 1;
+        //    //ClienteID = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClienteID + 1;//Convert.ToInt32(txtClienteID.Text) + 1;
+
+        //    //try
+        //    //{
+        //    //    ClienteID = Convert.ToInt32(txtClienteID.Text) + 1;
+        //    //}
+        //    //catch (Exception exception)
+        //    //{
+        //    //    ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
+        //    //}
+
+        //    //if (ClienteID >= LastClienteID)
+        //    //{
+        //    //    BtnUltimoRegistro.IsEnabled = false;
+        //    //    BtnProximoRegistro.IsEnabled = false;
+        //    //    setDatos(0, LastClienteID.ToString());
+        //    //}
+        //    //else
+        //    //{
+        //    //    setDatos(0, ClienteID.ToString());
+        //    //}
+
+        //    SetEnabledButton("Modo Consulta");
+        //    //var result = this.DataContext;
+
+        //}
+
+        //private void BtnUltimoRegistro_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
+        //    //{
+        //    //   txtRNC,txtNombre
+        //    //};
+        //    //ClassControl.ClearControl(listaControl);
+        //    //SetEnabledButton("Modo Consulta");
+        //    //setDatos(-1, "1");
+        //    SetEnabledButton("Modo Consulta");
+        //    //BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
+        //}
+
+        //private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //    if (Estado == "Modo Consulta")
+        //    {
+        //        last = txtClienteID.Text;
+        //        SetEnabledButton("Modo Busqueda");
+        //    }
+        //    else if (Estado == "Modo Busqueda")
+        //    {
+        //        List<Control> listaControles = new List<Control>() //Estos son los controles que desahilitaremos al dar click en el boton buscar, los controles que no esten en esta lista se quedaran habilitados para poder buscar un registro por ellos.
+        //        {
+        //            txtRepresentante,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar
+        //        };
+        //        Clases.ClassControl.ActivadorControlesReadonly(null, true, false, false, listaControles);
+
+        //        setDatos(0, null);
+
+        //        List<String> ListName = new List<String>() //Estos son los campos que saldran en la ventana de busqueda, solo si se le pasa esta lista de no ser asi, se mostrarian todos
+        //        {
+        //            "Cliente ID","RNC","Nombre","Representante","Direccion","Activo"
+        //        };
+
+        //        SetEnabledButton("Modo Consulta");
+
+        //        if (tabla.Rows.Count > 1)
+        //        {
+        //            Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost(null, tabla, ListName);
+        //            frm.ShowDialog();
+
+        //            if (frm.GridMuestra.SelectedItem != null)
+        //            {
+        //                DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
+        //                txtClienteID.Text = item.Row.ItemArray[0].ToString();
+        //                setDatos(0, txtClienteID.Text);
+        //                frm.Close();
+        //            }
+        //            else
+        //            {
+        //                setDatos(0, last);
+        //            }
+        //        }
+        //        else if (tabla.Rows.Count < 1)
+        //        {
+        //            //BtnProximoRegistro.IsEnabled = false;
+        //            //BtnAnteriorRegistro.IsEnabled = false;
+
+        //            if (SnackbarThree.MessageQueue is { } messageQueue)
+        //            {
+        //                var message = "No se encontraron datos";
+        //                Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+        //            }
+        //        }
+
+        //    }
+        //}
+
+        //private void BtnImprimir_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+        //private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        //    SetEnabledButton("Modo Agregar");
+        //}
+
+        //private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    SetEnabledButton("Modo Editar");
+        //}
+
+        //private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    SetEnabledButton("Modo Consulta");
+        //    //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        //}
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            SetControls(false, "Validador", false);
-            if (Lista != "Debe Completar los Campos: ")
-            {
-                Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost(Lista);
-                frm.ShowDialog();
-            }
-            else
-            {
-                if (Estado == "Modo Editar")
+            /*    SetControls(false, "Validador", false);
+                if (Lista != "Debe Completar los Campos: ")
                 {
-                    setDatos(2, null);
-                    SetEnabledButton("Modo Consulta");
-                    setDatos(0, txtClienteID.Text);
+                    Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost(Lista);
+                    frm.ShowDialog();
                 }
                 else
                 {
-                    SqlDataReader tabla = ClassControl.getDatosCedula(txtRNC.Text);
-                    if (tabla != null)
+                    if (Estado == "Modo Editar")
                     {
-                        tabla.Close();
-                        tabla.Dispose();
-                        //if (Estado == "Modo Editar")
-                        //    setDatos(2, null);
-                        //else
-                        setDatos(1, null);
-
+                        setDatos(2, null);
                         SetEnabledButton("Modo Consulta");
                         setDatos(0, txtClienteID.Text);
                     }
-                    else if (ClassVariables.ExistClient)
+                    else
                     {
-                        if (SnackbarThree.MessageQueue is { } messageQueue)
+                        SqlDataReader tabla = ClassControl.getDatosCedula(txtRNC.Text);
+                        if (tabla != null)
                         {
-                            var message = "Ya existe un cliente con este RNC";
-                            Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+                            tabla.Close();
+                            tabla.Dispose();
+                            //if (Estado == "Modo Editar")
+                            //    setDatos(2, null);
+                            //else
+                            setDatos(1, null);
+
+                            SetEnabledButton("Modo Consulta");
+                            setDatos(0, txtClienteID.Text);
+                        }
+                        else if (ClassVariables.ExistClient)
+                        {
+                            if (SnackbarThree.MessageQueue is { } messageQueue)
+                            {
+                                var message = "Ya existe un cliente con este RNC";
+                                Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+                            }
                         }
                     }
-                }
-            }
+                }*/
         }
 
         private void txtRNC_KeyUp(object sender, KeyEventArgs e)
@@ -545,89 +599,89 @@ namespace Sadora.Clientes
             }
         }
 
-        void setDatos(int Flag, string Cliente) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
-        {
-            //if (Cliente == null) //si el parametro llega nulo intentamos llenarlo para que no presente ningun error el sistema
-            //{
-            //    if (txtClienteID.Text == "")
-            //        ClienteID = 0;
-            //    else
-            //    {
-            //        //ClienteID = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClienteID + 1;
-            //        try
-            //        {
-            //            ClienteID = Convert.ToInt32(txtClienteID.Text);
-            //        }
-            //        catch (Exception exception)
-            //        {
-            //            ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString(); //Enviamos la excepcion que nos brinda el sistema en caso de que no pueda convertir el id del cliente
-            //        }
-            //    }
-            //}
-            //else //Si pasamos un cliente, lo convertimos actualizamos la variable cliente principal
-            //{
-            //    //ClienteID = ClassControl.TryCastInt(Cliente) == 0 ? ClienteID : ClienteID + 1;
-            //    ClienteID = Convert.ToInt32(Cliente);
-            //}
+        //void setDatos(int Flag, string Cliente) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
+        //{
+        //    //if (Cliente == null) //si el parametro llega nulo intentamos llenarlo para que no presente ningun error el sistema
+        //    //{
+        //    //    if (txtClienteID.Text == "")
+        //    //        ClienteID = 0;
+        //    //    else
+        //    //    {
+        //    //        //ClienteID = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClienteID + 1;
+        //    //        try
+        //    //        {
+        //    //            ClienteID = Convert.ToInt32(txtClienteID.Text);
+        //    //        }
+        //    //        catch (Exception exception)
+        //    //        {
+        //    //            ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString(); //Enviamos la excepcion que nos brinda el sistema en caso de que no pueda convertir el id del cliente
+        //    //        }
+        //    //    }
+        //    //}
+        //    //else //Si pasamos un cliente, lo convertimos actualizamos la variable cliente principal
+        //    //{
+        //    //    //ClienteID = ClassControl.TryCastInt(Cliente) == 0 ? ClienteID : ClienteID + 1;
+        //    //    ClienteID = Convert.ToInt32(Cliente);
+        //    //}
 
-            //List<SqlParameter> listSqlParameter = new List<SqlParameter>() //Creamos una lista de parametros con cada parametro de sql, donde indicamos el nombre en sql y le indicamos el valor o el campo de donde sacara el valor que enviaremos.
-            //{
-            //    new SqlParameter("Flag",Flag),
-            //    new SqlParameter("@ClienteID",ClienteID),
-            //    new SqlParameter("@RNC",txtRNC.Text),
-            //    new SqlParameter("@Nombre",txtNombre.Text),
-            //    new SqlParameter("@Representante",txtRepresentante.Text),
-            //    new SqlParameter("@ClaseID",txtClaseID.Text),
-            //    new SqlParameter("@ClaseComprobanteID",txtComprobanteID.Text),
-            //    new SqlParameter("@DiasCredito",txtDiasCredito.Text),
-            //    new SqlParameter("@Direccion",txtDireccion.Text),
-            //    new SqlParameter("@CorreoElectronico",txtCorreoElectronico.Text),
-            //    new SqlParameter("@Telefono",txtTelefono.Text),
-            //    new SqlParameter("@Celular",txtCelular.Text),
-            //    new SqlParameter("@Activo",cActivar.IsChecked),
-            //    new SqlParameter("@UsuarioID",ClassVariables.UsuarioID)
-            //};
+        //    //List<SqlParameter> listSqlParameter = new List<SqlParameter>() //Creamos una lista de parametros con cada parametro de sql, donde indicamos el nombre en sql y le indicamos el valor o el campo de donde sacara el valor que enviaremos.
+        //    //{
+        //    //    new SqlParameter("Flag",Flag),
+        //    //    new SqlParameter("@ClienteID",ClienteID),
+        //    //    new SqlParameter("@RNC",txtRNC.Text),
+        //    //    new SqlParameter("@Nombre",txtNombre.Text),
+        //    //    new SqlParameter("@Representante",txtRepresentante.Text),
+        //    //    new SqlParameter("@ClaseID",txtClaseID.Text),
+        //    //    new SqlParameter("@ClaseComprobanteID",txtComprobanteID.Text),
+        //    //    new SqlParameter("@DiasCredito",txtDiasCredito.Text),
+        //    //    new SqlParameter("@Direccion",txtDireccion.Text),
+        //    //    new SqlParameter("@CorreoElectronico",txtCorreoElectronico.Text),
+        //    //    new SqlParameter("@Telefono",txtTelefono.Text),
+        //    //    new SqlParameter("@Celular",txtCelular.Text),
+        //    //    new SqlParameter("@Activo",cActivar.IsChecked),
+        //    //    new SqlParameter("@UsuarioID",ClassVariables.UsuarioID)
+        //    //};
 
-            //tabla = Clases.ClassData.runDataTable("sp_cliclientes", listSqlParameter, "StoredProcedure"); //recibimos el resultado que nos retorne la transaccion digase, consulta, agregar,editar,eliminar en una tabla.
+        //    //tabla = Clases.ClassData.runDataTable("sp_cliclientes", listSqlParameter, "StoredProcedure"); //recibimos el resultado que nos retorne la transaccion digase, consulta, agregar,editar,eliminar en una tabla.
 
-            //if (ClassVariables.GetSetError != null) //Si el intento anterior presenta algun error aqui aparece el mismo
-            //{
-            //    Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost(ClassVariables.GetSetError);
-            //    frm.ShowDialog();
-            //    ClassVariables.GetSetError = null;
-            //}
+        //    //if (ClassVariables.GetSetError != null) //Si el intento anterior presenta algun error aqui aparece el mismo
+        //    //{
+        //    //    Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost(ClassVariables.GetSetError);
+        //    //    frm.ShowDialog();
+        //    //    ClassVariables.GetSetError = null;
+        //    //}
 
-            //if (tabla.Rows.Count == 1) //evaluamos si la tabla actualizada previamente tiene datos, de ser asi actualizamos los controles en los que mostramos esa info.
-            //{
-            //    txtClienteID.Text = tabla.Rows[0]["ClienteID"].ToString();
-            //    txtRNC.Text = tabla.Rows[0]["RNC"].ToString();
-            //    txtNombre.Text = tabla.Rows[0]["Nombre"].ToString();
-            //    txtRepresentante.Text = tabla.Rows[0]["Representante"].ToString();
-            //    txtClaseID.Text = tabla.Rows[0]["ClaseID"].ToString();
-            //    txtComprobanteID.Text = tabla.Rows[0]["ClaseComprobanteID"].ToString();
-            //    txtDireccion.Text = tabla.Rows[0]["Direccion"].ToString();
-            //    txtCorreoElectronico.Text = tabla.Rows[0]["CorreoElectronico"].ToString();
-            //    txtTelefono.Text = tabla.Rows[0]["Telefono"].ToString();
-            //    txtCelular.Text = tabla.Rows[0]["Celular"].ToString();
-            //    cActivar.IsChecked = Convert.ToBoolean(tabla.Rows[0]["Activo"].ToString());
-            //    txtDiasCredito.Text = tabla.Rows[0]["DiasCredito"].ToString();
+        //    //if (tabla.Rows.Count == 1) //evaluamos si la tabla actualizada previamente tiene datos, de ser asi actualizamos los controles en los que mostramos esa info.
+        //    //{
+        //    //    txtClienteID.Text = tabla.Rows[0]["ClienteID"].ToString();
+        //    //    txtRNC.Text = tabla.Rows[0]["RNC"].ToString();
+        //    //    txtNombre.Text = tabla.Rows[0]["Nombre"].ToString();
+        //    //    txtRepresentante.Text = tabla.Rows[0]["Representante"].ToString();
+        //    //    txtClaseID.Text = tabla.Rows[0]["ClaseID"].ToString();
+        //    //    txtComprobanteID.Text = tabla.Rows[0]["ClaseComprobanteID"].ToString();
+        //    //    txtDireccion.Text = tabla.Rows[0]["Direccion"].ToString();
+        //    //    txtCorreoElectronico.Text = tabla.Rows[0]["CorreoElectronico"].ToString();
+        //    //    txtTelefono.Text = tabla.Rows[0]["Telefono"].ToString();
+        //    //    txtCelular.Text = tabla.Rows[0]["Celular"].ToString();
+        //    //    cActivar.IsChecked = Convert.ToBoolean(tabla.Rows[0]["Activo"].ToString());
+        //    //    txtDiasCredito.Text = tabla.Rows[0]["DiasCredito"].ToString();
 
-            //    if (Flag == -1) //si pulsamos el boton del ultimo registro se ejecuta el flag -1 es decir que tenemos una busqueda especial
-            //    {
-            //        try
-            //        {
-            //            LastClienteID = Convert.ToInt32(txtClienteID.Text); //intentamos convertir el id del cliente
-            //        }
-            //        catch (Exception exception)
-            //        {
-            //            ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString(); //si presenta un error al intentar convertirlo lo enviamos
-            //        }
-            //    }
-            //    ClassControl.setValidador("select * from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID); //ejecutamos el metodo validador con el campo seleccionado para que lo busque y muestre una vez se guarde el registro
-            //    ClassControl.setValidador("select * from TconComprobantes where ComprobanteID =", txtComprobanteID, tbxComprobanteID); //ejecutamos el metodo validador con el campo seleccionado para que lo busque y muestre una vez se guarde el registro
-            //}
-            //listSqlParameter.Clear(); //Limpiamos la lista de parametros.
-        }
+        //    //    if (Flag == -1) //si pulsamos el boton del ultimo registro se ejecuta el flag -1 es decir que tenemos una busqueda especial
+        //    //    {
+        //    //        try
+        //    //        {
+        //    //            LastClienteID = Convert.ToInt32(txtClienteID.Text); //intentamos convertir el id del cliente
+        //    //        }
+        //    //        catch (Exception exception)
+        //    //        {
+        //    //            ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString(); //si presenta un error al intentar convertirlo lo enviamos
+        //    //        }
+        //    //    }
+        //    //    ClassControl.setValidador("select * from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID); //ejecutamos el metodo validador con el campo seleccionado para que lo busque y muestre una vez se guarde el registro
+        //    //    ClassControl.setValidador("select * from TconComprobantes where ComprobanteID =", txtComprobanteID, tbxComprobanteID); //ejecutamos el metodo validador con el campo seleccionado para que lo busque y muestre una vez se guarde el registro
+        //    //}
+        //    //listSqlParameter.Clear(); //Limpiamos la lista de parametros.
+        //}
 
         void SetControls(bool Habilitador, string Modo, bool Editando) //Este metodo se encarga de controlar cada unos de los controles del cuerpo de la ventana como los textbox
         {
@@ -670,75 +724,75 @@ namespace Sadora.Clientes
             listaControlesValidar.Clear();
         }
 
-        void SetEnabledButton(String status) //Este metodo se encarga de crear la interacion de los botones de la ventana segun el estado en el que se encuentra
-        {
-            Estado = status;
-            //lIconEstado.ToolTip = Estado;
+        //void SetEnabledButton(String status) //Este metodo se encarga de crear la interacion de los botones de la ventana segun el estado en el que se encuentra
+        //{
+        //    Estado = status;
+        //    //lIconEstado.ToolTip = Estado;
 
-            if (Estado != "Modo Agregar" && Estado != "Modo Editar") //Si el sistema se encuentra en modo consulta o busqueda entra el validador
-            {
-                //BtnPrimerRegistro.IsEnabled = true;
-                //BtnAnteriorRegistro.IsEnabled = true;
-                //BtnProximoRegistro.IsEnabled = true;
-                //BtnUltimoRegistro.IsEnabled = true;
-                //BtnBuscar.IsEnabled = true;
-                //BtnImprimir.IsEnabled = true;
-                //BtnAgregar.IsEnabled = true;
-                //BtnEditar.IsEnabled = true;
+        //    if (Estado != "Modo Agregar" && Estado != "Modo Editar") //Si el sistema se encuentra en modo consulta o busqueda entra el validador
+        //    {
+        //        //BtnPrimerRegistro.IsEnabled = true;
+        //        //BtnAnteriorRegistro.IsEnabled = true;
+        //        //BtnProximoRegistro.IsEnabled = true;
+        //        //BtnUltimoRegistro.IsEnabled = true;
+        //        //BtnBuscar.IsEnabled = true;
+        //        //BtnImprimir.IsEnabled = true;
+        //        //BtnAgregar.IsEnabled = true;
+        //        //BtnEditar.IsEnabled = true;
 
-                //BtnCancelar.IsEnabled = false;
-                //BtnGuardar.IsEnabled = false;
-                if (Estado == "Modo Consulta") //Si el estado es modo consulta enviamos a ejecutar otro metodo parametizado de forma especial
-                {
-                    SetControls(true, null, false);
-                    //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.EyeOutline;
-                }
-                else //Si el estado es modo busqueda enviamos a ejecutar el mismo metodo parametizado de forma especial y cambiamos el estado de los botones
-                {
-                    //BtnProximoRegistro.IsEnabled = false;
-                    //BtnAnteriorRegistro.IsEnabled = false;
-                    //BtnImprimir.IsEnabled = false;
-                    //BtnEditar.IsEnabled = false;
-                    SetControls(false, null, false);
-                    //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Search;
-                }
-            }
-            else  //Si el sistema se encuentra en modo Agregar o Editar entra el validador
-            {
-                //BtnPrimerRegistro.IsEnabled = false;
-                //BtnAnteriorRegistro.IsEnabled = false;
-                //BtnProximoRegistro.IsEnabled = false;
-                //BtnUltimoRegistro.IsEnabled = false;
+        //        //BtnCancelar.IsEnabled = false;
+        //        //BtnGuardar.IsEnabled = false;
+        //        if (Estado == "Modo Consulta") //Si el estado es modo consulta enviamos a ejecutar otro metodo parametizado de forma especial
+        //        {
+        //            SetControls(true, null, false);
+        //            //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.EyeOutline;
+        //        }
+        //        else //Si el estado es modo busqueda enviamos a ejecutar el mismo metodo parametizado de forma especial y cambiamos el estado de los botones
+        //        {
+        //            //BtnProximoRegistro.IsEnabled = false;
+        //            //BtnAnteriorRegistro.IsEnabled = false;
+        //            //BtnImprimir.IsEnabled = false;
+        //            //BtnEditar.IsEnabled = false;
+        //            SetControls(false, null, false);
+        //            //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Search;
+        //        }
+        //    }
+        //    else  //Si el sistema se encuentra en modo Agregar o Editar entra el validador
+        //    {
+        //        //BtnPrimerRegistro.IsEnabled = false;
+        //        //BtnAnteriorRegistro.IsEnabled = false;
+        //        //BtnProximoRegistro.IsEnabled = false;
+        //        //BtnUltimoRegistro.IsEnabled = false;
 
-                //BtnBuscar.IsEnabled = false;
-                //BtnImprimir.IsEnabled = false;
+        //        //BtnBuscar.IsEnabled = false;
+        //        //BtnImprimir.IsEnabled = false;
 
-                //BtnAgregar.IsEnabled = false;
-                //BtnEditar.IsEnabled = false;
+        //        //BtnAgregar.IsEnabled = false;
+        //        //BtnEditar.IsEnabled = false;
 
-                //BtnCancelar.IsEnabled = true;
-                //BtnGuardar.IsEnabled = true;
-                if (Estado == "Modo Agregar") //Si el estado es modo Agregar enviamos a ejecutar otro metodo parametizado de forma especial
-                {
-                    SetControls(false, null, false);
-                    //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.AddThick;
-                    txtClienteID.Text = (LastClienteID + 1).ToString();
-                    txtRNC.Focus();
-                }
-                else //Si el estado es modo Editar enviamos a ejecutar el mismo metodo parametizado de forma especial
-                {
-                    SetControls(true, null, true);
-                    //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Edit;
-                }
-                txtClienteID.IsReadOnly = true;
-            }
-            //if (Imprime == false)
-            //    BtnImprimir.IsEnabled = Imprime;
-            //if (Agrega == false)
-            //    BtnAgregar.IsEnabled = Agrega;
-            //if (Modifica == false)
-            //    BtnEditar.IsEnabled = Modifica;
-        }
+        //        //BtnCancelar.IsEnabled = true;
+        //        //BtnGuardar.IsEnabled = true;
+        //        if (Estado == "Modo Agregar") //Si el estado es modo Agregar enviamos a ejecutar otro metodo parametizado de forma especial
+        //        {
+        //            SetControls(false, null, false);
+        //            //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.AddThick;
+        //            txtClienteID.Text = (LastClienteID + 1).ToString();
+        //            txtRNC.Focus();
+        //        }
+        //        else //Si el estado es modo Editar enviamos a ejecutar el mismo metodo parametizado de forma especial
+        //        {
+        //            SetControls(true, null, true);
+        //            //IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Edit;
+        //        }
+        //        txtClienteID.IsReadOnly = true;
+        //    }
+        //    //if (Imprime == false)
+        //    //    BtnImprimir.IsEnabled = Imprime;
+        //    //if (Agrega == false)
+        //    //    BtnAgregar.IsEnabled = Agrega;
+        //    //if (Modifica == false)
+        //    //    BtnEditar.IsEnabled = Modifica;
+        //}
 
         private void txtDiasCredito_KeyUp(object sender, KeyEventArgs e)
         {
