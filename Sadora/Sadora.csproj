@@ -122,6 +122,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomElements\UscTextboxGeneral.xaml.cs">
+      <DependentUpon>UscTextboxGeneral.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Audit.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
@@ -318,6 +321,10 @@
       <DependentUpon>UscCajas.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Clientes\UscClientesVM.cs" />
+    <Page Include="CustomElements\UscTextboxGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Administracion\FrmControlAccesos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
