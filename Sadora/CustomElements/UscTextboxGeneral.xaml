@@ -7,11 +7,11 @@
              x:Name="root"
              mc:Ignorable="d" >
     <Grid>
-        <Border TextElement.FontSize="15" Margin="{Binding BorderMargin, ElementName=root}" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+        <Border TextElement.FontSize="15" Margin="{Binding MarginBorder, ElementName=root}" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
             <StackPanel Orientation="Vertical">
                 <TextBlock Margin="10 5 0 0" Text="{Binding Title, ElementName=root}" FontWeight="Bold"/>
-                <TextBox Height="30" Padding="0" MaxLength="{Binding MaxLength, ElementName=root}" BorderThickness="1" BorderBrush="{x:Null}" 
-                         Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="1" KeyUp="TextBox_KeyUp"/>
+                <TextBox Height="{Binding HeightLabel, ElementName=root}" Text="{Binding Text, ElementName=root}" Padding="0" MaxLength="{Binding MaxLength, ElementName=root}" BorderThickness="1" BorderBrush="{x:Null}" 
+                         Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED"/>
             </StackPanel>
         </Border>
 

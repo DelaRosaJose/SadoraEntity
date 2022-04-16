@@ -44,7 +44,8 @@ namespace Sadora.Clientes
                 Imprime = ClassVariables.Imprime;
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
-                Task.Run(() => {
+                Task.Run(() =>
+                {
                     using (Models.SadoraEntities db = new Models.SadoraEntities())
                         _FistClienteID = db.TcliClientes.FirstOrDefault().ClienteID;
                 });//busqueda de Primer Registro
@@ -112,11 +113,13 @@ namespace Sadora.Clientes
                 ControlesGenerales.BtnEditar.IsEnabled = Modifica;
             if (PuedeUsarBotonAnular == false)
                 ControlesGenerales.BtnAnular.IsEnabled = PuedeUsarBotonAnular;
+
+            Estado = ControlesGenerales.EstadoVentana;
         }
 
 
 
-        void LimpiadorGeneral(UIElementCollection view) 
+        void LimpiadorGeneral(UIElementCollection view)
         {
             for (int i = 0; i < view.Count; i++)
             {
@@ -129,7 +132,7 @@ namespace Sadora.Clientes
                     var Element = view[i] as TextBox;
                 }
                 else if (view[i] is ScrollViewer && (view[i] as ScrollViewer).Content is Grid)
-                        LimpiadorGeneral(((view[i] as ScrollViewer).Content as Grid).Children);
+                    LimpiadorGeneral(((view[i] as ScrollViewer).Content as Grid).Children);
                 else if (view[i] is StackPanel)
                     LimpiadorGeneral((view[i] as StackPanel).Children);
             }
@@ -146,7 +149,7 @@ namespace Sadora.Clientes
             //{
             //    //Control = Control as UserControl;//.IsReadOnly = !funcion;
             //    //var result1 = Control.GetType();
-                
+
             //    var result4 = (view as UserControl).Content;
             //    foreach (var item in (view as UserControl))
             //    {
@@ -572,15 +575,25 @@ namespace Sadora.Clientes
             ClassControl.ValidadorNumeros(e);
         }
 
+        private void UscTextboxGeneral_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
+                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+
+        }
+
+        private void StackPanel_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
+                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+
+        }
+
         private void txtCelular_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                }
-            }
+            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
+                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+
         }
 
         private void txtCelular_KeyDown(object sender, KeyEventArgs e)

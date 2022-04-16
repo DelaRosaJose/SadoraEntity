@@ -159,9 +159,9 @@
                     <Grid Grid.Column="0">
                         <!--primera columna del grid-->
 
-                        <StackPanel Orientation="Vertical" Width="auto">
+                        <StackPanel Orientation="Vertical" Width="auto" KeyUp="StackPanel_KeyUp">
 
-                            <Sadora:UscTextboxGeneral Title="Cliente ID" />
+                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Cliente.ClienteID}" TabIndex="1" KeyUp="UscTextboxGeneral_KeyUp"/>
 
 
                             <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">

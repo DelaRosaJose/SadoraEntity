@@ -43,5 +43,10 @@ namespace Sadora.CustomElements
                 IconEstado.Kind = Estado == "Modo Agregar" ? MaterialDesignThemes.Wpf.PackIconKind.AddThick : IconEstado.Kind = MaterialDesignThemes.Wpf.PackIconKind.Edit;
             }
         }
+
+        public string EstadoVentana
+        {
+            get { return Estado; }
+        }
     }
 }

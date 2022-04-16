@@ -898,3 +898,4 @@ E:\SadoraEntity\Sadora\obj\Debug\CustomElements\UscBotonesGenerales.g.cs
 E:\SadoraEntity\Sadora\obj\Debug\CustomElements\UscBotonesGenerales.baml
 E:\SadoraEntity\Sadora\obj\Debug\CustomElements\UscTextboxGeneral.g.cs
 E:\SadoraEntity\Sadora\obj\Debug\CustomElements\UscTextboxGeneral.baml
+E:\SadoraEntity\Sadora\obj\Debug\Sadora.csproj.SuggestedBindingRedirects.cache
