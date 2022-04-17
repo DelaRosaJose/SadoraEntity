@@ -1,7 +1,7 @@
 
-.vs/
+/.vs
 *.exe
 *.pdb
 *.cache
-Sadora/obj/
-Sadora/bin/
+/Sadora/obj
+/Sadora/bin
