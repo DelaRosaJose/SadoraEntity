@@ -14,13 +14,5 @@
                          Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" KeyDown="root_KeyUp"/>
             </StackPanel>
         </Border>
-
-        <!--<Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-            <StackPanel Orientation="Vertical">
-                <TextBlock x:Name="lClienteID" Margin="10 5 0 0" Text="Cliente ID" FontWeight="Bold"/>
-                <TextBox x:Name="txtClienteID" Text="{Binding Cliente.ClienteID}" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="1" KeyUp="txtClienteID_KeyUp"/>
-            </StackPanel>
-        </Border>-->
-
     </Grid>
 </UserControl>

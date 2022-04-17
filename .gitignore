@@ -1,8 +1,7 @@
 
-.vs/Sadora/v16/.suo
-.vs/Sadora/v17/.suo
+.vs/
 *.exe
 *.pdb
 *.cache
-Sadora/obj/Debug/CustomElements/UscTextboxGeneral.g.i.cs
-.vs/Sadora/v17/.suo
+Sadora/obj/
+Sadora/bin/

@@ -26,7 +26,6 @@ namespace Sadora.CustomElements
             get { return (string)GetValue(TitleProperty); }
             set { SetValue(TitleProperty, value); }
         }
-
         public int MaxLength
         {
             get { return (int)GetValue(MaxLengthProperty); }
@@ -73,29 +72,15 @@ namespace Sadora.CustomElements
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(UscTextboxGeneral),
                 new PropertyMetadata(null));
+
         public static readonly DependencyProperty FieldNumericProperty =
             DependencyProperty.Register("FieldNumeric", typeof(bool), typeof(UscTextboxGeneral),
                 new PropertyMetadata(false));
-
-
-
-        //public static readonly RoutedEvent JoinKeyUpEvent =
-        //    EventManager.RegisterRoutedEvent(nameof(JoinKeyUp), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TierCard));
-        
-        //public static readonly RoutedEvent JoinKeyUpEvent =
-        //    EventManager.RegisterRoutedEvent(nameof(JoinKeyUp), RoutingStrategy.Bubble, typeof(KeyEventHandler), typeof(UscTextboxGeneral));
-        
 
         public UscTextboxGeneral()
         {
             InitializeComponent();
         }
-
-        //private void Field_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    //base.OnKeyUp(e);
-        //    RaiseEvent(new RoutedEventArgs(JoinKeyUpEvent));
-        //}
 
         private void root_KeyUp(object sender, KeyEventArgs e)
         {
