@@ -5,3 +5,4 @@
 *.pdb
 *.cache
 Sadora/obj/Debug/CustomElements/UscTextboxGeneral.g.i.cs
+.vs/Sadora/v17/.suo
