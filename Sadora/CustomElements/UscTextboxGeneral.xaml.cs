@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sadora.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,12 +47,12 @@ namespace Sadora.CustomElements
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
+        public bool FieldNumeric
+        {
+            get { return (bool)GetValue(FieldNumericProperty); }
+            set { SetValue(FieldNumericProperty, value); }
+        }
 
-        //public event KeyEventHandler JoinKeyUp
-        //{
-        //    add { AddHandler(JoinKeyUpEvent, value); }
-        //    remove { RemoveHandler(JoinKeyUpEvent, value); }
-        //}
 
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(UscTextboxGeneral),
@@ -72,6 +73,9 @@ namespace Sadora.CustomElements
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(UscTextboxGeneral),
                 new PropertyMetadata(null));
+        public static readonly DependencyProperty FieldNumericProperty =
+            DependencyProperty.Register("FieldNumeric", typeof(bool), typeof(UscTextboxGeneral),
+                new PropertyMetadata(false));
 
 
 
@@ -95,7 +99,8 @@ namespace Sadora.CustomElements
 
         private void root_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (FieldNumeric)
+                ClassControl.ValidadorNumeros(e);
         }
     }
 }

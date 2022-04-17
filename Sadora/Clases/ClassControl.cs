@@ -365,10 +365,15 @@ namespace Sadora.Clases
 
         public static void ValidadorNumeros(KeyEventArgs e)
         {
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.OemPeriod || e.Key == Key.Decimal)
+            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.OemPeriod, Key.Decimal, Key.Enter }.Contains(e.Key))
                 e.Handled = false;
             else
                 e.Handled = true;
+
+            //if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.OemPeriod || e.Key == Key.Decimal)
+            //    e.Handled = false;
+            //else
+            //    e.Handled = true;
         }
 
         public static void SetGridReadOnly(GridControl Grid, List<String> ListaColumnas = null, Boolean AllowEdit = true)

@@ -1,0 +1,7 @@
+
+.vs/Sadora/v16/.suo
+.vs/Sadora/v17/.suo
+*.exe
+*.pdb
+*.cache
+Sadora/obj/Debug/CustomElements/UscTextboxGeneral.g.i.cs

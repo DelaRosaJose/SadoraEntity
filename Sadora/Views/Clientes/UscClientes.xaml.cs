@@ -124,17 +124,21 @@ namespace Sadora.Clientes
             for (int i = 0; i < view.Count; i++)
             {
                 var Elemente = view[i].GetType();
+                var Elementv = view[i];
 
                 if (view[i] is Grid)
                     LimpiadorGeneral((view[i] as Grid).Children);
-                else if (view[i] is TextBox)
-                {
-                    var Element = view[i] as TextBox;
-                }
+                //else if (view[i] is TextBox)
+                //{
+                //    var Element = view[i] as TextBox;
+                //}
                 else if (view[i] is ScrollViewer && (view[i] as ScrollViewer).Content is Grid)
                     LimpiadorGeneral(((view[i] as ScrollViewer).Content as Grid).Children);
                 else if (view[i] is StackPanel)
                     LimpiadorGeneral((view[i] as StackPanel).Children);
+                else if (view[i] is CustomElements.UscTextboxGeneral)
+                    (view[i] as CustomElements.UscTextboxGeneral).Text = string.Empty;
+
             }
             //var Childs1 = view.;
 
@@ -391,14 +395,14 @@ namespace Sadora.Clientes
             {
                 if (e.Key == Key.Enter)
                 {
-                    reader = ClassControl.getDatosCedula(txtRNC.Text);
+                    reader = ClassControl.getDatosCedula(Cli.Cliente.RNC);
                     if (reader != null)
                     {
                         if (reader.HasRows)
                         {
                             if (reader.Read())
                             {
-                                txtNombre.Text = reader["NombreCompleto"].ToString();
+                                Cli.Cliente.Nombre = reader["NombreCompleto"].ToString();
                                 //txtDireccion.Text = reader["Direccion"].ToString();
                                 //txtTelefono.Text = reader["Telefono"].ToString();
                                 reader.NextResult();
@@ -575,18 +579,20 @@ namespace Sadora.Clientes
             ClassControl.ValidadorNumeros(e);
         }
 
-        private void UscTextboxGeneral_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
-                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-
-        }
-
         private void StackPanel_KeyUp(object sender, KeyEventArgs e)
         {
             if (Estado != "Modo Consulta" && e.Key == Key.Enter)
-                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+                ((StackPanel)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
 
+        }
+
+        private void UscTextboxGeneral_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Estado == "Modo Consulta")
+                e.Handled = true;
+
+            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
+                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
         }
 
         private void txtCelular_KeyUp(object sender, KeyEventArgs e)
@@ -696,46 +702,46 @@ namespace Sadora.Clientes
         //    //listSqlParameter.Clear(); //Limpiamos la lista de parametros.
         //}
 
-        void SetControls(bool Habilitador, string Modo, bool Editando) //Este metodo se encarga de controlar cada unos de los controles del cuerpo de la ventana como los textbox
-        {
-            List<Control> listaControl = new List<Control>() //Estos son los controles que seran controlados, readonly, enable.
-            {
-                txtClienteID,txtRNC,txtNombre,txtRepresentante,txtClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar,txtDiasCredito
-            };
+        //void SetControls(bool Habilitador, string Modo, bool Editando) //Este metodo se encarga de controlar cada unos de los controles del cuerpo de la ventana como los textbox
+        //{
+        //    List<Control> listaControl = new List<Control>() //Estos son los controles que seran controlados, readonly, enable.
+        //    {
+        //        txtClienteID,txtRNC,txtNombre,txtRepresentante,txtClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar,txtDiasCredito
+        //    };
 
-            List<Control> listaControles = new List<Control>() //Estos son los controles que desahilitaremos al dar click en el boton buscar, los controles que no esten en esta lista se quedaran habilitados para poder buscar un registro por ellos.
-            {
-                txtRepresentante,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar,txtDiasCredito
-            };
+        //    List<Control> listaControles = new List<Control>() //Estos son los controles que desahilitaremos al dar click en el boton buscar, los controles que no esten en esta lista se quedaran habilitados para poder buscar un registro por ellos.
+        //    {
+        //        txtRepresentante,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar,txtDiasCredito
+        //    };
 
-            List<Control> listaControlesValidar = new List<Control>() //Estos son los controles que validaremos al dar click en el boton guardar.
-            {
-                txtClienteID,txtRNC,txtNombre,txtRepresentante//,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular
-            };
+        //    List<Control> listaControlesValidar = new List<Control>() //Estos son los controles que validaremos al dar click en el boton guardar.
+        //    {
+        //        txtClienteID,txtRNC,txtNombre,txtRepresentante//,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular
+        //    };
 
-            if (Modo == null) //si no trae ningun modo entra el validador
-            {
-                if (Estado == "Modo Busqueda")
-                {
-                    Clases.ClassControl.ActivadorControlesReadonly(listaControl, Habilitador, Editando, false, listaControles);
-                }
-                else if (Estado == "Modo Agregar")
-                {
-                    Clases.ClassControl.ActivadorControlesReadonly(listaControl, Habilitador, Editando, true, null);
-                }
-                else
-                {
-                    Clases.ClassControl.ActivadorControlesReadonly(listaControl, Habilitador, Editando, false, null);
-                }
-            }
-            else if (Modo == "Validador") //si el parametro modo es igual a validador ingresa.
-            {
-                Lista = Clases.ClassControl.ValidadorControles(listaControlesValidar); //Este metodo se encarga de validar que cada unos de los controles que se les indica en la lista no se dejen vacios.
-            }
-            listaControl.Clear(); //limpiamos ambas listas
-            listaControles.Clear();
-            listaControlesValidar.Clear();
-        }
+        //    if (Modo == null) //si no trae ningun modo entra el validador
+        //    {
+        //        if (Estado == "Modo Busqueda")
+        //        {
+        //            Clases.ClassControl.ActivadorControlesReadonly(listaControl, Habilitador, Editando, false, listaControles);
+        //        }
+        //        else if (Estado == "Modo Agregar")
+        //        {
+        //            Clases.ClassControl.ActivadorControlesReadonly(listaControl, Habilitador, Editando, true, null);
+        //        }
+        //        else
+        //        {
+        //            Clases.ClassControl.ActivadorControlesReadonly(listaControl, Habilitador, Editando, false, null);
+        //        }
+        //    }
+        //    else if (Modo == "Validador") //si el parametro modo es igual a validador ingresa.
+        //    {
+        //        Lista = Clases.ClassControl.ValidadorControles(listaControlesValidar); //Este metodo se encarga de validar que cada unos de los controles que se les indica en la lista no se dejen vacios.
+        //    }
+        //    listaControl.Clear(); //limpiamos ambas listas
+        //    listaControles.Clear();
+        //    listaControlesValidar.Clear();
+        //}
 
         //void SetEnabledButton(String status) //Este metodo se encarga de crear la interacion de los botones de la ventana segun el estado en el que se encuentra
         //{
