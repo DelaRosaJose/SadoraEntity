@@ -1,7 +1,5 @@
 ﻿using Sadora.Clases;
-using Sadora.ViewModels.Clientes;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -117,8 +115,6 @@ namespace Sadora.Clientes
             Estado = ControlesGenerales.EstadoVentana;
         }
 
-
-
         void LimpiadorGeneral(UIElementCollection view)
         {
             for (int i = 0; i < view.Count; i++)
@@ -128,144 +124,19 @@ namespace Sadora.Clientes
 
                 if (view[i] is Grid)
                     LimpiadorGeneral((view[i] as Grid).Children);
-                //else if (view[i] is TextBox)
-                //{
-                //    var Element = view[i] as TextBox;
-                //}
                 else if (view[i] is ScrollViewer && (view[i] as ScrollViewer).Content is Grid)
                     LimpiadorGeneral(((view[i] as ScrollViewer).Content as Grid).Children);
                 else if (view[i] is StackPanel)
                     LimpiadorGeneral((view[i] as StackPanel).Children);
                 else if (view[i] is CustomElements.UscTextboxGeneral)
-                    (view[i] as CustomElements.UscTextboxGeneral).Text = string.Empty;
-
+                    Cli.Cliente = null;
+                else if (view[i] is CustomElements.UscTextboxButtonGeneral)
+                    Cli.Cliente = null;
             }
-            //var Childs1 = view.;
-
-
-            //Control Control;
-
-            //Control = view;
-
-            //var result = Control.GetType();
-
-            //if (view is UserControl)
-            //{
-            //    //Control = Control as UserControl;//.IsReadOnly = !funcion;
-            //    //var result1 = Control.GetType();
-
-            //    var result4 = (view as UserControl).Content;
-            //    foreach (var item in (view as UserControl))
-            //    {
-
-            //    }
-            //}
-            //if (view is TextBox)
-            //    view.tex
-
         }
 
 
 
-
-        //private void BtnPrimerRegistro_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-        //    //{
-        //    //   txtRNC,txtNombre
-        //    //};
-        //    //ClassControl.ClearControl(listaControl);
-        //    SetEnabledButton("Modo Consulta");
-        //    //setDatos(0, "1");
-        //    //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
-        //    //lstv2 = lst.FirstOrDefault();
-        //    //this.DataContext = lst.FirstOrDefault();
-        //    var ew = Cli;
-        //}
-
-        //private void BtnAnteriorRegistro_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-        //    //{
-        //    //   txtRNC,txtNombre
-        //    //};
-        //    //ClassControl.ClearControl(listaControl);
-        //    //SetEnabledButton("Modo Consulta");
-        //    //try
-        //    //{
-        //    //    ClienteID = Convert.ToInt32(txtClienteID.Text) - 1;
-        //    //}
-        //    //catch (Exception exception)
-        //    //{
-        //    //    ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
-        //    //}
-
-
-        //    //if (ClienteID <= 1)
-        //    //{
-        //    //    BtnPrimerRegistro.IsEnabled = false;
-        //    //    BtnAnteriorRegistro.IsEnabled = false;
-        //    //    setDatos(0, "1");
-        //    //}
-        //    //else
-        //    //{
-        //    //    setDatos(0, ClienteID.ToString());
-        //    //}
-        //    SetEnabledButton("Modo Consulta");
-        //    //BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = false;
-        //    //this.DataContext = lst.FirstOrDefault();
-        //}
-
-        //private void BtnProximoRegistro_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-        //    //{
-        //    //   txtRNC,txtNombre
-        //    //};
-        //    //ClassControl.ClearControl(listaControl);
-        //    //SetEnabledButton("Modo Consulta");
-
-        //    //txtClienteID.Text += "p";
-        //    //int result = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClassControl.TryCastInt(txtClienteID.Text) + 1;
-        //    //ClienteID = ClassControl.TryCastInt(txtClienteID.Text) == 0 ? ClienteID : ClienteID + 1;//Convert.ToInt32(txtClienteID.Text) + 1;
-
-        //    //try
-        //    //{
-        //    //    ClienteID = Convert.ToInt32(txtClienteID.Text) + 1;
-        //    //}
-        //    //catch (Exception exception)
-        //    //{
-        //    //    ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
-        //    //}
-
-        //    //if (ClienteID >= LastClienteID)
-        //    //{
-        //    //    BtnUltimoRegistro.IsEnabled = false;
-        //    //    BtnProximoRegistro.IsEnabled = false;
-        //    //    setDatos(0, LastClienteID.ToString());
-        //    //}
-        //    //else
-        //    //{
-        //    //    setDatos(0, ClienteID.ToString());
-        //    //}
-
-        //    SetEnabledButton("Modo Consulta");
-        //    //var result = this.DataContext;
-
-        //}
-
-        //private void BtnUltimoRegistro_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //List<Control> listaControl = new List<Control>() //Estos son los controles limpiados.
-        //    //{
-        //    //   txtRNC,txtNombre
-        //    //};
-        //    //ClassControl.ClearControl(listaControl);
-        //    //SetEnabledButton("Modo Consulta");
-        //    //setDatos(-1, "1");
-        //    SetEnabledButton("Modo Consulta");
-        //    //BtnUltimoRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = false;
-        //}
 
         //private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         //{
@@ -431,38 +302,6 @@ namespace Sadora.Clientes
             }
         }
 
-        private void txtClienteID_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                }
-            }
-        }
-
-        private void txtNombre_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                }
-            }
-        }
-
-        private void txtRepresentante_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                }
-            }
-        }
 
         private void btnClaseID_Click(object sender, RoutedEventArgs e)
         {
@@ -474,9 +313,9 @@ namespace Sadora.Clientes
                 if (frm.GridMuestra.SelectedItem != null)
                 {
                     DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-                    txtClaseID.Text = item.Row.ItemArray[0].ToString();
+                    Cli.Cliente.ClaseID = (int)item.Row.ItemArray[0];
 
-                    ClassControl.setValidador("select ClaseID, Nombre from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID);
+                    //ClassControl.setValidador("select ClaseID, Nombre from TcliClaseClientes where ClaseID =", Cli.Cliente.ClaseID, tbxClaseID);
                 }
             }
         }
@@ -487,19 +326,20 @@ namespace Sadora.Clientes
             {
                 if (e.Key == Key.Enter)
                 {
-                    if (txtClaseID.Text != "")
-                        ClassControl.setValidador("select Nombre from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID);
+                    if (Cli.Cliente.ClaseID != 0)
+                    {
+
+                        //ClassControl.setValidador("select Nombre from TcliClaseClientes where ClaseID =", Cli.Cliente.ClaseID, tbxClaseID);
+                    }
                     else
                     {
-                        txtClaseID.Text = 0.ToString();
-                        ClassControl.setValidador("select Nombre from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID);
+                        Cli.Cliente.ClaseID = 0;
+                        //ClassControl.setValidador("select Nombre from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID);
                     }
                     ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
                 }
             }
         }
-
-        private void txtClaseID_KeyDown(object sender, KeyEventArgs e) => ClassControl.ValidadorNumeros(e);
 
         private void btnComprobanteID_Click(object sender, RoutedEventArgs e)
         {
@@ -511,16 +351,11 @@ namespace Sadora.Clientes
                 if (frm.GridMuestra.SelectedItem != null)
                 {
                     DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-                    txtComprobanteID.Text = item.Row.ItemArray[0].ToString();
+                    Cli.Cliente.ClaseComprobanteID = (int)item.Row.ItemArray[0];
 
-                    ClassControl.setValidador("select ComprobanteID, Nombre, Auxiliar, NextNCF, Disponibles from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
+                    //ClassControl.setValidador("select ComprobanteID, Nombre, Auxiliar, NextNCF, Disponibles from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
                 }
             }
-        }
-
-        private void txtComprobanteID_KeyDown(object sender, KeyEventArgs e)
-        {
-            ClassControl.ValidadorNumeros(e);
         }
 
         private void txtComprobanteID_KeyUp(object sender, KeyEventArgs e)
@@ -529,55 +364,21 @@ namespace Sadora.Clientes
             {
                 if (e.Key == Key.Enter)
                 {
-                    if (txtComprobanteID.Text != "")
-                        ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
+                    if (Cli.Cliente.ClaseComprobanteID != 0) { }
+                        //ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
                     else
                     {
-                        txtComprobanteID.Text = 0.ToString();
-                        ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
+                        Cli.Cliente.ClaseComprobanteID = 0;
+                        //ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
                     }
                     ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
                 }
             }
         }
 
-        private void txtDireccion_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                }
-            }
-        }
 
-        private void txtCorreoElectronico_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                }
-            }
-        }
 
-        private void txtTelefono_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                }
-            }
-        }
 
-        private void txtTelefono_KeyDown(object sender, KeyEventArgs e)
-        {
-            ClassControl.ValidadorNumeros(e);
-        }
 
         private void StackPanel_KeyUp(object sender, KeyEventArgs e)
         {
@@ -593,18 +394,6 @@ namespace Sadora.Clientes
 
             if (Estado != "Modo Consulta" && e.Key == Key.Enter)
                 ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        }
-
-        private void txtCelular_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
-                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-
-        }
-
-        private void txtCelular_KeyDown(object sender, KeyEventArgs e)
-        {
-            ClassControl.ValidadorNumeros(e);
         }
 
         private void cActivar_KeyUp(object sender, KeyEventArgs e)
@@ -813,13 +602,6 @@ namespace Sadora.Clientes
         //    //    BtnEditar.IsEnabled = Modifica;
         //}
 
-        private void txtDiasCredito_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
-                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        }
-
-        private void txtDiasCredito_KeyDown(object sender, KeyEventArgs e) => ClassControl.ValidadorNumeros(e);
 
     }
 }

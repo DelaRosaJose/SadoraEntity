@@ -1,24 +1,10 @@
 ﻿using Sadora.Clases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Sadora.CustomElements
 {
-    /// <summary>
-    /// Lógica de interacción para UscTextboxGeneral.xaml
-    /// </summary>
     public partial class UscTextboxGeneral : UserControl
     {
         public string Title
@@ -54,33 +40,24 @@ namespace Sadora.CustomElements
 
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(UscTextboxGeneral),
-                new PropertyMetadata(null));
-        
+            DependencyProperty.Register(nameof(Title), typeof(string), typeof(UscTextboxGeneral), new PropertyMetadata(null));
+
         public static readonly DependencyProperty MaxLengthProperty =
-            DependencyProperty.Register("MaxLength", typeof(int), typeof(UscTextboxGeneral),
-                new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(MaxLength), typeof(int), typeof(UscTextboxGeneral), new PropertyMetadata(0));
 
         public static readonly DependencyProperty MarginBorderProperty =
-            DependencyProperty.Register("MarginBorder", typeof(int), typeof(UscTextboxGeneral),
-                new PropertyMetadata(15));
+            DependencyProperty.Register(nameof(MarginBorder), typeof(int), typeof(UscTextboxGeneral), new PropertyMetadata(15));
 
         public static readonly DependencyProperty LabelProperty =
-            DependencyProperty.Register("HeightLabel", typeof(int), typeof(UscTextboxGeneral),
-                new PropertyMetadata(30));
+            DependencyProperty.Register(nameof(HeightLabel), typeof(int), typeof(UscTextboxGeneral), new PropertyMetadata(30));
 
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(UscTextboxGeneral),
-                new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(UscTextboxGeneral), new PropertyMetadata(null));
 
         public static readonly DependencyProperty FieldNumericProperty =
-            DependencyProperty.Register("FieldNumeric", typeof(bool), typeof(UscTextboxGeneral),
-                new PropertyMetadata(false));
+            DependencyProperty.Register(nameof(FieldNumeric), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
 
-        public UscTextboxGeneral()
-        {
-            InitializeComponent();
-        }
+        public UscTextboxGeneral() => InitializeComponent();
 
         private void root_KeyUp(object sender, KeyEventArgs e)
         {

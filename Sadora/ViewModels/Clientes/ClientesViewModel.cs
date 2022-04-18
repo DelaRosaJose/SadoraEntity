@@ -7,7 +7,7 @@ namespace Sadora.ViewModels.Clientes
 {
     public class ClientesViewModel : BaseViewModel
     {
-        #region Properties
+        #region UscClientes ViewModel
 
         private List<Models.TcliCliente> _clientes;
 
@@ -19,7 +19,7 @@ namespace Sadora.ViewModels.Clientes
                 if (_clientes == value)
                     return;
                 _clientes = value;
-                OnPropertyChanged("Clientes");
+                OnPropertyChanged(nameof(Clientes));
             }
         } 
         private Models.TcliCliente _cliente;
@@ -32,7 +32,7 @@ namespace Sadora.ViewModels.Clientes
                 if (_cliente == value)
                     return;
                 _cliente = value;
-                OnPropertyChanged("Cliente");
+                OnPropertyChanged(nameof(Cliente));
             }
         }
 
