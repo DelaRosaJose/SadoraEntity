@@ -7,6 +7,7 @@ namespace Sadora.CustomElements
 {
     public partial class UscTextboxGeneral : UserControl
     {
+        #region Creacion de Propiedades
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -38,6 +39,9 @@ namespace Sadora.CustomElements
             set { SetValue(FieldNumericProperty, value); }
         }
 
+        #endregion
+
+        #region Registro de Dependency Property
 
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(nameof(Title), typeof(string), typeof(UscTextboxGeneral), new PropertyMetadata(null));
@@ -56,6 +60,8 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty FieldNumericProperty =
             DependencyProperty.Register(nameof(FieldNumeric), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
+
+        #endregion
 
         public UscTextboxGeneral() => InitializeComponent();
 

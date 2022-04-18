@@ -323,7 +323,6 @@
     <Compile Include="Views\Ventas\UscCajas.xaml.cs">
       <DependentUpon>UscCajas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Clientes\UscClientesVM.cs" />
     <Page Include="CustomElements\UscTextboxButtonGeneral.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

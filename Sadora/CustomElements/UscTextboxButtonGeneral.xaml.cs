@@ -7,6 +7,8 @@ namespace Sadora.CustomElements
 {
     public partial class UscTextboxButtonGeneral : UserControl
     {
+        #region Creacion de Propiedades
+
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -37,11 +39,10 @@ namespace Sadora.CustomElements
             add { AddHandler(SearchClickEvent, value); }
             remove { RemoveHandler(SearchClickEvent, value); }
         }
-        //public bool FieldNumeric
-        //{
-        //    get { return (bool)GetValue(FieldNumericProperty); }
-        //    set { SetValue(FieldNumericProperty, value); }
-        //}
+
+        #endregion
+
+        #region Registro de Dependency Property
 
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(nameof(Title), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
@@ -60,20 +61,13 @@ namespace Sadora.CustomElements
 
         public static readonly RoutedEvent SearchClickEvent =
             EventManager.RegisterRoutedEvent(nameof(SearchClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UscTextboxButtonGeneral));
-         
-        //public static readonly DependencyProperty FieldNumericProperty =
-        //    DependencyProperty.Register("FieldNumeric", typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
+
+        #endregion
 
         public UscTextboxButtonGeneral()
         {
             InitializeComponent();
         }
-
-        //private void root_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (FieldNumeric)
-        //        ClassControl.ValidadorNumeros(e);
-        //}
 
         private void txtFieldID_KeyDown(object sender, KeyEventArgs e) => ClassControl.ValidadorNumeros(e);
 
