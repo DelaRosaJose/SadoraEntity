@@ -18,9 +18,9 @@ namespace Sadora.CustomElements
             get { return (int)GetValue(MaxLengthProperty); }
             set { SetValue(MaxLengthProperty, value); }
         }
-        public int MarginBorder
+        public Thickness MarginBorder
         {
-            get { return (int)GetValue(MarginBorderProperty); }
+            get { return (Thickness)GetValue(MarginBorderProperty); }
             set { SetValue(MarginBorderProperty, value); }
         }
         public int HeightLabel
@@ -50,7 +50,7 @@ namespace Sadora.CustomElements
             DependencyProperty.Register(nameof(MaxLength), typeof(int), typeof(UscTextboxGeneral), new PropertyMetadata(0));
 
         public static readonly DependencyProperty MarginBorderProperty =
-            DependencyProperty.Register(nameof(MarginBorder), typeof(int), typeof(UscTextboxGeneral), new PropertyMetadata(15));
+            DependencyProperty.Register(nameof(MarginBorder), typeof(Thickness), typeof(UscTextboxGeneral), new PropertyMetadata(new Thickness(15)));
 
         public static readonly DependencyProperty LabelProperty =
             DependencyProperty.Register(nameof(HeightLabel), typeof(int), typeof(UscTextboxGeneral), new PropertyMetadata(30));

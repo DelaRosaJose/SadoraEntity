@@ -125,6 +125,9 @@
     <Compile Include="CustomElements\UscTextboxButtonGeneral.xaml.cs">
       <DependentUpon>UscTextboxButtonGeneral.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomElements\UscCheckBoxGeneral.xaml.cs">
+      <DependentUpon>UscCheckBoxGeneral.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomElements\UscTextboxGeneral.xaml.cs">
       <DependentUpon>UscTextboxGeneral.xaml</DependentUpon>
     </Compile>
@@ -324,6 +327,10 @@
       <DependentUpon>UscCajas.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomElements\UscTextboxButtonGeneral.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomElements\UscCheckBoxGeneral.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

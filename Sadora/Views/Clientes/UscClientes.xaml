@@ -67,13 +67,8 @@
                     <Grid Grid.Column="2">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Border HorizontalAlignment="Right" Padding="5" TextElement.FontSize="15" Margin="15 34 15 15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2" CornerRadius="5">
-                                <StackPanel x:Name="CheckActivar" Orientation="Horizontal">
-                                    <CheckBox x:Name="cActivar" IsChecked="{Binding Cliente.Activo}" materialDesign:CheckBoxAssist.CheckBoxSize="25" KeyUp="cActivar_KeyUp" TabIndex="3"/>
-                                    <TextBlock VerticalAlignment="Center" Text="Activo" FontWeight="Bold"/>
-                                </StackPanel>
-                            </Border>
-
+                            <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Cliente.Activo}" TabIndex="3" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            
                             <Sadora:UscTextboxButtonGeneral Title="Clase ID" Text="{Binding Cliente.ClaseID}" MaxLength="2" TabIndex="6" KeyUp="txtClaseID_KeyUp" SearchClick="btnClaseID_Click"/>
 
                             <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" Text="{Binding Cliente.ClaseComprobanteID}" MaxLength="2" TabIndex="6" KeyUp="txtComprobanteID_KeyUp" SearchClick="btnComprobanteID_Click"/>
