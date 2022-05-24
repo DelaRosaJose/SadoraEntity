@@ -70,5 +70,12 @@ namespace Sadora.CustomElements
             if (FieldNumeric)
                 ClassControl.ValidadorNumeros(e);
         }
+
+        private void root_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Txt.TabIndex = root.TabIndex;
+            Txt.Focus();
+        }
+
     }
 }

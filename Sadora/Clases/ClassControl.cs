@@ -365,7 +365,7 @@ namespace Sadora.Clases
 
         public static void ValidadorNumeros(KeyEventArgs e)
         {
-            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.OemPeriod, Key.Decimal, Key.Enter }.Contains(e.Key))
+            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.OemPeriod, Key.Decimal, Key.Enter, Key.Tab }.Contains(e.Key))
                 e.Handled = false;
             else
                 e.Handled = true;

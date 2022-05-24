@@ -105,7 +105,7 @@
             </Button>
         </Border>
         <Border Padding="0" Grid.Column="9" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-            <Button x:Name="BtnGuardar" Padding="0" Height="59" ToolTip="Pulsar para guardar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}" TabIndex="11" >
+            <Button x:Name="BtnGuardar" Padding="0" Height="59" ToolTip="Pulsar para guardar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
                 <StackPanel>
                     <materialDesign:PackIcon  Kind="ContentSave" Width="auto" Height="36" HorizontalAlignment="Center"/>
                     <TextBlock Text="Save" HorizontalAlignment="Center" FontSize="17"/>

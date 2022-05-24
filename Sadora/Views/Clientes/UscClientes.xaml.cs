@@ -1,4 +1,5 @@
 ﻿using Sadora.Clases;
+using Sadora.CustomElements;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -119,19 +120,30 @@ namespace Sadora.Clientes
         {
             for (int i = 0; i < view.Count; i++)
             {
-                var Elemente = view[i].GetType();
-                var Elementv = view[i];
+                var Element = view[i];
+                var Elemente = Element.GetType();
+                var bor = Element is Border ? (Element as Border).Child : null;
 
-                if (view[i] is Grid)
-                    LimpiadorGeneral((view[i] as Grid).Children);
-                else if (view[i] is ScrollViewer && (view[i] as ScrollViewer).Content is Grid)
-                    LimpiadorGeneral(((view[i] as ScrollViewer).Content as Grid).Children);
-                else if (view[i] is StackPanel)
-                    LimpiadorGeneral((view[i] as StackPanel).Children);
-                else if (view[i] is CustomElements.UscTextboxGeneral)
+                if (Element is Grid)
+                    LimpiadorGeneral((Element as Grid).Children);
+                else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
+                    LimpiadorGeneral(((Element as ScrollViewer).Content as Grid).Children);
+                else if (Element is StackPanel)
+                    LimpiadorGeneral((Element as StackPanel).Children);
+                else if (Element is CustomElements.UscTextboxGeneral)
+                {
+                    //MessageBox.Show($"{(Element as CustomElements.UscTextboxGeneral).TabIndex}, - IsFocused {(Element as CustomElements.UscTextboxGeneral).IsFocused}");
                     Cli.Cliente = null;
-                else if (view[i] is CustomElements.UscTextboxButtonGeneral)
+                }
+                else if (Element is CustomElements.UscTextboxButtonGeneral)
                     Cli.Cliente = null;
+                else if (Element is Border)
+                    LimpiadorGeneral((bor as StackPanel).Children);
+                else if (Element is TextBox)
+                {
+                    var ele = Element as TextBox;
+                    MessageBox.Show($"{ele.TabIndex}, - IsFocused {ele.IsFocused}");
+                }
             }
         }
 
@@ -302,6 +314,42 @@ namespace Sadora.Clientes
             }
         }
 
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Estado == "Modo Consulta")
+                e.Handled = true;
+
+            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
+            {
+
+                var resultmain = VinMain;
+
+                var control = ((Grid)sender);
+                var focussss = resultmain.IsFocused;
+
+                var hola = control.IsFocused;
+
+
+                //control.MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+                //MoveFocus
+
+            }
+        }
+
+        //private void UscTextboxGeneral_KeyDown_1(object sender, KeyEventArgs e)
+        //{
+        //    //LimpiadorGeneral(MainView.Children);
+        //    if (txtCliente.Focusable)
+        //        txtCliente.Focus();
+        //}
+
+        private void txtCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            //LimpiadorGeneral((txtCliente.Content as Grid).Children);
+
+            //((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+            //((UscTextboxGeneral)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+        }
 
         private void btnClaseID_Click(object sender, RoutedEventArgs e)
         {
@@ -364,36 +412,31 @@ namespace Sadora.Clientes
             {
                 if (e.Key == Key.Enter)
                 {
-                    if (Cli.Cliente.ClaseComprobanteID != 0) { }
-                        //ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
-                    else
-                    {
-                        Cli.Cliente.ClaseComprobanteID = 0;
-                        //ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
-                    }
+                    //if (Cli.Cliente.ClaseComprobanteID != 0) { }
+                    ////ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
+                    //else
+                    //{
+                    //    Cli.Cliente.ClaseComprobanteID = 0;
+                    //    //ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
+                    //}
                     ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+
                 }
             }
         }
 
-
-
-
-
-        private void StackPanel_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
-                ((StackPanel)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-
-        }
-
         private void UscTextboxGeneral_KeyDown(object sender, KeyEventArgs e)
         {
+
+           //LimpiadorGeneral((txtCliente.Content as Grid).Children);
             if (Estado == "Modo Consulta")
                 e.Handled = true;
 
             if (Estado != "Modo Consulta" && e.Key == Key.Enter)
-                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+            {
+                //sender as 
+            }
+                //((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
         }
 
         private void cActivar_KeyUp(object sender, KeyEventArgs e)
