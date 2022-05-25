@@ -314,43 +314,6 @@ namespace Sadora.Clientes
             }
         }
 
-        private void Grid_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (Estado == "Modo Consulta")
-                e.Handled = true;
-
-            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
-            {
-
-                var resultmain = VinMain;
-
-                var control = ((Grid)sender);
-                var focussss = resultmain.IsFocused;
-
-                var hola = control.IsFocused;
-
-
-                //control.MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                //MoveFocus
-
-            }
-        }
-
-        //private void UscTextboxGeneral_KeyDown_1(object sender, KeyEventArgs e)
-        //{
-        //    //LimpiadorGeneral(MainView.Children);
-        //    if (txtCliente.Focusable)
-        //        txtCliente.Focus();
-        //}
-
-        private void txtCliente_KeyDown(object sender, KeyEventArgs e)
-        {
-            //LimpiadorGeneral((txtCliente.Content as Grid).Children);
-
-            //((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-            //((UscTextboxGeneral)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        }
-
         private void btnClaseID_Click(object sender, RoutedEventArgs e)
         {
             if (Estado != "Modo Consulta")
@@ -430,13 +393,15 @@ namespace Sadora.Clientes
 
            //LimpiadorGeneral((txtCliente.Content as Grid).Children);
             if (Estado == "Modo Consulta")
-                e.Handled = true;
-
-            if (Estado != "Modo Consulta" && e.Key == Key.Enter)
             {
-                //sender as 
+                e.Handled = true;
+                return;
             }
-                //((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+
+            if (e.Key == Key.Enter)
+                InputManager.Current.ProcessInput(new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, Key.Tab) { RoutedEvent = Keyboard.KeyDownEvent });
+
+            //((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
         }
 
         private void cActivar_KeyUp(object sender, KeyEventArgs e)

@@ -26,7 +26,7 @@
             <!--Cuerpo ventana (Campos / Field)-->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" >
 
-                <Grid Grid.Row="1"  Margin="50 10 50 0" KeyDown="Grid_KeyDown">
+                <Grid Grid.Row="1" Margin="50 10 50 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -37,7 +37,7 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="auto" x:Name="VinMain">
 
-                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Cliente.ClienteID}" TabIndex="1" FieldNumeric="True" KeyDown="txtCliente_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Cliente.ClienteID}" TabIndex="1" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                             <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Cliente.Nombre}" MaxLength="70" TabIndex="4" KeyDown="UscTextboxGeneral_KeyDown"/>
 
