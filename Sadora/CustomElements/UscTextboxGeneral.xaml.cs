@@ -73,8 +73,8 @@ namespace Sadora.CustomElements
 
         private void root_GotFocus(object sender, RoutedEventArgs e)
         {
-            Txt.TabIndex = root.TabIndex;
-            Txt.Focus();
+            MainText.TabIndex = root.TabIndex;
+            MainText.Focus();
         }
 
     }

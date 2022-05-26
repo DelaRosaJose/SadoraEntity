@@ -119,5 +119,11 @@ namespace Sadora.CustomElements
             reader.Close();
 
         }
+
+        private void root_GotFocus(object sender, RoutedEventArgs e)
+        {
+            MainText.TabIndex = root.TabIndex;
+            MainText.Focus();
+        }
     }
 }

@@ -40,5 +40,10 @@ namespace Sadora.CustomElements
 
         public UscCheckBoxGeneral() => InitializeComponent();
 
+        private void root_GotFocus(object sender, RoutedEventArgs e)
+        {
+            MainCheck.TabIndex = root.TabIndex;
+            MainCheck.Focus();
+        }
     }
 }

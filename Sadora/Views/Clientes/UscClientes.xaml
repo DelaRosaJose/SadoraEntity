@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
 
             <!--Barra de botones-->
-            <Sadora:UscBotonesGenerales Grid.Row="0" Margin="15" x:Name="ControlesGenerales" ButtonBase.Click="UscBotones_Click" TabIndex="12" />
+            <Sadora:UscBotonesGenerales Grid.Row="0" Margin="15" x:Name="ControlesGenerales" ButtonBase.Click="UscBotones_Click" TabIndex="13" />
 
             <!--Cuerpo ventana (Campos / Field)-->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" >
@@ -43,7 +43,7 @@
 
                             <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Cliente.Direccion}" MaxLength="100" TabIndex="7" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Cliente.Telefono}" MaxLength="20" TabIndex="9" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Cliente.Telefono}" MaxLength="20" TabIndex="10" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                         </StackPanel>
                     </Grid>
@@ -52,13 +52,13 @@
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Cliente.RNC}" TabIndex="2" MaxLength="11" FieldNumeric="True" KeyUp="txtRNC_KeyUp"/>
-
+                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Cliente.RNC}" TabIndex="2" MaxLength="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <!--KeyUp="txtRNC_KeyUp"-->
                             <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Cliente.Representante}" MaxLength="70" TabIndex="5" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                             <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Cliente.CorreoElectronico}" MaxLength="40" TabIndex="8" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxGeneral Title="Celular" Text="{Binding Cliente.Celular}" MaxLength="20" TabIndex="10" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Celular" Text="{Binding Cliente.Celular}" MaxLength="20" TabIndex="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                         </StackPanel>
                     </Grid>
@@ -69,11 +69,11 @@
 
                             <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Cliente.Activo}" TabIndex="3" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID}" MaxLength="2" TabIndex="6" KeyUp="txtClaseID_KeyUp" SearchClick="btnClaseID_Click"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID}" MaxLength="2" TabIndex="6" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnClaseID_Click"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes"  Text="{Binding Cliente.ClaseComprobanteID}" MaxLength="2" TabIndex="6" KeyUp="txtComprobanteID_KeyUp" SearchClick="btnComprobanteID_Click"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes"  Text="{Binding Cliente.ClaseComprobanteID}" MaxLength="2" TabIndex="9" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnComprobanteID_Click"/>
 
-                            <Sadora:UscTextboxGeneral Title="Dias de Credito" Text="{Binding Cliente.DiasCredito}" MaxLength="2" TabIndex="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Dias de Credito" Text="{Binding Cliente.DiasCredito}" MaxLength="2" TabIndex="12" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                         </StackPanel>
 

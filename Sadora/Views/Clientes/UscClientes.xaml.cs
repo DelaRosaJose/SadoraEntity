@@ -274,44 +274,44 @@ namespace Sadora.Clientes
 
         private void txtRNC_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    reader = ClassControl.getDatosCedula(Cli.Cliente.RNC);
-                    if (reader != null)
-                    {
-                        if (reader.HasRows)
-                        {
-                            if (reader.Read())
-                            {
-                                Cli.Cliente.Nombre = reader["NombreCompleto"].ToString();
-                                //txtDireccion.Text = reader["Direccion"].ToString();
-                                //txtTelefono.Text = reader["Telefono"].ToString();
-                                reader.NextResult();
+            //    if (Estado != "Modo Consulta")
+            //    {
+            //        if (e.Key == Key.Enter)
+            //        {
+            //            reader = ClassControl.getDatosCedula(Cli.Cliente.RNC);
+            //            if (reader != null)
+            //            {
+            //                if (reader.HasRows)
+            //                {
+            //                    if (reader.Read())
+            //                    {
+            //                        Cli.Cliente.Nombre = reader["NombreCompleto"].ToString();
+            //                        //txtDireccion.Text = reader["Direccion"].ToString();
+            //                        //txtTelefono.Text = reader["Telefono"].ToString();
+            //                        reader.NextResult();
 
-                            }
-                            reader.Close();
-                            reader.Dispose();
-                        }
-                        else
-                        {
-                            reader.Close();
-                            reader.Dispose();
-                        }
-                        ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                    }
-                    else if (ClassVariables.ExistClient)
-                    {
-                        if (SnackbarThree.MessageQueue is { } messageQueue)
-                        {
-                            var message = "Ya existe un cliente con este RNC";
-                            Task.Factory.StartNew(() => messageQueue.Enqueue(message));
-                        }
-                    }
+            //                    }
+            //                    reader.Close();
+            //                    reader.Dispose();
+            //                }
+            //                else
+            //                {
+            //                    reader.Close();
+            //                    reader.Dispose();
+            //                }
+            //                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
+            //            }
+            //            else if (ClassVariables.ExistClient)
+            //            {
+            //                if (SnackbarThree.MessageQueue is { } messageQueue)
+            //                {
+            //                    var message = "Ya existe un cliente con este RNC";
+            //                    Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+            //                }
+            //            }
 
-                }
-            }
+            //        }
+            //    }
         }
 
         private void btnClaseID_Click(object sender, RoutedEventArgs e)
@@ -331,27 +331,6 @@ namespace Sadora.Clientes
             }
         }
 
-        private void txtClaseID_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    if (Cli.Cliente.ClaseID != 0)
-                    {
-
-                        //ClassControl.setValidador("select Nombre from TcliClaseClientes where ClaseID =", Cli.Cliente.ClaseID, tbxClaseID);
-                    }
-                    else
-                    {
-                        Cli.Cliente.ClaseID = 0;
-                        //ClassControl.setValidador("select Nombre from TcliClaseClientes where ClaseID =", txtClaseID, tbxClaseID);
-                    }
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-                }
-            }
-        }
-
         private void btnComprobanteID_Click(object sender, RoutedEventArgs e)
         {
             if (Estado != "Modo Consulta")
@@ -365,25 +344,6 @@ namespace Sadora.Clientes
                     Cli.Cliente.ClaseComprobanteID = (int)item.Row.ItemArray[0];
 
                     //ClassControl.setValidador("select ComprobanteID, Nombre, Auxiliar, NextNCF, Disponibles from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
-                }
-            }
-        }
-
-        private void txtComprobanteID_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Estado != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter)
-                {
-                    //if (Cli.Cliente.ClaseComprobanteID != 0) { }
-                    ////ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
-                    //else
-                    //{
-                    //    Cli.Cliente.ClaseComprobanteID = 0;
-                    //    //ClassControl.setValidador("select Nombre from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
-                    //}
-                    ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-
                 }
             }
         }
