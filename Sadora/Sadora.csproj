@@ -114,7 +114,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="Wpf.TabControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\programacion\complementos\Wpf.TabControl.dll</HintPath>
+      <HintPath>..\packages\Wpf.TabControl.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,4 @@
 ﻿using Sadora.Clases;
-using Sadora.CustomElements;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -35,25 +34,46 @@ namespace Sadora.Clientes
 
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (Inicializador == true)
             {
+
+                System.Diagnostics.Stopwatch timeMeasure = new System.Diagnostics.Stopwatch();
+                timeMeasure.Start();
+
                 Inicializador = false;
                 Imprime = ClassVariables.Imprime;
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
-                Task.Run(() =>
+
+                //this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                using (Models.SadoraEntities db = new Models.SadoraEntities())
+                    Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).Take(1).FirstOrDefault();
+                _LastClienteID = Cli.Cliente.ClienteID;
+                ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
+
+                _ = Task.Run(() =>
                 {
                     using (Models.SadoraEntities db = new Models.SadoraEntities())
                         _FistClienteID = db.TcliClientes.FirstOrDefault().ClienteID;
                 });//busqueda de Primer Registro
 
-                this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                /***/
+                /***/
+
+
+                //this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+
+                //await Firs;
+                timeMeasure.Stop();
+
+                MessageBox.Show($"Tiempo: {timeMeasure.Elapsed.TotalMilliseconds} ms, Precision: {(1.0 / System.Diagnostics.Stopwatch.Frequency).ToString("E")} segundos, Alta precisión: {System.Diagnostics.Stopwatch.IsHighResolution}");
+
             }
         }
 
-        private void UscBotones_Click(object sender, RoutedEventArgs e)
+        private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
             int intValue;
             using (Models.SadoraEntities db = new Models.SadoraEntities())
@@ -81,7 +101,8 @@ namespace Sadora.Clientes
                         break;
 
                     case "BtnUltimoRegistro":
-                        Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
+                        //Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
+                        Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).Take(1).FirstOrDefault();
                         _LastClienteID = Cli.Cliente.ClienteID;
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
@@ -351,7 +372,7 @@ namespace Sadora.Clientes
         private void UscTextboxGeneral_KeyDown(object sender, KeyEventArgs e)
         {
 
-           //LimpiadorGeneral((txtCliente.Content as Grid).Children);
+            //LimpiadorGeneral((txtCliente.Content as Grid).Children);
             if (Estado == "Modo Consulta")
             {
                 e.Handled = true;

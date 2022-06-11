@@ -960,7 +960,7 @@ advertencia 6013: La tabla o vista 'Sadora.dbo.xCedulados' no tiene definida una
           <Property Name="UsuarioID" Type="Int32" />
           <Property Name="DiasCredito" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="SadoraEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SadoraEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="TcliClaseClientes" EntityType="Self.TcliClaseCliente" />
           <EntitySet Name="TcliClientes" EntityType="Self.TcliCliente" />
           <EntitySet Name="TconComprobantes" EntityType="Self.TconComprobante" />
