@@ -14,8 +14,7 @@ namespace Sadora.Models
     
     public partial class TsysEmpresa
     {
-        public int RowID { get; set; }
-        public Nullable<int> EmpresaID { get; set; }
+        public int EmpresaID { get; set; }
         public string Nombre { get; set; }
         public string RNC { get; set; }
         public string Razon_Social { get; set; }

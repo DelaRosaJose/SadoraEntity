@@ -35,7 +35,7 @@
 
                     <!--primera columna del grid-->
                     <Grid Grid.Column="0">
-                        <StackPanel Orientation="Vertical" Width="auto" x:Name="VinMain">
+                        <StackPanel Orientation="Vertical" Width="auto">
 
                             <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Cliente.ClienteID}" TabIndex="1" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
@@ -52,11 +52,11 @@
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Cliente.RNC}" TabIndex="2" MaxLength="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Cliente.RNC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" TabIndex="2" MaxLength="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
                             <!--KeyUp="txtRNC_KeyUp"-->
-                            <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Cliente.Representante}" MaxLength="70" TabIndex="5" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Cliente.Representante, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" MaxLength="70" TabIndex="5" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Cliente.CorreoElectronico}" MaxLength="40" TabIndex="8" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Cliente.CorreoElectronico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" MaxLength="40" TabIndex="8" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                             <Sadora:UscTextboxGeneral Title="Celular" Text="{Binding Cliente.Celular}" MaxLength="20" TabIndex="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
@@ -67,9 +67,9 @@
                     <Grid Grid.Column="2">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Cliente.Activo}" TabIndex="3" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Cliente.Activo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" TabIndex="3" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID}" MaxLength="2" TabIndex="6" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnClaseID_Click"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" MaxLength="2" TabIndex="6" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnClaseID_Click"/>
 
                             <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes"  Text="{Binding Cliente.ClaseComprobanteID}" MaxLength="2" TabIndex="9" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnComprobanteID_Click"/>
 

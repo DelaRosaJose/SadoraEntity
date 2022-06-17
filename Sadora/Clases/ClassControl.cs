@@ -445,5 +445,38 @@ namespace Sadora.Clases
             }
         }
 
+        public static void LimpiadorGeneral(UIElementCollection view)
+        {
+            for (int i = 0; i < view.Count; i++)
+            {
+                var Element = view[i];
+                var Elemente = Element.GetType();
+                var bor = Element is Border ? (Element as Border).Child : null;
+
+                if (Element is Grid)
+                    LimpiadorGeneral((Element as Grid).Children);
+                else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
+                    LimpiadorGeneral(((Element as ScrollViewer).Content as Grid).Children);
+                else if (Element is StackPanel)
+                    LimpiadorGeneral((Element as StackPanel).Children);
+                else if (Element is CustomElements.UscTextboxGeneral)
+                {
+                    //MessageBox.Show($"{(Element as CustomElements.UscTextboxGeneral).TabIndex}, - IsFocused {(Element as CustomElements.UscTextboxGeneral).IsFocused}");
+                    //Cli.Cliente = null;
+                }
+                else if (Element is CustomElements.UscTextboxButtonGeneral)
+                //Cli.Cliente = null;
+                { }
+                else if (Element is Border)
+                    LimpiadorGeneral((bor as StackPanel).Children);
+                else if (Element is TextBox)
+                {
+                    var ele = Element as TextBox;
+                    System.Windows.MessageBox.Show($"{ele.TabIndex}, - IsFocused {ele.IsFocused}");
+                }
+            }
+        }
+
+
     }
 }

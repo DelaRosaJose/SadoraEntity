@@ -82,25 +82,32 @@ namespace Sadora.CustomElements
 
         private async void TextBox_TextChanged(object sender, TextChangedEventArgs e) //=> RaiseEvent(new RoutedEventArgs(TextChangedEvent));
         {
-            string ValueColumn = (e.Source as TextBox).Text;
-
-            if (string.IsNullOrEmpty(ValueColumn) || ValueColumn == "0")
+            try
             {
-                ResultText.Text = string.Empty;
-                return;
+                string ValueColumn = (e.Source as TextBox).Text;
+
+                if (string.IsNullOrEmpty(ValueColumn) || ValueColumn == "0")
+                {
+                    ResultText.Text = string.Empty;
+                    return;
+                }
+
+                using (Models.SadoraEntity db = new Models.SadoraEntity())
+                {
+                    string ColumnAsync = default;
+
+                    ColumnAsync = await db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
+                    $"where TABLE_NAME = '{SearchByTable}' " +
+                    $"and COLUMN_NAME not in ('RowID', 'UsuarioID') " +
+                    $"and COLUMN_NAME like '%ID'").FirstOrDefaultAsync();
+
+                    ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {SearchByTable} where {ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
+
+                }
             }
-
-            using (Models.SadoraEntities db = new Models.SadoraEntities())
+            catch (System.Exception ex)
             {
-                string ColumnAsync = default;
-
-                ColumnAsync = await db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
-                $"where TABLE_NAME = '{SearchByTable}' " +
-                $"and COLUMN_NAME not in ('RowID', 'UsuarioID') " +
-                $"and COLUMN_NAME like '%ID'").FirstOrDefaultAsync();
-
-                ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {SearchByTable} where {ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
-
+                new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
             }
         }
 

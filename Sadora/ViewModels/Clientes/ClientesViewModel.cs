@@ -61,7 +61,7 @@ namespace Sadora.ViewModels.Clientes
 
         private void CustomerCommandExecute()
         {
-            using (Models.SadoraEntities db = new Models.SadoraEntities())
+            using (Models.SadoraEntity db = new Models.SadoraEntity())
                 Cliente = db.TcliClientes.OrderByDescending(x=>x.ClienteID).FirstOrDefault();
             //{
             //    Clientes = db.TcliClientes.ToList();

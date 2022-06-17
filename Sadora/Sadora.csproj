@@ -131,117 +131,37 @@
     <Compile Include="CustomElements\UscTextboxGeneral.xaml.cs">
       <DependentUpon>UscTextboxGeneral.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Audit.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BD.Context.cs">
+    <Compile Include="Models\SadoraEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BD.Context.tt</DependentUpon>
+      <DependentUpon>SadoraEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BD.cs">
+    <Compile Include="Models\SadoraEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BD.Designer.cs">
+    <Compile Include="Models\SadoraEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BD.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TcliClaseCliente.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>SadoraEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TcliCliente.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TcliMovimientosCuenta.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TcliMovimientosCuentasDetalle.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TcliTransaccione.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TconComprobante.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinvArticulo.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinvClaseArticulo.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinvDepartamento.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinvMarca.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinvMovimientoInventario.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinvMovimientoInventarioDetalle.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinvServicioArticulo.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrhnEmpleado.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TsupClaseProveedore.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TsupMovimientosCuenta.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TsupMovimientosCuentasDetalle.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TsupProveedore.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TsupTransaccione.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TsysAcceso.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TsysEmpresa.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TsysFormulario.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TsysGruposAcceso.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TsysGruposUsuario.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TsysUsuario.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TvenCaja.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TvenCajasDetalle.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TvenDesglosePago.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TvenFactura.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TvenFacturasDetalle.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TvenMetodoPago.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\Administracion\EmpresaViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Clientes\ClientesViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
@@ -541,12 +461,12 @@
       <DependentUpon>RpFacturacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\BD.edmx">
+    <EntityDeploy Include="Models\SadoraEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BD.Designer.cs</LastGenOutput>
+      <LastGenOutput>SadoraEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\BD.edmx.diagram">
-      <DependentUpon>BD.edmx</DependentUpon>
+    <None Include="Models\SadoraEntity.edmx.diagram">
+      <DependentUpon>SadoraEntity.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -583,15 +503,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Models\BD.Context.tt">
+    <Content Include="Models\SadoraEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BD.edmx</DependentUpon>
-      <LastGenOutput>BD.Context.cs</LastGenOutput>
+      <DependentUpon>SadoraEntity.edmx</DependentUpon>
+      <LastGenOutput>SadoraEntity.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\BD.tt">
+    <Content Include="Models\SadoraEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BD.edmx</DependentUpon>
-      <LastGenOutput>BD.cs</LastGenOutput>
+      <DependentUpon>SadoraEntity.edmx</DependentUpon>
+      <LastGenOutput>SadoraEntity.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

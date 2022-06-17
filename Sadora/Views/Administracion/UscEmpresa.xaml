@@ -6,11 +6,12 @@
              xmlns:local="clr-namespace:Sadora.Clientes"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Sadora="clr-namespace:Sadora.CustomElements"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="1024" d:DesignHeight="768"
              TextElement.Foreground="{DynamicResource SecundaryAccentForegroundBrush}" Loaded="UserControl_Loaded" Initialized="UserControl_Initialized"  
              Tag="Configuracion de empresa">
-    <Grid>
+    <Grid x:Name="MainView">
 
         <Grid>
 
@@ -20,7 +21,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="15">
+            <!--<Grid Grid.Row="0" Margin="15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -139,7 +140,10 @@
                     </TextBlock>
                 </Border>
 
-            </Grid>
+            </Grid>-->
+
+            <!--Barra de botones-->
+            <Sadora:UscBotonesGenerales Grid.Row="0" Margin="15" x:Name="ControlesGenerales" ButtonBase.Click="UscBotones_Click" TabIndex="13" />
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
 
@@ -151,65 +155,51 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
+                    <!--primera columna del grid-->
                     <Grid Grid.Column="0">
-
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="lEmpresaID" Margin="10 5 0 0" Text="Empresa ID" FontWeight="Bold"></TextBlock>
-                                    <TextBox x:Name="txtEmpresaID" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="1" KeyUp="txtEmpresaID_KeyUp"/>
-                                </StackPanel>
-                            </Border>
+                            <Sadora:UscTextboxGeneral Title="Empresa ID" Text="{Binding Empresa.EmpresaID}" TabIndex="1" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="lRazonSocial" Margin="10 5 0 0" Text="Razon Social" FontWeight="Bold"></TextBlock>
-                                    <TextBox x:Name="txtRazonSocial" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="4" KeyUp="txtRazonSocial_KeyUp"/>
-                                </StackPanel>
-                            </Border>
+                            <Sadora:UscTextboxGeneral Title="Razon Social" Text="{Binding Empresa.Razon_Social}" TabIndex="4" FieldNumeric="True" MaxLength="15" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                         </StackPanel>
                     </Grid>
 
+                    <!--segunda columna del grid-->
                     <Grid Grid.Column="1">
-
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="lNombre" Margin="10 5 0 0" Text="Nombre" FontWeight="Bold"></TextBlock>
-                                    <TextBox x:Name="txtNombre" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="2" KeyUp="txtNombre_KeyUp"/>
-                                </StackPanel>
-                            </Border>
+                            <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Empresa.Nombre}" TabIndex="2" MaxLength="100" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="lDireccion" Margin="10 5 0 0" Text="Direccion" FontWeight="Bold"></TextBlock>
-                                    <TextBox x:Name="txtDireccion" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="5" KeyUp="txtDireccion_KeyUp"/>
-                                </StackPanel>
-                            </Border>
+                            <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Empresa.Direccion}" TabIndex="5" MaxLength="255" KeyDown="UscTextboxGeneral_KeyDown"/>
+
 
                         </StackPanel>
                     </Grid>
-
+                    
+                    <!--tercera columna del grid-->
                     <Grid Grid.Column="2">
 
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Empresa.RNC}" TabIndex="3" MaxLength="15" KeyDown="UscTextboxGeneral_KeyDown"/>
+
+                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Empresa.Telefono}" TabIndex="6" MaxLength="20" KeyDown="UscTextboxGeneral_KeyDown"/>
+
+                            <!--<Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lRNC" Margin="10 5 0 0" Text="RNC" FontWeight="Bold"></TextBlock>
                                     <TextBox x:Name="txtRNC" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="3" KeyUp="txtRNC_KeyUp"/>
                                 </StackPanel>
-                            </Border>
+                            </Border>-->
 
-                            <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+                            <!--<Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock x:Name="lTelefono" Margin="10 5 0 0" Text="Telefono" FontWeight="Bold"></TextBlock>
                                     <TextBox x:Name="txtTelefono" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="6" KeyUp="txtTelefono_KeyUp"/>
                                 </StackPanel>
-                            </Border>
+                            </Border>-->
 
                         </StackPanel>
 

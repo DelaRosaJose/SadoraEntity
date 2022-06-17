@@ -1,4 +1,5 @@
 ﻿using Sadora.Clases;
+using Sadora.Models;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -48,19 +49,25 @@ namespace Sadora.Clientes
                 Modifica = ClassVariables.Modifica;
 
                 //this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                using (Models.SadoraEntities db = new Models.SadoraEntities())
-                    Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).Take(1).FirstOrDefault();
-                _LastClienteID = Cli.Cliente.ClienteID;
+
+                using (Models.SadoraEntity db = new Models.SadoraEntity())
+                {
+                    var result = db.TcliClientes.FirstOrDefault();
+                    _FistClienteID = result != default ? result.ClienteID : default;//db.TcliClientes.SqlQuery($"select top 1 * from TcliClientes").FirstOrDefault().ClienteID;
+
+                    Cli.Cliente = await db.TcliClientes.SqlQuery($"select top 1 * from TcliClientes order by ClienteID desc").FirstOrDefaultAsync();
+                    _LastClienteID = Cli.Cliente != default ? Cli.Cliente.ClienteID : default;
+                    Cli.Cliente.ClienteID = 1;
+                }
+                //Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
                 ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
 
-                _ = Task.Run(() =>
-                {
-                    using (Models.SadoraEntities db = new Models.SadoraEntities())
-                        _FistClienteID = db.TcliClientes.FirstOrDefault().ClienteID;
-                });//busqueda de Primer Registro
+                //_ = Task.Run(() =>
+                //{
+                //using (Models.SadoraEntities db = new Models.SadoraEntities())
+                //_FistClienteID = db.TcliClientes.FirstOrDefault().ClienteID;
+                //});//busqueda de Primer Registro
 
-                /***/
-                /***/
 
 
                 //this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
@@ -76,7 +83,7 @@ namespace Sadora.Clientes
         private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
             int intValue;
-            using (Models.SadoraEntities db = new Models.SadoraEntities())
+            using (Models.SadoraEntity db = new Models.SadoraEntity())
             {
                 string ButtonName = ((Button)e.OriginalSource).Name;
 
@@ -111,7 +118,7 @@ namespace Sadora.Clientes
                         break;
                     case "BtnAgregar":
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
-                        LimpiadorGeneral(MainView.Children);
+                        ClassControl.LimpiadorGeneral(MainView.Children);
                         break;
                     case "BtnEditar":
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
@@ -120,6 +127,9 @@ namespace Sadora.Clientes
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
                         break;
                     case "BtnGuardar":
+                        var client = Cli.Cliente;
+                        db.TcliClientes.Add(Cli.Cliente);
+                        await db.SaveChangesAsync();
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
                         break;
                 }
@@ -137,37 +147,7 @@ namespace Sadora.Clientes
             Estado = ControlesGenerales.EstadoVentana;
         }
 
-        void LimpiadorGeneral(UIElementCollection view)
-        {
-            for (int i = 0; i < view.Count; i++)
-            {
-                var Element = view[i];
-                var Elemente = Element.GetType();
-                var bor = Element is Border ? (Element as Border).Child : null;
-
-                if (Element is Grid)
-                    LimpiadorGeneral((Element as Grid).Children);
-                else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
-                    LimpiadorGeneral(((Element as ScrollViewer).Content as Grid).Children);
-                else if (Element is StackPanel)
-                    LimpiadorGeneral((Element as StackPanel).Children);
-                else if (Element is CustomElements.UscTextboxGeneral)
-                {
-                    //MessageBox.Show($"{(Element as CustomElements.UscTextboxGeneral).TabIndex}, - IsFocused {(Element as CustomElements.UscTextboxGeneral).IsFocused}");
-                    Cli.Cliente = null;
-                }
-                else if (Element is CustomElements.UscTextboxButtonGeneral)
-                    Cli.Cliente = null;
-                else if (Element is Border)
-                    LimpiadorGeneral((bor as StackPanel).Children);
-                else if (Element is TextBox)
-                {
-                    var ele = Element as TextBox;
-                    MessageBox.Show($"{ele.TabIndex}, - IsFocused {ele.IsFocused}");
-                }
-            }
-        }
-
+        
 
 
 

@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SadoraEntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TcliClientes">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+            <PropertyRef Name="ClaseComprobanteID" />
+          </Key>
+          <Property Name="ClienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RNC" Type="varchar" MaxLength="13" />
+          <Property Name="Nombre" Type="varchar" MaxLength="70" />
+          <Property Name="Representante" Type="varchar" MaxLength="70" />
+          <Property Name="ClaseID" Type="int" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="40" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Celular" Type="varchar" MaxLength="20" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="UsuarioID" Type="int" />
+          <Property Name="ClaseComprobanteID" Type="int" Nullable="false" />
+          <Property Name="DiasCredito" Type="int" />
+        </EntityType>
+        <EntityType Name="TsysAccesos">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Modulo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Visualiza" Type="bit" />
+          <Property Name="Imprime" Type="bit" />
+          <Property Name="Agrega" Type="bit" />
+          <Property Name="Modifica" Type="bit" />
+          <Property Name="Anula" Type="bit" />
+        </EntityType>
+        <EntityType Name="TsysEmpresa">
+          <Key>
+            <PropertyRef Name="EmpresaID" />
+          </Key>
+          <Property Name="EmpresaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="RNC" Type="varchar" MaxLength="15" />
+          <Property Name="Razon_Social" Type="varchar" MaxLength="100" />
+          <Property Name="Direccion" Type="varchar" MaxLength="255" />
+          <Property Name="Logo" Type="varbinary(max)" />
+          <Property Name="UsuarioID" Type="int" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TsysFormularios">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Modulo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="60" />
+          <Property Name="UsuarioID" Type="int" />
+        </EntityType>
+        <EntityType Name="TsysUsuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="70" />
+          <Property Name="EmpleadoID" Type="int" />
+          <Property Name="GrupoID" Type="int" />
+          <Property Name="Contraseña" Type="varchar(max)" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="SadoraEntityModelStoreContainer">
+          <EntitySet Name="TsysAccesos" EntityType="Self.TsysAccesos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TsysEmpresa" EntityType="Self.TsysEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormularios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TsysUsuarios" EntityType="Self.TsysUsuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TcliClientes" EntityType="Self.TcliClientes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TcliClientes].[ClienteID] AS [ClienteID], 
+    [TcliClientes].[RNC] AS [RNC], 
+    [TcliClientes].[Nombre] AS [Nombre], 
+    [TcliClientes].[Representante] AS [Representante], 
+    [TcliClientes].[ClaseID] AS [ClaseID], 
+    [TcliClientes].[Direccion] AS [Direccion], 
+    [TcliClientes].[CorreoElectronico] AS [CorreoElectronico], 
+    [TcliClientes].[Telefono] AS [Telefono], 
+    [TcliClientes].[Celular] AS [Celular], 
+    [TcliClientes].[Activo] AS [Activo], 
+    [TcliClientes].[UsuarioID] AS [UsuarioID], 
+    [TcliClientes].[ClaseComprobanteID] AS [ClaseComprobanteID], 
+    [TcliClientes].[DiasCredito] AS [DiasCredito]
+    FROM [dbo].[TcliClientes] AS [TcliClientes]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SadoraEntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TsysAcceso">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Modulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Visualiza" Type="Boolean" />
+          <Property Name="Imprime" Type="Boolean" />
+          <Property Name="Agrega" Type="Boolean" />
+          <Property Name="Modifica" Type="Boolean" />
+          <Property Name="Anula" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TsysEmpresa">
+          <Key>
+            <PropertyRef Name="EmpresaID" />
+          </Key>
+          <Property Name="EmpresaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RNC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Razon_Social" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TsysFormulario">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Modulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TsysUsuario">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="EmpleadoID" Type="Int32" />
+          <Property Name="GrupoID" Type="Int32" />
+          <Property Name="Contraseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TcliCliente">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+            <PropertyRef Name="ClaseComprobanteID" />
+          </Key>
+          <Property Name="ClienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RNC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Representante" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="ClaseID" Type="Int32" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="ClaseComprobanteID" Type="Int32" Nullable="false" />
+          <Property Name="DiasCredito" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="SadoraEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TsysAccesos" EntityType="Self.TsysAcceso" />
+          <EntitySet Name="TsysEmpresas" EntityType="Self.TsysEmpresa" />
+          <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormulario" />
+          <EntitySet Name="TsysUsuarios" EntityType="Self.TsysUsuario" />
+          <EntitySet Name="TcliClientes" EntityType="Self.TcliCliente" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SadoraEntityModelStoreContainer" CdmEntityContainer="SadoraEntity">
+          <EntitySetMapping Name="TsysAccesos">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsysAcceso">
+              <MappingFragment StoreEntitySet="TsysAccesos">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Visualiza" ColumnName="Visualiza" />
+                <ScalarProperty Name="Imprime" ColumnName="Imprime" />
+                <ScalarProperty Name="Agrega" ColumnName="Agrega" />
+                <ScalarProperty Name="Modifica" ColumnName="Modifica" />
+                <ScalarProperty Name="Anula" ColumnName="Anula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsysEmpresas">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsysEmpresa">
+              <MappingFragment StoreEntitySet="TsysEmpresa">
+                <ScalarProperty Name="EmpresaID" ColumnName="EmpresaID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RNC" ColumnName="RNC" />
+                <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsysFormularios">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsysFormulario">
+              <MappingFragment StoreEntitySet="TsysFormularios">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsysUsuarios">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsysUsuario">
+              <MappingFragment StoreEntitySet="TsysUsuarios">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+                <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TcliClientes">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TcliCliente">
+              <MappingFragment StoreEntitySet="TcliClientes">
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="RNC" ColumnName="RNC" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Representante" ColumnName="Representante" />
+                <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="ClaseComprobanteID" ColumnName="ClaseComprobanteID" />
+                <ScalarProperty Name="DiasCredito" ColumnName="DiasCredito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
