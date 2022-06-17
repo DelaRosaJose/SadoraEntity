@@ -37,13 +37,13 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Cliente.ClienteID}" TabIndex="1" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Model.ClienteID}" TabIndex="1" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Cliente.Nombre}" MaxLength="70" TabIndex="4" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Model.Nombre}" MaxLength="70" TabIndex="4" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Cliente.Direccion}" MaxLength="100" TabIndex="7" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Model.Direccion}" MaxLength="100" TabIndex="7" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Cliente.Telefono}" MaxLength="20" TabIndex="10" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Model.Telefono}" MaxLength="20" TabIndex="10" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                         </StackPanel>
                     </Grid>
@@ -52,13 +52,13 @@
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Cliente.RNC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" TabIndex="2" MaxLength="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Model.RNC, Mode=TwoWay}" TabIndex="2" MaxLength="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
                             <!--KeyUp="txtRNC_KeyUp"-->
-                            <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Cliente.Representante, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" MaxLength="70" TabIndex="5" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Model.Representante, Mode=TwoWay}" MaxLength="70" TabIndex="5" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Cliente.CorreoElectronico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" MaxLength="40" TabIndex="8" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Model.CorreoElectronico, Mode=TwoWay}" MaxLength="40" TabIndex="8" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxGeneral Title="Celular" Text="{Binding Cliente.Celular}" MaxLength="20" TabIndex="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Celular" Text="{Binding Model.Celular}" MaxLength="20" TabIndex="11" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                         </StackPanel>
                     </Grid>
@@ -67,13 +67,13 @@
                     <Grid Grid.Column="2">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Cliente.Activo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" TabIndex="3" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Model.Activo, Mode=TwoWay}" TabIndex="3" KeyDown="UscTextboxGeneral_KeyDown"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" MaxLength="2" TabIndex="6" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnClaseID_Click"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Model.ClaseID, Mode=TwoWay}" MaxLength="2" TabIndex="6" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnClaseID_Click"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes"  Text="{Binding Cliente.ClaseComprobanteID}" MaxLength="2" TabIndex="9" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnComprobanteID_Click"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes"  Text="{Binding Model.ClaseComprobanteID}" MaxLength="2" TabIndex="9" KeyDown="UscTextboxGeneral_KeyDown" SearchClick="btnComprobanteID_Click"/>
 
-                            <Sadora:UscTextboxGeneral Title="Dias de Credito" Text="{Binding Cliente.DiasCredito}" MaxLength="2" TabIndex="12" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Dias de Credito" Text="{Binding Model.DiasCredito}" MaxLength="2" TabIndex="12" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
 
                         </StackPanel>
 

@@ -36,6 +36,12 @@ namespace Sadora.ViewModels.Clientes
             }
         }
 
+        public Models.TcliCliente Model
+        {
+            get => Get<Models.TcliCliente>();
+            set => Set(value);
+        }
+
         #endregion
 
         #region Commands
@@ -57,7 +63,6 @@ namespace Sadora.ViewModels.Clientes
 
         #endregion
 
-        public ClientesViewModel() { }
 
         private void CustomerCommandExecute()
         {

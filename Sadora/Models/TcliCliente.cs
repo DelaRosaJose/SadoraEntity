@@ -9,25 +9,75 @@
 
 namespace Sadora.Models
 {
+    using Sadora.ViewModels;
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
-    public partial class TcliCliente
+    public partial class TcliCliente : BaseViewModel
     {
-        [Key]
-        public int ClienteID { get; set; }
-        public string RNC { get; set; }
-        public string Nombre { get; set; }
-        public string Representante { get; set; }
-        public Nullable<int> ClaseID { get; set; }
-        public string Direccion { get; set; }
-        public string CorreoElectronico { get; set; }
-        public string Telefono { get; set; }
-        public string Celular { get; set; }
-        public Nullable<bool> Activo { get; set; }
-        public Nullable<int> UsuarioID { get; set; }
-        public int ClaseComprobanteID { get; set; }
-        public Nullable<int> DiasCredito { get; set; }
+        public int ClienteID 
+        { 
+            get => Get<int>(); 
+            set => Set(value); 
+        }
+        public string RNC
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        public string Nombre
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        public string Representante
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        public Nullable<int> ClaseID
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+        public string Direccion
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        public string CorreoElectronico
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        public string Telefono
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        public string Celular
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        public Nullable<bool> Activo
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        public Nullable<int> UsuarioID
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+        public int ClaseComprobanteID
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+        public Nullable<int> DiasCredito
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
     }
 }

@@ -13,12 +13,15 @@ namespace Sadora.Clientes
 {
     public partial class UscClientes : UserControl
     {
-        ViewModels.Clientes.ClientesViewModel Cli = new ViewModels.Clientes.ClientesViewModel();
+        private readonly ViewModels.Clientes.ClientesViewModel ViewModel;
         public UscClientes()
         {
             InitializeComponent();
+            ViewModel = new ViewModels.Clientes.ClientesViewModel();
             Name = nameof(UscClientes);
-            this.DataContext = Cli;
+            this.DataContext = ViewModel;
+
+            //ViewModel.Model.ClienteID = 1;
 
         }
 
@@ -55,9 +58,9 @@ namespace Sadora.Clientes
                     var result = db.TcliClientes.FirstOrDefault();
                     _FistClienteID = result != default ? result.ClienteID : default;//db.TcliClientes.SqlQuery($"select top 1 * from TcliClientes").FirstOrDefault().ClienteID;
 
-                    Cli.Cliente = await db.TcliClientes.SqlQuery($"select top 1 * from TcliClientes order by ClienteID desc").FirstOrDefaultAsync();
-                    _LastClienteID = Cli.Cliente != default ? Cli.Cliente.ClienteID : default;
-                    Cli.Cliente.ClienteID = 1;
+                    ViewModel.Model = await db.TcliClientes.SqlQuery($"select top 1 * from TcliClientes order by ClienteID desc").FirstOrDefaultAsync();
+                    _LastClienteID = ViewModel.Model != default ? ViewModel.Model.ClienteID : default;
+                    
                 }
                 //Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
                 ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
@@ -90,27 +93,27 @@ namespace Sadora.Clientes
                 switch (ButtonName)
                 {
                     case "BtnPrimerRegistro":
-                        Cli.Cliente = db.TcliClientes.OrderBy(x => x.ClienteID).FirstOrDefault();
-                        _FistClienteID = Cli.Cliente.ClienteID;
+                        ViewModel.Model = db.TcliClientes.OrderBy(x => x.ClienteID).FirstOrDefault();
+                        _FistClienteID = ViewModel.Model.ClienteID;
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
 
                     case "BtnAnteriorRegistro":
-                        intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
-                        Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
+                        intValue = int.TryParse(ViewModel.Model.ClienteID.ToString(), out intValue) ? intValue : 0;
+                        ViewModel.Model = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Model.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
                         break;
 
                     case "BtnProximoRegistro":
-                        intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
-                        Cli.Cliente = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
+                        intValue = int.TryParse(ViewModel.Model.ClienteID.ToString(), out intValue) ? intValue : 0;
+                        ViewModel.Model = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Model.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
                         break;
 
                     case "BtnUltimoRegistro":
                         //Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
-                        Cli.Cliente = db.TcliClientes.OrderByDescending(x => x.ClienteID).Take(1).FirstOrDefault();
-                        _LastClienteID = Cli.Cliente.ClienteID;
+                        ViewModel.Model = db.TcliClientes.OrderByDescending(x => x.ClienteID).Take(1).FirstOrDefault();
+                        _LastClienteID = ViewModel.Model.ClienteID;
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
                     case "BtnBuscar":
@@ -127,8 +130,9 @@ namespace Sadora.Clientes
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
                         break;
                     case "BtnGuardar":
-                        var client = Cli.Cliente;
-                        db.TcliClientes.Add(Cli.Cliente);
+                        var hi = this.DataContext;
+                        var client = ViewModel.Model;
+                        db.TcliClientes.Add(ViewModel.Model);
                         await db.SaveChangesAsync();
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
                         break;
@@ -325,7 +329,7 @@ namespace Sadora.Clientes
                 if (frm.GridMuestra.SelectedItem != null)
                 {
                     DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-                    Cli.Cliente.ClaseID = (int)item.Row.ItemArray[0];
+                    ViewModel.Model.ClaseID = (int)item.Row.ItemArray[0];
 
                     //ClassControl.setValidador("select ClaseID, Nombre from TcliClaseClientes where ClaseID =", Cli.Cliente.ClaseID, tbxClaseID);
                 }
@@ -342,7 +346,7 @@ namespace Sadora.Clientes
                 if (frm.GridMuestra.SelectedItem != null)
                 {
                     DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-                    Cli.Cliente.ClaseComprobanteID = (int)item.Row.ItemArray[0];
+                    ViewModel.Model.ClaseComprobanteID = (int)item.Row.ItemArray[0];
 
                     //ClassControl.setValidador("select ComprobanteID, Nombre, Auxiliar, NextNCF, Disponibles from TconComprobantes where Auxiliar = 'Clientes' and ComprobanteID =", txtComprobanteID, tbxComprobanteID);
                 }
