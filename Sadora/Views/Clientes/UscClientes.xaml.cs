@@ -12,13 +12,13 @@ namespace Sadora.Clientes
 {
     public partial class UscClientes : UserControl
     {
-        ViewModels.Clientes.ClientesViewModel Cli = new ViewModels.Clientes.ClientesViewModel();
+        ViewModels.Clientes.ClientesViewModel ViewModel = new ViewModels.Clientes.ClientesViewModel();
 
         public UscClientes()
         {
             InitializeComponent();
             Name = nameof(UscClientes);
-            this.DataContext = Cli;
+            this.DataContext = ViewModel;
         }
 
         bool Imprime, Modifica, Agrega;
@@ -87,29 +87,29 @@ namespace Sadora.Clientes
                     {
                         case "BtnPrimerRegistro":
                             Tsql = db.TcliClientes.OrderBy(x => x.ClienteID).FirstOrDefault();
-                            Cli.Cliente = Tsql != default ? Tsql : Cli.Cliente;
-                            _FistClienteID = Cli.Cliente.ClienteID;
+                            ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
+                            _FistClienteID = ViewModel.Cliente.ClienteID;
                             ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                             break;
 
                         case "BtnAnteriorRegistro":
-                            intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
+                            intValue = int.TryParse(ViewModel.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
                             Tsql = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                            Cli.Cliente = Tsql != default ? Tsql : Cli.Cliente;
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
+                            ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
                             break;
 
                         case "BtnProximoRegistro":
-                            intValue = int.TryParse(Cli.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
+                            intValue = int.TryParse(ViewModel.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
                             Tsql = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                            Cli.Cliente = Tsql != default ? Tsql : Cli.Cliente;
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: Cli.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
+                            ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
                             break;
 
                         case "BtnUltimoRegistro":
                             Tsql = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
-                            Cli.Cliente = Tsql != default ? Tsql : Cli.Cliente;
-                            _LastClienteID = Cli.Cliente.ClienteID;
+                            ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
+                            _LastClienteID = ViewModel.Cliente.ClienteID;
                             ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                             break;
 
@@ -133,10 +133,9 @@ namespace Sadora.Clientes
 
                         case "BtnGuardar":
                             if (Estado == "Modo Agregar")
-                                db.TcliClientes.Add(Cli.Cliente);
+                                db.TcliClientes.Add(ViewModel.Cliente);
                             else if (Estado == "Modo Editar")
-                                //db.Entry(TcliCliente).State = enti
-                                db.TcliClientes.Attach(Cli.Cliente);
+                                db.Entry(ViewModel.Cliente).State = System.Data.Entity.EntityState.Modified;
 
                             await db.SaveChangesAsync();
 
