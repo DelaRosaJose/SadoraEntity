@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Sadora.Clases;
 
 namespace Sadora.ViewModels.Clientes
 {
@@ -9,19 +10,20 @@ namespace Sadora.ViewModels.Clientes
     {
         #region UscClientes ViewModel
 
-        private List<Models.TcliCliente> _clientes;
+        //private List<Models.TcliCliente> _clientes;
 
-        public List<Models.TcliCliente> Clientes
-        {
-            get { return _clientes; }
-            set 
-            {
-                if (_clientes == value)
-                    return;
-                _clientes = value;
-                OnPropertyChanged(nameof(Clientes));
-            }
-        } 
+        //public List<Models.TcliCliente> Clientes
+        //{
+        //    get { return _clientes; }
+        //    set 
+        //    {
+        //        if (_clientes == value)
+        //            return;
+        //        _clientes = value;
+        //        OnPropertyChanged(nameof(Clientes));
+        //    }
+        //} 
+
         private Models.TcliCliente _cliente;
 
         public Models.TcliCliente Cliente
@@ -40,34 +42,37 @@ namespace Sadora.ViewModels.Clientes
 
         #region Commands
 
-        private ICommand _customerCommand;
+        //private ICommand _customerCommand;
 
-        public ICommand CustomerCommand
-        {
-            get
-            {
-                if (_customerCommand == null)
-                {
-                    _customerCommand = new RelayCommand(param => this.CustomerCommandExecute(), null);
-                }
+        //public ICommand CustomerCommand
+        //{
+        //    get
+        //    {
+        //        if (_customerCommand == null)
+        //        {
+        //            _customerCommand = new RelayCommand(param => this.CustomerCommandExecute(), null);
+        //        }
 
-                return _customerCommand;
-            }
-        }
+        //        return _customerCommand;
+        //    }
+        //}
 
         #endregion
 
-        public ClientesViewModel() { }
-
-        private void CustomerCommandExecute()
-        {
-            using (Models.SadoraEntity db = new Models.SadoraEntity())
-                Cliente = db.TcliClientes.OrderByDescending(x=>x.ClienteID).FirstOrDefault();
-            //{
-            //    Clientes = db.TcliClientes.ToList();
-
-            //}
-
+        public ClientesViewModel() 
+        { 
+            Cliente = new Models.TcliCliente() { UsuarioID = ClassVariables.UsuarioID };
         }
+
+        //private void CustomerCommandExecute()
+        //{
+        //    using (Models.SadoraEntity db = new Models.SadoraEntity())
+        //        Cliente = db.TcliClientes.OrderByDescending(x=>x.ClienteID).FirstOrDefault();
+        //    //{
+        //    //    Clientes = db.TcliClientes.ToList();
+
+        //    //}
+
+        //}
     }
 }

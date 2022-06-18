@@ -1,15 +1,13 @@
-﻿using System;
+﻿using DevExpress.Xpf.Grid;
+using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Text.RegularExpressions;
 using System.Data.SqlClient;
-using System.Windows.Input;
-using DevExpress.Xpf.Grid;
 using System.Linq;
-using System.Data;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Sadora.Clases
 {
@@ -447,33 +445,47 @@ namespace Sadora.Clases
 
         public static void LimpiadorGeneral(UIElementCollection view)
         {
-            for (int i = 0; i < view.Count; i++)
+            try
             {
-                var Element = view[i];
-                var Elemente = Element.GetType();
-                var bor = Element is Border ? (Element as Border).Child : null;
 
-                if (Element is Grid)
-                    LimpiadorGeneral((Element as Grid).Children);
-                else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
-                    LimpiadorGeneral(((Element as ScrollViewer).Content as Grid).Children);
-                else if (Element is StackPanel)
-                    LimpiadorGeneral((Element as StackPanel).Children);
-                else if (Element is CustomElements.UscTextboxGeneral)
+                for (int i = 0; i < view.Count; i++)
                 {
-                    //MessageBox.Show($"{(Element as CustomElements.UscTextboxGeneral).TabIndex}, - IsFocused {(Element as CustomElements.UscTextboxGeneral).IsFocused}");
-                    //Cli.Cliente = null;
+                    var Element = view[i];
+
+                    if (Element is Grid)
+                        LimpiadorGeneral((Element as Grid).Children);
+
+                    else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
+                        LimpiadorGeneral(((Element as ScrollViewer).Content as Grid).Children);
+
+                    else if (Element is StackPanel)
+                        LimpiadorGeneral((Element as StackPanel).Children);
+
+                    else if (Element is Border)
+                        LimpiadorGeneral(((Element as Border).Child as StackPanel).Children);
+
+                    else if (Element is CustomElements.UscTextboxGeneral)
+                        (Element as CustomElements.UscTextboxGeneral).Text = default;
+
+                    else if (Element is CustomElements.UscTextboxButtonGeneral)
+                        (Element as CustomElements.UscTextboxButtonGeneral).Text = default;
+
+                    else if (Element is CustomElements.UscCheckBoxGeneral)
+                        (Element as CustomElements.UscCheckBoxGeneral).IsChecked = default;
+
+                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
+                        continue;
+
+                    else
+                        new Administracion.FrmCompletarCamposHost($"Advertencia: \nEste control no esta registrado {Element} \nComuniquese con soporte").ShowDialog();
+
+
                 }
-                else if (Element is CustomElements.UscTextboxButtonGeneral)
-                //Cli.Cliente = null;
-                { }
-                else if (Element is Border)
-                    LimpiadorGeneral((bor as StackPanel).Children);
-                else if (Element is TextBox)
-                {
-                    var ele = Element as TextBox;
-                    System.Windows.MessageBox.Show($"{ele.TabIndex}, - IsFocused {ele.IsFocused}");
-                }
+
+            }
+            catch (Exception ex)
+            {
+                new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
             }
         }
 

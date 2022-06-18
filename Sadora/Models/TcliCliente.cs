@@ -15,7 +15,6 @@ namespace Sadora.Models
 
     public partial class TcliCliente
     {
-        [Key]
         public int ClienteID { get; set; }
         public string RNC { get; set; }
         public string Nombre { get; set; }

@@ -80,22 +80,8 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <EntitySet Name="TsysEmpresa" EntityType="Self.TsysEmpresa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormularios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysUsuarios" EntityType="Self.TsysUsuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TcliClientes" EntityType="Self.TcliClientes" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TcliClientes].[ClienteID] AS [ClienteID], 
-    [TcliClientes].[RNC] AS [RNC], 
-    [TcliClientes].[Nombre] AS [Nombre], 
-    [TcliClientes].[Representante] AS [Representante], 
-    [TcliClientes].[ClaseID] AS [ClaseID], 
-    [TcliClientes].[Direccion] AS [Direccion], 
-    [TcliClientes].[CorreoElectronico] AS [CorreoElectronico], 
-    [TcliClientes].[Telefono] AS [Telefono], 
-    [TcliClientes].[Celular] AS [Celular], 
-    [TcliClientes].[Activo] AS [Activo], 
-    [TcliClientes].[UsuarioID] AS [UsuarioID], 
-    [TcliClientes].[ClaseComprobanteID] AS [ClaseComprobanteID], 
-    [TcliClientes].[DiasCredito] AS [DiasCredito]
-    FROM [dbo].[TcliClientes] AS [TcliClientes]</DefiningQuery>
+          <EntitySet Name="TcliClientes" EntityType="Self.TcliClientes" store:Type="Tables" Schema="dbo">
+            
           </EntitySet>
         </EntityContainer>
       </Schema>
