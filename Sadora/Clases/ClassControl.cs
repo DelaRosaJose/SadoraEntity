@@ -443,6 +443,7 @@ namespace Sadora.Clases
             }
         }
 
+        #region LimpiadorGeneral(UIElementCollection view) --**-- Metodo que se encarga de limpiar todos los controles de una ventana.
         public static void LimpiadorGeneral(UIElementCollection view)
         {
             try
@@ -488,7 +489,28 @@ namespace Sadora.Clases
                 new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
             }
         }
+        #endregion
 
+        #region PuedeEscribirEnCampo(string Estatus, KeyEventArgs e) --**-- 
+        public static void PuedeEscribirEnCampo(string Estatus, KeyEventArgs e)
+        {
+            try
+            {
+                if (Estatus == "Modo Consulta")
+                {
+                    e.Handled = true;
+                    return;
+                }
 
+                if (e.Key == Key.Enter)
+                    InputManager.Current.ProcessInput(new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, Key.Tab) { RoutedEvent = Keyboard.KeyDownEvent });
+
+            }
+            catch (Exception ex)
+            {
+                new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
+            }
+        }
+        #endregion
     }
 }

@@ -45,20 +45,12 @@ namespace Sadora.Clientes
         {
             if (Inicializador == true)
             {
-                System.Diagnostics.Stopwatch timeMeasure = new System.Diagnostics.Stopwatch();
-                timeMeasure.Start();
-
                 Inicializador = false;
                 Imprime = ClassVariables.Imprime;
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
 
                 this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-
-                timeMeasure.Stop();
-
-                MessageBox.Show($"Tiempo: {timeMeasure.Elapsed.TotalMilliseconds} ms, Precision: {(1.0 / System.Diagnostics.Stopwatch.Frequency).ToString("E")} segundos, Alta precisión: {System.Diagnostics.Stopwatch.IsHighResolution}");
-
             }
         }
 
@@ -71,6 +63,8 @@ namespace Sadora.Clientes
         {
 
         }
+
+        private void UscTextboxGeneral_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.PuedeEscribirEnCampo(Estado, e);
 
         private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
@@ -114,7 +108,11 @@ namespace Sadora.Clientes
                             break;
 
                         case "BtnBuscar":
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
+                            MessageBox.Show(Estado);
+
+                            //ViewModel.Cliente = db.TcliClientes.Find(ViewModel.Cliente.ClienteID);//Where(x=>x.ClienteID = ViewModel.Cliente.ClienteID).FirstOrDefault();
+
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName, EstadoVentanaPadre: Estado);
                             break;
 
                         case "BtnAgregar":
@@ -128,7 +126,6 @@ namespace Sadora.Clientes
 
                         case "BtnCancelar":
                             this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                            //ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
                             break;
 
                         case "BtnGuardar":
@@ -163,77 +160,78 @@ namespace Sadora.Clientes
         }
 
 
-        private void UscTextboxGeneral_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (Estado == "Modo Consulta")
-            {
-                e.Handled = true;
-                return;
-            }
 
-            if (e.Key == Key.Enter)
-                InputManager.Current.ProcessInput(new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, Key.Tab) { RoutedEvent = Keyboard.KeyDownEvent });
-
-        }
-
-
-        //private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        //private void UscTextboxGeneral_KeyDown(object sender, KeyEventArgs e)
         //{
-
         //    if (Estado == "Modo Consulta")
         //    {
-        //        last = txtClienteID.Text;
-        //        SetEnabledButton("Modo Busqueda");
+        //        e.Handled = true;
+        //        return;
         //    }
-        //    else if (Estado == "Modo Busqueda")
-        //    {
-        //        List<Control> listaControles = new List<Control>() //Estos son los controles que desahilitaremos al dar click en el boton buscar, los controles que no esten en esta lista se quedaran habilitados para poder buscar un registro por ellos.
-        //        {
-        //            txtRepresentante,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar
-        //        };
-        //        Clases.ClassControl.ActivadorControlesReadonly(null, true, false, false, listaControles);
 
-        //        setDatos(0, null);
+        //    if (e.Key == Key.Enter)
+        //        InputManager.Current.ProcessInput(new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, Key.Tab) { RoutedEvent = Keyboard.KeyDownEvent });
 
-        //        List<String> ListName = new List<String>() //Estos son los campos que saldran en la ventana de busqueda, solo si se le pasa esta lista de no ser asi, se mostrarian todos
-        //        {
-        //            "Cliente ID","RNC","Nombre","Representante","Direccion","Activo"
-        //        };
-
-        //        SetEnabledButton("Modo Consulta");
-
-        //        if (tabla.Rows.Count > 1)
-        //        {
-        //            Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost(null, tabla, ListName);
-        //            frm.ShowDialog();
-
-        //            if (frm.GridMuestra.SelectedItem != null)
-        //            {
-        //                DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-        //                txtClienteID.Text = item.Row.ItemArray[0].ToString();
-        //                setDatos(0, txtClienteID.Text);
-        //                frm.Close();
-        //            }
-        //            else
-        //            {
-        //                setDatos(0, last);
-        //            }
-        //        }
-        //        else if (tabla.Rows.Count < 1)
-        //        {
-        //            //BtnProximoRegistro.IsEnabled = false;
-        //            //BtnAnteriorRegistro.IsEnabled = false;
-
-        //            if (SnackbarThree.MessageQueue is { } messageQueue)
-        //            {
-        //                var message = "No se encontraron datos";
-        //                Task.Factory.StartNew(() => messageQueue.Enqueue(message));
-        //            }
-        //        }
-
-        //    }
         //}
 
+        /*
+        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Estado == "Modo Consulta")
+            {
+                last = txtClienteID.Text;
+                SetEnabledButton("Modo Busqueda");
+            }
+            else if (Estado == "Modo Busqueda")
+            {
+                List<Control> listaControles = new List<Control>() //Estos son los controles que desahilitaremos al dar click en el boton buscar, los controles que no esten en esta lista se quedaran habilitados para poder buscar un registro por ellos.
+                {
+                    txtRepresentante,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar
+                };
+                Clases.ClassControl.ActivadorControlesReadonly(null, true, false, false, listaControles);
+
+                setDatos(0, null);
+
+                List<String> ListName = new List<String>() //Estos son los campos que saldran en la ventana de busqueda, solo si se le pasa esta lista de no ser asi, se mostrarian todos
+                {
+                    "Cliente ID","RNC","Nombre","Representante","Direccion","Activo"
+                };
+
+                SetEnabledButton("Modo Consulta");
+
+                if (tabla.Rows.Count > 1)
+                {
+                    Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost(null, tabla, ListName);
+                    frm.ShowDialog();
+
+                    if (frm.GridMuestra.SelectedItem != null)
+                    {
+                        DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
+                        txtClienteID.Text = item.Row.ItemArray[0].ToString();
+                        setDatos(0, txtClienteID.Text);
+                        frm.Close();
+                    }
+                    else
+                    {
+                        setDatos(0, last);
+                    }
+                }
+                else if (tabla.Rows.Count < 1)
+                {
+                    //BtnProximoRegistro.IsEnabled = false;
+                    //BtnAnteriorRegistro.IsEnabled = false;
+
+                    if (SnackbarThree.MessageQueue is { } messageQueue)
+                    {
+                        var message = "No se encontraron datos";
+                        Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+                    }
+                }
+
+            }
+        }
+        */
         private void txtRNC_KeyUp(object sender, KeyEventArgs e)
         {
             //    if (Estado != "Modo Consulta")

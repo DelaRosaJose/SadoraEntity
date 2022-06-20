@@ -10,13 +10,15 @@ namespace Sadora.CustomElements
 
         public UscBotonesGenerales() => InitializeComponent();
 
-        public void HabilitadorDesabilitadorBotones(string BotonEstadoConsultaEjecutado) //Este metodo se encarga de crear la interacion de los botones de la ventana segun el estado en el que se encuentra
+        public void HabilitadorDesabilitadorBotones(string BotonEstadoConsultaEjecutado, string EstadoVentanaPadre = default) //Este metodo se encarga de crear la interacion de los botones de la ventana segun el estado en el que se encuentra
         {
             lIconEstado.ToolTip = Estado =
                 new string[] { "BtnPrimerRegistro", "BtnAnteriorRegistro", "BtnProximoRegistro", "BtnUltimoRegistro", "BtnCancelar" }.Contains(BotonEstadoConsultaEjecutado) ? "Modo Consulta" :
                 BotonEstadoConsultaEjecutado.Contains("BtnBuscar") ? "Modo Busqueda" :
                 BotonEstadoConsultaEjecutado.Contains("BtnAgregar") ? "Modo Agregar" :
                 BotonEstadoConsultaEjecutado.Contains("BtnEditar") ? "Modo Editar" : default;
+
+            Estado = (Estado == "Modo Busqueda" && EstadoVentanaPadre == "Modo Busqueda") ? "Modo Consulta" : Estado;   //No quitar, esta linea de codigo sirve para controlar el flujo del sistema en modo busqueda
 
             BtnPrimerRegistro.IsEnabled = BtnAnteriorRegistro.IsEnabled = BtnProximoRegistro.IsEnabled = BtnUltimoRegistro.IsEnabled = BtnBuscar.IsEnabled =
             BtnImprimir.IsEnabled = BtnAgregar.IsEnabled = BtnEditar.IsEnabled = BtnAnular.IsEnabled = BtnCancelar.IsEnabled = BtnAnular.IsEnabled = BtnGuardar.IsEnabled = true;
