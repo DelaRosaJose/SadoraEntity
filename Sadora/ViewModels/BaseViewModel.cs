@@ -15,5 +15,21 @@ namespace Sadora.ViewModels
             if(PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        string _estado;
+
+        public string Estado
+        {
+            get { return _estado; }
+            set
+            {
+                if (_estado == value)
+                    return;
+                _estado = value;
+                OnPropertyChanged(nameof(Estado));
+            }
+
+        }
+
     }
 }
