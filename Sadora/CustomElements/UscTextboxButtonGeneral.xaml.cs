@@ -1,4 +1,5 @@
 ﻿using Sadora.Clases;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -44,6 +45,11 @@ namespace Sadora.CustomElements
             get { return (string)GetValue(SearchByTableProperty); }
             set { SetValue(SearchByTableProperty, value); }
         }
+        public string EstadoMainWindows
+        {
+            get { return (string)GetValue(EstadoMainWindowsProperty); }
+            set { SetValue(EstadoMainWindowsProperty, value); }
+        }
         #endregion
 
         #region Registro de Dependency Property
@@ -68,17 +74,66 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty SearchByTableProperty =
             DependencyProperty.Register(nameof(SearchByTable), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
+        
+        public static readonly DependencyProperty EstadoMainWindowsProperty =
+            DependencyProperty.Register(nameof(EstadoMainWindows), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
 
         #endregion
 
-        public UscTextboxButtonGeneral()
-        {
-            InitializeComponent();
-        }
+        public UscTextboxButtonGeneral() => InitializeComponent();
 
         private void txtFieldID_KeyDown(object sender, KeyEventArgs e) => ClassControl.ValidadorNumeros(e);
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e) => RaiseEvent(new RoutedEventArgs(SearchClickEvent));
+        private async void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            //if (Estado != "Modo Consulta")
+            //{
+
+            try
+            {
+                //string ValueColumn = (e.Source as TextBox).Text;
+
+                //if (string.IsNullOrEmpty(ValueColumn) || ValueColumn == "0")
+                //{
+                //    ResultText.Text = string.Empty;
+                //    return;
+                //}
+
+                using (Models.SadoraEntity db = new Models.SadoraEntity())
+                {
+                    string ColumnAsync = default;
+
+                    ColumnAsync = await db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
+                    $"where TABLE_NAME = '{SearchByTable}' " +
+                    $"and COLUMN_NAME not in ('RowID', 'UsuarioID') " +
+                    $"and COLUMN_NAME like '%ID'").FirstOrDefaultAsync();
+
+                    Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost($"Select * from {SearchByTable}", null);
+                    frm.ShowDialog();
+
+                    if (frm.GridMuestra.SelectedItem != null)
+                    {
+                        DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
+                        MainText.Text = item.Row.ItemArray[0].ToString();
+
+                        ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {SearchByTable} where {ColumnAsync} = {MainText.Text}").FirstOrDefaultAsync();
+
+                    }
+
+                    MessageBox.Show(EstadoMainWindows);
+
+                }
+            }
+            catch (System.Exception ex)
+            {
+                new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
+            }
+
+
+            
+
+            //}
+        }//=> RaiseEvent(new RoutedEventArgs(SearchClickEvent));
 
         private async void TextBox_TextChanged(object sender, TextChangedEventArgs e) //=> RaiseEvent(new RoutedEventArgs(TextChangedEvent));
         {

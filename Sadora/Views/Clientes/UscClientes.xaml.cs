@@ -1,5 +1,6 @@
 ﻿using Sadora.Clases;
 using Sadora.Models;
+using Sadora.ViewModels;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -25,7 +26,24 @@ namespace Sadora.Clientes
         bool PuedeUsarBotonAnular = false;
 
         bool Inicializador = false;
-        string Estado;
+        //string _estado;
+
+        //public string Estado
+        //{
+        //    get { return _estado; }
+        //    set { _estado = value; }
+
+        //    //get { return _estado; }
+        //    //set
+        //    //{
+        //    //    if (_estado == value)
+        //    //        return;
+        //    //    _estado = value;
+        //    //    OnPropertyChanged(nameof(Estado));
+        //    //}
+
+        //}
+
 
         #region Variables Comentadas
 
@@ -64,7 +82,7 @@ namespace Sadora.Clientes
 
         }
 
-        private void UscTextboxGeneral_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.PuedeEscribirEnCampo(Estado, e);
+        private void UscTextboxGeneral_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.PuedeEscribirEnCampo(ViewModel.Estado, e);
 
         private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
@@ -108,11 +126,11 @@ namespace Sadora.Clientes
                             break;
 
                         case "BtnBuscar":
-                            MessageBox.Show(Estado);
+                            MessageBox.Show(ViewModel.Estado);
 
                             //ViewModel.Cliente = db.TcliClientes.Find(ViewModel.Cliente.ClienteID);//Where(x=>x.ClienteID = ViewModel.Cliente.ClienteID).FirstOrDefault();
 
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName, EstadoVentanaPadre: Estado);
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName, EstadoVentanaPadre: ViewModel.Estado);
                             break;
 
                         case "BtnAgregar":
@@ -129,9 +147,9 @@ namespace Sadora.Clientes
                             break;
 
                         case "BtnGuardar":
-                            if (Estado == "Modo Agregar")
+                            if (ViewModel.Estado == "Modo Agregar")
                                 db.TcliClientes.Add(ViewModel.Cliente);
-                            else if (Estado == "Modo Editar")
+                            else if (ViewModel.Estado == "Modo Editar")
                                 db.Entry(ViewModel.Cliente).State = System.Data.Entity.EntityState.Modified;
 
                             await db.SaveChangesAsync();
@@ -150,7 +168,7 @@ namespace Sadora.Clientes
                 if (PuedeUsarBotonAnular == false)
                     ControlesGenerales.BtnAnular.IsEnabled = PuedeUsarBotonAnular;
 
-                Estado = ControlesGenerales.EstadoVentana;
+                ViewModel.Estado = ControlesGenerales.EstadoVentana;
 
             }
             catch (System.Exception ex)

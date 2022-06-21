@@ -38,6 +38,21 @@ namespace Sadora.ViewModels.Clientes
             }
         }
 
+        string _estado;
+
+        public string Estado
+        {
+            get { return _estado; }
+            set
+            {
+                if (_estado == value)
+                    return;
+                _estado = value;
+                OnPropertyChanged(nameof(Estado));
+            }
+
+        }
+
         #endregion
 
         #region Commands
@@ -59,10 +74,11 @@ namespace Sadora.ViewModels.Clientes
 
         #endregion
 
-        public ClientesViewModel() 
-        { 
+        public ClientesViewModel()
+        {
             Cliente = new Models.TcliCliente() { UsuarioID = ClassVariables.UsuarioID };
         }
+
 
         //private void CustomerCommandExecute()
         //{

@@ -9,8 +9,8 @@
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
     mc:Ignorable="d"
     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="1024" d:DesignHeight="768"
-             TextElement.Foreground="{DynamicResource SecundaryAccentForegroundBrush}" Loaded="UserControl_Loaded" Initialized="UserControl_Initialized"
-             Tag="Maestra de Clientes">
+    TextElement.Foreground="{DynamicResource SecundaryAccentForegroundBrush}" Loaded="UserControl_Loaded" Initialized="UserControl_Initialized"
+    Tag="Maestra de Clientes">
     <Grid x:Name="MainView">
 
         <Grid>
@@ -71,7 +71,7 @@
 
                             <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID, Mode=TwoWay}" MaxLength="2" TabIndex="6" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown" SearchClick="btnClaseID_Click"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes"  Text="{Binding Cliente.ClaseComprobanteID, Mode=TwoWay}" MaxLength="2" TabIndex="9" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown" SearchClick="btnComprobanteID_Click"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes" Text="{Binding Cliente.ClaseComprobanteID, Mode=TwoWay}" EstadoMainWindows="{Binding Estado}" MaxLength="2" TabIndex="9" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown" SearchClick="btnComprobanteID_Click"/>
 
                             <Sadora:UscTextboxGeneral Title="Dias de Credito" Text="{Binding Cliente.DiasCredito, Mode=TwoWay}" MaxLength="2" TabIndex="12" FieldNumeric="True" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
 
