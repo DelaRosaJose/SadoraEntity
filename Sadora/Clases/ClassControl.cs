@@ -17,9 +17,8 @@ namespace Sadora.Clases
         {
             SHA256 sha256 = SHA256Managed.Create();
             ASCIIEncoding encoding = new ASCIIEncoding();
-            byte[] stream = null;
             StringBuilder sb = new StringBuilder();
-            stream = sha256.ComputeHash(encoding.GetBytes(str));
+            byte[] stream = sha256.ComputeHash(encoding.GetBytes(str));
             for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
             return sb.ToString();
         }
@@ -256,7 +255,7 @@ namespace Sadora.Clases
                         contador++;
 
                         if (Linea == "Debe Completar los Campos: ")
-                            Linea = Linea + control.Name;
+                            Linea += control.Name;
                         else
                             Linea = Linea + ", " + control.Name;
 
@@ -273,7 +272,7 @@ namespace Sadora.Clases
                         contador++;
 
                         if (Linea == "Debe Completar los Campos: ")
-                            Linea = Linea + control.Name;
+                            Linea += control.Name;
 
                         else
                             Linea = Linea + ", " + control.Name;
@@ -294,12 +293,9 @@ namespace Sadora.Clases
                 string identityCardSub = replaceScore.Substring(0, replaceScore.Length - 1);
                 string checkerNumber = replaceScore.Substring(replaceScore.Length - 1, 1);
                 int sum = 0;
-                bool identityCardValid = false;
-
                 for (int i = 0; i < identityCardSub.Length; i++)
                 {
-                    int module = 0;
-
+                    int module;
                     if ((i % 2) == 0)
                         module = 1;
                     else
@@ -320,6 +316,7 @@ namespace Sadora.Clases
 
                 int numberValidate = (10 - (sum % 10)) % 10;
 
+                bool identityCardValid;
                 if ((numberValidate == int.Parse(checkerNumber)) && (identityCardSub.Substring(0, 3) != "000"))
                     identityCardValid = true;
                 else
@@ -335,8 +332,6 @@ namespace Sadora.Clases
         public static SqlDataReader getDatosCedula(string Cedula)
         {
             SqlDataReader tabla = null;
-            SqlDataReader Result = null;
-
             if (Cedula.Length > 13)
             {
                 Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost("No puede ingresar mas de 13 digitos en el RNC");
@@ -344,7 +339,7 @@ namespace Sadora.Clases
             }
             else
             {
-                Result = Clases.ClassData.runSqlDataReader("select count(*) as Cant from TcliClientes where RNC = '" + Cedula + "' ", null, "CommandText");
+                SqlDataReader Result = ClassData.runSqlDataReader("select count(*) as Cant from TcliClientes where RNC = '" + Cedula + "' ", null, "CommandText");
                 if (Result.HasRows && Result.Read() && Convert.ToInt32(Result["Cant"].ToString()) > 0)
                 {
                     ClassVariables.ExistClient = true;
@@ -355,7 +350,7 @@ namespace Sadora.Clases
                 {
                     Result.Close();
                     Result.Dispose();
-                    tabla = Clases.ClassData.runSqlDataReader("exec spCedula '" + Cedula + "'", null, "CommandText");
+                    tabla = ClassData.runSqlDataReader("exec spCedula '" + Cedula + "'", null, "CommandText");
                 }
             }
             return tabla;

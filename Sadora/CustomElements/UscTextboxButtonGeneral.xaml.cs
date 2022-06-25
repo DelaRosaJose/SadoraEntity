@@ -37,11 +37,6 @@ namespace Sadora.CustomElements
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
-        public event RoutedEventHandler SearchClick
-        {
-            add { AddHandler(SearchClickEvent, value); }
-            remove { RemoveHandler(SearchClickEvent, value); }
-        }
         public string SearchByTable
         {
             get { return (string)GetValue(SearchByTableProperty); }
@@ -60,7 +55,7 @@ namespace Sadora.CustomElements
             DependencyProperty.Register(nameof(Title), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
 
         public static readonly DependencyProperty MaxLengthProperty =
-            DependencyProperty.Register(nameof(MaxLength), typeof(int), typeof(UscTextboxButtonGeneral), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(MaxLength), typeof(int), typeof(UscTextboxButtonGeneral), new PropertyMetadata(2));
 
         public static readonly DependencyProperty MarginBorderProperty =
             DependencyProperty.Register(nameof(MarginBorder), typeof(Thickness), typeof(UscTextboxButtonGeneral), new PropertyMetadata(new Thickness(15)));
@@ -70,9 +65,6 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(nameof(Text), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
-
-        public static readonly RoutedEvent SearchClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(SearchClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UscTextboxButtonGeneral));
 
         public static readonly DependencyProperty SearchByTableProperty =
             DependencyProperty.Register(nameof(SearchByTable), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
@@ -84,24 +76,28 @@ namespace Sadora.CustomElements
 
         public UscTextboxButtonGeneral() => InitializeComponent();
 
-        private void txtFieldID_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+        private void txtFieldID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (EstadoMainWindows == "Modo Consulta")
+            {
+                e.Handled = true;
+                return;
+            }
+            ClassControl.CampoSoloPermiteNumeros(e);
+        }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e) => ProcesadorCampo();
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) => ProcesadorCampo(e);
+        private void MainText_TextChanged(object sender, TextChangedEventArgs e) => ProcesadorCampo(e);
 
         async void ProcesadorCampo(TextChangedEventArgs e = null)
         {
             if (EstadoMainWindows == default)
                 return;
-            //{
-            //    //new Administracion.FrmCompletarCamposHost($"El Elemento seleccionado no tiene bindeado el Estado !Notifique a TI! \n El titulo del elemento es: {Title}").ShowDialog();
-            //    //throw new Exception();
-            //}
 
             try
             {
-                if (EstadoMainWindows != "Modo Consulta")
+                if (EstadoMainWindows != "Modo Consulta" || e != default)
                 {
                     string ValueColumn = e != null ? (e.Source as TextBox).Text : default;
 
@@ -137,7 +133,7 @@ namespace Sadora.CustomElements
                     }
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
             }

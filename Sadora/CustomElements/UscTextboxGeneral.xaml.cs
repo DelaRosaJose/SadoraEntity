@@ -65,17 +65,16 @@ namespace Sadora.CustomElements
 
         public UscTextboxGeneral() => InitializeComponent();
 
-        private void root_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (FieldNumeric)
-                ClassControl.CampoSoloPermiteNumeros(e);
-        }
-
-        private void root_GotFocus(object sender, RoutedEventArgs e)
+        private void Root_GotFocus(object sender, RoutedEventArgs e)
         {
             MainText.TabIndex = root.TabIndex;
             MainText.Focus();
         }
 
+        private void MainText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (FieldNumeric)
+                ClassControl.CampoSoloPermiteNumeros(e);
+        }
     }
 }

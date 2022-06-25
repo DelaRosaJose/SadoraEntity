@@ -13,7 +13,7 @@ namespace Sadora.Clientes
 {
     public partial class UscClientes : UserControl
     {
-        ViewModels.Clientes.ClientesViewModel ViewModel = new ViewModels.Clientes.ClientesViewModel();
+        readonly ViewModels.Clientes.ClientesViewModel ViewModel = new ViewModels.Clientes.ClientesViewModel();
 
         public UscClientes()
         {
@@ -23,7 +23,7 @@ namespace Sadora.Clientes
         }
 
         bool Imprime, Modifica, Agrega;
-        bool PuedeUsarBotonAnular = false;
+        readonly bool PuedeUsarBotonAnular = false;
 
         bool Inicializador = false;
         //string _estado;
@@ -69,19 +69,10 @@ namespace Sadora.Clientes
                 Agrega = ClassVariables.Agrega;
                 Modifica = ClassVariables.Modifica;
 
+                ViewModel.EstadoVentana = "Modo Consulta";
                 this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
         }
-
-        //private void btnClaseID_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
-
-        //private void btnComprobanteID_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
 
         private void UscTextboxGeneral_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.PuedeEscribirEnCampo(ViewModel.EstadoVentana, e);
 
