@@ -291,7 +291,7 @@ namespace Sadora.Inventario
 
         private void txtPrecio_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtModelo_KeyUp(object sender, KeyEventArgs e)
@@ -340,7 +340,7 @@ namespace Sadora.Inventario
 
         private void txtTelefono_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtCelular_KeyUp(object sender, KeyEventArgs e)
@@ -356,7 +356,7 @@ namespace Sadora.Inventario
 
         private void txtCelular_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void cActivar_KeyUp(object sender, KeyEventArgs e)
@@ -454,7 +454,7 @@ namespace Sadora.Inventario
 
         private void txtDepartamentoID_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void btnDepartamentoID_Click(object sender, RoutedEventArgs e)
@@ -495,7 +495,7 @@ namespace Sadora.Inventario
 
         private void txtMarcaID_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtMarcaID_KeyUp(object sender, KeyEventArgs e)
@@ -533,7 +533,7 @@ namespace Sadora.Inventario
 
         private void txtClaseID_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void btnClaseID_Click(object sender, RoutedEventArgs e)
@@ -861,7 +861,7 @@ namespace Sadora.Inventario
                 ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
         }
 
-        private void txtCantidad_KeyDown(object sender, KeyEventArgs e) => ClassControl.ValidadorNumeros(e);
+        private void txtCantidad_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
 
 
         private void BtnConfiguracionServicios_Click(object sender, RoutedEventArgs e)

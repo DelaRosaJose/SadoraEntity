@@ -54,7 +54,8 @@ namespace Sadora.Clientes
 
         #endregion
 
-        private int? _FistClienteID, _LastClienteID;
+        //string last;
+        private int? _FistClienteID, _LastClienteID, last;
 
 
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
@@ -72,17 +73,17 @@ namespace Sadora.Clientes
             }
         }
 
-        private void btnClaseID_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnClaseID_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void btnComprobanteID_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnComprobanteID_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void UscTextboxGeneral_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.PuedeEscribirEnCampo(ViewModel.Estado, e);
+        private void UscTextboxGeneral_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.PuedeEscribirEnCampo(ViewModel.EstadoVentana, e);
 
         private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
@@ -126,11 +127,19 @@ namespace Sadora.Clientes
                             break;
 
                         case "BtnBuscar":
-                            MessageBox.Show(ViewModel.Estado);
+                            if (ViewModel.EstadoVentana == "Modo Consulta")
+                                last = ViewModel.Cliente.ClienteID;
+                            else if (ViewModel.EstadoVentana == "Modo Busqueda")
+                            {
+                                var ResultSet = "";//db.TcliClientes.e
+                                    //Where(x=>x.ClienteID = ViewModel.Cliente.ClienteID).FirstOrDefault();
+                            }
+
+                            //MessageBox.Show(ViewModel.EstadoVentana);
 
                             //ViewModel.Cliente = db.TcliClientes.Find(ViewModel.Cliente.ClienteID);//Where(x=>x.ClienteID = ViewModel.Cliente.ClienteID).FirstOrDefault();
 
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName, EstadoVentanaPadre: ViewModel.Estado);
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName, EstadoVentanaPadre: ViewModel.EstadoVentana);
                             break;
 
                         case "BtnAgregar":
@@ -147,9 +156,9 @@ namespace Sadora.Clientes
                             break;
 
                         case "BtnGuardar":
-                            if (ViewModel.Estado == "Modo Agregar")
+                            if (ViewModel.EstadoVentana == "Modo Agregar")
                                 db.TcliClientes.Add(ViewModel.Cliente);
-                            else if (ViewModel.Estado == "Modo Editar")
+                            else if (ViewModel.EstadoVentana == "Modo Editar")
                                 db.Entry(ViewModel.Cliente).State = System.Data.Entity.EntityState.Modified;
 
                             await db.SaveChangesAsync();
@@ -168,7 +177,7 @@ namespace Sadora.Clientes
                 if (PuedeUsarBotonAnular == false)
                     ControlesGenerales.BtnAnular.IsEnabled = PuedeUsarBotonAnular;
 
-                ViewModel.Estado = ControlesGenerales.EstadoVentana;
+                ViewModel.EstadoVentana = ControlesGenerales.EstadoVentana;
 
             }
             catch (System.Exception ex)
@@ -191,7 +200,6 @@ namespace Sadora.Clientes
         //        InputManager.Current.ProcessInput(new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, Key.Tab) { RoutedEvent = Keyboard.KeyDownEvent });
 
         //}
-
         /*
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {

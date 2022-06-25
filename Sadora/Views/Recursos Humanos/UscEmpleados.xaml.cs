@@ -324,7 +324,7 @@ namespace Sadora.Recursos_Humanos
 
         private void txtClaseID_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtDireccion_KeyUp(object sender, KeyEventArgs e)

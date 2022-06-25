@@ -268,7 +268,7 @@ namespace Sadora.Administracion
             }
         }
 
-        private void txtEmpleadoID_KeyDown(object sender, KeyEventArgs e) => ClassControl.ValidadorNumeros(e);
+        private void txtEmpleadoID_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
 
         private void btnEmpleadoID_Click(object sender, RoutedEventArgs e)
         {
@@ -303,7 +303,7 @@ namespace Sadora.Administracion
             }
         }
 
-        private void txtGrupoID_KeyDown(object sender, KeyEventArgs e) => ClassControl.ValidadorNumeros(e);
+        private void txtGrupoID_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
 
         private void btnGrupoID_Click(object sender, RoutedEventArgs e)
         {

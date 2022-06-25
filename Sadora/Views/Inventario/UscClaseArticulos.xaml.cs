@@ -283,7 +283,7 @@ namespace Sadora.Inventario
 
         private void txtPorcentaje_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void cServicio_KeyUp(object sender, KeyEventArgs e)

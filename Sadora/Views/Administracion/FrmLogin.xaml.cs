@@ -164,7 +164,7 @@ namespace Sadora.Administracion
 
         private void txtUsuarioID_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtUsuarioID_KeyUp(object sender, KeyEventArgs e)

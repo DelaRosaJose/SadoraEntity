@@ -335,7 +335,7 @@ namespace Sadora.Administracion
 
         private void txtEmpresaID_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         //void setDatos(int Flag, string Usuario) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql

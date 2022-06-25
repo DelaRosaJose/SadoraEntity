@@ -69,9 +69,9 @@
 
                             <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Cliente.Activo, Mode=TwoWay}" TabIndex="3" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID, Mode=TwoWay}" MaxLength="2" TabIndex="6" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown" SearchClick="btnClaseID_Click"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="2" TabIndex="6" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown" />
 
-                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes" Text="{Binding Cliente.ClaseComprobanteID, Mode=TwoWay}" EstadoMainWindows="{Binding Estado}" MaxLength="2" TabIndex="9" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown" SearchClick="btnComprobanteID_Click"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes" Text="{Binding Cliente.ClaseComprobanteID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="2" TabIndex="9" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
 
                             <Sadora:UscTextboxGeneral Title="Dias de Credito" Text="{Binding Cliente.DiasCredito, Mode=TwoWay}" MaxLength="2" TabIndex="12" FieldNumeric="True" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
 

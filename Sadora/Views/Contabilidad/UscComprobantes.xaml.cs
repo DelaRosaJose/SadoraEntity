@@ -304,12 +304,12 @@ namespace Sadora.Contabilidad
 
         private void txtDesde_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtHasta_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtHasta_KeyUp(object sender, KeyEventArgs e)
@@ -388,7 +388,7 @@ namespace Sadora.Contabilidad
 
         private void txtTelefono_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtCelular_KeyUp(object sender, KeyEventArgs e)
@@ -404,7 +404,7 @@ namespace Sadora.Contabilidad
 
         private void txtCelular_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void SinComprobantes_KeyUp(object sender, KeyEventArgs e)

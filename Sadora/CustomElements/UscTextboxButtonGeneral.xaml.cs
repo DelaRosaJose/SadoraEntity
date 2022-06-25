@@ -1,5 +1,7 @@
 ﻿using Sadora.Clases;
+using System;
 using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -74,7 +76,7 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty SearchByTableProperty =
             DependencyProperty.Register(nameof(SearchByTable), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
-        
+
         public static readonly DependencyProperty EstadoMainWindowsProperty =
             DependencyProperty.Register(nameof(EstadoMainWindows), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
 
@@ -82,82 +84,57 @@ namespace Sadora.CustomElements
 
         public UscTextboxButtonGeneral() => InitializeComponent();
 
-        private void txtFieldID_KeyDown(object sender, KeyEventArgs e) => ClassControl.ValidadorNumeros(e);
+        private void txtFieldID_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
 
-        private async void btnSearch_Click(object sender, RoutedEventArgs e)
+        private void btnSearch_Click(object sender, RoutedEventArgs e) => ProcesadorCampo();
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) => ProcesadorCampo(e);
+
+        async void ProcesadorCampo(TextChangedEventArgs e = null)
         {
-            //if (Estado != "Modo Consulta")
+            if (EstadoMainWindows == default)
+                return;
             //{
+            //    //new Administracion.FrmCompletarCamposHost($"El Elemento seleccionado no tiene bindeado el Estado !Notifique a TI! \n El titulo del elemento es: {Title}").ShowDialog();
+            //    //throw new Exception();
+            //}
 
             try
             {
-                //string ValueColumn = (e.Source as TextBox).Text;
-
-                //if (string.IsNullOrEmpty(ValueColumn) || ValueColumn == "0")
-                //{
-                //    ResultText.Text = string.Empty;
-                //    return;
-                //}
-
-                using (Models.SadoraEntity db = new Models.SadoraEntity())
+                if (EstadoMainWindows != "Modo Consulta")
                 {
-                    string ColumnAsync = default;
+                    string ValueColumn = e != null ? (e.Source as TextBox).Text : default;
 
-                    ColumnAsync = await db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
-                    $"where TABLE_NAME = '{SearchByTable}' " +
-                    $"and COLUMN_NAME not in ('RowID', 'UsuarioID') " +
-                    $"and COLUMN_NAME like '%ID'").FirstOrDefaultAsync();
-
-                    Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost($"Select * from {SearchByTable}", null);
-                    frm.ShowDialog();
-
-                    if (frm.GridMuestra.SelectedItem != null)
+                    if (new string[] { "", "0", string.Empty }.Contains(ValueColumn))
                     {
-                        DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-                        MainText.Text = item.Row.ItemArray[0].ToString();
-
-                        ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {SearchByTable} where {ColumnAsync} = {MainText.Text}").FirstOrDefaultAsync();
-
+                        ResultText.Text = string.Empty;
+                        return;
                     }
 
-                    MessageBox.Show(EstadoMainWindows);
+                    using (Models.SadoraEntity db = new Models.SadoraEntity())
+                    {
+                        string ColumnAsync = default;
 
-                }
-            }
-            catch (System.Exception ex)
-            {
-                new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
-            }
+                        ColumnAsync = await db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
+                        $"where TABLE_NAME = '{SearchByTable}' " +
+                        $"and COLUMN_NAME not in ('RowID', 'UsuarioID') " +
+                        $"and COLUMN_NAME like '%ID'").FirstOrDefaultAsync();
 
+                        if (e == default)
+                        {
+                            Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost($"Select * from {SearchByTable}", null);
+                            frm.ShowDialog();
 
-            
+                            if (frm.GridMuestra.SelectedItem != null)
+                            {
+                                DataRowView item = frm.GridMuestra.SelectedItem as DataRowView;
+                                ValueColumn = MainText.Text = item.Row.ItemArray[0].ToString();
+                            }
+                        }
 
-            //}
-        }//=> RaiseEvent(new RoutedEventArgs(SearchClickEvent));
+                        ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {SearchByTable} where {ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
 
-        private async void TextBox_TextChanged(object sender, TextChangedEventArgs e) //=> RaiseEvent(new RoutedEventArgs(TextChangedEvent));
-        {
-            try
-            {
-                string ValueColumn = (e.Source as TextBox).Text;
-
-                if (string.IsNullOrEmpty(ValueColumn) || ValueColumn == "0")
-                {
-                    ResultText.Text = string.Empty;
-                    return;
-                }
-
-                using (Models.SadoraEntity db = new Models.SadoraEntity())
-                {
-                    string ColumnAsync = default;
-
-                    ColumnAsync = await db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
-                    $"where TABLE_NAME = '{SearchByTable}' " +
-                    $"and COLUMN_NAME not in ('RowID', 'UsuarioID') " +
-                    $"and COLUMN_NAME like '%ID'").FirstOrDefaultAsync();
-
-                    ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {SearchByTable} where {ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
-
+                    }
                 }
             }
             catch (System.Exception ex)
@@ -171,5 +148,6 @@ namespace Sadora.CustomElements
             MainText.TabIndex = root.TabIndex;
             MainText.Focus();
         }
+
     }
 }

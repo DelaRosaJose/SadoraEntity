@@ -16,17 +16,17 @@ namespace Sadora.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        string _estado;
+        string _estadoVentana;
 
-        public string Estado
+        public string EstadoVentana
         {
-            get { return _estado; }
+            get { return _estadoVentana; }
             set
             {
-                if (_estado == value)
+                if (_estadoVentana == value)
                     return;
-                _estado = value;
-                OnPropertyChanged(nameof(Estado));
+                _estadoVentana = value;
+                OnPropertyChanged(nameof(EstadoVentana));
             }
 
         }

@@ -369,7 +369,7 @@ namespace Sadora.Proveedores
 
         private void txtClaseID_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtDireccion_KeyUp(object sender, KeyEventArgs e)
@@ -407,7 +407,7 @@ namespace Sadora.Proveedores
 
         private void txtTelefono_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void txtCelular_KeyUp(object sender, KeyEventArgs e)
@@ -423,7 +423,7 @@ namespace Sadora.Proveedores
 
         private void txtCelular_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.ValidadorNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void cActivar_KeyUp(object sender, KeyEventArgs e)

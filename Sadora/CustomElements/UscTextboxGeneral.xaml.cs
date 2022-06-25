@@ -68,7 +68,7 @@ namespace Sadora.CustomElements
         private void root_KeyUp(object sender, KeyEventArgs e)
         {
             if (FieldNumeric)
-                ClassControl.ValidadorNumeros(e);
+                ClassControl.CampoSoloPermiteNumeros(e);
         }
 
         private void root_GotFocus(object sender, RoutedEventArgs e)
