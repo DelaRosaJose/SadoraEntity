@@ -37,13 +37,13 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Cliente.ClienteID, Mode=TwoWay}" TabIndex="1" FieldNumeric="True" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Cliente.ClienteID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="1" FieldNumeric="True"/>
 
-                            <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Cliente.Nombre, Mode=TwoWay}" MaxLength="70" TabIndex="4" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Cliente.Nombre, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="4"/>
 
-                            <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Cliente.Direccion, Mode=TwoWay}" MaxLength="100" TabIndex="7" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Cliente.Direccion, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="100" TabIndex="7"/>
 
-                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Cliente.Telefono, Mode=TwoWay}" MaxLength="20" TabIndex="10" FieldNumeric="True" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Cliente.Telefono, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="20" TabIndex="10" FieldNumeric="True"/>
 
                         </StackPanel>
                     </Grid>
@@ -52,13 +52,13 @@
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Cliente.RNC, Mode=TwoWay}" TabIndex="2" MaxLength="11" FieldNumeric="True" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Cliente.RNC, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="2" MaxLength="11" FieldNumeric="True"/>
                             <!--KeyUp="txtRNC_KeyUp"-->
-                            <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Cliente.Representante, Mode=TwoWay}" MaxLength="70" TabIndex="5" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Cliente.Representante, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="5"/>
 
-                            <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Cliente.CorreoElectronico, Mode=TwoWay}" MaxLength="40" TabIndex="8" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Cliente.CorreoElectronico, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="40" TabIndex="8"/>
 
-                            <Sadora:UscTextboxGeneral Title="Celular" Text="{Binding Cliente.Celular, Mode=TwoWay}" MaxLength="20" TabIndex="11" FieldNumeric="True" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Celular" Text="{Binding Cliente.Celular, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="20" TabIndex="11" FieldNumeric="True"/>
 
                         </StackPanel>
                     </Grid>
@@ -67,13 +67,13 @@
                     <Grid Grid.Column="2">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Cliente.Activo, Mode=TwoWay}" TabIndex="3" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Cliente.Activo, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="3"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" SearchByTable="TcliClaseClientes" Text="{Binding Cliente.ClaseID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="6"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Clase ID" BuscarPorTabla="TcliClaseClientes" Text="{Binding Cliente.ClaseID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="6"/>
 
-                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" SearchByTable="TconComprobantes" Text="{Binding Cliente.ClaseComprobanteID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="9"/>
+                            <Sadora:UscTextboxButtonGeneral Title="Comprobante ID" BuscarPorTabla="TconComprobantes" Text="{Binding Cliente.ClaseComprobanteID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="9"/>
 
-                            <Sadora:UscTextboxGeneral Title="Dias de Credito" Text="{Binding Cliente.DiasCredito, Mode=TwoWay}" MaxLength="2" TabIndex="12" FieldNumeric="True" PreviewKeyDown="UscTextboxGeneral_PreviewKeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Dias de Credito" Text="{Binding Cliente.DiasCredito, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="2" TabIndex="12" FieldNumeric="True"/>
 
                         </StackPanel>
 

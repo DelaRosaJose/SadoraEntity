@@ -37,7 +37,7 @@ namespace Sadora.CustomElements
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
-        public string SearchByTable
+        public string BuscarPorTabla
         {
             get { return (string)GetValue(SearchByTableProperty); }
             set { SetValue(SearchByTableProperty, value); }
@@ -46,6 +46,11 @@ namespace Sadora.CustomElements
         {
             get { return (string)GetValue(EstadoMainWindowsProperty); }
             set { SetValue(EstadoMainWindowsProperty, value); }
+        }
+        public bool EnterPasarProximoCampo
+        {
+            get { return (bool)GetValue(EnterPasarProximoCampoProperty); }
+            set { SetValue(EnterPasarProximoCampoProperty, value); }
         }
         #endregion
 
@@ -67,24 +72,24 @@ namespace Sadora.CustomElements
             DependencyProperty.Register(nameof(Text), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
 
         public static readonly DependencyProperty SearchByTableProperty =
-            DependencyProperty.Register(nameof(SearchByTable), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(BuscarPorTabla), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
 
         public static readonly DependencyProperty EstadoMainWindowsProperty =
-            DependencyProperty.Register(nameof(EstadoMainWindows), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EstadoMainWindows), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null, EstadoMainWindowsPropertyChanged));
+        
+        public static readonly DependencyProperty EnterPasarProximoCampoProperty =
+            DependencyProperty.Register(nameof(EnterPasarProximoCampo), typeof(bool), typeof(UscTextboxButtonGeneral), new PropertyMetadata(true));
+
+        private static void EstadoMainWindowsPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
+        {
+            UscTextboxButtonGeneral instance = dependencyObject as UscTextboxButtonGeneral;
+
+            instance.MainText.IsReadOnly = instance.EstadoMainWindows == "Modo Consulta" ? true : false;
+        }
 
         #endregion
 
         public UscTextboxButtonGeneral() => InitializeComponent();
-
-        private void txtFieldID_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (EstadoMainWindows == "Modo Consulta")
-            {
-                e.Handled = true;
-                return;
-            }
-            ClassControl.CampoSoloPermiteNumeros(e);
-        }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e) => ProcesadorCampo();
 
@@ -112,13 +117,13 @@ namespace Sadora.CustomElements
                         string ColumnAsync = default;
 
                         ColumnAsync = await db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
-                        $"where TABLE_NAME = '{SearchByTable}' " +
+                        $"where TABLE_NAME = '{BuscarPorTabla}' " +
                         $"and COLUMN_NAME not in ('RowID', 'UsuarioID') " +
                         $"and COLUMN_NAME like '%ID'").FirstOrDefaultAsync();
 
                         if (e == default)
                         {
-                            Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost($"Select * from {SearchByTable}", null);
+                            Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost($"Select * from {BuscarPorTabla}", null);
                             frm.ShowDialog();
 
                             if (frm.GridMuestra.SelectedItem != null)
@@ -128,7 +133,7 @@ namespace Sadora.CustomElements
                             }
                         }
 
-                        ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {SearchByTable} where {ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
+                        ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {BuscarPorTabla} where {ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
 
                     }
                 }
@@ -144,6 +149,11 @@ namespace Sadora.CustomElements
             MainText.TabIndex = root.TabIndex;
             MainText.Focus();
         }
+
+        private void MainText_KeyUp(object sender, KeyEventArgs e) => ClassControl.PasarConEnterProximoCampo(e, EstadoMainWindows, EnterPasarProximoCampo);
+
+        private void MainText_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+
 
     }
 }

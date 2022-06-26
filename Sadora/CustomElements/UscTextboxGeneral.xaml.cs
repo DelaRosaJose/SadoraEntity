@@ -38,6 +38,16 @@ namespace Sadora.CustomElements
             get { return (bool)GetValue(FieldNumericProperty); }
             set { SetValue(FieldNumericProperty, value); }
         }
+        public string EstadoMainWindows
+        {
+            get { return (string)GetValue(EstadoMainWindowsProperty); }
+            set { SetValue(EstadoMainWindowsProperty, value);}
+        }
+        public bool EnterPasarProximoCampo
+        {
+            get { return (bool)GetValue(EnterPasarProximoCampoProperty); }
+            set { SetValue(EnterPasarProximoCampoProperty, value); }
+        }
 
         #endregion
 
@@ -61,6 +71,12 @@ namespace Sadora.CustomElements
         public static readonly DependencyProperty FieldNumericProperty =
             DependencyProperty.Register(nameof(FieldNumeric), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
 
+        public static readonly DependencyProperty EstadoMainWindowsProperty =
+            DependencyProperty.Register(nameof(EstadoMainWindows), typeof(string), typeof(UscTextboxGeneral), new PropertyMetadata(null, EstadoMainWindowsPropertyChanged));
+
+        public static readonly DependencyProperty EnterPasarProximoCampoProperty =
+            DependencyProperty.Register(nameof(EnterPasarProximoCampo), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(true));
+
         #endregion
 
         public UscTextboxGeneral() => InitializeComponent();
@@ -71,10 +87,20 @@ namespace Sadora.CustomElements
             MainText.Focus();
         }
 
-        private void MainText_KeyDown(object sender, KeyEventArgs e)
+        private void MainText_KeyUp(object sender, KeyEventArgs e) => ClassControl.PasarConEnterProximoCampo(e, EstadoMainWindows, EnterPasarProximoCampo);
+
+        private void MainText_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (FieldNumeric)
                 ClassControl.CampoSoloPermiteNumeros(e);
         }
+
+        private static void EstadoMainWindowsPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
+        {
+            UscTextboxGeneral instance = dependencyObject as UscTextboxGeneral;
+
+            instance.MainText.IsReadOnly = instance.EstadoMainWindows == "Modo Consulta" ? true : false;
+        }
+
     }
 }

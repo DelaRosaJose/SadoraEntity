@@ -23,6 +23,16 @@ namespace Sadora.CustomElements
             get { return (bool?)GetValue(IsCheckedProperty); }
             set { SetValue(IsCheckedProperty, value); }
         }
+        public string EstadoMainWindows
+        {
+            get { return (string)GetValue(EstadoMainWindowsProperty); }
+            set { SetValue(EstadoMainWindowsProperty, value); }
+        }
+        public bool EnterPasarProximoCampo
+        {
+            get { return (bool)GetValue(EnterPasarProximoCampoProperty); }
+            set { SetValue(EnterPasarProximoCampoProperty, value); }
+        }
         #endregion
 
         #region Registro de Dependency Property
@@ -36,6 +46,18 @@ namespace Sadora.CustomElements
         public static readonly DependencyProperty IsCheckedProperty =
             DependencyProperty.Register(nameof(IsChecked), typeof(bool?), typeof(UscCheckBoxGeneral), new PropertyMetadata(false));
 
+        public static readonly DependencyProperty EstadoMainWindowsProperty =
+            DependencyProperty.Register(nameof(EstadoMainWindows), typeof(string), typeof(UscCheckBoxGeneral), new PropertyMetadata(null, EstadoMainWindowsPropertyChanged));
+
+        public static readonly DependencyProperty EnterPasarProximoCampoProperty =
+            DependencyProperty.Register(nameof(EnterPasarProximoCampo), typeof(bool), typeof(UscCheckBoxGeneral), new PropertyMetadata(true));
+
+        private static void EstadoMainWindowsPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
+        {
+            UscCheckBoxGeneral instance = dependencyObject as UscCheckBoxGeneral;
+
+            instance.MainCheck.IsEnabled = instance.EstadoMainWindows == "Modo Consulta" ? false : true;
+        }
         #endregion
 
         public UscCheckBoxGeneral() => InitializeComponent();
@@ -45,5 +67,8 @@ namespace Sadora.CustomElements
             MainCheck.TabIndex = root.TabIndex;
             MainCheck.Focus();
         }
+
+        private void MainCheck_KeyUp(object sender, KeyEventArgs e) => ClassControl.PasarConEnterProximoCampo(e, EstadoMainWindows, EnterPasarProximoCampo);
+
     }
 }

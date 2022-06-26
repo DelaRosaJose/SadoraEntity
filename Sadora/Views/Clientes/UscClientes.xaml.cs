@@ -1,9 +1,7 @@
 ﻿using Sadora.Clases;
 using Sadora.Models;
-using Sadora.ViewModels;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -70,18 +68,16 @@ namespace Sadora.Clientes
                 Modifica = ClassVariables.Modifica;
 
                 ViewModel.EstadoVentana = "Modo Consulta";
-                this.ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
         }
-
-        private void UscTextboxGeneral_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.PuedeEscribirEnCampo(ViewModel.EstadoVentana, e);
 
         private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 int intValue;
-                using (Models.SadoraEntity db = new Models.SadoraEntity())
+                using (SadoraEntity db = new Models.SadoraEntity())
                 {
                     string ButtonName = ((Button)e.OriginalSource).Name;
 

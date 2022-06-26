@@ -358,15 +358,10 @@ namespace Sadora.Clases
 
         public static void CampoSoloPermiteNumeros(KeyEventArgs e)
         {
-            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.OemPeriod, Key.Decimal, Key.Enter, Key.Tab }.Contains(e.Key))
+            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.OemPeriod, Key.Decimal, Key.Enter, Key.Tab, Key.Delete, Key.Back, Key.Left, Key.Right }.Contains(e.Key))
                 e.Handled = false;
             else
                 e.Handled = true;
-
-            //if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.OemPeriod || e.Key == Key.Decimal)
-            //    e.Handled = false;
-            //else
-            //    e.Handled = true;
         }
 
         public static void SetGridReadOnly(GridControl Grid, List<String> ListaColumnas = null, Boolean AllowEdit = true)
@@ -500,6 +495,19 @@ namespace Sadora.Clases
                 if (e.Key == Key.Enter)
                     InputManager.Current.ProcessInput(new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, Key.Tab) { RoutedEvent = Keyboard.KeyDownEvent });
 
+            }
+            catch (Exception ex)
+            {
+                new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
+            }
+        }
+
+        public static void PasarConEnterProximoCampo(KeyEventArgs e, string EstadoMainWindows, bool EnterPasarProximoCampo)
+        {
+            try
+            {
+                if (e.Key == Key.Enter && EstadoMainWindows != "Modo Consulta" && EnterPasarProximoCampo)
+                    InputManager.Current.ProcessInput(new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, Key.Tab) { RoutedEvent = Keyboard.KeyDownEvent });
             }
             catch (Exception ex)
             {
