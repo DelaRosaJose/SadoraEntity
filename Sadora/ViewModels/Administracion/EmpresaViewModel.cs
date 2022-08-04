@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Sadora.Clases;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
@@ -8,19 +9,19 @@ namespace Sadora.ViewModels.Administracion
     {
         #region UscEmpresa ViewModel
 
-        private List<Models.TsysEmpresa> _empresas;
+        //private List<Models.TsysEmpresa> _empresas;
 
-        public List<Models.TsysEmpresa> Empresas
-        {
-            get { return _empresas; }
-            set
-            {
-                if (_empresas == value)
-                    return;
-                _empresas = value;
-                OnPropertyChanged(nameof(Empresas));
-            }
-        }
+        //public List<Models.TsysEmpresa> Empresas
+        //{
+        //    get { return _empresas; }
+        //    set
+        //    {
+        //        if (_empresas == value)
+        //            return;
+        //        _empresas = value;
+        //        OnPropertyChanged(nameof(Empresas));
+        //    }
+        //}
         private Models.TsysEmpresa _empresa;
 
         public Models.TsysEmpresa Empresa
@@ -35,7 +36,13 @@ namespace Sadora.ViewModels.Administracion
             }
         }
 
+
         #endregion
+
+        public EmpresaViewModel()
+        {
+            Empresa = new Models.TsysEmpresa() { UsuarioID = ClassVariables.UsuarioID };
+        }
 
         //#region Commands
 

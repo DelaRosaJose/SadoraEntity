@@ -1,4 +1,8 @@
 ﻿using Sadora.Clases;
+using System;
+using System.Collections;
+using System.Data.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -66,7 +70,7 @@ namespace Sadora.CustomElements
             DependencyProperty.Register(nameof(HeightLabel), typeof(int), typeof(UscTextboxGeneral), new PropertyMetadata(30));
 
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register(nameof(Text), typeof(string), typeof(UscTextboxGeneral), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(UscTextboxGeneral), new PropertyMetadata(null, TextPropertyChanged));
 
         public static readonly DependencyProperty FieldNumericProperty =
             DependencyProperty.Register(nameof(FieldNumeric), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
@@ -100,6 +104,85 @@ namespace Sadora.CustomElements
             UscTextboxGeneral instance = dependencyObject as UscTextboxGeneral;
 
             instance.MainText.IsReadOnly = instance.EstadoMainWindows == "Modo Consulta" ? true : false;
+        }
+        
+        private static void TextPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
+        {
+            UscTextboxGeneral instance = dependencyObject as UscTextboxGeneral;
+
+            var datacontex = instance.DataContext;
+            System.Type types = datacontex.GetType();
+            string typeq = datacontex.GetType().Name;
+            var typefull = datacontex.GetType().FullName;
+            ListToDataTable(datacontex);
+
+
+
+            var his = instance.GetType() == Type.GetType("System.Int32");
+
+
+            var his2 = datacontex.GetType() == Type.GetType("System.Int32");
+
+            var obj222 = new Models.TcliCliente();
+
+            var obj = datacontex;
+
+            foreach (PropertyInfo prop in obj.GetType().GetProperties())
+            {
+
+                foreach (PropertyInfo propss in prop.GetType().GetProperties())
+                { 
+                
+                }
+
+                    if (prop.PropertyType != typeof(string) && typeof(IEnumerable).IsAssignableFrom(prop.PropertyType))
+                {
+                    //Console.Writeline("This prop's type is Ienumerable");
+                }
+            }
+
+
+            //var ele = (datacontex as (types as System.Type)).  
+
+            //    DataTable dataTable = new DataTable(typeof(T).Name);
+
+
+            //instance.MainText.IsReadOnly = instance.EstadoMainWindows == "Modo Consulta" ? true : false;
+        }
+        public static void ListToDataTable<DataContext>(DataContext items)
+        {
+            //DataTable dataTable = new DataTable(typeof(T).Name);
+            //PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+
+            Type contextType = items.GetType();
+
+            PropertyInfo providerProperty = contextType.GetProperty("Provider", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (providerProperty == null)
+                return;
+
+            var hi = providerProperty.GetValue(items, null);
+
+            //var items2 = (IQueryable)db.GetType().GetMethod("GetTable").MakeGenericMethod(dbType).Invoke(db, null);
+
+            //return GetData(items2, columns, page, count, filter, sort, sortdir);
+
+
+
+
+            //foreach (PropertyInfo prop in Props)
+            //    dataTable.Columns.Add(prop.Name);
+
+            //foreach (T item in items)
+            //{
+            //    var values = new object[Props.Length];
+            //    for (int i = 0; i < Props.Length; i++)
+            //        values[i] = Props[i].GetValue(item, null);
+
+            //    dataTable.Rows.Add(values);
+            //}
+
+            //return dataTable;
         }
 
     }

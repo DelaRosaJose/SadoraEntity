@@ -21,127 +21,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!--<Grid Grid.Row="0" Margin="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="60"/>
-                </Grid.ColumnDefinitions>
-
-                <Border Padding="0" Grid.Column="0" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnPrimerRegistro" Padding="0" Click="BtnPrimerRegistro_Click" Height="59" ToolTip="Pulsar para ir al primer registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="ArrowUpBold" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="First" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-                <Border Padding="0" Grid.Column="1" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnAnteriorRegistro" Padding="0" Click="BtnAnteriorRegistro_Click" Height="59" ToolTip="Pulsar para ir al registro anterior" Style="{StaticResource MaterialDesignFlatButton}" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" >
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="ArrowLeftBold" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Back" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-
-                <Border Padding="0" Grid.Column="2" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnProximoRegistro" Padding="0" Click="BtnProximoRegistro_Click" Height="59" ToolTip="Pulsar para ir al proximo registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel >
-                            <materialDesign:PackIcon Kind="ArrowRightBold" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Next" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-
-                <Border Padding="0" Grid.Column="3"  BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnUltimoRegistro" Padding="0" Click="BtnUltimoRegistro_Click" Height="59" ToolTip="Pulsar para ir al ultimo registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel >
-                            <materialDesign:PackIcon Kind="ArrowDownBold" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Last" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-
-                <Border Padding="0" Grid.Column="4" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnBuscar" Padding="0" Click="BtnBuscar_Click" Height="59" ToolTip="Pulsar para buscar un registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel >
-                            <materialDesign:PackIcon Kind="Search" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Search" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-
-                <Border Padding="0" Grid.Column="5" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnAgregar" Padding="0" Click="BtnAgregar_Click" Height="59" ToolTip="Pulsar para agregar un registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}"  Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel>
-                            <materialDesign:PackIcon  Kind="AddThick" Width="auto" Height="36" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkBrush}"></materialDesign:PackIcon>
-                            <TextBlock Text="Add" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-                <Border Padding="0" Grid.Column="6" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnEditar" Padding="0" Click="BtnEditar_Click" Height="59" ToolTip="Pulsar para editar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="Edit" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Edit" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-
-
-                <Border Padding="0" Grid.Column="7" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnAnular" Padding="0" IsEnabled="False" Click="BtnCancelar_Click" Height="59" ToolTip="Pulsar para anular el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="LockReset" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Undo" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-
-
-                <Border Padding="0" Grid.Column="8" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnCancelar" Padding="0" Click="BtnCancelar_Click" Height="59" ToolTip="Pulsar para cancelar los cambios efectuados " Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="Cancel" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Cancel" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-                <Border Padding="0" Grid.Column="9" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnGuardar" Padding="0" Click="BtnGuardar_Click" Height="59" ToolTip="Pulsar para guardar el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}" TabIndex="11" >
-                        <StackPanel>
-                            <materialDesign:PackIcon  Kind="ContentSave" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Save" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-                <Border Padding="0" Grid.Column="10" BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="auto" VerticalAlignment="Stretch" Margin="3">
-                    <Button x:Name="BtnImprimir" Padding="0" Click="BtnImprimir_Click" Height="59" ToolTip="Pulsar para imprimir el registro" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" Style="{StaticResource MaterialDesignFlatButton}">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="Printer" Width="auto" Height="36" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Print" HorizontalAlignment="Center" FontSize="17"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-
-                <Border Padding="0"  Grid.Column="11"  BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="1.5"  CornerRadius="5" HorizontalAlignment="Stretch" Width="auto" Height="40" VerticalAlignment="Bottom" Margin="3">
-                    <TextBlock x:Name="lIconEstado" Padding="0" HorizontalAlignment="Center">
-                        <materialDesign:PackIcon x:Name="IconEstado"  Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="OrangeRed"></materialDesign:PackIcon>
-                    </TextBlock>
-                </Border>
-
-            </Grid>-->
-
             <!--Barra de botones-->
             <Sadora:UscBotonesGenerales Grid.Row="0" Margin="15" x:Name="ControlesGenerales" ButtonBase.Click="UscBotones_Click" TabIndex="13" />
 
@@ -159,9 +38,9 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="Empresa ID" Text="{Binding Empresa.EmpresaID}" TabIndex="1" FieldNumeric="True" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Empresa ID" Text="{Binding Empresa.EmpresaID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="1" FieldNumeric="True"/>
 
-                            <Sadora:UscTextboxGeneral Title="Razon Social" Text="{Binding Empresa.Razon_Social}" TabIndex="4" FieldNumeric="True" MaxLength="15" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Razon Social" Text="{Binding Empresa.Razon_Social, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="4" MaxLength="15"/>
 
                         </StackPanel>
                     </Grid>
@@ -170,10 +49,9 @@
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Empresa.Nombre}" TabIndex="2" MaxLength="100" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Empresa.Nombre, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="2" MaxLength="100"/>
 
-                            <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Empresa.Direccion}" TabIndex="5" MaxLength="255" KeyDown="UscTextboxGeneral_KeyDown"/>
-
+                            <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Empresa.Direccion, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="5" MaxLength="255"/>
 
                         </StackPanel>
                     </Grid>
@@ -183,23 +61,9 @@
 
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Empresa.RNC}" TabIndex="3" MaxLength="15" KeyDown="UscTextboxGeneral_KeyDown"/>
+                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Empresa.RNC, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="3" MaxLength="15" FieldNumeric="True"/>
 
-                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Empresa.Telefono}" TabIndex="6" MaxLength="20" KeyDown="UscTextboxGeneral_KeyDown"/>
-
-                            <!--<Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="lRNC" Margin="10 5 0 0" Text="RNC" FontWeight="Bold"></TextBlock>
-                                    <TextBox x:Name="txtRNC" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="3" KeyUp="txtRNC_KeyUp"/>
-                                </StackPanel>
-                            </Border>-->
-
-                            <!--<Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="lTelefono" Margin="10 5 0 0" Text="Telefono" FontWeight="Bold"></TextBlock>
-                                    <TextBox x:Name="txtTelefono" Height="30" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" Style="{DynamicResource MaterialDesignTextBoxBase}" Background="#4CEDEDED" TabIndex="6" KeyUp="txtTelefono_KeyUp"/>
-                                </StackPanel>
-                            </Border>-->
+                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Empresa.Telefono, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="6" MaxLength="20"/>
 
                         </StackPanel>
 

@@ -1,11 +1,14 @@
 ﻿using DevExpress.Xpf.Grid;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -399,7 +402,8 @@ namespace Sadora.Clases
                     reader.Close(); //limpiamos el reader
                     reader.Dispose();
                 }
-            }catch { }
+            }
+            catch { }
         }
 
         //public static void GridAllowEdit(DevExpress.Xpf.Grid.GridControl Grid, List<String> ListaColumnas, Boolean AllowEdit, string opcion = "--AllowEdit-- o --Visible--") 
@@ -502,6 +506,7 @@ namespace Sadora.Clases
             }
         }
 
+        #endregion
         public static void PasarConEnterProximoCampo(KeyEventArgs e, string EstadoMainWindows, bool EnterPasarProximoCampo)
         {
             try
@@ -514,6 +519,32 @@ namespace Sadora.Clases
                 new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
             }
         }
-        #endregion
+
+        public static void PresentadorSnackBar(MaterialDesignThemes.Wpf.Snackbar SnackbarThree, string Message)
+        {
+            if (SnackbarThree.MessageQueue is { } messageQueue)
+                Task.Factory.StartNew(() => messageQueue.Enqueue(Message));
+        }
+
+        public static DataTable ListToDataTable<T>(List<T> items)
+        {
+            DataTable dataTable = new DataTable(typeof(T).Name);
+            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (PropertyInfo prop in Props)
+                dataTable.Columns.Add(prop.Name);
+
+            foreach (T item in items)
+            {
+                var values = new object[Props.Length];
+                for (int i = 0; i < Props.Length; i++)
+                    values[i] = Props[i].GetValue(item, null);
+
+                dataTable.Rows.Add(values);
+            }
+
+            return dataTable;
+        }
+
     }
 }

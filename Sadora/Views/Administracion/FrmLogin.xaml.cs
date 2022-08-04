@@ -93,7 +93,7 @@ namespace Sadora.Administracion
                     if (reader.Rows.Count == 1 && reader.Columns.Contains("Nombre") && reader.Columns.Contains("Logo"))
                     {
                         ClassVariables.ClasesVariables.NombreEmpresa = reader.Rows[0]["Nombre"].ToString();
-                        ClassVariables.LogoEmpresa = (byte[])reader.Rows[0]["Logo"]; //(byte[])reader.Rows[0]["Nombre"];
+                        ClassVariables.LogoEmpresa = !string.IsNullOrEmpty(reader.Rows[0]["Logo"].ToString()) ? (byte[])reader.Rows[0]["Logo"] : default; //(byte[])reader.Rows[0]["Nombre"];
                         ClassVariables.ClasesVariables.RNCEmpresa = reader.Rows[0]["RNC"].ToString();
                         ClassVariables.ClasesVariables.TelefonoEmpresa = reader.Rows[0]["Telefono"].ToString();
                         ClassVariables.ClasesVariables.DireccionEmpresa = reader.Rows[0]["Direccion"].ToString();
