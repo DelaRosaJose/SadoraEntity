@@ -131,6 +131,7 @@
     <Compile Include="CustomElements\UscTextboxGeneral.xaml.cs">
       <DependentUpon>UscTextboxGeneral.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\SadoraEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
