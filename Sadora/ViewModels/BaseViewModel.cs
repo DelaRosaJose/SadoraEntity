@@ -15,7 +15,6 @@ namespace Sadora.ViewModels
 
 
         string _estadoVentana;
-
         public string EstadoVentana
         {
             get { return _estadoVentana; }
@@ -36,17 +35,10 @@ namespace Sadora.ViewModels
             get { return _ventana; }
             set
             {
-                //if (_ventana == value)
-                //    return;
                 _ventana = value;
                 OnPropertyChanged(nameof(Ventana));
             }
 
-        }
-
-        public BaseViewModel()
-        {
-            
         }
 
     }

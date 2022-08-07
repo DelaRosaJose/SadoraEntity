@@ -4,6 +4,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -70,7 +71,9 @@ namespace Sadora.Clientes
                 Modifica = ClassVariables.Modifica;
 
                 ViewModel.EstadoVentana = "Modo Consulta";
+
                 ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                _FistClienteID = 1;
             }
         }
 
@@ -78,110 +81,40 @@ namespace Sadora.Clientes
         {
             try
             {
-                int intValue;
-                //using (SadoraEntity db = new Models.SadoraEntity())
-                //{
-                    string ButtonName = ((Button)e.OriginalSource).Name;
+                string ButtonName = ((Button)e.OriginalSource).Name;
 
-                    TcliCliente Tsql = default;
 
-                    var este = this;
+                string Registro = ViewModel.Ventana != null ? ViewModel.Ventana.ClienteID.ToString() : null;
 
-                    //BaseModel.Procesar<TcliCliente>(ButtonName);
-                    ViewModel.Ventana = await BaseModel.Procesar<TcliCliente, BaseModel>(BotonPulsado: ButtonName, Viewmodel: ViewModel.Ventana, getProp: x => x.ClienteID, IdRegistro: "5", EstadoVentana: ViewModel.EstadoVentana, Viewmodels: ViewModel.Ventana);
+                int intValue = int.TryParse(Registro, out intValue) ? intValue : 0;
+
+                ViewModel.Ventana = await BaseModel.Procesar<TcliCliente, ViewModels.BaseViewModel<TcliCliente>>(BotonPulsado: ButtonName, viewModel: ViewModel, IdRegistro: Registro, getProp: x => x.ClienteID, getExpresion: x => x.ClienteID < (intValue - 1) && x.ClienteID > ((intValue - 1) - 5)/*x.ClienteID == (intValue - 1)*/);
+
+                _FistClienteID = ButtonName == "BtnPrimerRegistro" ? ViewModel.Ventana.ClienteID : _FistClienteID;
+                _LastClienteID = ButtonName == "BtnUltimoRegistro" ? ViewModel.Ventana.ClienteID : _FistClienteID;
+
+
 
                 switch (ButtonName)
                 {
                     case "BtnPrimerRegistro":
-                        //Tsql = db.TcliClientes.OrderBy(x => x.ClienteID).FirstOrDefault();
-                        //ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
-                        //_FistClienteID = ViewModel.Cliente.ClienteID;
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
+
                         break;
 
                     case "BtnAnteriorRegistro":
-                        //intValue = int.TryParse(ViewModel.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
-                        //Tsql = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                        //ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Ventana.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
                         break;
 
                     case "BtnProximoRegistro":
-                        //intValue = int.TryParse(ViewModel.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
-                        //Tsql = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                        //ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Ventana.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
                         break;
 
                     case "BtnUltimoRegistro":
-                        //Tsql = db.TcliClientes.OrderByDescending(x => x.ClienteID).FirstOrDefault();
-                        //ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
-                        //_LastClienteID = ViewModel.Cliente.ClienteID;
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                         break;
 
                     case "BtnBuscar":
-                        //if (ViewModel.EstadoVentana == "Modo Consulta")
-                        //    last = ViewModel.Cliente.ClienteID;
-                        //else if (ViewModel.EstadoVentana == "Modo Busqueda")
-                        //{
-
-
-                        //    ViewModel.Cliente.ClienteID = 0;
-                        //    var Result = db.TcliClientes.Where(x => (x.ClienteID == ViewModel.Cliente.ClienteID || ViewModel.Cliente.ClienteID == 0)
-
-                        //                                            //(ClienteID = @ClienteID or @ClienteID = 0) and(RNC = @RNC or @RNC = '') and(Nombre like '%' + @Nombre + '%' or @Nombre = '')
-
-                        //                                            /* || (x.RNC.Contains(ViewModel.Cliente.RNC) //== ViewModel.Cliente.RNC
-                        //                                             && x.Nombre.StartsWith(ViewModel.Cliente.Nombre)// == ViewModel.Cliente.Nombre
-                        //                                             && x.Representante.Contains(ViewModel.Cliente.Representante)// == ViewModel.Cliente.Representante
-                        //                                             && x.Direccion.Contains(ViewModel.Cliente.Direccion)// == ViewModel.Cliente.Direccion
-                        //                                             && x.CorreoElectronico.Contains(ViewModel.Cliente.CorreoElectronico)// == ViewModel.Cliente.CorreoElectronico
-                        //                                             && x.Telefono.Contains(ViewModel.Cliente.Telefono)// == ViewModel.Cliente.Telefono
-                        //                                             && x.Celular.Contains(ViewModel.Cliente.Celular))
-                        //                                            */
-
-                        //                                            //&& x.Nombre.Contains(ViewModel.Cliente.Nombre)// == ViewModel.Cliente.Nombre
-                        //                                            //&& x.Representante.Contains(ViewModel.Cliente.Representante)// == ViewModel.Cliente.Representante
-                        //                                            //&& x.Direccion.Contains(ViewModel.Cliente.Direccion)// == ViewModel.Cliente.Direccion
-                        //                                            //&& x.CorreoElectronico.Contains(ViewModel.Cliente.CorreoElectronico)// == ViewModel.Cliente.CorreoElectronico
-                        //                                            //&& x.Telefono.Contains(ViewModel.Cliente.Telefono)// == ViewModel.Cliente.Telefono
-                        //                                            //&& x.Celular.Contains(ViewModel.Cliente.Celular))// == ViewModel.Cliente.Celular
-                        //                                            ).ToList();
-                        //    if (Result.Count == 0)
-                        //        ClassControl.PresentadorSnackBar(SnackbarThree, "No se encontraron datos");
-                        //    else if (Result.Count == 1)
-                        //        ViewModel.Cliente = Result[0];
-                        //    else
-                        //    {
-                        //        Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost(null, ClassControl.ListToDataTable(Result), null);
-                        //        frm.ShowDialog();
-
-                        //        if (frm.GridMuestra.SelectedItem != null)
-                        //        {
-                        //            DataRowView item = frm.GridMuestra.SelectedItem as DataRowView;
-                        //            //txtClienteID.Text = item.Row.ItemArray[0].ToString();
-                        //            //setDatos(0, txtClienteID.Text);
-                        //            frm.Close();
-                        //        }
-                        //        else
-                        //        {
-                        //            //setDatos(0, last);
-                        //        }
-                        //    }
-
-                        //    //var matches = from x in db.TcliClientes
-                        //    //              where x.ClienteID.Contains(ViewModel.Cliente.ClienteID)
-                        //    //              select x;
-
-
-                        //    //var ResultSet = "";//db.TcliClientes.e
-                        //    //Where(x=>x.ClienteID = ViewModel.Cliente.ClienteID).FirstOrDefault();
-                        //}
-
-                        //MessageBox.Show(ViewModel.EstadoVentana);
-
-                        //ViewModel.Cliente = db.TcliClientes.Find(ViewModel.Cliente.ClienteID);//Where(x=>x.ClienteID = ViewModel.Cliente.ClienteID).FirstOrDefault();
 
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName, EstadoVentanaPadre: ViewModel.EstadoVentana);
                         break;
@@ -200,17 +133,12 @@ namespace Sadora.Clientes
                         break;
 
                     case "BtnGuardar":
-                        //if (ViewModel.EstadoVentana == "Modo Agregar")
-                        //    db.TcliClientes.Add(ViewModel.Cliente);
-                        //else if (ViewModel.EstadoVentana == "Modo Editar")
-                        //    db.Entry(ViewModel.Cliente).State = System.Data.Entity.EntityState.Modified;
-
-                        //await db.SaveChangesAsync();
-
                         ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
                         break;
                 }
-            //}
+                //}
+
+
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;
