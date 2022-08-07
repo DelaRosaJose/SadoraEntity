@@ -6,7 +6,7 @@ using Sadora.Clases;
 
 namespace Sadora.ViewModels.Clientes
 {
-    public class ClientesViewModel : BaseViewModel
+    public class ClientesViewModel : BaseViewModel<Models.TcliCliente>
     {
         #region UscClientes ViewModel
 

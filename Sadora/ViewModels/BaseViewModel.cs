@@ -1,9 +1,10 @@
-﻿using System.ComponentModel;
+﻿using Sadora.Clases;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Sadora.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanging, INotifyPropertyChanged
+    public class BaseViewModel<T> : INotifyPropertyChanging, INotifyPropertyChanged where T : class
     {
         public event PropertyChangingEventHandler PropertyChanging;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,6 +27,26 @@ namespace Sadora.ViewModels
                 OnPropertyChanged(nameof(EstadoVentana));
             }
 
+        }
+
+        T _ventana;
+
+        public T Ventana
+        {
+            get { return _ventana; }
+            set
+            {
+                //if (_ventana == value)
+                //    return;
+                _ventana = value;
+                OnPropertyChanged(nameof(Ventana));
+            }
+
+        }
+
+        public BaseViewModel()
+        {
+            
         }
 
     }

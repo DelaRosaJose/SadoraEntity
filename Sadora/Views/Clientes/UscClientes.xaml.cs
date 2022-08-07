@@ -12,7 +12,8 @@ namespace Sadora.Clientes
 {
     public partial class UscClientes : UserControl
     {
-        readonly ViewModels.Clientes.ClientesViewModel ViewModel = new ViewModels.Clientes.ClientesViewModel();
+        //readonly ViewModels.Clientes.ClientesViewModel ViewModel = new ViewModels.Clientes.ClientesViewModel();
+        readonly ViewModels.BaseViewModel<TcliCliente> ViewModel = new ViewModels.BaseViewModel<TcliCliente>();
 
         public UscClientes()
         {
@@ -87,7 +88,7 @@ namespace Sadora.Clientes
                     var este = this;
 
                     //BaseModel.Procesar<TcliCliente>(ButtonName);
-                    ViewModel.Cliente = await BaseModel.Procesar(BotonPulsado: ButtonName, Viewmodel: ViewModel.Cliente, getProp: x => x.ClienteID, IdRegistro: ViewModel.Cliente.ClienteID.ToString(), EstadoVentana: ViewModel.EstadoVentana);
+                    ViewModel.Ventana = await BaseModel.Procesar<TcliCliente, BaseModel>(BotonPulsado: ButtonName, Viewmodel: ViewModel.Ventana, getProp: x => x.ClienteID, IdRegistro: "5", EstadoVentana: ViewModel.EstadoVentana, Viewmodels: ViewModel.Ventana);
 
                 switch (ButtonName)
                 {
@@ -102,14 +103,14 @@ namespace Sadora.Clientes
                         //intValue = int.TryParse(ViewModel.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
                         //Tsql = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
                         //ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Ventana.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
                         break;
 
                     case "BtnProximoRegistro":
                         //intValue = int.TryParse(ViewModel.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
                         //Tsql = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
                         //ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
+                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Ventana.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
                         break;
 
                     case "BtnUltimoRegistro":

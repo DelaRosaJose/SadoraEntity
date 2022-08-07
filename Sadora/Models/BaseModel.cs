@@ -11,7 +11,7 @@ namespace Sadora.Models
     public class BaseModel
     {
 
-        public static async Task<T> Procesar<T>(string BotonPulsado, T Viewmodel, Func<T, IComparable> getProp, string IdRegistro, string EstadoVentana) where T : class
+        public static async Task<T> Procesar<T, J>(string BotonPulsado, T Viewmodel, Func<T, IComparable> getProp, string IdRegistro, string EstadoVentana, J Viewmodels) where T : class where J : ViewModels.BaseViewModel<J>
         {
             var NewViewModel = Viewmodel;
             try
@@ -21,6 +21,8 @@ namespace Sadora.Models
                 using (SadoraEntity db = new SadoraEntity())
                 {
 
+                    //var id = Viewmodels;
+                    //var ididi = id.Ventana;
                     T Tsql = default;
 
                     #region MyRegion
@@ -28,7 +30,7 @@ namespace Sadora.Models
                     {
                         case "BtnPrimerRegistro":
                             Tsql = db.Set<T>().OrderBy(getProp).FirstOrDefault();
-                            NewViewModel = Tsql != default ? Tsql : Viewmodel;
+                            NewViewModel = /*ididi =*/ Tsql != default ? Tsql : Viewmodel;
                             //_FistClienteID = ViewModel.Cliente.ClienteID;
                             //ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                             break;

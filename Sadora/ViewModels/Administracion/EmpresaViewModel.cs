@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Sadora.ViewModels.Administracion
 {
-    internal class EmpresaViewModel : BaseViewModel
+    internal class EmpresaViewModel : BaseViewModel<Models.TcliCliente>
     {
         #region UscEmpresa ViewModel
 
