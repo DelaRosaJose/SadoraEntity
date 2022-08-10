@@ -12,15 +12,10 @@ namespace Sadora.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TsysEmpresa
+    public partial class TcliClaseCliente
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
-        public string RNC { get; set; }
-        public string Razon_Social { get; set; }
-        public string Direccion { get; set; }
-        public byte[] Logo { get; set; }
         public Nullable<int> UsuarioID { get; set; }
-        public string Telefono { get; set; }
     }
 }

@@ -147,7 +147,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SadoraEntity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TcliClaseCliente.cs">
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TcliCliente.cs">
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TconComprobante.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TsysAcceso.cs">

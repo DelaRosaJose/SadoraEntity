@@ -38,7 +38,7 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="Empresa ID" Text="{Binding Empresa.EmpresaID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="1" FieldNumeric="True"/>
+                            <Sadora:UscTextboxGeneral Title="Empresa ID" Text="{Binding Empresa.ID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="1" FieldNumeric="True"/>
 
                             <Sadora:UscTextboxGeneral Title="Razon Social" Text="{Binding Empresa.Razon_Social, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="4" MaxLength="15"/>
 

@@ -11,11 +11,10 @@ namespace Sadora.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TcliCliente
     {
-        public int ClienteID { get; set; }
+        public int ID { get; set; }
         public string RNC { get; set; }
         public string Nombre { get; set; }
         public string Representante { get; set; }

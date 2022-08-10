@@ -37,7 +37,7 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Ventana.ClienteID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="1" FieldNumeric="True"/>
+                            <Sadora:UscTextboxGeneral Title="Cliente ID" Text="{Binding Ventana.ID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="1" FieldNumeric="True"/>
 
                             <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Ventana.Nombre, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="4"/>
 

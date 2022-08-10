@@ -32,7 +32,7 @@ namespace Sadora.Clientes
         bool Inicializador = false;
 
         //string Load;
-        private int? _FistClienteID, _LastClienteID, last;
+        private int? _FistID, _LastID, last;
 
 
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
@@ -49,7 +49,7 @@ namespace Sadora.Clientes
                 ViewModel.EstadoVentana = "Modo Consulta";
 
                 ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                _FistClienteID = 1;
+                _FistID = 1;
             }
         }
 
@@ -58,31 +58,31 @@ namespace Sadora.Clientes
             try
             {
                 string ButtonName = ((Button)e.OriginalSource).Name;
-                string Registro = ViewModel.Ventana != null ? ViewModel.Ventana.ClienteID.ToString() : null;
+                string Registro = ViewModel.Ventana != null ? ViewModel.Ventana.ID.ToString() : null;
                 int intValue = int.TryParse(Registro, out intValue) ? intValue : 0;
 
                 if (ButtonName == "BtnAnteriorRegistro")
-                    predicate = (x) => x.ClienteID < (intValue) && x.ClienteID > ((intValue) - 5);
+                    predicate = (x) => x.ID < (intValue) && x.ID > ((intValue) - 5);
                 else if(ButtonName == "BtnProximoRegistro")
-                    predicate = (x) => x.ClienteID > (intValue) && x.ClienteID < ((intValue) + 5);
+                    predicate = (x) => x.ID > (intValue) && x.ID < ((intValue) + 5);
                 else if (ButtonName != "BtnCancelar" && ViewModel.Ventana != null)
                 {
-                    last = ViewModel.Ventana.ClienteID;
-                    ViewModel.Ventana.ClienteID = ButtonName == "BtnAgregar" ? ViewModel.Ventana.ClienteID + 1 : default;
+                    last = ViewModel.Ventana.ID;
+                    ViewModel.Ventana.ID = ButtonName == "BtnAgregar" ? ViewModel.Ventana.ID + 1 : default;
                 }
                 else if (ButtonName == "BtnCancelar" && ViewModel.Ventana != null)
-                    ViewModel.Ventana.ClienteID = last.Value;
+                    ViewModel.Ventana.ID = last.Value;
 
                 ViewModel.Ventana = await BaseModel.Procesar(BotonPulsado: ButtonName, viewModel: ViewModel, IdRegistro: intValue.ToString(),
-                    getProp: x => x.ClienteID, getExpresion: predicate, view: MainView.Children, lastRegistro: last);
+                    getProp: x => x.ID, getExpresion: predicate, view: MainView.Children, lastRegistro: last);
 
-                _FistClienteID = ButtonName == "BtnPrimerRegistro" ? ViewModel.Ventana.ClienteID : _FistClienteID;
-                _LastClienteID = ButtonName == "BtnUltimoRegistro" ? ViewModel.Ventana.ClienteID : _LastClienteID;
+                _FistID = ButtonName == "BtnPrimerRegistro" ? ViewModel.Ventana.ID : _FistID;
+                _LastID = ButtonName == "BtnUltimoRegistro" ? ViewModel.Ventana.ID : _LastID;
 
                 ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado:
                     ButtonName == "BtnGuardar" ? "BtnUltimoRegistro" :
-                    ButtonName == "BtnAnteriorRegistro" ? ViewModel.Ventana.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro" :
-                    ButtonName == "BtnProximoRegistro" ? ViewModel.Ventana.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro" :
+                    ButtonName == "BtnAnteriorRegistro" ? ViewModel.Ventana.ID > _FistID ? ButtonName : "BtnPrimerRegistro" :
+                    ButtonName == "BtnProximoRegistro" ? ViewModel.Ventana.ID < _LastID ? ButtonName : "BtnUltimoRegistro" :
                     ButtonName == "BtnCancelar" ? "BtnUltimoRegistro" :
                     ButtonName,
                     ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);
@@ -114,7 +114,7 @@ namespace Sadora.Clientes
 
             if (Estado == "Modo Consulta")
             {
-                last = txtClienteID.Text;
+                last = txtID.Text;
                 SetEnabledButton("Modo Busqueda");
             }
             else if (Estado == "Modo Busqueda")
@@ -142,8 +142,8 @@ namespace Sadora.Clientes
                     if (frm.GridMuestra.SelectedItem != null)
                     {
                         DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-                        txtClienteID.Text = item.Row.ItemArray[0].ToString();
-                        setDatos(0, txtClienteID.Text);
+                        txtID.Text = item.Row.ItemArray[0].ToString();
+                        setDatos(0, txtID.Text);
                         frm.Close();
                     }
                     else

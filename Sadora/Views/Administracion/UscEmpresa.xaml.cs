@@ -28,11 +28,11 @@ namespace Sadora.Administracion
         DataTable tabla;
         string Estado;
         string Lista;
-        int EmpresaID;
-        int LastEmpresaID;
+        int ID;
+        int LastID;
         //string last = "";
 
-        int? _FistEmpresaID, _LastEmpresaID, last;
+        int? _FistID, _LastID, last;
 
         byte[] pic = null;
 
@@ -73,42 +73,42 @@ namespace Sadora.Administracion
                     switch (ButtonName)
                     {
                         case "BtnPrimerRegistro":
-                            Tsql = db.TsysEmpresas.OrderBy(x => x.EmpresaID).FirstOrDefault();
+                            Tsql = db.TsysEmpresas.OrderBy(x => x.ID).FirstOrDefault();
                             ViewModel.Empresa = Tsql != default ? Tsql : ViewModel.Empresa;
-                            _FistEmpresaID = ViewModel.Empresa.EmpresaID;
+                            _FistID = ViewModel.Empresa.ID;
                             ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                             break;
 
                         case "BtnAnteriorRegistro":
-                            intValue = int.TryParse(ViewModel.Empresa.EmpresaID.ToString(), out intValue) ? intValue : 0;
-                            Tsql = db.TsysEmpresas.Where(x => x.EmpresaID == (intValue - 1)).OrderBy(x => x.EmpresaID).FirstOrDefault();
+                            intValue = int.TryParse(ViewModel.Empresa.ID.ToString(), out intValue) ? intValue : 0;
+                            Tsql = db.TsysEmpresas.Where(x => x.ID == (intValue - 1)).OrderBy(x => x.ID).FirstOrDefault();
                             ViewModel.Empresa = Tsql != default ? Tsql : ViewModel.Empresa;
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Empresa.EmpresaID > _FistEmpresaID ? ButtonName : "BtnPrimerRegistro");
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Empresa.ID > _FistID ? ButtonName : "BtnPrimerRegistro");
                             break;
 
                         case "BtnProximoRegistro":
-                            intValue = int.TryParse(ViewModel.Empresa.EmpresaID.ToString(), out intValue) ? intValue : 0;
-                            Tsql = db.TsysEmpresas.Where(x => x.EmpresaID == (intValue + 1)).OrderBy(x => x.EmpresaID).FirstOrDefault();
+                            intValue = int.TryParse(ViewModel.Empresa.ID.ToString(), out intValue) ? intValue : 0;
+                            Tsql = db.TsysEmpresas.Where(x => x.ID == (intValue + 1)).OrderBy(x => x.ID).FirstOrDefault();
                             ViewModel.Empresa = Tsql != default ? Tsql : ViewModel.Empresa;
-                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Empresa.EmpresaID < _LastEmpresaID ? ButtonName : "BtnUltimoRegistro");
+                            ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Empresa.ID < _LastID ? ButtonName : "BtnUltimoRegistro");
                             break;
 
                         case "BtnUltimoRegistro":
-                            Tsql = db.TsysEmpresas.OrderByDescending(x => x.EmpresaID).FirstOrDefault();
+                            Tsql = db.TsysEmpresas.OrderByDescending(x => x.ID).FirstOrDefault();
                             ViewModel.Empresa = Tsql != default ? Tsql : ViewModel.Empresa;
-                            _LastEmpresaID = ViewModel.Empresa.EmpresaID;
+                            _LastID = ViewModel.Empresa.ID;
                             ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
                             break;
 
                         case "BtnBuscar":
                             if (ViewModel.EstadoVentana == "Modo Consulta")
-                                last = ViewModel.Empresa.EmpresaID;
+                                last = ViewModel.Empresa.ID;
                             else if (ViewModel.EstadoVentana == "Modo Busqueda")
                             {
 
 
-                                ViewModel.Empresa.EmpresaID = 0;
-                                var Result = db.TsysEmpresas.Where(x => (x.EmpresaID == ViewModel.Empresa.EmpresaID || ViewModel.Empresa.EmpresaID == 0)
+                                ViewModel.Empresa.ID = 0;
+                                var Result = db.TsysEmpresas.Where(x => (x.ID == ViewModel.Empresa.ID || ViewModel.Empresa.ID == 0)
 
                                                                         //(ClienteID = @ClienteID or @ClienteID = 0) and(RNC = @RNC or @RNC = '') and(Nombre like '%' + @Nombre + '%' or @Nombre = '')
 
@@ -236,7 +236,7 @@ namespace Sadora.Administracion
         //    SetEnabledButton("Modo Consulta");
         //    try
         //    {
-        //        EmpresaID = Convert.ToInt32(txtEmpresaID.Text) - 1;
+        //        ID = Convert.ToInt32(txtID.Text) - 1;
         //    }
         //    catch (Exception exception)
         //    {
@@ -244,7 +244,7 @@ namespace Sadora.Administracion
         //    }
 
 
-        //    if (EmpresaID <= 1)
+        //    if (ID <= 1)
         //    {
         //        BtnPrimerRegistro.IsEnabled = false;
         //        BtnAnteriorRegistro.IsEnabled = false;
@@ -252,7 +252,7 @@ namespace Sadora.Administracion
         //    }
         //    else
         //    {
-        //        setDatos(0, EmpresaID.ToString());
+        //        setDatos(0, ID.ToString());
         //    }
         //}
 
@@ -266,22 +266,22 @@ namespace Sadora.Administracion
         //    SetEnabledButton("Modo Consulta");
         //    try
         //    {
-        //        EmpresaID = Convert.ToInt32(txtEmpresaID.Text) + 1;
+        //        ID = Convert.ToInt32(txtID.Text) + 1;
         //    }
         //    catch (Exception exception)
         //    {
         //        ClassVariables.GetSetError = "Ha ocurrido un error: " + exception.ToString();
         //    }
 
-        //    if (EmpresaID >= LastEmpresaID)
+        //    if (ID >= LastID)
         //    {
         //        BtnUltimoRegistro.IsEnabled = false;
         //        BtnProximoRegistro.IsEnabled = false;
-        //        setDatos(0, LastEmpresaID.ToString());
+        //        setDatos(0, LastID.ToString());
         //    }
         //    else
         //    {
-        //        setDatos(0, EmpresaID.ToString());
+        //        setDatos(0, ID.ToString());
         //    }
         //}
 
@@ -303,14 +303,14 @@ namespace Sadora.Administracion
 
         //    if (Estado == "Modo Consulta")
         //    {
-        //        last = txtEmpresaID.Text;
+        //        last = txtID.Text;
         //        SetEnabledButton("Modo Busqueda");
         //    }
         //    else if (Estado == "Modo Busqueda")
         //    {
         //        List<Control> listaControles = new List<Control>() //Estos son los controles que desahilitaremos al dar click en el boton buscar, los controles que no esten en esta lista se quedaran habilitados para poder buscar un registro por ellos.
         //        {
-        //            txtEmpresaID//,tbxEmpleadoID,txtPassword,txtGrupoID,tbxGrupoID,cActivar
+        //            txtID//,tbxEmpleadoID,txtPassword,txtGrupoID,tbxGrupoID,cActivar
         //        };
         //        Clases.ClassControl.ActivadorControlesReadonly(null, true, false, false, listaControles);
 
@@ -331,8 +331,8 @@ namespace Sadora.Administracion
         //            if (frm.GridMuestra.SelectedItem != null)
         //            {
         //                DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-        //                txtEmpresaID.Text = item.Row.ItemArray[0].ToString();
-        //                setDatos(0, txtEmpresaID.Text);
+        //                txtID.Text = item.Row.ItemArray[0].ToString();
+        //                setDatos(0, txtID.Text);
         //                frm.Close();
         //            }
         //            else
@@ -360,7 +360,7 @@ namespace Sadora.Administracion
 
         //private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         //{
-        //    last = txtEmpresaID.Text;
+        //    last = txtID.Text;
         //    this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         //    SetEnabledButton("Modo Agregar");
         //}
@@ -397,7 +397,7 @@ namespace Sadora.Administracion
         //            setDatos(1, null);
         //        }
         //        SetEnabledButton("Modo Consulta");
-        //        setDatos(0, txtEmpresaID.Text);
+        //        setDatos(0, txtID.Text);
         //        ClassVariables.ClasesVariables.NombreEmpresa = txtNombre.Text;
         //        ClassVariables.ClasesVariables.RNCEmpresa = txtRNC.Text;
         //        ClassVariables.ClasesVariables.TelefonoEmpresa = txtTelefono.Text;
