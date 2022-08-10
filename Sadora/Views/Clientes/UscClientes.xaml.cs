@@ -3,6 +3,7 @@ using Sadora.Models;
 using System;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +16,8 @@ namespace Sadora.Clientes
     {
         //readonly ViewModels.Clientes.ClientesViewModel ViewModel = new ViewModels.Clientes.ClientesViewModel();
         readonly ViewModels.BaseViewModel<TcliCliente> ViewModel = new ViewModels.BaseViewModel<TcliCliente>();
+        Expression<Func<TcliCliente, bool>> predicate;
+
 
         public UscClientes()
         {
@@ -27,35 +30,8 @@ namespace Sadora.Clientes
         readonly bool PuedeUsarBotonAnular = false;
 
         bool Inicializador = false;
-        //string _estado;
 
-        //public string Estado
-        //{
-        //    get { return _estado; }
-        //    set { _estado = value; }
-
-        //    //get { return _estado; }
-        //    //set
-        //    //{
-        //    //    if (_estado == value)
-        //    //        return;
-        //    //    _estado = value;
-        //    //    OnPropertyChanged(nameof(Estado));
-        //    //}
-
-        //}
-
-
-        #region Variables Comentadas
-
-        //DataTable tabla;
-        //SqlDataReader reader;
-        //string Estado, Lista, last;
-        //int ClienteID, LastClienteID;
-
-        #endregion
-
-        //string last;
+        //string Load;
         private int? _FistClienteID, _LastClienteID, last;
 
 
@@ -82,63 +58,37 @@ namespace Sadora.Clientes
             try
             {
                 string ButtonName = ((Button)e.OriginalSource).Name;
-
-
                 string Registro = ViewModel.Ventana != null ? ViewModel.Ventana.ClienteID.ToString() : null;
-
                 int intValue = int.TryParse(Registro, out intValue) ? intValue : 0;
 
-                ViewModel.Ventana = await BaseModel.Procesar<TcliCliente, ViewModels.BaseViewModel<TcliCliente>>(BotonPulsado: ButtonName, viewModel: ViewModel, IdRegistro: Registro, getProp: x => x.ClienteID, getExpresion: x => x.ClienteID < (intValue - 1) && x.ClienteID > ((intValue - 1) - 5)/*x.ClienteID == (intValue - 1)*/);
+                if (ButtonName == "BtnAnteriorRegistro")
+                    predicate = (x) => x.ClienteID < (intValue) && x.ClienteID > ((intValue) - 5);
+                else if(ButtonName == "BtnProximoRegistro")
+                    predicate = (x) => x.ClienteID > (intValue) && x.ClienteID < ((intValue) + 5);
+                else if (ButtonName != "BtnCancelar" && ViewModel.Ventana != null)
+                {
+                    last = ViewModel.Ventana.ClienteID;
+                    ViewModel.Ventana.ClienteID = ButtonName == "BtnAgregar" ? ViewModel.Ventana.ClienteID + 1 : default;
+                }
+                else if (ButtonName == "BtnCancelar" && ViewModel.Ventana != null)
+                    ViewModel.Ventana.ClienteID = last.Value;
+
+                ViewModel.Ventana = await BaseModel.Procesar(BotonPulsado: ButtonName, viewModel: ViewModel, IdRegistro: intValue.ToString(),
+                    getProp: x => x.ClienteID, getExpresion: predicate, view: MainView.Children, lastRegistro: last);
 
                 _FistClienteID = ButtonName == "BtnPrimerRegistro" ? ViewModel.Ventana.ClienteID : _FistClienteID;
-                _LastClienteID = ButtonName == "BtnUltimoRegistro" ? ViewModel.Ventana.ClienteID : _FistClienteID;
+                _LastClienteID = ButtonName == "BtnUltimoRegistro" ? ViewModel.Ventana.ClienteID : _LastClienteID;
 
+                ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado:
+                    ButtonName == "BtnGuardar" ? "BtnUltimoRegistro" :
+                    ButtonName == "BtnAnteriorRegistro" ? ViewModel.Ventana.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro" :
+                    ButtonName == "BtnProximoRegistro" ? ViewModel.Ventana.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro" :
+                    ButtonName == "BtnCancelar" ? "BtnUltimoRegistro" :
+                    ButtonName,
+                    ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);
 
-
-                switch (ButtonName)
-                {
-                    case "BtnPrimerRegistro":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
-
-                        break;
-
-                    case "BtnAnteriorRegistro":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Ventana.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
-                        break;
-
-                    case "BtnProximoRegistro":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Ventana.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
-                        break;
-
-                    case "BtnUltimoRegistro":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
-                        break;
-
-                    case "BtnBuscar":
-
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName, EstadoVentanaPadre: ViewModel.EstadoVentana);
-                        break;
-
-                    case "BtnAgregar":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
-                        ClassControl.LimpiadorGeneral(MainView.Children);
-                        break;
-
-                    case "BtnEditar":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
-                        break;
-
-                    case "BtnCancelar":
-                        ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                        break;
-
-                    case "BtnGuardar":
-                        ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: "BtnUltimoRegistro");
-                        break;
-                }
-                //}
-
-
+                if (ButtonName == "BtnCancelar")
+                    MessageBox.Show($"{last}");
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;
@@ -150,9 +100,8 @@ namespace Sadora.Clientes
                     ControlesGenerales.BtnAnular.IsEnabled = PuedeUsarBotonAnular;
 
                 ViewModel.EstadoVentana = ControlesGenerales.EstadoVentana;
-
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
             }

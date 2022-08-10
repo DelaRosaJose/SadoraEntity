@@ -1,4 +1,5 @@
-﻿using Sadora.ViewModels;
+﻿using Sadora.Clases;
+using Sadora.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,13 +8,15 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Sadora.Models
 {
     public class BaseModel
     {
 
-        public static async Task<T> Procesar<T, J>(string BotonPulsado, J viewModel, string IdRegistro, Func<T, IComparable> getProp, Expression<Func<T, bool>> getExpresion) where T : class where J : BaseViewModel<T>
+        public static async Task<T> Procesar<T, J>(string BotonPulsado, J viewModel, string IdRegistro, Func<T, IComparable> getProp, 
+            Expression<Func<T, bool>> getExpresion, UIElementCollection view, int? lastRegistro) where T : class where J : BaseViewModel<T>
         {
             string EstadoVentana = viewModel.EstadoVentana;
             T ViewModel = viewModel.Ventana;
@@ -39,19 +42,14 @@ namespace Sadora.Models
 
                         case "BtnAnteriorRegistro":
                             intValue = int.TryParse(IdRegistro, out intValue) ? intValue : 0;
-                            //Tsql = db.TcliClientes.Where(x => x.ClienteID == (intValue - 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
                             Tsql = db.Set<T>().Where(getExpresion).OrderByDescending(getProp).FirstOrDefault();
                             ViewModel = Tsql != default ? Tsql : UnChangedViewModel;
-
-                            //ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
-                            //ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Cliente.ClienteID > _FistClienteID ? ButtonName : "BtnPrimerRegistro");
                             break;
 
                         case "BtnProximoRegistro":
-                            //intValue = int.TryParse(ViewModel.Cliente.ClienteID.ToString(), out intValue) ? intValue : 0;
-                            //Tsql = db.TcliClientes.Where(x => x.ClienteID == (intValue + 1)).OrderBy(x => x.ClienteID).FirstOrDefault();
-                            //ViewModel.Cliente = Tsql != default ? Tsql : ViewModel.Cliente;
-                            //ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ViewModel.Cliente.ClienteID < _LastClienteID ? ButtonName : "BtnUltimoRegistro");
+                            intValue = int.TryParse(IdRegistro, out intValue) ? intValue : 0;
+                            Tsql = db.Set<T>().Where(getExpresion).OrderBy(getProp).FirstOrDefault();
+                            ViewModel = Tsql != default ? Tsql : UnChangedViewModel;
                             break;
 
                         case "BtnUltimoRegistro":
@@ -59,17 +57,13 @@ namespace Sadora.Models
                             ViewModel = Tsql != default ? Tsql : UnChangedViewModel;
                             break;
 
-                        //case "BtnAgregar":
-                        //    ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
-                        //    ClassControl.LimpiadorGeneral(MainView.Children);
-                        //    break;
-
-                        //case "BtnEditar":
-                        //    ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado: ButtonName);
-                        //    break;
+                        case "BtnAgregar":
+                            //ClassVariables.Load = viewModel.Ventana;
+                            ClassControl.LimpiadorGeneral(view);
+                            break;
 
                         //case "BtnCancelar":
-                        //    ControlesGenerales.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                        //    view
                         //    break;
 
                         case "BtnGuardar":
@@ -84,16 +78,6 @@ namespace Sadora.Models
                     #endregion
                 }
 
-                //if (Imprime == false)
-                //    ControlesGenerales.BtnImprimir.IsEnabled = Imprime;
-                //if (Agrega == false)
-                //    ControlesGenerales.BtnAgregar.IsEnabled = Agrega;
-                //if (Modifica == false)
-                //    ControlesGenerales.BtnEditar.IsEnabled = Modifica;
-                //if (PuedeUsarBotonAnular == false)
-                //    ControlesGenerales.BtnAnular.IsEnabled = PuedeUsarBotonAnular;
-
-                //ViewModel.EstadoVentana = ControlesGenerales.EstadoVentana;
                 return ViewModel;
             }
             catch (Exception ex)
