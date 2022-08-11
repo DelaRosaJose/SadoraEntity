@@ -10,7 +10,7 @@ namespace Sadora.Clientes
 {
     public partial class UscClientes : UserControl
     {
-        readonly ViewModels.BaseViewModel<TcliCliente> ViewModel = new ViewModels.BaseViewModel<TcliCliente>();
+        readonly ViewModels.BaseViewModel<TcliCliente> ViewModel = new ViewModels.BaseViewModel<TcliCliente>() { Ventana = new TcliCliente() { UsuarioID = ClassVariables.UsuarioID } };
         Expression<Func<TcliCliente, bool>> predicate;
          
         public UscClientes()
@@ -53,7 +53,7 @@ namespace Sadora.Clientes
 
                 if (ButtonName == "BtnAnteriorRegistro")
                     predicate = (x) => x.ID < (intValue) && x.ID > ((intValue) - 5);
-                else if(ButtonName == "BtnProximoRegistro")
+                else if (ButtonName == "BtnProximoRegistro")
                     predicate = (x) => x.ID > (intValue) && x.ID < ((intValue) + 5);
                 else if (ButtonName != "BtnCancelar" && ViewModel.Ventana != null)
                 {
@@ -66,13 +66,13 @@ namespace Sadora.Clientes
                 ViewModel.Ventana = await BaseModel.Procesar(BotonPulsado: ButtonName, viewModel: ViewModel, IdRegistro: intValue.ToString(),
                     getProp: x => x.ID, getExpresion: predicate, view: MainView.Children, lastRegistro: last);
 
-                _FistID = ButtonName == "BtnPrimerRegistro" ? ViewModel.Ventana.ID : _FistID;
-                _LastID = ButtonName == "BtnUltimoRegistro" ? ViewModel.Ventana.ID : _LastID;
+                _FistID = ButtonName == "BtnPrimerRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID : _FistID;
+                _LastID = ButtonName == "BtnUltimoRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID : _LastID;
 
                 ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado:
                     ButtonName == "BtnGuardar" ? "BtnUltimoRegistro" :
-                    ButtonName == "BtnAnteriorRegistro" ? ViewModel.Ventana.ID > _FistID ? ButtonName : "BtnPrimerRegistro" :
-                    ButtonName == "BtnProximoRegistro" ? ViewModel.Ventana.ID < _LastID ? ButtonName : "BtnUltimoRegistro" :
+                    ButtonName == "BtnAnteriorRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID > _FistID ? ButtonName : "BtnPrimerRegistro" :
+                    ButtonName == "BtnProximoRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID < _LastID ? ButtonName : "BtnUltimoRegistro" :
                     ButtonName == "BtnCancelar" ? "BtnUltimoRegistro" :
                     ButtonName,
                     ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);

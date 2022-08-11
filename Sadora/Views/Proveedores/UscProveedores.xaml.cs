@@ -25,12 +25,13 @@ namespace Sadora.Proveedores
     /// </summary>
     public partial class UscProveedores : UserControl
     {
-        readonly ViewModels.BaseViewModel<TsupProveedore> ViewModel = new ViewModels.BaseViewModel<TsupProveedore>();
+        readonly ViewModels.BaseViewModel<TsupProveedore> ViewModel = new ViewModels.BaseViewModel<TsupProveedore>() { Ventana= new TsupProveedore() {UsuarioID = ClassVariables.UsuarioID } };
         Expression<Func<TsupProveedore, bool>> predicate;
         public UscProveedores()
         {
             InitializeComponent();
-            Name = "UscProveedores";
+            Name = nameof(UscProveedores);
+            DataContext = ViewModel;
         }
 
         bool Imprime, Modifica, Agrega;
@@ -55,8 +56,7 @@ namespace Sadora.Proveedores
             }
 
         }
-
-
+         
         private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
             try
