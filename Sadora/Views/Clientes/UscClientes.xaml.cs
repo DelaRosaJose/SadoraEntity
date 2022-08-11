@@ -1,11 +1,7 @@
 ﻿using Sadora.Clases;
 using Sadora.Models;
 using System;
-using System.Data;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,11 +10,9 @@ namespace Sadora.Clientes
 {
     public partial class UscClientes : UserControl
     {
-        //readonly ViewModels.Clientes.ClientesViewModel ViewModel = new ViewModels.Clientes.ClientesViewModel();
-        readonly ViewModels.BaseViewModel<TcliCliente> ViewModel = new ViewModels.BaseViewModel<TcliCliente>();
+        readonly ViewModels.BaseViewModel<TcliCliente> ViewModel;
         Expression<Func<TcliCliente, bool>> predicate;
-
-
+         
         public UscClientes()
         {
             InitializeComponent();
@@ -26,14 +20,10 @@ namespace Sadora.Clientes
             DataContext = ViewModel;
         }
 
+        bool Inicializador = false;
         bool Imprime, Modifica, Agrega;
         readonly bool PuedeUsarBotonAnular = false;
-
-        bool Inicializador = false;
-
-        //string Load;
         private int? _FistID, _LastID, last;
-
 
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
 
@@ -107,65 +97,6 @@ namespace Sadora.Clientes
             }
         }
 
-
-        /*
-        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (Estado == "Modo Consulta")
-            {
-                last = txtID.Text;
-                SetEnabledButton("Modo Busqueda");
-            }
-            else if (Estado == "Modo Busqueda")
-            {
-                List<Control> listaControles = new List<Control>() //Estos son los controles que desahilitaremos al dar click en el boton buscar, los controles que no esten en esta lista se quedaran habilitados para poder buscar un registro por ellos.
-                {
-                    txtRepresentante,txtClaseID,tbxClaseID,txtDireccion,txtCorreoElectronico,txtTelefono,txtCelular,cActivar
-                };
-                Clases.ClassControl.ActivadorControlesReadonly(null, true, false, false, listaControles);
-
-                setDatos(0, null);
-
-                List<String> ListName = new List<String>() //Estos son los campos que saldran en la ventana de busqueda, solo si se le pasa esta lista de no ser asi, se mostrarian todos
-                {
-                    "Cliente ID","RNC","Nombre","Representante","Direccion","Activo"
-                };
-
-                SetEnabledButton("Modo Consulta");
-
-                if (tabla.Rows.Count > 1)
-                {
-                    Administracion.FrmMostrarDatosHost frm = new Administracion.FrmMostrarDatosHost(null, tabla, ListName);
-                    frm.ShowDialog();
-
-                    if (frm.GridMuestra.SelectedItem != null)
-                    {
-                        DataRowView item = (frm.GridMuestra as DevExpress.Xpf.Grid.GridControl).SelectedItem as DataRowView;
-                        txtID.Text = item.Row.ItemArray[0].ToString();
-                        setDatos(0, txtID.Text);
-                        frm.Close();
-                    }
-                    else
-                    {
-                        setDatos(0, last);
-                    }
-                }
-                else if (tabla.Rows.Count < 1)
-                {
-                    //BtnProximoRegistro.IsEnabled = false;
-                    //BtnAnteriorRegistro.IsEnabled = false;
-
-                    if (SnackbarThree.MessageQueue is { } messageQueue)
-                    {
-                        var message = "No se encontraron datos";
-                        Task.Factory.StartNew(() => messageQueue.Enqueue(message));
-                    }
-                }
-
-            }
-        }
-        */
         private void txtRNC_KeyUp(object sender, KeyEventArgs e)
         {
             //    if (Estado != "Modo Consulta")

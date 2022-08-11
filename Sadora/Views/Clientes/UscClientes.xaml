@@ -53,7 +53,7 @@
                         <StackPanel Orientation="Vertical" Width="auto">
 
                             <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Ventana.RNC, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="2" MaxLength="11" FieldNumeric="True"/>
-                            <!--KeyUp="txtRNC_KeyUp"-->
+                            
                             <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Ventana.Representante, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="5"/>
 
                             <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Ventana.CorreoElectronico, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="40" TabIndex="8"/>
