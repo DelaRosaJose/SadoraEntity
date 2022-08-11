@@ -49,6 +49,22 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <Property Name="UsuarioID" Type="int" />
           <Property Name="SinComprobantes" Type="bit" />
         </EntityType>
+        <EntityType Name="TsupProveedores">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RNC" Type="varchar" MaxLength="13" />
+          <Property Name="Nombre" Type="varchar" MaxLength="70" />
+          <Property Name="Representante" Type="varchar" MaxLength="70" />
+          <Property Name="ClaseID" Type="int" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="40" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Celular" Type="varchar" MaxLength="20" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="UsuarioID" Type="int" />
+        </EntityType>
         <EntityType Name="TsysAccesos">
           <Key>
             <PropertyRef Name="RowID" />
@@ -101,6 +117,7 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
         <EntityContainer Name="SadoraEntityModelStoreContainer">
           <EntitySet Name="TcliClaseClientes" EntityType="Self.TcliClaseClientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TconComprobantes" EntityType="Self.TconComprobantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TsupProveedores" EntityType="Self.TsupProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysAccesos" EntityType="Self.TsysAccesos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysEmpresa" EntityType="Self.TsysEmpresa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormularios" Schema="dbo" store:Type="Tables" />
@@ -171,6 +188,7 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <EntitySet Name="TcliClaseClientes" EntityType="SadoraEntityModel.TcliClaseCliente" />
           <EntitySet Name="TconComprobantes" EntityType="SadoraEntityModel.TconComprobante" />
           <EntitySet Name="TsysEmpresas" EntityType="SadoraEntityModel.TsysEmpresa" />
+          <EntitySet Name="TsupProveedores" EntityType="SadoraEntityModel.TsupProveedore" />
         </EntityContainer>
         <EntityType Name="TcliCliente">
           <Key>
@@ -226,6 +244,22 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="UsuarioID" Type="Int32" />
           <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TsupProveedore">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RNC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Representante" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="ClaseID" Type="Int32" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="UsuarioID" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -326,6 +360,23 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
                 <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
                 <ScalarProperty Name="RNC" ColumnName="RNC" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsupProveedores">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsupProveedore">
+              <MappingFragment StoreEntitySet="TsupProveedores">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+                <ScalarProperty Name="Representante" ColumnName="Representante" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RNC" ColumnName="RNC" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

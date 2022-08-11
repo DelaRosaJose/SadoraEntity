@@ -32,5 +32,6 @@ namespace Sadora.Models
         public virtual DbSet<TcliClaseCliente> TcliClaseClientes { get; set; }
         public virtual DbSet<TconComprobante> TconComprobantes { get; set; }
         public virtual DbSet<TsysEmpresa> TsysEmpresas { get; set; }
+        public virtual DbSet<TsupProveedore> TsupProveedores { get; set; }
     }
 }

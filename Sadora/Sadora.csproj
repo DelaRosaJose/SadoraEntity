@@ -156,6 +156,9 @@
     <Compile Include="Models\TconComprobante.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TsupProveedore.cs">
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TsysAcceso.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
@@ -168,9 +171,7 @@
     <Compile Include="Models\TsysUsuario.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Administracion\EmpresaViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Clientes\ClientesViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\Administracion\FrmControlAccesos.xaml.cs">
       <DependentUpon>FrmControlAccesos.xaml</DependentUpon>

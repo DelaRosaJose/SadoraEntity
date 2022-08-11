@@ -11,7 +11,7 @@ namespace Sadora.Administracion
 {
     public partial class UscEmpresa : UserControl
     {
-        readonly ViewModels.BaseViewModel<TsysEmpresa> ViewModel;
+        readonly ViewModels.BaseViewModel<TsysEmpresa> ViewModel = new ViewModels.BaseViewModel<TsysEmpresa>();
         Expression<Func<TsysEmpresa, bool>> predicate;
 
         bool Imprime, Modifica, Agrega;

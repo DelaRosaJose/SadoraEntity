@@ -10,7 +10,7 @@ namespace Sadora.Clientes
 {
     public partial class UscClientes : UserControl
     {
-        readonly ViewModels.BaseViewModel<TcliCliente> ViewModel;
+        readonly ViewModels.BaseViewModel<TcliCliente> ViewModel = new ViewModels.BaseViewModel<TcliCliente>();
         Expression<Func<TcliCliente, bool>> predicate;
          
         public UscClientes()
