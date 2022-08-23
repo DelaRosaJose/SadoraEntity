@@ -65,7 +65,6 @@ namespace Sadora.Administracion
                 Modifica = ClassVariables.Modifica;
 
                 FinId();
-                lTransaccionID.Text = Id;
 
                 this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
                 Inicializador = false;
@@ -242,7 +241,6 @@ namespace Sadora.Administracion
                 }
                 SetEnabledButton("Modo Consulta");
                 setDatos(0, txtTransaccionID.Text);
-                //this.BtnUltimoRegistro.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
         }
 
@@ -268,76 +266,7 @@ namespace Sadora.Administracion
             }
         }
 
-        //private void txtRepresentante_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (Estado != "Modo Consulta")
-        //    {
-        //        if (e.Key == Key.Enter)
-        //        {
-        //            ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        //        }
-        //    }
-        //}
-
-        //private void txtTransaccionID_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    ClassControl.ValidadorNumeros(e);
-        //}
-
-        //private void txtDireccion_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (Estado != "Modo Consulta")
-        //    {
-        //        if (e.Key == Key.Enter)
-        //        {
-        //            ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        //        }
-        //    }
-        //}
-
-        //private void txtCorreoElectronico_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (Estado != "Modo Consulta")
-        //    {
-        //        if (e.Key == Key.Enter)
-        //        {
-        //            ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        //        }
-        //    }
-        //}
-
-        //private void txtTelefono_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (Estado != "Modo Consulta")
-        //    {
-        //        if (e.Key == Key.Enter)
-        //        {
-        //            ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        //        }
-        //    }
-        //}
-
-        //private void txtCelular_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (Estado != "Modo Consulta")
-        //    {
-        //        if (e.Key == Key.Enter)
-        //        {
-        //            ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        //        }
-        //    }
-        //}
-
-        //private void cActivar_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (Estado != "Modo Consulta")
-        //    {
-        //        if (e.Key == Key.Enter)
-        //        {
-        //            ((CheckBox)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-        //        }
-        //    }
-        //}
+        
 
         void setDatos(int Flag, string Cliente) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
         {
@@ -384,7 +313,7 @@ namespace Sadora.Administracion
 
             if (tabla.Rows.Count == 1) //evaluamos si la tabla actualizada previamente tiene datos, de ser asi actualizamos los controles en los que mostramos esa info.
             {
-                txtTransaccionID.Text = tabla.Rows[0][Id].ToString();
+                txtTransaccionID.Text = tabla.Rows[0]["ID"].ToString();
                 txtNombre.Text = tabla.Rows[0]["Nombre"].ToString();
 
                 if (Flag == -1) //si pulsamos el boton del ultimo registro se ejecuta el flag -1 es decir que tenemos una busqueda especial

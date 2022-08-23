@@ -1,6 +1,7 @@
 ﻿using Sadora.Clases;
 using Sadora.Models;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +13,7 @@ namespace Sadora.Clientes
     {
         readonly ViewModels.BaseViewModel<TcliCliente> ViewModel = new ViewModels.BaseViewModel<TcliCliente>() { Ventana = new TcliCliente() { UsuarioID = ClassVariables.UsuarioID } };
         Expression<Func<TcliCliente, bool>> predicate;
-         
+
         public UscClientes()
         {
             InitializeComponent();
@@ -97,46 +98,23 @@ namespace Sadora.Clientes
             }
         }
 
+
+
         private void txtRNC_KeyUp(object sender, KeyEventArgs e)
         {
-            //    if (Estado != "Modo Consulta")
-            //    {
-            //        if (e.Key == Key.Enter)
-            //        {
-            //            reader = ClassControl.getDatosCedula(Cli.Cliente.RNC);
-            //            if (reader != null)
-            //            {
-            //                if (reader.HasRows)
-            //                {
-            //                    if (reader.Read())
-            //                    {
-            //                        Cli.Cliente.Nombre = reader["NombreCompleto"].ToString();
-            //                        //txtDireccion.Text = reader["Direccion"].ToString();
-            //                        //txtTelefono.Text = reader["Telefono"].ToString();
-            //                        reader.NextResult();
+            if (e.Key == Key.Enter)
+            {
+                MessageBox.Show($"Cedula o RNC: {ViewModel.Ventana.RNC}");
+                if (ClassControl.IsValidCedulaORNC(ViewModel.Ventana.RNC, ViewModel.EstadoVentana))
+                {
 
-            //                    }
-            //                    reader.Close();
-            //                    reader.Dispose();
-            //                }
-            //                else
-            //                {
-            //                    reader.Close();
-            //                    reader.Dispose();
-            //                }
-            //                ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
-            //            }
-            //            else if (ClassVariables.ExistClient)
-            //            {
-            //                if (SnackbarThree.MessageQueue is { } messageQueue)
-            //                {
-            //                    var message = "Ya existe un cliente con este RNC";
-            //                    Task.Factory.StartNew(() => messageQueue.Enqueue(message));
-            //                }
-            //            }
+                }
+                //if ((!new string[] { "Modo Consulta", "Modo Busqueda" }.Contains(ViewModel.EstadoVentana)) && ClassControl.IsValidCedulaORNC(ViewModel.Ventana.RNC)/*ClassControl.IsValidDrCedula(ViewModel.Ventana.RNC) || ClassControl.IsValidDrRnc(ViewModel.Ventana.RNC)*/)
+                //{
 
-            //        }
-            //    }
+                //}
+            }
+           
         }
 
 
