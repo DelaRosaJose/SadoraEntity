@@ -1,4 +1,5 @@
 ﻿using DevExpress.Xpf.Grid;
+using Sadora.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -591,8 +592,13 @@ namespace Sadora.Clases
             return (dig.Equals(int.Parse(drRnc.Substring(8, 1))) ? true : false);
         }
 
-        public static bool IsValidCedulaORNC(string CedulaORNC, string EstadoVentana) => IsValidDrCedula(CedulaORNC) || IsValidDrRnc(CedulaORNC) && (!new string[] { "Modo Consulta", "Modo Busqueda" }.Contains(EstadoVentana));
-        
+        public static bool IsValidCedulaORNC(string CedulaORNC, string EstadoVentana) => (IsValidDrCedula(CedulaORNC) || IsValidDrRnc(CedulaORNC)) && !new string[] { "Modo Consulta", "Modo Busqueda" }.Contains(EstadoVentana);
+
+        public static CeduladosJCE BuscarPorRNCoCedula(string Cedula)
+        {
+            using (SadoraEntity db = new SadoraEntity())
+                return db.CeduladosJCEs.Where(x => x.Cedula == Cedula).FirstOrDefault();
+        }
 
     }
 }

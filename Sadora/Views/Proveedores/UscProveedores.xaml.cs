@@ -40,6 +40,11 @@ namespace Sadora.Proveedores
 
         int? _FistID, _LastID, last;
 
+        private void UscTextboxGeneral_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -90,9 +95,6 @@ namespace Sadora.Proveedores
                     ButtonName == "BtnCancelar" ? "BtnUltimoRegistro" :
                     ButtonName,
                     ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);
-
-                if (ButtonName == "BtnCancelar")
-                    MessageBox.Show($"{last}");
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;

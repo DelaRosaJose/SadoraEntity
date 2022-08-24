@@ -29,9 +29,9 @@ namespace Sadora.Models
         public virtual DbSet<TsysFormulario> TsysFormularios { get; set; }
         public virtual DbSet<TsysUsuario> TsysUsuarios { get; set; }
         public virtual DbSet<TcliCliente> TcliClientes { get; set; }
-        public virtual DbSet<TcliClaseCliente> TcliClaseClientes { get; set; }
         public virtual DbSet<TconComprobante> TconComprobantes { get; set; }
         public virtual DbSet<TsysEmpresa> TsysEmpresas { get; set; }
         public virtual DbSet<TsupProveedore> TsupProveedores { get; set; }
+        public virtual DbSet<CeduladosJCE> CeduladosJCEs { get; set; }
     }
 }

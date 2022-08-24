@@ -12,10 +12,13 @@ namespace Sadora.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TcliClaseCliente
+    public partial class CeduladosJCE
     {
-        public int ID { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<int> UsuarioID { get; set; }
+        public string Cedula { get; set; }
+        public string Nombres { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public string FechaNacimiento { get; set; }
+        public string Sexo { get; set; }
     }
 }

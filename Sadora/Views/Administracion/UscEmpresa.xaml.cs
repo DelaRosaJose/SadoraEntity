@@ -78,9 +78,6 @@ namespace Sadora.Administracion
                     ButtonName,
                     ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);
 
-                if (ButtonName == "BtnCancelar")
-                    MessageBox.Show($"{last}");
-
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;
                 if (Agrega == false)

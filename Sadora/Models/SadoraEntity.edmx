@@ -5,13 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SadoraEntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="TcliClaseClientes">
+        <EntityType Name="CeduladosJCE">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Cedula" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="20" />
-          <Property Name="UsuarioID" Type="int" />
+          <Property Name="Cedula" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido1" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido2" Type="varchar" MaxLength="50" />
+          <Property Name="FechaNacimiento" Type="varchar" MaxLength="50" />
+          <Property Name="Sexo" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -115,7 +118,7 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityContainer Name="SadoraEntityModelStoreContainer">
-          <EntitySet Name="TcliClaseClientes" EntityType="Self.TcliClaseClientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CeduladosJCE" EntityType="Self.CeduladosJCE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TconComprobantes" EntityType="Self.TconComprobantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsupProveedores" EntityType="Self.TsupProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysAccesos" EntityType="Self.TsysAccesos" Schema="dbo" store:Type="Tables" />
@@ -185,10 +188,10 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormulario" />
           <EntitySet Name="TsysUsuarios" EntityType="Self.TsysUsuario" />
           <EntitySet Name="TcliClientes" EntityType="SadoraEntityModel.TcliCliente" />
-          <EntitySet Name="TcliClaseClientes" EntityType="SadoraEntityModel.TcliClaseCliente" />
           <EntitySet Name="TconComprobantes" EntityType="SadoraEntityModel.TconComprobante" />
           <EntitySet Name="TsysEmpresas" EntityType="SadoraEntityModel.TsysEmpresa" />
           <EntitySet Name="TsupProveedores" EntityType="SadoraEntityModel.TsupProveedore" />
+          <EntitySet Name="CeduladosJCEs" EntityType="SadoraEntityModel.CeduladosJCE" />
         </EntityContainer>
         <EntityType Name="TcliCliente">
           <Key>
@@ -208,14 +211,6 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <Property Name="UsuarioID" Type="Int32" />
           <Property Name="ClaseComprobanteID" Type="Int32" Nullable="false" />
           <Property Name="DiasCredito" Type="Int32" />
-        </EntityType>
-        <EntityType Name="TcliClaseCliente">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="UsuarioID" Type="Int32" />
         </EntityType>
         <EntityType Name="TconComprobante">
           <Key>
@@ -260,6 +255,17 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
           <Property Name="UsuarioID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CeduladosJCE">
+          <Key>
+            <PropertyRef Name="Cedula" />
+          </Key>
+          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -325,15 +331,6 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TcliClaseClientes">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TcliClaseCliente">
-              <MappingFragment StoreEntitySet="TcliClaseClientes">
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TconComprobantes">
             <EntityTypeMapping TypeName="SadoraEntityModel.TconComprobante">
               <MappingFragment StoreEntitySet="TconComprobantes">
@@ -378,6 +375,18 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="RNC" ColumnName="RNC" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CeduladosJCEs">
+            <EntityTypeMapping TypeName="SadoraEntityModel.CeduladosJCE">
+              <MappingFragment StoreEntitySet="CeduladosJCE">
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -132,6 +132,9 @@
       <DependentUpon>UscTextboxGeneral.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\CeduladosJCE.cs">
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SadoraEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,9 +149,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SadoraEntity.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TcliClaseCliente.cs">
-      <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TcliCliente.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>

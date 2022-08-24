@@ -78,9 +78,6 @@ namespace Sadora.Clientes
                     ButtonName,
                     ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);
 
-                if (ButtonName == "BtnCancelar")
-                    MessageBox.Show($"{last}");
-
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;
                 if (Agrega == false)
@@ -98,23 +95,15 @@ namespace Sadora.Clientes
             }
         }
 
-
-
-        private void txtRNC_KeyUp(object sender, KeyEventArgs e)
+        private void UscTextboxGeneral_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (ClassControl.IsValidCedulaORNC(ViewModel.Ventana.RNC, ViewModel.EstadoVentana))
             {
-                MessageBox.Show($"Cedula o RNC: {ViewModel.Ventana.RNC}");
-                if (ClassControl.IsValidCedulaORNC(ViewModel.Ventana.RNC, ViewModel.EstadoVentana))
-                {
-
-                }
-                //if ((!new string[] { "Modo Consulta", "Modo Busqueda" }.Contains(ViewModel.EstadoVentana)) && ClassControl.IsValidCedulaORNC(ViewModel.Ventana.RNC)/*ClassControl.IsValidDrCedula(ViewModel.Ventana.RNC) || ClassControl.IsValidDrRnc(ViewModel.Ventana.RNC)*/)
-                //{
-
-                //}
+                CeduladosJCE Cedula = ClassControl.BuscarPorRNCoCedula(ViewModel.Ventana.RNC);
+                ViewModel.Ventana.Nombre = $"{Cedula.Nombres} {Cedula.Apellido1}";
+                ViewModel.Ventana.Representante = Cedula.Nombres;
+                ViewModel.Ventana = ViewModel.Ventana;
             }
-           
         }
 
 
