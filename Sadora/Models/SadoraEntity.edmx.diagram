@@ -14,6 +14,7 @@
         <EntityTypeShape EntityType="SadoraEntityModel.CeduladosJCE" Width="1.5" PointX="5.375" PointY="4.25" />
         <EntityTypeShape EntityType="SadoraEntityModel.DGII_RNC" Width="1.5" PointX="7.375" PointY="4.75" />
         <EntityTypeShape EntityType="SadoraEntityModel.TcliCliente" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="SadoraEntityModel.TrhnEmpleado" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,11 +1,9 @@
 ﻿using Sadora.Clases;
 using Sadora.Models;
 using System;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Sadora.Clientes
 {
@@ -59,7 +57,7 @@ namespace Sadora.Clientes
                 else if (ButtonName != "BtnCancelar" && ViewModel.Ventana != null)
                 {
                     last = ViewModel.Ventana.ID;
-                    ViewModel.Ventana.ID = ButtonName == "BtnAgregar" ? ViewModel.Ventana.ID + 1 : default;
+                    ViewModel.Ventana.ID = ButtonName == "BtnAgregar" ? ViewModel.Ventana.ID + 1 : ViewModel.Ventana.ID;
                 }
                 else if (ButtonName == "BtnCancelar" && ViewModel.Ventana != null)
                     ViewModel.Ventana.ID = last.Value;

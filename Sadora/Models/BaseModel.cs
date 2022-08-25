@@ -58,13 +58,13 @@ namespace Sadora.Models
                             break;
 
                         case "BtnAgregar":
-                            //ClassVariables.Load = viewModel.Ventana;
                             ClassControl.LimpiadorGeneral(view);
                             break;
 
-                        //case "BtnCancelar":
-                        //    view
-                        //    break;
+                        case "BtnCancelar":
+                            Tsql = db.Set<T>().FindAsync(lastRegistro).Result;
+                            ViewModel = Tsql != default ? Tsql : UnChangedViewModel;
+                            break;
 
                         case "BtnGuardar":
                             if (EstadoVentana == "Modo Agregar")

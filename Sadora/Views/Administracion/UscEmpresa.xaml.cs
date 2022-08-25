@@ -59,7 +59,7 @@ namespace Sadora.Administracion
                 else if (ButtonName != "BtnCancelar" && ViewModel.Ventana != null)
                 {
                     last = ViewModel.Ventana.ID;
-                    ViewModel.Ventana.ID = ButtonName == "BtnAgregar" ? ViewModel.Ventana.ID + 1 : default;
+                    ViewModel.Ventana.ID = ButtonName == "BtnAgregar" ? ViewModel.Ventana.ID + 1 : ViewModel.Ventana.ID;
                 }
                 else if (ButtonName == "BtnCancelar" && ViewModel.Ventana != null)
                     ViewModel.Ventana.ID = last.Value;

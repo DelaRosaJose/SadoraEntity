@@ -34,5 +34,6 @@ namespace Sadora.Models
         public virtual DbSet<CeduladosJCE> CeduladosJCEs { get; set; }
         public virtual DbSet<DGII_RNC> DGII_RNC { get; set; }
         public virtual DbSet<TcliCliente> TcliClientes { get; set; }
+        public virtual DbSet<TrhnEmpleado> TrhnEmpleados { get; set; }
     }
 }

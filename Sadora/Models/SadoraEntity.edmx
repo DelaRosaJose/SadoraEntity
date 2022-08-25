@@ -61,6 +61,22 @@
           <Property Name="UsuarioID" Type="int" />
           <Property Name="SinComprobantes" Type="bit" />
         </EntityType>
+        <EntityType Name="TrhnEmpleados">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cedula" Type="varchar" MaxLength="13" />
+          <Property Name="Nombre" Type="varchar" MaxLength="70" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" />
+          <Property Name="EstadoCivil" Type="varchar" MaxLength="70" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="40" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Celular" Type="varchar" MaxLength="20" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="UsuarioID" Type="int" />
+        </EntityType>
         <EntityType Name="TsupProveedores">
           <Key>
             <PropertyRef Name="ID" />
@@ -131,6 +147,7 @@
           <EntitySet Name="DGII_RNC" EntityType="Self.DGII_RNC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TcliClientes" EntityType="Self.TcliClientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TconComprobantes" EntityType="Self.TconComprobantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrhnEmpleados" EntityType="Self.TrhnEmpleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsupProveedores" EntityType="Self.TsupProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysAccesos" EntityType="Self.TsysAccesos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysEmpresa" EntityType="Self.TsysEmpresa" Schema="dbo" store:Type="Tables" />
@@ -187,6 +204,7 @@
           <EntitySet Name="CeduladosJCEs" EntityType="SadoraEntityModel.CeduladosJCE" />
           <EntitySet Name="DGII_RNC" EntityType="SadoraEntityModel.DGII_RNC" />
           <EntitySet Name="TcliClientes" EntityType="SadoraEntityModel.TcliCliente" />
+          <EntitySet Name="TrhnEmpleados" EntityType="SadoraEntityModel.TrhnEmpleado" />
         </EntityContainer>
         <EntityType Name="TconComprobante">
           <Key>
@@ -272,6 +290,22 @@
           <Property Name="UsuarioID" Type="Int32" />
           <Property Name="ClaseComprobanteID" Type="Int32" Nullable="false" />
           <Property Name="DiasCredito" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TrhnEmpleado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cedula" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoCivil" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="UsuarioID" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -405,6 +439,23 @@
                 <ScalarProperty Name="Representante" ColumnName="Representante" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="RNC" ColumnName="RNC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrhnEmpleados">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TrhnEmpleado">
+              <MappingFragment StoreEntitySet="TrhnEmpleados">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
