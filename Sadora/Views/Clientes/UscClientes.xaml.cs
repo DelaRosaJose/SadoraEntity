@@ -95,17 +95,15 @@ namespace Sadora.Clientes
             }
         }
 
-        private void UscTextboxGeneral_LostFocus(object sender, RoutedEventArgs e)
+        private void UscRNC_LostFocus(object sender, RoutedEventArgs e)
         {
             if (ClassControl.IsValidCedulaORNC(ViewModel.Ventana.RNC, ViewModel.EstadoVentana))
             {
-                CeduladosJCE Cedula = ClassControl.BuscarPorRNCoCedula(ViewModel.Ventana.RNC);
-                ViewModel.Ventana.Nombre = $"{Cedula.Nombres} {Cedula.Apellido1}";
-                ViewModel.Ventana.Representante = Cedula.Nombres;
+                DGII_RNC Cedula = ClassControl.BuscarPorRNCoCedula(ViewModel.Ventana.RNC);
+                ViewModel.Ventana.Nombre = Cedula.RazonSocial != default ? Cedula.RazonSocial : ViewModel.Ventana.Nombre;
+                ViewModel.Ventana.Representante = Cedula.NombreComercial != default ? Cedula.NombreComercial : ViewModel.Ventana.Representante;
                 ViewModel.Ventana = ViewModel.Ventana;
             }
         }
-
-
     }
 }

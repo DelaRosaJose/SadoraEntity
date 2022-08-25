@@ -40,11 +40,6 @@ namespace Sadora.Proveedores
 
         int? _FistID, _LastID, last;
 
-        private void UscTextboxGeneral_LostFocus(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -114,5 +109,15 @@ namespace Sadora.Proveedores
         }
 
 
+        private void UscRNC_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (ClassControl.IsValidCedulaORNC(ViewModel.Ventana.RNC, ViewModel.EstadoVentana))
+            {
+                DGII_RNC Cedula = ClassControl.BuscarPorRNCoCedula(ViewModel.Ventana.RNC);
+                ViewModel.Ventana.Nombre = Cedula.RazonSocial != default ? Cedula.RazonSocial : ViewModel.Ventana.Nombre;
+                ViewModel.Ventana.Representante = Cedula.NombreComercial != default ? Cedula.NombreComercial : ViewModel.Ventana.Representante;
+                ViewModel.Ventana = ViewModel.Ventana;
+            }
+        }
     }
 }

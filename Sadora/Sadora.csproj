@@ -135,6 +135,9 @@
     <Compile Include="Models\CeduladosJCE.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DGII_RNC.cs">
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SadoraEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

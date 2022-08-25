@@ -16,12 +16,21 @@
           <Property Name="FechaNacimiento" Type="varchar" MaxLength="50" />
           <Property Name="Sexo" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DGII_RNC">
+          <Key>
+            <PropertyRef Name="RNC" />
+          </Key>
+          <Property Name="RNC" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" />
+          <Property Name="NombreComercial" Type="varchar" MaxLength="50" />
+          <Property Name="ActividadEconomica" Type="varchar" MaxLength="50" />
+          <Property Name="FechaAfiliacion" Type="varchar" MaxLength="50" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="TipoEmp" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="TcliClientes">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="ClaseComprobanteID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RNC" Type="varchar" MaxLength="13" />
@@ -119,29 +128,14 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
         </EntityType>
         <EntityContainer Name="SadoraEntityModelStoreContainer">
           <EntitySet Name="CeduladosJCE" EntityType="Self.CeduladosJCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DGII_RNC" EntityType="Self.DGII_RNC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TcliClientes" EntityType="Self.TcliClientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TconComprobantes" EntityType="Self.TconComprobantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsupProveedores" EntityType="Self.TsupProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysAccesos" EntityType="Self.TsysAccesos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysEmpresa" EntityType="Self.TsysEmpresa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormularios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysUsuarios" EntityType="Self.TsysUsuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TcliClientes" EntityType="Self.TcliClientes" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TcliClientes].[ID] AS [ID], 
-    [TcliClientes].[RNC] AS [RNC], 
-    [TcliClientes].[Nombre] AS [Nombre], 
-    [TcliClientes].[Representante] AS [Representante], 
-    [TcliClientes].[ClaseID] AS [ClaseID], 
-    [TcliClientes].[Direccion] AS [Direccion], 
-    [TcliClientes].[CorreoElectronico] AS [CorreoElectronico], 
-    [TcliClientes].[Telefono] AS [Telefono], 
-    [TcliClientes].[Celular] AS [Celular], 
-    [TcliClientes].[Activo] AS [Activo], 
-    [TcliClientes].[UsuarioID] AS [UsuarioID], 
-    [TcliClientes].[ClaseComprobanteID] AS [ClaseComprobanteID], 
-    [TcliClientes].[DiasCredito] AS [DiasCredito]
-    FROM [dbo].[TcliClientes] AS [TcliClientes]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -187,31 +181,13 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <EntitySet Name="TsysAccesos" EntityType="Self.TsysAcceso" />
           <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormulario" />
           <EntitySet Name="TsysUsuarios" EntityType="Self.TsysUsuario" />
-          <EntitySet Name="TcliClientes" EntityType="SadoraEntityModel.TcliCliente" />
           <EntitySet Name="TconComprobantes" EntityType="SadoraEntityModel.TconComprobante" />
           <EntitySet Name="TsysEmpresas" EntityType="SadoraEntityModel.TsysEmpresa" />
           <EntitySet Name="TsupProveedores" EntityType="SadoraEntityModel.TsupProveedore" />
           <EntitySet Name="CeduladosJCEs" EntityType="SadoraEntityModel.CeduladosJCE" />
+          <EntitySet Name="DGII_RNC" EntityType="SadoraEntityModel.DGII_RNC" />
+          <EntitySet Name="TcliClientes" EntityType="SadoraEntityModel.TcliCliente" />
         </EntityContainer>
-        <EntityType Name="TcliCliente">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="ClaseComprobanteID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RNC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="Representante" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="ClaseID" Type="Int32" />
-          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="Boolean" />
-          <Property Name="UsuarioID" Type="Int32" />
-          <Property Name="ClaseComprobanteID" Type="Int32" Nullable="false" />
-          <Property Name="DiasCredito" Type="Int32" />
-        </EntityType>
         <EntityType Name="TconComprobante">
           <Key>
             <PropertyRef Name="ID" />
@@ -267,6 +243,36 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
           <Property Name="FechaNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="DGII_RNC">
+          <Key>
+            <PropertyRef Name="RNC" />
+          </Key>
+          <Property Name="RNC" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreComercial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActividadEconomica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaAfiliacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoEmp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TcliCliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RNC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Representante" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="ClaseID" Type="Int32" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="ClaseComprobanteID" Type="Int32" Nullable="false" />
+          <Property Name="DiasCredito" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -309,25 +315,6 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
                 <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
                 <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TcliClientes">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TcliCliente">
-              <MappingFragment StoreEntitySet="TcliClientes">
-                <ScalarProperty Name="DiasCredito" ColumnName="DiasCredito" />
-                <ScalarProperty Name="ClaseComprobanteID" ColumnName="ClaseComprobanteID" />
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Celular" ColumnName="Celular" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
-                <ScalarProperty Name="Representante" ColumnName="Representante" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="RNC" ColumnName="RNC" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -387,6 +374,38 @@ warning 6002: The table/view 'SadoraEntity.dbo.TcliClientes' does not have a pri
                 <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DGII_RNC">
+            <EntityTypeMapping TypeName="SadoraEntityModel.DGII_RNC">
+              <MappingFragment StoreEntitySet="DGII_RNC">
+                <ScalarProperty Name="TipoEmp" ColumnName="TipoEmp" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaAfiliacion" ColumnName="FechaAfiliacion" />
+                <ScalarProperty Name="ActividadEconomica" ColumnName="ActividadEconomica" />
+                <ScalarProperty Name="NombreComercial" ColumnName="NombreComercial" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="RNC" ColumnName="RNC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TcliClientes">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TcliCliente">
+              <MappingFragment StoreEntitySet="TcliClientes">
+                <ScalarProperty Name="DiasCredito" ColumnName="DiasCredito" />
+                <ScalarProperty Name="ClaseComprobanteID" ColumnName="ClaseComprobanteID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+                <ScalarProperty Name="Representante" ColumnName="Representante" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RNC" ColumnName="RNC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

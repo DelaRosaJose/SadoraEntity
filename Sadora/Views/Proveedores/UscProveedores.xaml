@@ -52,7 +52,7 @@
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Ventana.RNC, Mode=TwoWay}" LostFocus="UscTextboxGeneral_LostFocus" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="2" MaxLength="11" FieldNumeric="True"/>
+                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Ventana.RNC, Mode=TwoWay}" LostFocus="UscRNC_LostFocus" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="2" MaxLength="11" FieldNumeric="True"/>
 
                             <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Ventana.Representante, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="5"/>
 

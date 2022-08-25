@@ -594,10 +594,15 @@ namespace Sadora.Clases
 
         public static bool IsValidCedulaORNC(string CedulaORNC, string EstadoVentana) => (IsValidDrCedula(CedulaORNC) || IsValidDrRnc(CedulaORNC)) && !new string[] { "Modo Consulta", "Modo Busqueda" }.Contains(EstadoVentana);
 
-        public static CeduladosJCE BuscarPorRNCoCedula(string Cedula)
+        public static DGII_RNC BuscarPorRNCoCedula(string Cedula)
         {
-            using (SadoraEntity db = new SadoraEntity())
-                return db.CeduladosJCEs.Where(x => x.Cedula == Cedula).FirstOrDefault();
+            using SadoraEntity db = new SadoraEntity();
+
+            CeduladosJCE JCE = db.CeduladosJCEs.Where(x => x.Cedula == Cedula).FirstOrDefault();
+            if (JCE != default)
+                return new DGII_RNC() { RazonSocial = $"{JCE.Nombres} {JCE.Apellido1}", NombreComercial = JCE.Nombres};
+            else
+                return db.DGII_RNC.Where(x => x.RNC == Cedula && x.Estado == "ACTIVO").FirstOrDefault();
         }
 
     }
