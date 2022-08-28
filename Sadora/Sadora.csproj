@@ -128,6 +128,12 @@
     <Compile Include="CustomElements\UscCheckBoxGeneral.xaml.cs">
       <DependentUpon>UscCheckBoxGeneral.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomElements\UscComboBoxGeneral.xaml.cs">
+      <DependentUpon>UscComboBoxGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomElements\UscDatePickerGeneral.xaml.cs">
+      <DependentUpon>UscDatePickerGeneral.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomElements\UscTextboxGeneral.xaml.cs">
       <DependentUpon>UscTextboxGeneral.xaml</DependentUpon>
     </Compile>
@@ -265,6 +271,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomElements\UscCheckBoxGeneral.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomElements\UscComboBoxGeneral.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomElements\UscDatePickerGeneral.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

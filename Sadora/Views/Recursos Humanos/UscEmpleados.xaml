@@ -53,15 +53,11 @@
                     <Grid Grid.Column="1">
 
                         <StackPanel Orientation="Vertical" Width="auto">
+                            
                             <Sadora:UscTextboxGeneral Title="Cedula" Text="{Binding Ventana.Cedula, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" LostFocus="UscCedula_LostFocus" TabIndex="2" MaxLength="11" FieldNumeric="True"/>
 
-                            <Border TextElement.FontSize="15" Margin="15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="lFechaNacimiento" Margin="10 5 0 0" Text="Fecha de nacimiento" FontWeight="Bold"></TextBlock>
-                                    <DatePicker  x:Name="dtpFechaNacimiento" Background="#4CEDEDED"/>
+                            <Sadora:UscDatePickerGeneral Title="Fecha de nacimiento" Date="{Binding Ventana.FechaNacimiento, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}"/>
 
-                                </StackPanel>
-                            </Border>
 
                             <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Ventana.CorreoElectronico, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="40" TabIndex="8"/>
 
@@ -77,16 +73,14 @@
 
                             <Sadora:UscCheckBoxGeneral Title="Activo" IsChecked="{Binding Ventana.Activo, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="3"/>
 
-                            <Border TextElement.FontSize="15" Margin="15 13 15 15" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="lEstadoCivil" Margin="10 5 0 0" Text="Estado Civil" FontWeight="Bold"></TextBlock>
+                            <Sadora:UscComboBoxGeneral Title="Estado Civil" Text="{Binding Ventana.EstadoCivil, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" >
+                                <Sadora:UscComboBoxGeneral.Items>
+                                    <ComboBoxItem Content="Soltero"/>
+                                    <ComboBoxItem Content="Casado"/>
+                                </Sadora:UscComboBoxGeneral.Items>
+                            </Sadora:UscComboBoxGeneral>
 
-                                    <ComboBox x:Name="cbxEstadoCivil" materialDesign:ComboBoxAssist.ClassicMode = "true" Height="30" Background="#4CEDEDED">
-                                        <ComboBoxItem Content="Soltero" IsSelected="True"/>
-                                        <ComboBoxItem Content="Casado"/>
-                                    </ComboBox>
-                                </StackPanel>
-                            </Border>
+                            <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Ventana.CorreoElectronico, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="40" TabIndex="8"/>
 
                         </StackPanel>
 

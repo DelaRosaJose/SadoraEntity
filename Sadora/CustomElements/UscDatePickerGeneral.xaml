@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Sadora.CustomElements.UscDatePickerGeneral"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="root"
+             mc:Ignorable="d" Focusable="True" GotFocus="Root_GotFocus" IsTabStop="True">
+    <Grid>
+        <Border TextElement.FontSize="15" Margin="{Binding MarginBorder, ElementName=root}" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Margin="10 5 0 0" Text="{Binding Title, ElementName=root}" FontWeight="Bold"/>
+                <DatePicker  x:Name="MainDP" Height="{Binding HeightLabel, ElementName=root}" IsHitTestVisible="True"  Padding="0" SelectedDate="{Binding Date, ElementName=root}" Background="#4CEDEDED" BorderThickness="1" BorderBrush="{x:Null}" KeyUp="MainDP_KeyUp" SelectedDateFormat="Long"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,22 +1,9 @@
 ﻿using Sadora.Clases;
 using Sadora.Models;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Sadora.Proveedores
 {
@@ -27,6 +14,7 @@ namespace Sadora.Proveedores
     {
         readonly ViewModels.BaseViewModel<TsupProveedore> ViewModel = new ViewModels.BaseViewModel<TsupProveedore>() { Ventana= new TsupProveedore() {UsuarioID = ClassVariables.UsuarioID } };
         Expression<Func<TsupProveedore, bool>> predicate;
+
         public UscProveedores()
         {
             InitializeComponent();
@@ -107,7 +95,6 @@ namespace Sadora.Proveedores
                 new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
             }
         }
-
 
         private void UscRNC_LostFocus(object sender, RoutedEventArgs e)
         {

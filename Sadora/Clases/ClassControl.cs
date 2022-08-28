@@ -472,8 +472,14 @@ namespace Sadora.Clases
                     else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
                         continue;
 
+                    else if (Element is CustomElements.UscDatePickerGeneral)
+                        (Element as CustomElements.UscDatePickerGeneral).Date = DateTime.Now;
+                    
+                    else if (Element is CustomElements.UscComboBoxGeneral)
+                        (Element as CustomElements.UscComboBoxGeneral).Text = default;
+
                     else
-                        new Administracion.FrmCompletarCamposHost($"Advertencia: \nEste control no esta registrado {Element} \nComuniquese con soporte").ShowDialog();
+                        new Administracion.FrmCompletarCamposHost($"Advertencia: \nEste control no esta registrado {Element} --ClassControl/LimpiadorGeneral \nComuniquese con soporte").ShowDialog();
 
 
                 }

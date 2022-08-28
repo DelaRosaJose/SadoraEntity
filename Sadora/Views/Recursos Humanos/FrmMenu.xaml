@@ -161,7 +161,7 @@
                                             <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" Margin="-10 0 0 0">
                                                 <materialDesign:PackIcon x:Name="iconMenuRegistroEmpleados" Kind="AccountSettings" Height="25" Width="25" VerticalAlignment="Center"/>
                                                 <TextBlock Margin="16 0 0 0"  FontSize="14.5" FontFamily="Segoe UI Semibold" Width="155">
-                                                    Maestra de Usuarios
+                                                    Maestra de Empleados
                                                 </TextBlock>
                                             </StackPanel>
                                         </TreeViewItem.Header>
