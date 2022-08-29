@@ -67,6 +67,9 @@ namespace Sadora.Models
                             break;
 
                         case "BtnGuardar":
+                            if (!ClassControl.CanSaveView(view))
+                                return ViewModel;
+
                             if (EstadoVentana == "Modo Agregar")
                                 db.Set<T>().Add(ViewModel);
                             else if (EstadoVentana == "Modo Editar")

@@ -1,12 +1,9 @@
 ﻿using Sadora.Clases;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Sadora.CustomElements
 {
@@ -22,6 +19,11 @@ namespace Sadora.CustomElements
         {
             get { return (Thickness)GetValue(MarginBorderProperty); }
             set { SetValue(MarginBorderProperty, value); }
+        }
+        public SolidColorBrush ColorCampoVacio
+        {
+            get { return (SolidColorBrush)GetValue(ColorCampoVacioProperty); }
+            set { SetValue(ColorCampoVacioProperty, value); }
         }
         public int HeightLabel
         {
@@ -58,6 +60,9 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty MarginBorderProperty =
             DependencyProperty.Register(nameof(MarginBorder), typeof(Thickness), typeof(UscComboBoxGeneral), new PropertyMetadata(new Thickness(15)));
+
+        public static readonly DependencyProperty ColorCampoVacioProperty =
+            DependencyProperty.Register(nameof(ColorCampoVacio), typeof(SolidColorBrush), typeof(UscComboBoxGeneral), new PropertyMetadata((SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"))));
 
         public static new readonly DependencyProperty HeightProperty =
             DependencyProperty.Register(nameof(HeightLabel), typeof(int), typeof(UscComboBoxGeneral), new PropertyMetadata(27));

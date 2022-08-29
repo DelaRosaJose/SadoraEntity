@@ -12,7 +12,7 @@
                 <TextBlock Margin="10 5 0 0" Text="{Binding Title, ElementName=root}" FontWeight="Bold"/>
 
                 <ComboBox x:Name="MainCBX" materialDesign:ComboBoxAssist.ClassicMode = "true" Text="{Binding Text, ElementName=root}" ItemsSource="{Binding Items, ElementName=root}" Padding="0" Height="{Binding HeightLabel, ElementName=root}" 
-                          BorderThickness="1" BorderBrush="{x:Null}" Background="#4CEDEDED" KeyUp="MainCBX_KeyUp">
+                          BorderThickness="1" BorderBrush="{x:Null}" Background="{Binding ColorCampoVacio, ElementName=root}" KeyUp="MainCBX_KeyUp">
                 </ComboBox>
             </StackPanel>
         </Border>

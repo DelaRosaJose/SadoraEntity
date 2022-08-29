@@ -9,7 +9,8 @@
         <Border TextElement.FontSize="15" Margin="{Binding MarginBorder, ElementName=root}" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="2 0 0 2" CornerRadius="5">
             <StackPanel Orientation="Vertical">
                 <TextBlock Margin="10 5 0 0" Text="{Binding Title, ElementName=root}" FontWeight="Bold"/>
-                <DatePicker  x:Name="MainDP" Height="{Binding HeightLabel, ElementName=root}" IsHitTestVisible="True"  Padding="0" SelectedDate="{Binding Date, ElementName=root}" Background="#4CEDEDED" BorderThickness="1" BorderBrush="{x:Null}" KeyUp="MainDP_KeyUp" SelectedDateFormat="Long"/>
+                <DatePicker  x:Name="MainDP" Height="{Binding HeightLabel, ElementName=root}" IsHitTestVisible="True"  Padding="0" SelectedDate="{Binding Date, ElementName=root}" 
+                             Background="{Binding ColorCampoVacio, ElementName=root}" BorderThickness="1" BorderBrush="{x:Null}" KeyUp="MainDP_KeyUp" SelectedDateFormat="Long"/>
             </StackPanel>
         </Border>
     </Grid>

@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Sadora.Clases
 {
@@ -474,7 +475,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscDatePickerGeneral)
                         (Element as CustomElements.UscDatePickerGeneral).Date = DateTime.Now;
-                    
+
                     else if (Element is CustomElements.UscComboBoxGeneral)
                         (Element as CustomElements.UscComboBoxGeneral).Text = default;
 
@@ -491,6 +492,105 @@ namespace Sadora.Clases
             }
         }
         #endregion
+
+        #region CanSaveView(UIElementCollection view) --**-- Metodo que se encarga de validar todos los controles de una ventana y retorna si se puede guardar.
+        public static bool CanSaveView(UIElementCollection view)
+        {
+            double opacity = 0.30;
+            bool CanSave = true;
+            try
+            {
+                for (int i = 0; i < view.Count; i++)
+                {
+
+                    var Element = view[i];
+
+                    if (Element is Grid)
+                        CanSave &= CanSaveView((Element as Grid).Children);
+
+                    else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
+                        CanSave &= CanSaveView(((Element as ScrollViewer).Content as Grid).Children);
+
+                    else if (Element is StackPanel)
+                        CanSave &= CanSaveView((Element as StackPanel).Children);
+
+                    else if (Element is Border)
+                        CanSave &= CanSaveView(((Element as Border).Child as StackPanel).Children);
+
+                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
+                        continue;
+
+                    else if (Element is CustomElements.UscTextboxGeneral UscTextBoxGeneral)
+                    {
+                        bool and = UscTextBoxGeneral.Text != default;
+                        CanSave &= and;
+
+                        if (and)
+                            UscTextBoxGeneral.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
+                        else
+                            UscTextBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                    }
+
+                    else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
+                    {
+                        bool and = UscTextboxButtonGeneral.Text != default;
+                        CanSave &= and;
+
+                        if (and)
+                            UscTextboxButtonGeneral.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
+                        else
+                            UscTextboxButtonGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                    }
+
+                    else if (Element is CustomElements.UscCheckBoxGeneral UscCheckBoxGeneral)
+                    {
+                        bool and = UscCheckBoxGeneral.IsChecked != default;
+                        CanSave &= and;
+
+                        if (and)
+                            UscCheckBoxGeneral.ColorCampoVacio = default;
+                        else
+                            UscCheckBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                    }
+
+                    else if (Element is CustomElements.UscDatePickerGeneral UscDatePickerGeneral)
+                    {
+                        bool and = UscDatePickerGeneral.Date != default;
+                        CanSave &= and;
+
+                        if (and)
+                            UscDatePickerGeneral.Background = default;
+                        else
+                            UscDatePickerGeneral.Background = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                    }
+
+                    else if (Element is CustomElements.UscComboBoxGeneral UscComboBoxGeneral)
+                    {
+                        bool and = UscComboBoxGeneral.Text != default;
+                        CanSave &= and;
+
+                        if (and)
+                            UscComboBoxGeneral.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
+                        else
+                            UscComboBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                    }
+
+                    else
+                        new Administracion.FrmCompletarCamposHost($"Advertencia: \nEste control no esta registrado {Element} --ClassControl/CanSaveView \nComuniquese con soporte").ShowDialog();
+
+
+                }
+
+                return CanSave;
+            }
+            catch (Exception ex)
+            {
+                new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
+                return false;
+            }
+        }
+        #endregion
+
 
         #region PuedeEscribirEnCampo(string Estatus, KeyEventArgs e) --**-- 
         public static void PuedeEscribirEnCampo(string Estatus, KeyEventArgs e)
@@ -514,6 +614,7 @@ namespace Sadora.Clases
         }
 
         #endregion
+
         public static void PasarConEnterProximoCampo(KeyEventArgs e, string EstadoMainWindows, bool EnterPasarProximoCampo)
         {
             try
@@ -606,7 +707,7 @@ namespace Sadora.Clases
 
             CeduladosJCE JCE = db.CeduladosJCEs.Where(x => x.Cedula == Cedula).FirstOrDefault();
             if (JCE != default)
-                return new DGII_RNC() { RazonSocial = $"{JCE.Nombres} {JCE.Apellido1}", NombreComercial = JCE.Nombres};
+                return new DGII_RNC() { RazonSocial = $"{JCE.Nombres} {JCE.Apellido1}", NombreComercial = JCE.Nombres };
             else
                 return db.DGII_RNC.Where(x => x.RNC == Cedula && x.Estado == "ACTIVO").FirstOrDefault();
         }
