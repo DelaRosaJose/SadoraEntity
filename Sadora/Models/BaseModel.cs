@@ -15,12 +15,13 @@ namespace Sadora.Models
     public class BaseModel
     {
 
-        public static async Task<T> Procesar<T, J>(string BotonPulsado, J viewModel, string IdRegistro, Func<T, IComparable> getProp, 
+        public static async Task<Tuple<T, bool>> Procesar<T, J>(string BotonPulsado, J viewModel, string IdRegistro, Func<T, IComparable> getProp,
             Expression<Func<T, bool>> getExpresion, UIElementCollection view, int? lastRegistro) where T : class where J : BaseViewModel<T>
         {
             string EstadoVentana = viewModel.EstadoVentana;
             T ViewModel = viewModel.Ventana;
             T UnChangedViewModel = viewModel.Ventana;
+            bool Cansave = true;
 
             try
             {
@@ -68,7 +69,7 @@ namespace Sadora.Models
 
                         case "BtnGuardar":
                             if (!ClassControl.CanSaveView(view))
-                                return ViewModel;
+                                return new Tuple<T, bool>(ViewModel, false);
 
                             if (EstadoVentana == "Modo Agregar")
                                 db.Set<T>().Add(ViewModel);
@@ -81,12 +82,12 @@ namespace Sadora.Models
                     #endregion
                 }
 
-                return ViewModel;
+                return new Tuple<T, bool>(ViewModel, true);
             }
             catch (Exception ex)
             {
                 new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
-                return UnChangedViewModel;
+                return new Tuple<T, bool>(UnChangedViewModel, Cansave);
             }
         }
     }

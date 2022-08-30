@@ -65,19 +65,26 @@ namespace Sadora.Proveedores
                 else if (ButtonName == "BtnCancelar" && ViewModel.Ventana != null)
                     ViewModel.Ventana.ID = last.Value;
 
-                ViewModel.Ventana = await BaseModel.Procesar(BotonPulsado: ButtonName, viewModel: ViewModel, IdRegistro: intValue.ToString(),
+                var Process = await BaseModel.Procesar(BotonPulsado: ButtonName, viewModel: ViewModel, IdRegistro: intValue.ToString(),
                     getProp: x => x.ID, getExpresion: predicate, view: MainView.Children, lastRegistro: last);
+
+                ViewModel.Ventana = Process.Item1;
 
                 _FistID = ButtonName == "BtnPrimerRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID : _FistID;
                 _LastID = ButtonName == "BtnUltimoRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID : _LastID;
 
-                ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado:
-                    ButtonName == "BtnGuardar" ? "BtnUltimoRegistro" :
-                    ButtonName == "BtnAnteriorRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID > _FistID ? ButtonName : "BtnPrimerRegistro" :
-                    ButtonName == "BtnProximoRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID < _LastID ? ButtonName : "BtnUltimoRegistro" :
-                    ButtonName == "BtnCancelar" ? "BtnUltimoRegistro" :
-                    ButtonName,
-                    ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);
+                if (Process.Item2)
+                {
+                    ControlesGenerales.HabilitadorDesabilitadorBotones(BotonEstadoConsultaEjecutado:
+                        ButtonName == "BtnGuardar" ? "BtnUltimoRegistro" :
+                        ButtonName == "BtnAnteriorRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID > _FistID ? ButtonName : "BtnPrimerRegistro" :
+                        ButtonName == "BtnProximoRegistro" && ViewModel.Ventana != null ? ViewModel.Ventana.ID < _LastID ? ButtonName : "BtnUltimoRegistro" :
+                        ButtonName == "BtnCancelar" ? "BtnUltimoRegistro" :
+                        ButtonName,
+                        ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);
+                }
+                else
+                    ClassControl.PresentadorSnackBar(SnackbarThree, "Debe completar los campos vacios");
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;
