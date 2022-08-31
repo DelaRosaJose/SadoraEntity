@@ -47,6 +47,7 @@ namespace Sadora.Proveedores
          
         private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
+            int? LastRegister = default;
             try
             {
                 string ButtonName = ((Button)e.OriginalSource).Name;
@@ -59,7 +60,7 @@ namespace Sadora.Proveedores
                     predicate = (x) => x.ID > (intValue) && x.ID < ((intValue) + 5);
                 else if (ButtonName != "BtnCancelar" && ViewModel.Ventana != null)
                 {
-                    last = ViewModel.Ventana.ID;
+                    LastRegister = ViewModel.Ventana.ID;
                     ViewModel.Ventana.ID = ButtonName == "BtnAgregar" ? ViewModel.Ventana.ID + 1 : ViewModel.Ventana.ID;
                 }
                 else if (ButtonName == "BtnCancelar" && ViewModel.Ventana != null)
@@ -82,6 +83,8 @@ namespace Sadora.Proveedores
                         ButtonName == "BtnCancelar" ? "BtnUltimoRegistro" :
                         ButtonName,
                         ButtonName == "BtnBuscar" ? ViewModel.EstadoVentana : null);
+
+                    last = LastRegister;
                 }
                 else
                     ClassControl.PresentadorSnackBar(SnackbarThree, "Debe completar los campos vacios");

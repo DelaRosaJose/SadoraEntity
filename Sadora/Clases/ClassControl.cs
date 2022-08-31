@@ -289,6 +289,7 @@ namespace Sadora.Clases
             return Linea;
         }
 
+
         public static bool ValidateIdentityCard(string identityCard)
         {
             string replaceScore = identityCard.Replace("-", "");
@@ -444,47 +445,44 @@ namespace Sadora.Clases
         {
             try
             {
-
                 for (int i = 0; i < view.Count; i++)
                 {
                     var Element = view[i];
 
-                    if (Element is Grid)
-                        LimpiadorGeneral((Element as Grid).Children);
+                    if (Element is Grid Grid)
+                        LimpiadorGeneral(Grid.Children);
 
                     else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
                         LimpiadorGeneral(((Element as ScrollViewer).Content as Grid).Children);
 
-                    else if (Element is StackPanel)
-                        LimpiadorGeneral((Element as StackPanel).Children);
+                    else if (Element is StackPanel StackPanel)
+                        LimpiadorGeneral(StackPanel.Children);
 
-                    else if (Element is Border)
-                        LimpiadorGeneral(((Element as Border).Child as StackPanel).Children);
+                    else if (Element is Border Border)
+                        LimpiadorGeneral((Border.Child as StackPanel).Children);
 
-                    else if (Element is CustomElements.UscTextboxGeneral)
-                        (Element as CustomElements.UscTextboxGeneral).Text = default;
+                    else if (Element is CustomElements.UscTextboxGeneral UscTextboxGeneral)
+                        UscTextboxGeneral.Text = default;
 
-                    else if (Element is CustomElements.UscTextboxButtonGeneral)
-                        (Element as CustomElements.UscTextboxButtonGeneral).Text = default;
+                    else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
+                        UscTextboxButtonGeneral.Text = default;
 
-                    else if (Element is CustomElements.UscCheckBoxGeneral)
-                        (Element as CustomElements.UscCheckBoxGeneral).IsChecked = default;
+                    else if (Element is CustomElements.UscCheckBoxGeneral UscCheckBoxGeneral)
+                        UscCheckBoxGeneral.IsChecked = default;
 
                     else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
                         continue;
 
-                    else if (Element is CustomElements.UscDatePickerGeneral)
-                        (Element as CustomElements.UscDatePickerGeneral).Date = DateTime.Now;
+                    else if (Element is CustomElements.UscDatePickerGeneral UscDatePickerGeneral)
+                        UscDatePickerGeneral.Date = DateTime.Now;
 
-                    else if (Element is CustomElements.UscComboBoxGeneral)
-                        (Element as CustomElements.UscComboBoxGeneral).Text = default;
+                    else if (Element is CustomElements.UscComboBoxGeneral UscComboBoxGeneral)
+                        UscComboBoxGeneral.Text = default;
 
                     else
                         new Administracion.FrmCompletarCamposHost($"Advertencia: \nEste control no esta registrado {Element} --ClassControl/LimpiadorGeneral \nComuniquese con soporte").ShowDialog();
 
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -505,17 +503,17 @@ namespace Sadora.Clases
 
                     var Element = view[i];
 
-                    if (Element is Grid)
-                        CanSave &= CanSaveView((Element as Grid).Children);
+                    if (Element is Grid Grid)
+                        CanSave &= CanSaveView(Grid.Children);
 
                     else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
                         CanSave &= CanSaveView(((Element as ScrollViewer).Content as Grid).Children);
 
-                    else if (Element is StackPanel)
-                        CanSave &= CanSaveView((Element as StackPanel).Children);
+                    else if (Element is StackPanel StackPanel)
+                        CanSave &= CanSaveView(StackPanel.Children);
 
-                    else if (Element is Border)
-                        CanSave &= CanSaveView(((Element as Border).Child as StackPanel).Children);
+                    else if (Element is Border Border)
+                        CanSave &= CanSaveView((Border.Child as StackPanel).Children);
 
                     else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
                         continue;
@@ -591,6 +589,57 @@ namespace Sadora.Clases
         }
         #endregion
 
+        #region SetDefaultColorELement(UIElementCollection view) --**-- Metodo que se encarga de validar todos los controles de una ventana y retorna si se puede guardar.
+        public static void SetDefaultColorELement(UIElementCollection view)
+        {
+            string Color = "#4CEDEDED";
+
+            try
+            {
+                for (int i = 0; i < view.Count; i++)
+                {
+                    var Element = view[i];
+
+                    if (Element is Grid Grid)
+                        SetDefaultColorELement(Grid.Children);
+
+                    else if (Element is ScrollViewer && (Element as ScrollViewer).Content is Grid)
+                        SetDefaultColorELement(((Element as ScrollViewer).Content as Grid).Children);
+
+                    else if (Element is StackPanel StackPanel)
+                        SetDefaultColorELement(StackPanel.Children);
+
+                    else if (Element is Border Border)
+                        SetDefaultColorELement((Border.Child as StackPanel).Children);
+
+                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
+                        continue;
+
+                    else if (Element is CustomElements.UscTextboxGeneral UscTextBoxGeneral)
+                        UscTextBoxGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+
+                    else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
+                        UscTextboxButtonGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+
+                    else if (Element is CustomElements.UscCheckBoxGeneral UscCheckBoxGeneral)
+                        UscCheckBoxGeneral.ColorCampoVacio = default;
+
+                    else if (Element is CustomElements.UscDatePickerGeneral UscDatePickerGeneral)
+                        UscDatePickerGeneral.Background = default;
+
+                    else if (Element is CustomElements.UscComboBoxGeneral UscComboBoxGeneral)
+                        UscComboBoxGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+
+                    else
+                        new Administracion.FrmCompletarCamposHost($"Advertencia: \nEste control no esta registrado {Element} --ClassControl/SetDefaultColorELement \nComuniquese con soporte").ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
+            }
+        }
+        #endregion
 
         #region PuedeEscribirEnCampo(string Estatus, KeyEventArgs e) --**-- 
         public static void PuedeEscribirEnCampo(string Estatus, KeyEventArgs e)

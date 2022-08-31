@@ -63,6 +63,7 @@ namespace Sadora.Models
                             break;
 
                         case "BtnCancelar":
+                            ClassControl.SetDefaultColorELement(view);
                             Tsql = db.Set<T>().FindAsync(lastRegistro).Result;
                             ViewModel = Tsql != default ? Tsql : UnChangedViewModel;
                             break;
