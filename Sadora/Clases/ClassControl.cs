@@ -364,6 +364,13 @@ namespace Sadora.Clases
 
         public static void CampoSoloPermiteNumeros(KeyEventArgs e)
         {
+            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.Decimal, Key.Enter, Key.Tab, Key.Delete, Key.Back, Key.Left, Key.Right }.Contains(e.Key))
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+        public static void CampoSoloPermiteDecimales(KeyEventArgs e)
+        {
             if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.OemPeriod, Key.Decimal, Key.Enter, Key.Tab, Key.Delete, Key.Back, Key.Left, Key.Right }.Contains(e.Key))
                 e.Handled = false;
             else
@@ -464,6 +471,9 @@ namespace Sadora.Clases
                     else if (Element is CustomElements.UscTextboxGeneral UscTextboxGeneral)
                         UscTextboxGeneral.Text = default;
 
+                    else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
+                        UscTextboxTelefono.Text = default;
+
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
                         UscTextboxButtonGeneral.Text = default;
 
@@ -520,7 +530,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxGeneral UscTextBoxGeneral)
                     {
-                        bool and = UscTextBoxGeneral.Text != default;
+                        bool and = !new string[] { string.Empty, default }.Contains(UscTextBoxGeneral.Text);
                         CanSave &= and;
 
                         if (and)
@@ -529,9 +539,20 @@ namespace Sadora.Clases
                             UscTextBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
                     }
 
+                    else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
+                    {
+                        bool and = !new string[] {string.Empty, default }.Contains(UscTextboxTelefono.Text);
+                        CanSave &= and;
+
+                        if (and)
+                            UscTextboxTelefono.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
+                        else
+                            UscTextboxTelefono.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                    }
+
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
                     {
-                        bool and = UscTextboxButtonGeneral.Text != default;
+                        bool and = !new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.Text);
                         CanSave &= and;
 
                         if (and)
@@ -564,7 +585,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscComboBoxGeneral UscComboBoxGeneral)
                     {
-                        bool and = UscComboBoxGeneral.Text != default;
+                        bool and = !new string[] { string.Empty, default }.Contains(UscComboBoxGeneral.Text);
                         CanSave &= and;
 
                         if (and)
@@ -617,6 +638,9 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxGeneral UscTextBoxGeneral)
                         UscTextBoxGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+
+                    else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
+                        UscTextboxTelefono.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
 
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
                         UscTextboxButtonGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
