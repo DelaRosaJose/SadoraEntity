@@ -61,9 +61,9 @@
 
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxNumerico Title="RNC" Number="{Binding Empresa.RNC, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="3" MaxLength="15"/>
+                            <Sadora:UscTextboxNumerico Title="RNC" Number="{Binding Empresa.RNC, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="3" MaxLength="11"/>
 
-                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Empresa.Telefono, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="6" MaxLength="20"/>
+                            <Sadora:UscTextboxTelefono Title="Telefono" Text="{Binding Empresa.Telefono, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="6"/>
 
                         </StackPanel>
 
