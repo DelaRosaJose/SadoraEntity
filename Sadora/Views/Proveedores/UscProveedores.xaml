@@ -37,13 +37,13 @@
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="Proveedor ID" Text="{Binding Ventana.ID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="1" FieldNumeric="True"/>
+                            <Sadora:UscTextboxNumerico Title="Proveedor ID" Number="{Binding Ventana.ID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="1" />
 
                             <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Ventana.Nombre, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="4"/>
 
                             <Sadora:UscTextboxGeneral Title="Direccion" Text="{Binding Ventana.Direccion, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="100" TabIndex="7"/>
 
-                            <Sadora:UscTextboxGeneral Title="Telefono" Text="{Binding Ventana.Telefono, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="20" TabIndex="10" FieldNumeric="True"/>
+                            <Sadora:UscTextboxNumerico Title="Telefono" Number="{Binding Ventana.Telefono, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="20" TabIndex="10"/>
 
                         </StackPanel>
                     </Grid>
@@ -52,13 +52,13 @@
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Vertical" Width="auto">
 
-                            <Sadora:UscTextboxGeneral Title="RNC" Text="{Binding Ventana.RNC, Mode=TwoWay}" LostFocus="UscRNC_LostFocus" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="2" MaxLength="11" FieldNumeric="True"/>
+                            <Sadora:UscTextboxNumerico Title="RNC" Number="{Binding Ventana.RNC, Mode=TwoWay}" LostFocus="UscRNC_LostFocus" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="2" MaxLength="11"/>
 
                             <Sadora:UscTextboxGeneral Title="Representante" Text="{Binding Ventana.Representante, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="5"/>
 
                             <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Ventana.CorreoElectronico, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="40" TabIndex="8"/>
 
-                            <Sadora:UscTextboxGeneral Title="Celular" Text="{Binding Ventana.Celular, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="20" TabIndex="11" FieldNumeric="True"/>
+                            <Sadora:UscTextboxNumerico Title="Celular" Number="{Binding Ventana.Celular, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="20" TabIndex="11"/>
 
                         </StackPanel>
                     </Grid>

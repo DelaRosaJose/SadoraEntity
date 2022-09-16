@@ -43,11 +43,6 @@ namespace Sadora.CustomElements
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
-        public bool FieldNumeric
-        {
-            get { return (bool)GetValue(FieldNumericProperty); }
-            set { SetValue(FieldNumericProperty, value); }
-        }
         public string EstadoMainWindows
         {
             get { return (string)GetValue(EstadoMainWindowsProperty); }
@@ -81,9 +76,6 @@ namespace Sadora.CustomElements
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(nameof(Text), typeof(string), typeof(UscTextboxGeneral), new PropertyMetadata(null));
 
-        public static readonly DependencyProperty FieldNumericProperty =
-            DependencyProperty.Register(nameof(FieldNumeric), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
-
         public static readonly DependencyProperty EstadoMainWindowsProperty =
             DependencyProperty.Register(nameof(EstadoMainWindows), typeof(string), typeof(UscTextboxGeneral), new PropertyMetadata(null, EstadoMainWindowsPropertyChanged));
 
@@ -101,12 +93,6 @@ namespace Sadora.CustomElements
         }
 
         private void MainText_KeyUp(object sender, KeyEventArgs e) => ClassControl.PasarConEnterProximoCampo(e, EstadoMainWindows, EnterPasarProximoCampo);
-
-        private void MainText_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (FieldNumeric)
-                ClassControl.CampoSoloPermiteNumeros(e);
-        }
 
         private static void EstadoMainWindowsPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
         {
