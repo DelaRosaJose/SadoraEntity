@@ -171,6 +171,12 @@
     <Compile Include="Models\TconComprobante.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TinvArticulo.cs">
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinvClaseArticulo.cs">
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TrhnEmpleado.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>

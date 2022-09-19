@@ -61,6 +61,34 @@
           <Property Name="UsuarioID" Type="int" />
           <Property Name="SinComprobantes" Type="bit" />
         </EntityType>
+        <EntityType Name="TinvArticulos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClaseArticuloID" Type="int" />
+          <Property Name="DepartamentoID" Type="int" />
+          <Property Name="MarcaID" Type="int" Nullable="false" />
+          <Property Name="Tarjeta" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Costo" Type="float" Nullable="false" />
+          <Property Name="Precio" Type="float" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" />
+          <Property Name="Cantidad" Type="float" />
+          <Property Name="HaveServices" Type="bit" />
+        </EntityType>
+        <EntityType Name="TinvClaseArticulos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Porcentaje" Type="float" Nullable="false" />
+          <Property Name="Servicio" Type="bit" />
+          <Property Name="UsuarioID" Type="int" />
+        </EntityType>
         <EntityType Name="TrhnEmpleados">
           <Key>
             <PropertyRef Name="ID" />
@@ -147,6 +175,8 @@
           <EntitySet Name="DGII_RNC" EntityType="Self.DGII_RNC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TcliClientes" EntityType="Self.TcliClientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TconComprobantes" EntityType="Self.TconComprobantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TinvArticulos" EntityType="Self.TinvArticulos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TinvClaseArticulos" EntityType="Self.TinvClaseArticulos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrhnEmpleados" EntityType="Self.TrhnEmpleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsupProveedores" EntityType="Self.TsupProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TsysAccesos" EntityType="Self.TsysAccesos" Schema="dbo" store:Type="Tables" />
@@ -205,6 +235,8 @@
           <EntitySet Name="DGII_RNC" EntityType="SadoraEntityModel.DGII_RNC" />
           <EntitySet Name="TcliClientes" EntityType="SadoraEntityModel.TcliCliente" />
           <EntitySet Name="TrhnEmpleados" EntityType="SadoraEntityModel.TrhnEmpleado" />
+          <EntitySet Name="TinvArticulos" EntityType="SadoraEntityModel.TinvArticulo" />
+          <EntitySet Name="TinvClaseArticulos" EntityType="SadoraEntityModel.TinvClaseArticulo" />
         </EntityContainer>
         <EntityType Name="TconComprobante">
           <Key>
@@ -305,6 +337,34 @@
           <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
+          <Property Name="UsuarioID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TinvArticulo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClaseArticuloID" Type="Int32" />
+          <Property Name="DepartamentoID" Type="Int32" />
+          <Property Name="MarcaID" Type="Int32" Nullable="false" />
+          <Property Name="Tarjeta" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Costo" Type="Double" Nullable="false" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="Cantidad" Type="Double" />
+          <Property Name="HaveServices" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TinvClaseArticulo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Porcentaje" Type="Double" Nullable="false" />
+          <Property Name="Servicio" Type="Boolean" />
           <Property Name="UsuarioID" Type="Int32" />
         </EntityType>
       </Schema>
@@ -456,6 +516,36 @@
                 <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TinvArticulos">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TinvArticulo">
+              <MappingFragment StoreEntitySet="TinvArticulos">
+                <ScalarProperty Name="HaveServices" ColumnName="HaveServices" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Tarjeta" ColumnName="Tarjeta" />
+                <ScalarProperty Name="MarcaID" ColumnName="MarcaID" />
+                <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
+                <ScalarProperty Name="ClaseArticuloID" ColumnName="ClaseArticuloID" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TinvClaseArticulos">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TinvClaseArticulo">
+              <MappingFragment StoreEntitySet="TinvClaseArticulos">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -85,7 +85,7 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty EstadoMainWindowsProperty =
             DependencyProperty.Register(nameof(EstadoMainWindows), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null, EstadoMainWindowsPropertyChanged));
-        
+
         public static readonly DependencyProperty EnterPasarProximoCampoProperty =
             DependencyProperty.Register(nameof(EnterPasarProximoCampo), typeof(bool), typeof(UscTextboxButtonGeneral), new PropertyMetadata(true));
 
@@ -123,9 +123,7 @@ namespace Sadora.CustomElements
 
                     using (Models.SadoraEntity db = new Models.SadoraEntity())
                     {
-                        string ColumnAsync = default;
-
-                        ColumnAsync = await db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
+                        var ColumnAsync = db.Database.SqlQuery<string>($"select top 1 COLUMN_NAME from Information_Schema.COLUMNS " +
                         $"where TABLE_NAME = '{BuscarPorTabla}' " +
                         $"and COLUMN_NAME not in ('RowID', 'UsuarioID') " +
                         $"and COLUMN_NAME like '%ID'").FirstOrDefaultAsync();
@@ -142,7 +140,11 @@ namespace Sadora.CustomElements
                             }
                         }
 
-                        ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {BuscarPorTabla} where {ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
+                        ValueColumn =
+                            int.TryParse(ValueColumn, out int intValue) ? ValueColumn :
+                            new string[] {string.Empty, null}.Contains(Text) ? 0.ToString() : Text;
+
+                        ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {BuscarPorTabla} where {await ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
 
                     }
                 }

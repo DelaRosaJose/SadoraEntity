@@ -474,13 +474,16 @@ namespace Sadora.Clases
                     else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
                         UscTextboxTelefono.Text = default;
 
+                    else if (Element is CustomElements.UscTextboxNumerico UscTextboxNumerico)
+                        UscTextboxNumerico.Number = 0.ToString();
+
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
                         UscTextboxButtonGeneral.Text = default;
 
                     else if (Element is CustomElements.UscCheckBoxGeneral UscCheckBoxGeneral)
                         UscCheckBoxGeneral.IsChecked = default;
 
-                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
+                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar || Element is MaterialDesignThemes.Wpf.PopupBox || Element is MaterialDesignThemes.Wpf.DialogHost)
                         continue;
 
                     else if (Element is CustomElements.UscDatePickerGeneral UscDatePickerGeneral)
@@ -525,7 +528,7 @@ namespace Sadora.Clases
                     else if (Element is Border Border)
                         CanSave &= CanSaveView((Border.Child as StackPanel).Children);
 
-                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
+                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar || Element is MaterialDesignThemes.Wpf.PopupBox || Element is MaterialDesignThemes.Wpf.DialogHost)
                         continue;
 
                     else if (Element is CustomElements.UscTextboxGeneral UscTextBoxGeneral)
@@ -548,6 +551,17 @@ namespace Sadora.Clases
                             UscTextboxTelefono.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
                         else
                             UscTextboxTelefono.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                    }
+
+                    else if (Element is CustomElements.UscTextboxNumerico UscTextboxNumerico)
+                    {
+                        bool and = !new string[] {string.Empty, default }.Contains(UscTextboxNumerico.Number);
+                        CanSave &= and;
+
+                        if (and)
+                            UscTextboxNumerico.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
+                        else
+                            UscTextboxNumerico.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
                     }
 
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
@@ -633,7 +647,7 @@ namespace Sadora.Clases
                     else if (Element is Border Border)
                         SetDefaultColorELement((Border.Child as StackPanel).Children);
 
-                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar)
+                    else if ((Element is CustomElements.UscBotonesGenerales) || Element is MaterialDesignThemes.Wpf.Snackbar || Element is MaterialDesignThemes.Wpf.PopupBox || Element is MaterialDesignThemes.Wpf.DialogHost)
                         continue;
 
                     else if (Element is CustomElements.UscTextboxGeneral UscTextBoxGeneral)
@@ -641,6 +655,9 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
                         UscTextboxTelefono.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+                    
+                    else if (Element is CustomElements.UscTextboxNumerico UscTextboxNumerico)
+                        UscTextboxNumerico.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
 
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
                         UscTextboxButtonGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
