@@ -566,7 +566,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
                     {
-                        bool and = !new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.Text);
+                        bool and = !new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.Text) && !new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.ResultText.Text);
                         CanSave &= and;
 
                         if (and)

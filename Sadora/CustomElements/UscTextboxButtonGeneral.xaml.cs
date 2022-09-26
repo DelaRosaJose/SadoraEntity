@@ -79,7 +79,7 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(nameof(Text), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
-
+        
         public static readonly DependencyProperty SearchByTableProperty =
             DependencyProperty.Register(nameof(BuscarPorTabla), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
 
