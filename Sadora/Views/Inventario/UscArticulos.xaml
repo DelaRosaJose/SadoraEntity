@@ -44,7 +44,7 @@
 
                             <Sadora:UscTextboxButtonGeneral Title="Departamento ID" BuscarPorTabla="TinvDepartamento" Text="{Binding Ventana.DepartamentoID, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" TabIndex="6"/>
 
-                            <Sadora:UscTextboxGeneral Title="Descripcion" Text="{Binding Ventana.Descripcion, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="4"/>
+                            <Sadora:UscTextboxGeneral Title="Descripcion" Text="{Binding Ventana.Descripcion, Mode=TwoWay}" GuardarCampoVacio="True" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="4"/>
 
                         </StackPanel>
                     </Grid>

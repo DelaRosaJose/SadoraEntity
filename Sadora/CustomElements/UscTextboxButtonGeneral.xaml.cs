@@ -58,6 +58,12 @@ namespace Sadora.CustomElements
             get { return (bool)GetValue(EnterPasarProximoCampoProperty); }
             set { SetValue(EnterPasarProximoCampoProperty, value); }
         }
+        public bool GuardarCampoVacio
+        {
+            get { return (bool)GetValue(GuardarCampoVacioProperty); }
+            set { SetValue(GuardarCampoVacioProperty, value); }
+        }
+
         #endregion
 
         #region Registro de Dependency Property
@@ -88,6 +94,9 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty EnterPasarProximoCampoProperty =
             DependencyProperty.Register(nameof(EnterPasarProximoCampo), typeof(bool), typeof(UscTextboxButtonGeneral), new PropertyMetadata(true));
+
+        public static readonly DependencyProperty GuardarCampoVacioProperty =
+            DependencyProperty.Register(nameof(GuardarCampoVacio), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
 
         private static void EstadoMainWindowsPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
         {

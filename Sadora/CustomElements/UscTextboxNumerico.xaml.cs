@@ -65,6 +65,11 @@ namespace Sadora.CustomElements
             get { return (TextBoxMask)GetValue(MaskProperty); }
             set { SetValue(MaskProperty, value); }
         }
+        public bool GuardarCampoVacio
+        {
+            get { return (bool)GetValue(GuardarCampoVacioProperty); }
+            set { SetValue(GuardarCampoVacioProperty, value); }
+        }
 
         #endregion
 
@@ -100,6 +105,8 @@ namespace Sadora.CustomElements
         public static readonly DependencyProperty MaskProperty =
             DependencyProperty.Register(nameof(Mask), typeof(TextBoxMask), typeof(UscTextboxNumerico), new PropertyMetadata(TextBoxMask.Telefono));
 
+        public static readonly DependencyProperty GuardarCampoVacioProperty =
+            DependencyProperty.Register(nameof(GuardarCampoVacio), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
         #endregion
 
         public UscTextboxNumerico() => InitializeComponent();

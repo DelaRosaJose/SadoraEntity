@@ -533,7 +533,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxGeneral UscTextBoxGeneral)
                     {
-                        bool and = !new string[] { string.Empty, default }.Contains(UscTextBoxGeneral.Text);
+                        bool and = !new string[] { string.Empty, default }.Contains(UscTextBoxGeneral.Text) || UscTextBoxGeneral.GuardarCampoVacio;
                         CanSave &= and;
 
                         if (and)
@@ -544,7 +544,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
                     {
-                        bool and = !new string[] {string.Empty, default }.Contains(UscTextboxTelefono.Text);
+                        bool and = !new string[] {string.Empty, default }.Contains(UscTextboxTelefono.Text) || UscTextboxTelefono.GuardarCampoVacio;
                         CanSave &= and;
 
                         if (and)
@@ -555,7 +555,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxNumerico UscTextboxNumerico)
                     {
-                        bool and = !new string[] {string.Empty, default }.Contains(UscTextboxNumerico.Number);
+                        bool and = !new string[] {string.Empty, default }.Contains(UscTextboxNumerico.Number) || UscTextboxNumerico.GuardarCampoVacio;
                         CanSave &= and;
 
                         if (and)
@@ -566,7 +566,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
                     {
-                        bool and = !new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.Text) && !new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.ResultText.Text);
+                        bool and = (!new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.Text) && !new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.ResultText.Text)) || UscTextboxButtonGeneral.GuardarCampoVacio;
                         CanSave &= and;
 
                         if (and)
