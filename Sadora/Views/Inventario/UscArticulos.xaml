@@ -79,19 +79,20 @@
                         </StackPanel>
                     </Grid>
 
-                    <materialDesign:PopupBox x:Name="BtnOpciones" Grid.Column="3" VerticalAlignment="Top" Margin="0 40 0 0" PlacementMode="LeftAndAlignTopEdges" ToolTip="Pulsar para ver opciones avanzadas"  Background="{DynamicResource PrimaryHueDarkBrush}" StaysOpen="False" >
+                    <!--<materialDesign:PopupBox x:Name="BtnOpciones" Grid.Column="3" VerticalAlignment="Top" Margin="0 40 0 0" PlacementMode="LeftAndAlignTopEdges" ToolTip="Pulsar para ver opciones avanzadas"  Background="{DynamicResource PrimaryHueDarkBrush}" StaysOpen="False" >
                         <StackPanel Width="auto">
 
-                            <Button x:Name="BtnConfiguracionServicios" Content="Configurar servicios al articulo" Click="BtnConfiguracionServicios_Click" ToolTip="Pulsar para configurar los servicios que se facturaran en base al articulo"/>
+                            <Button Content="Configurar servicios al articulo" Click="BtnConfiguracionServicios_Click" ToolTip="Pulsar para configurar los servicios que se facturaran en base al articulo"/>
 
                         </StackPanel>
-                    </materialDesign:PopupBox>
+                    </materialDesign:PopupBox>-->
 
                 </Grid>
             </ScrollViewer>
         </Grid>
 
-        <materialDesign:DialogHost IsOpen="False" x:Name="ServiciosMasivosDialogo"  >
+        <!--#region CodeComent -->
+        <!--<materialDesign:DialogHost IsOpen="False" x:Name="ServiciosMasivosDialogo"  >
             <materialDesign:DialogHost.DialogContent>
 
                 <Grid Width="750" Height="590" Margin="0" Background="#19C8C8C8" HorizontalAlignment="Center">
@@ -175,7 +176,7 @@
                                             </StackPanel>
                                         </Button>
                                     </Border>
-                                    
+
                                 </DockPanel>
 
                                 <dxg:GridControl x:Name="GridMain"  Grid.Row="1" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" Height="458" TabIndex="3">
@@ -192,8 +193,10 @@
                 </Grid>
 
             </materialDesign:DialogHost.DialogContent>
-        </materialDesign:DialogHost>
+        </materialDesign:DialogHost>-->
+        <!--#endregion-->
 
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarThree" Background="{StaticResource PrimaryHueDarkBrush}"/>
+        
     </Grid>
 </UserControl>

@@ -106,7 +106,7 @@ namespace Sadora.CustomElements
             DependencyProperty.Register(nameof(Mask), typeof(TextBoxMask), typeof(UscTextboxNumerico), new PropertyMetadata(TextBoxMask.Telefono));
 
         public static readonly DependencyProperty GuardarCampoVacioProperty =
-            DependencyProperty.Register(nameof(GuardarCampoVacio), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
+            DependencyProperty.Register(nameof(GuardarCampoVacio), typeof(bool), typeof(UscTextboxNumerico), new PropertyMetadata(false));
         #endregion
 
         public UscTextboxNumerico() => InitializeComponent();

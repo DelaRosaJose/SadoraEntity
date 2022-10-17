@@ -96,7 +96,7 @@ namespace Sadora.CustomElements
             DependencyProperty.Register(nameof(EnterPasarProximoCampo), typeof(bool), typeof(UscTextboxButtonGeneral), new PropertyMetadata(true));
 
         public static readonly DependencyProperty GuardarCampoVacioProperty =
-            DependencyProperty.Register(nameof(GuardarCampoVacio), typeof(bool), typeof(UscTextboxGeneral), new PropertyMetadata(false));
+            DependencyProperty.Register(nameof(GuardarCampoVacio), typeof(bool), typeof(UscTextboxButtonGeneral), new PropertyMetadata(false));
 
         private static void EstadoMainWindowsPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
         {

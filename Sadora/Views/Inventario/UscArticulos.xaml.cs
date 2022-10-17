@@ -113,198 +113,196 @@ namespace Sadora.Inventario
 
 
 
+        //void setDatosGrid(int Flag, string ArticuloID = null) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
+        //{
+        //    string NombreServicio = "";
+        //    double Precio = 0;
+        //    bool Alta = false;
+
+        //    if (ViewModel.EstadoVentana == "Modo Agregar" || ViewModel.EstadoVentana == "Modo Editar")
+        //    {
+        //        NombreServicio = GridMain.GetFocusedRowCellValue("NombreServicio").ToString();
+        //        Precio = (double)GridMain.GetFocusedRowCellValue("Precio");
+        //        Alta = (bool)GridMain.GetFocusedRowCellValue("Alta");
+        //    }
+
+        //    List<SqlParameter> listSqlParameter = new List<SqlParameter>() //Creamos una lista de parametros con cada parametro de sql, donde indicamos el NCF en sql y le indicamos el valor o el campo de donde sacara el valor que enviaremos.
+        //    {
+        //        new SqlParameter("Flag",Flag),
+        //        new SqlParameter("@ArticuloID", ArticuloID == null ? ViewModel.Ventana.ID.ToString() : ArticuloID),
+        //        new SqlParameter("@NombreServicio", NombreServicio),
+        //        new SqlParameter("@Precio", Precio),
+        //        new SqlParameter("@Alta", Alta),
+        //        new SqlParameter("@UsuarioID", ClassVariables.UsuarioID)
+        //    };
+
+        //    TableGrid = Clases.ClassData.runDataTable("sp_invServicioArticulos", listSqlParameter, "StoredProcedure"); //recibimos el resultado que nos retorne la transaccion digase, consulta, agregar,editar,eliminar en una tabla.
+
+        //    if (ClassVariables.GetSetError != null) //Si el intento anterior presenta algun error aqui aparece el mismo
+        //    {
+        //        Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost(ClassVariables.GetSetError);
+        //        frm.ShowDialog();
+        //        ClassVariables.GetSetError = null;
+        //    }
+
+        //    if (TableGrid.Rows.Count > 0) //evaluamos si la tabla actualizada previamente tiene datos, de ser asi actualizamos los controles en los que mostramos esa info.
+        //        AgregarModoGrid(GridMain, TablaGrid, TableGrid);
 
 
-        void setDatosGrid(int Flag, string ArticuloID = null) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
-        {
-            string NombreServicio = "";
-            double Precio = 0;
-            bool Alta = false;
+        //    //else
+        //    //{
+        //    //    GridMain.ItemsSource = null;
+        //    //}
 
-            if (ViewModel.EstadoVentana == "Modo Agregar" || ViewModel.EstadoVentana == "Modo Editar")
-            {
-                NombreServicio = GridMain.GetFocusedRowCellValue("NombreServicio").ToString();
-                Precio = (double)GridMain.GetFocusedRowCellValue("Precio");
-                Alta = (bool)GridMain.GetFocusedRowCellValue("Alta");
-            }
+        //    List<String> listaColumnas = new List<String>() //Estos son los controles que seran controlados, readonly, enable.
+        //    {
+        //        //"Visualiza","Agrega","Modifica","Imprime","Anula"
+        //    };
 
-            List<SqlParameter> listSqlParameter = new List<SqlParameter>() //Creamos una lista de parametros con cada parametro de sql, donde indicamos el NCF en sql y le indicamos el valor o el campo de donde sacara el valor que enviaremos.
-            {
-                new SqlParameter("Flag",Flag),
-                new SqlParameter("@ArticuloID", ArticuloID == null ? ViewModel.Ventana.ID.ToString() : ArticuloID),
-                new SqlParameter("@NombreServicio", NombreServicio),
-                new SqlParameter("@Precio", Precio),
-                new SqlParameter("@Alta", Alta),
-                new SqlParameter("@UsuarioID", ClassVariables.UsuarioID)
-            };
+        //    if (ViewModel.EstadoVentana == "Modo Agregar" && ViewModel.EstadoVentana == "Modo Editar")
+        //    {
+        //        //Clases.ClassControl.SetGridReadOnly(GridMain, listaColumnas, false);
+        //    }
+        //    else
+        //    {
+        //        ClassControl.SetGridReadOnly(GridMain);
+        //    }
 
-            TableGrid = Clases.ClassData.runDataTable("sp_invServicioArticulos", listSqlParameter, "StoredProcedure"); //recibimos el resultado que nos retorne la transaccion digase, consulta, agregar,editar,eliminar en una tabla.
-
-            if (ClassVariables.GetSetError != null) //Si el intento anterior presenta algun error aqui aparece el mismo
-            {
-                Administracion.FrmCompletarCamposHost frm = new Administracion.FrmCompletarCamposHost(ClassVariables.GetSetError);
-                frm.ShowDialog();
-                ClassVariables.GetSetError = null;
-            }
-
-            if (TableGrid.Rows.Count > 0) //evaluamos si la tabla actualizada previamente tiene datos, de ser asi actualizamos los controles en los que mostramos esa info.
-                AgregarModoGrid(GridMain, TablaGrid, TableGrid);
+        //    listSqlParameter.Clear(); listaColumnas.Clear(); //Limpiamos la lista de parametros.
+        //}
 
 
-            //else
-            //{
-            //    GridMain.ItemsSource = null;
-            //}
+        //private void BtnConfiguracionServicios_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (ViewModel.EstadoVentana != "Modo Consulta" && ViewModel.EstadoVentana != "Modo Busqueda")
+        //    {
+        //        MiniDialogo.IsOpen = true;
+        //        AgregarModoGrid(GridMain, TablaGrid);
+        //    }
+        //    else if (ViewModel.EstadoVentana == "Modo Consulta")
+        //    {
+        //        MiniDialogo.IsOpen = true;
+        //        TablaGrid.AllowEditing = false;
+        //    }
+        //}
 
-            List<String> listaColumnas = new List<String>() //Estos son los controles que seran controlados, readonly, enable.
-            {
-                //"Visualiza","Agrega","Modifica","Imprime","Anula"
-            };
+        //private void ButtonCerrar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    GridMain.ItemsSource = null;
+        //    MiniDialogo.IsOpen = false;
+        //    TablaGrid.AllowEditing = true;
+        //}
 
-            if (ViewModel.EstadoVentana == "Modo Agregar" && ViewModel.EstadoVentana == "Modo Editar")
-            {
-                //Clases.ClassControl.SetGridReadOnly(GridMain, listaColumnas, false);
-            }
-            else
-            {
-                ClassControl.SetGridReadOnly(GridMain);
-            }
+        //private void AgregarModoGrid(DevExpress.Xpf.Grid.GridControl Grid, DevExpress.Xpf.Grid.TableView tableView, DataTable table = null, bool IsServiciosMasivos = false)
+        //{
+        //    if (table == null)
+        //    {
+        //        DataTable reader;
 
-            listSqlParameter.Clear(); listaColumnas.Clear(); //Limpiamos la lista de parametros.
-        }
+        //        if (!IsServiciosMasivos)
+        //            reader = Clases.ClassData.runDataTable("SELECT [NombreServicio], [Precio], [Alta] FROM [SadoraEntity].[dbo].[TinvServicioArticulos] where ArticuloID = " + ViewModel.Ventana.ID, null, "CommandText");
+        //        else
+        //            reader = Clases.ClassData.runDataTable("declare @Alta bit = 0; select ArticuloID, Tarjeta, Nombre, Descripcion, precio, @Alta as Alta from TinvArticulos where ArticuloID <> " + ViewModel.Ventana.ID /*+ " and HaveServices <> 1"*/, null, "CommandText");
 
+        //        Grid.ItemsSource = reader;
+        //        tableView.AutoWidth = true;
+        //        if (!IsServiciosMasivos)
+        //            tableView.AddNewRow();
+        //    }
+        //    else
+        //        Grid.ItemsSource = table;
 
-        private void BtnConfiguracionServicios_Click(object sender, RoutedEventArgs e)
-        {
-            if (ViewModel.EstadoVentana != "Modo Consulta" && ViewModel.EstadoVentana != "Modo Busqueda")
-            {
-                MiniDialogo.IsOpen = true;
-                AgregarModoGrid(GridMain, TablaGrid);
-            }
-            else if (ViewModel.EstadoVentana == "Modo Consulta")
-            {
-                MiniDialogo.IsOpen = true;
-                TablaGrid.AllowEditing = false;
-            }
-        }
+        //    if (!IsServiciosMasivos)
+        //        foreach (DevExpress.Xpf.Grid.GridColumn Col in Grid.Columns)
+        //        {
+        //            switch (Col.HeaderCaption)
+        //            {
+        //                case "Precio":
+        //                    Col.Width = new DevExpress.Xpf.Grid.GridColumnWidth(50, DevExpress.Xpf.Grid.GridColumnUnitType.Pixel);
+        //                    break;
 
-        private void ButtonCerrar_Click(object sender, RoutedEventArgs e)
-        {
-            GridMain.ItemsSource = null;
-            MiniDialogo.IsOpen = false;
-            TablaGrid.AllowEditing = true;
-        }
-
-        private void AgregarModoGrid(DevExpress.Xpf.Grid.GridControl Grid, DevExpress.Xpf.Grid.TableView tableView, DataTable table = null, bool IsServiciosMasivos = false)
-        {
-            if (table == null)
-            {
-                DataTable reader;
-
-                if (!IsServiciosMasivos)
-                    reader = Clases.ClassData.runDataTable("SELECT [NombreServicio], [Precio], [Alta] FROM[Sadora].[dbo].[TinvServicioArticulos] where ArticuloID = " + ViewModel.Ventana.ID, null, "CommandText");
-                else
-                    reader = Clases.ClassData.runDataTable("declare @Alta bit = 0; select ArticuloID, Tarjeta, Nombre, Descripcion, precio, @Alta as Alta from TinvArticulos where ArticuloID <> " + ViewModel.Ventana.ID /*+ " and HaveServices <> 1"*/, null, "CommandText");
-
-                Grid.ItemsSource = reader;
-                tableView.AutoWidth = true;
-                if (!IsServiciosMasivos)
-                    tableView.AddNewRow();
-            }
-            else
-                Grid.ItemsSource = table;
-
-            if (!IsServiciosMasivos)
-                foreach (DevExpress.Xpf.Grid.GridColumn Col in Grid.Columns)
-                {
-                    switch (Col.HeaderCaption)
-                    {
-                        case "Precio":
-                            Col.Width = new DevExpress.Xpf.Grid.GridColumnWidth(50, DevExpress.Xpf.Grid.GridColumnUnitType.Pixel);
-                            break;
-
-                        case "Alta":
-                            Col.Width = new DevExpress.Xpf.Grid.GridColumnWidth(20, DevExpress.Xpf.Grid.GridColumnUnitType.Pixel);
-                            break;
-                    }
-                }
+        //                case "Alta":
+        //                    Col.Width = new DevExpress.Xpf.Grid.GridColumnWidth(20, DevExpress.Xpf.Grid.GridColumnUnitType.Pixel);
+        //                    break;
+        //            }
+        //        }
             
-        }
+        //}
 
-        private void TablaGrid_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (ViewModel.EstadoVentana != "Modo Consulta")
-            {
-                if (e.Key == Key.Enter && TablaGrid.FocusedColumn.HeaderCaption.ToString() == "Alta")
-                {
-                    if (!ValCampoIncompleto())
-                        TablaGrid.AddNewRow();
-                }
-                else if (e.Key == Key.F5 && TablaGrid.SelectedRows.Count == 1)
-                {
-                    new Administracion.FrmValidarAccion("Esta seguro que desea eliminar esta fila?").ShowDialog(); ;
-                    if (ClassVariables.ValidarAccion == true)
-                        TablaGrid.DeleteRow(TablaGrid.FocusedRowHandle);
-                }
-            }
-        }
+        //private void TablaGrid_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    if (ViewModel.EstadoVentana != "Modo Consulta")
+        //    {
+        //        if (e.Key == Key.Enter && TablaGrid.FocusedColumn.HeaderCaption.ToString() == "Alta")
+        //        {
+        //            if (!ValCampoIncompleto())
+        //                TablaGrid.AddNewRow();
+        //        }
+        //        else if (e.Key == Key.F5 && TablaGrid.SelectedRows.Count == 1)
+        //        {
+        //            new Administracion.FrmValidarAccion("Esta seguro que desea eliminar esta fila?").ShowDialog(); ;
+        //            if (ClassVariables.ValidarAccion == true)
+        //                TablaGrid.DeleteRow(TablaGrid.FocusedRowHandle);
+        //        }
+        //    }
+        //}
 
-        bool ValCampoIncompleto()
-        {
-            string Result = "";
+        //bool ValCampoIncompleto()
+        //{
+        //    string Result = "";
 
-            List<int> rowHandles = new List<int>();
-            for (int i = 0; i < GridMain.VisibleRowCount; i++)
-            {
-                foreach (var column in GridMain.Columns)
-                    Result += string.IsNullOrWhiteSpace(GridMain.GetCellValue(GridMain.GetRowHandleByVisibleIndex(i), column).ToString()).ToString() + " ,";
+        //    List<int> rowHandles = new List<int>();
+        //    for (int i = 0; i < GridMain.VisibleRowCount; i++)
+        //    {
+        //        foreach (var column in GridMain.Columns)
+        //            Result += string.IsNullOrWhiteSpace(GridMain.GetCellValue(GridMain.GetRowHandleByVisibleIndex(i), column).ToString()).ToString() + " ,";
 
-                if (Result.Contains("True"))
-                    break;
-            }
+        //        if (Result.Contains("True"))
+        //            break;
+        //    }
 
-            if (Result.Contains("True"))
-            {
-                if (SnackbarThreeDialog.MessageQueue is { } messageQueue)
-                    Task.Factory.StartNew(() => messageQueue.Enqueue("Debe llenar todos los campos"));
-                return true;
-            }
-            else
-                return false;
+        //    if (Result.Contains("True"))
+        //    {
+        //        if (SnackbarThreeDialog.MessageQueue is { } messageQueue)
+        //            Task.Factory.StartNew(() => messageQueue.Enqueue("Debe llenar todos los campos"));
+        //        return true;
+        //    }
+        //    else
+        //        return false;
 
-        }
+        //}
 
-        private void btnAceptar_Click(object sender, RoutedEventArgs e)
-        {
-            if (!ValCampoIncompleto() && ViewModel.EstadoVentana != "Modo Consulta")
-            {
-                GridMainMasivo.ItemsSource = null;
-                MiniDialogo.IsOpen = false;
-            }
-        }
+        //private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (!ValCampoIncompleto() && ViewModel.EstadoVentana != "Modo Consulta")
+        //    {
+        //        GridMainMasivo.ItemsSource = null;
+        //        MiniDialogo.IsOpen = false;
+        //    }
+        //}
 
-        private void btnAsignacionMasiva_Click(object sender, RoutedEventArgs e)
-        {
-            if (!ValCampoIncompleto() && ViewModel.EstadoVentana != "Modo Consulta")
-            {
-                ServiciosMasivosDialogo.IsOpen = true;
-                MiniDialogo.IsOpen = false;
-                AgregarModoGrid(GridMainMasivo, TablaGridMasivo, null, true);
-            }
-            else if (ViewModel.EstadoVentana == "Modo Consulta")
-            {
-                ServiciosMasivosDialogo.IsOpen = true;
-                TablaGridMasivo.AllowEditing = false;
-            }
-        }
+        //private void btnAsignacionMasiva_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (!ValCampoIncompleto() && ViewModel.EstadoVentana != "Modo Consulta")
+        //    {
+        //        ServiciosMasivosDialogo.IsOpen = true;
+        //        MiniDialogo.IsOpen = false;
+        //        AgregarModoGrid(GridMainMasivo, TablaGridMasivo, null, true);
+        //    }
+        //    else if (ViewModel.EstadoVentana == "Modo Consulta")
+        //    {
+        //        ServiciosMasivosDialogo.IsOpen = true;
+        //        TablaGridMasivo.AllowEditing = false;
+        //    }
+        //}
 
-        private void ButtonCerrarMasivo_Click(object sender, RoutedEventArgs e)
-        {
-            ServiciosMasivosDialogo.IsOpen = false;
-            TablaGridMasivo.AllowEditing = true;
-        }
+        //private void ButtonCerrarMasivo_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ServiciosMasivosDialogo.IsOpen = false;
+        //    TablaGridMasivo.AllowEditing = true;
+        //}
 
-        private void btnAceptarMasivo_Click(object sender, RoutedEventArgs e) => ServiciosMasivosDialogo.IsOpen = false;
+        //private void btnAceptarMasivo_Click(object sender, RoutedEventArgs e) => ServiciosMasivosDialogo.IsOpen = false;
 
     }
 }
