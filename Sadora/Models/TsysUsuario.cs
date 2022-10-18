@@ -14,6 +14,7 @@ namespace Sadora.Models
     
     public partial class TsysUsuario
     {
+        public int ID { get; set; }
         public int UsuarioID { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> EmpleadoID { get; set; }

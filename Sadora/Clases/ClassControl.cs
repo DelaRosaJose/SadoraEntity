@@ -77,7 +77,7 @@ namespace Sadora.Clases
             SqlDataReader reader = Clases.ClassData.runSqlDataReader(Consulta, null, "CommandText");
             //En esta linea de codigo estamos ejecutando un metodo que recibe una consulta, la busca en sql y te retorna el resultado en un datareader.
 
-            if (reader.HasRows) //Validamos si el datareader trajo data.
+            if (reader != null && reader.HasRows) //Validamos si el datareader trajo data.
             {
                 if (reader.Read()) //Si puede leer la informacion
                 {
@@ -87,11 +87,15 @@ namespace Sadora.Clases
                 reader.Close(); //Cerramos el datareader
                 reader.Dispose(); //Cortamos la conexion del datareader
             }
-            else //Si no trajo data
+            else  //Si no trajo data
             {
                 Recibidor.Clear(); //Dejamos en blanco el campo que recibe
-                reader.Close(); //limpiamos el reader
-                reader.Dispose();
+                if (reader != null)
+                {
+                    reader.Close(); //limpiamos el reader
+                    reader.Dispose();
+
+                }
             }
         }
 
@@ -544,7 +548,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
                     {
-                        bool and = !new string[] {string.Empty, default }.Contains(UscTextboxTelefono.Text) || UscTextboxTelefono.GuardarCampoVacio;
+                        bool and = !new string[] { string.Empty, default }.Contains(UscTextboxTelefono.Text) || UscTextboxTelefono.GuardarCampoVacio;
                         CanSave &= and;
 
                         if (and)
@@ -555,7 +559,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxNumerico UscTextboxNumerico)
                     {
-                        bool and = !new string[] {string.Empty, default }.Contains(UscTextboxNumerico.Number) || UscTextboxNumerico.GuardarCampoVacio;
+                        bool and = !new string[] { string.Empty, default }.Contains(UscTextboxNumerico.Number) || UscTextboxNumerico.GuardarCampoVacio;
                         CanSave &= and;
 
                         if (and)
@@ -655,7 +659,7 @@ namespace Sadora.Clases
 
                     else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
                         UscTextboxTelefono.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
-                    
+
                     else if (Element is CustomElements.UscTextboxNumerico UscTextboxNumerico)
                         UscTextboxNumerico.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
 

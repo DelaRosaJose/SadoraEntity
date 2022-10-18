@@ -163,7 +163,8 @@
           <Key>
             <PropertyRef Name="UsuarioID" />
           </Key>
-          <Property Name="UsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="70" />
           <Property Name="EmpleadoID" Type="int" />
           <Property Name="GrupoID" Type="int" />
@@ -213,21 +214,9 @@
           <Property Name="Titulo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioID" Type="Int32" />
         </EntityType>
-        <EntityType Name="TsysUsuario">
-          <Key>
-            <PropertyRef Name="UsuarioID" />
-          </Key>
-          <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="EmpleadoID" Type="Int32" />
-          <Property Name="GrupoID" Type="Int32" />
-          <Property Name="Contraseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="Boolean" />
-        </EntityType>
         <EntityContainer Name="SadoraEntity" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TsysAccesos" EntityType="Self.TsysAcceso" />
           <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormulario" />
-          <EntitySet Name="TsysUsuarios" EntityType="Self.TsysUsuario" />
           <EntitySet Name="TconComprobantes" EntityType="SadoraEntityModel.TconComprobante" />
           <EntitySet Name="TsysEmpresas" EntityType="SadoraEntityModel.TsysEmpresa" />
           <EntitySet Name="TsupProveedores" EntityType="SadoraEntityModel.TsupProveedore" />
@@ -237,6 +226,7 @@
           <EntitySet Name="TrhnEmpleados" EntityType="SadoraEntityModel.TrhnEmpleado" />
           <EntitySet Name="TinvArticulos" EntityType="SadoraEntityModel.TinvArticulo" />
           <EntitySet Name="TinvClaseArticulos" EntityType="SadoraEntityModel.TinvClaseArticulo" />
+          <EntitySet Name="TsysUsuarios" EntityType="SadoraEntityModel.TsysUsuario" />
         </EntityContainer>
         <EntityType Name="TconComprobante">
           <Key>
@@ -367,6 +357,18 @@
           <Property Name="Servicio" Type="Boolean" />
           <Property Name="UsuarioID" Type="Int32" />
         </EntityType>
+        <EntityType Name="TsysUsuario">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="EmpleadoID" Type="Int32" />
+          <Property Name="GrupoID" Type="Int32" />
+          <Property Name="Contraseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -397,18 +399,6 @@
                 <ScalarProperty Name="Modulo" ColumnName="Modulo" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TsysUsuarios">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TsysUsuario">
-              <MappingFragment StoreEntitySet="TsysUsuarios">
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
-                <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
-                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -546,6 +536,19 @@
                 <ScalarProperty Name="Servicio" ColumnName="Servicio" />
                 <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsysUsuarios">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsysUsuario">
+              <MappingFragment StoreEntitySet="TsysUsuarios">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
+                <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

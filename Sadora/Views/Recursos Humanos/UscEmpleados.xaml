@@ -82,8 +82,6 @@
                             <Sadora:UscTextboxGeneral Title="Correo Electronico" Text="{Binding Ventana.CorreoElectronico, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="40" TabIndex="8"/>
 
                         </StackPanel>
-
-
                     </Grid>
 
                 </Grid>
