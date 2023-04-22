@@ -296,7 +296,7 @@ namespace Sadora.Ventas
             }
         }
 
-        private void txtClienteID_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+        private void txtClienteID_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(sender);
 
         private void btnClienteID_Click(object sender, RoutedEventArgs e)
         {
@@ -501,7 +501,7 @@ namespace Sadora.Ventas
             }
         }
 
-        private void txtColCantidad_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+        private void txtColCantidad_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(sender);
 
         void setDatos(int Flag, string Factura) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
         {

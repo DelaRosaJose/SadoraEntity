@@ -366,19 +366,56 @@ namespace Sadora.Clases
             return tabla;
         }
 
-        public static void CampoSoloPermiteNumeros(KeyEventArgs e)
+        //public static void CampoSoloPermiteNumeros(KeyEventArgs e)
+        //{
+        //    if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.Decimal, Key.Enter, Key.Tab, Key.Delete, Key.Back, Key.Left, Key.Right }.Contains(e.Key))
+        //        e.Handled = false;
+        //    else
+        //        e.Handled = true;
+        //}
+        //public static void CampoSoloPermiteDecimales(KeyEventArgs e)
+        //{
+        //    if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.OemPeriod, Key.Decimal, Key.Enter, Key.Tab, Key.Delete, Key.Back, Key.Left, Key.Right }.Contains(e.Key))
+        //        e.Handled = false;
+        //    else
+        //        e.Handled = true;
+        //}
+
+        public static void CampoSoloPermiteDecimales(Object sender)
         {
-            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.Decimal, Key.Enter, Key.Tab, Key.Delete, Key.Back, Key.Left, Key.Right }.Contains(e.Key))
-                e.Handled = false;
-            else
-                e.Handled = true;
+            Regex regex = new Regex(@"^[0-9]*(?:\.[0-9]*)?$");
+
+            // Obtenemos el texto del TextBox
+            var _text = (sender as TextBox).Text;
+            var _textBox = (sender as TextBox);
+
+            // Validamos si contiene algún carácter no numérico o más de un punto decimal
+            if (!regex.IsMatch(_text))
+            {
+                // Si contiene algún carácter no numérico o más de un punto decimal, eliminamos esos caracteres
+                _textBox.Text = _text.Substring(0, _text.Length - 1);
+                _textBox.SelectionStart = _textBox.Text.Length; // Posicionamos el cursor al final del texto
+            }
         }
-        public static void CampoSoloPermiteDecimales(KeyEventArgs e)
+
+
+        public static bool CampoSoloPermiteNumeros(Object sender)
         {
-            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || new Key[] { Key.OemPeriod, Key.Decimal, Key.Enter, Key.Tab, Key.Delete, Key.Back, Key.Left, Key.Right }.Contains(e.Key))
-                e.Handled = false;
-            else
-                e.Handled = true;
+            Regex regex = new Regex("[^0-9]+");
+
+            // Obtenemos el texto del TextBox
+            var _text = (sender as TextBox).Text;
+            var _textBox = (sender as TextBox);
+
+            // Validamos si contiene algún carácter no numérico
+            if (regex.IsMatch(_text))
+            {
+                // Si contiene algún carácter no numérico, eliminamos esos caracteres
+                _textBox.Text = regex.Replace(_text, "");
+                _textBox.SelectionStart = _textBox.Text.Length; // Posicionamos el cursor al final del texto
+                return false;
+            }
+            return true;
         }
 
         public static void SetGridReadOnly(GridControl Grid, List<String> ListaColumnas = null, Boolean AllowEdit = true)

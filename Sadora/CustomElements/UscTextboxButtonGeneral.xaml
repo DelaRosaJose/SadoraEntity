@@ -26,7 +26,7 @@
             <StackPanel Orientation="Vertical" >
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="MainText" Text="{Binding Text, ElementName=root}" TextChanged="MainText_TextChanged" MaxLength="{Binding MaxLength, ElementName=root}" Width="75" Padding="0" BorderThickness="1" 
-                             BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignTextBox}" Background="{Binding ColorCampoVacio, ElementName=root}" PreviewKeyDown="MainText_PreviewKeyDown" KeyUp="MainText_KeyUp"/>
+                             BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignTextBox}" Background="{Binding ColorCampoVacio, ElementName=root}"  KeyUp="MainText_KeyUp"/>
                     <Button HorizontalAlignment="Right" Padding="0" Height="30" Click="btnSearch_Click">
                         <materialDesign:PackIcon Kind="Magnify" Padding="0" Height="30" Width="25" />
                     </Button>

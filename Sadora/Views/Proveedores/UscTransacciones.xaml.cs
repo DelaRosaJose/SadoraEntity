@@ -380,7 +380,7 @@ namespace Sadora.Proveedores
 
         private void txtProveedorID_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.CampoSoloPermiteNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(sender);
         }
 
         private void txtMontoExcento_KeyUp(object sender, KeyEventArgs e)
@@ -437,7 +437,7 @@ namespace Sadora.Proveedores
 
         private void txtMontoExcento_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.CampoSoloPermiteNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(sender);
         }
 
         private void txtMontoGravado_KeyUp(object sender, KeyEventArgs e)
@@ -472,7 +472,7 @@ namespace Sadora.Proveedores
 
         private void txtMontoGravado_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.CampoSoloPermiteNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(sender);
         }
 
         void setDatos(int Flag, string Transaccion) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql

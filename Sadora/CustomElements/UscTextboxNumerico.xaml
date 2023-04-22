@@ -10,7 +10,7 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock Margin="10 5 0 0" Text="{Binding Title, ElementName=root}" FontWeight="Bold"/>
                 <TextBox x:Name="MainText" Height="{Binding HeightLabel, ElementName=root}" Text="{Binding Number, ElementName=root}" MaxLength="{Binding MaxLength, ElementName=root}" Padding="0" BorderThickness="1" BorderBrush="{x:Null}" 
-                         Style="{DynamicResource MaterialDesignTextBoxBase}" Background="{Binding ColorCampoVacio, ElementName=root}" PreviewKeyDown="MainText_PreviewKeyDown" KeyUp="MainText_KeyUp"/>
+                         Style="{DynamicResource MaterialDesignTextBoxBase}" Background="{Binding ColorCampoVacio, ElementName=root}" TextChanged="MainText_TextChanged" KeyUp="MainText_KeyUp"/>
             </StackPanel>
         </Border>
     </Grid>

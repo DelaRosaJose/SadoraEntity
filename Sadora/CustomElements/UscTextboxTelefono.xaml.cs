@@ -102,7 +102,7 @@ namespace Sadora.CustomElements
 
         private void MainText_KeyUp(object sender, KeyEventArgs e) => ClassControl.PasarConEnterProximoCampo(e, EstadoMainWindows, EnterPasarProximoCampo);
 
-        private void MainText_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+        //private void MainText_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(sender);
 
         private static void EstadoMainWindowsPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
         {
@@ -113,12 +113,15 @@ namespace Sadora.CustomElements
         
         private void MainText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            MainText.CaretIndex = MainText.Text.Length;
+            if (ClassControl.CampoSoloPermiteNumeros(sender))
+            {
+                MainText.CaretIndex = MainText.Text.Length;
 
-            var tbEntry = sender as TextBox;
+                var tbEntry = sender as TextBox;
 
-            if (tbEntry != null && tbEntry.Text.Length > 0)
-                tbEntry.Text = formatNumber(tbEntry.Text, Mask);
+                if (tbEntry != null && tbEntry.Text.Length > 0)
+                    tbEntry.Text = formatNumber(tbEntry.Text, Mask);
+            }
         }
 
         public static string formatNumber(string MaskedNum, TextBoxMask phoneFormat)

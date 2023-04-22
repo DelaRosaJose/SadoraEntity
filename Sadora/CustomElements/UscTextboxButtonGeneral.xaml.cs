@@ -85,7 +85,7 @@ namespace Sadora.CustomElements
 
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(nameof(Text), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
-        
+
         public static readonly DependencyProperty SearchByTableProperty =
             DependencyProperty.Register(nameof(BuscarPorTabla), typeof(string), typeof(UscTextboxButtonGeneral), new PropertyMetadata(null));
 
@@ -111,7 +111,11 @@ namespace Sadora.CustomElements
 
         private void btnSearch_Click(object sender, RoutedEventArgs e) => ProcesadorCampo();
 
-        private void MainText_TextChanged(object sender, TextChangedEventArgs e) => ProcesadorCampo(e);
+        private void MainText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ClassControl.CampoSoloPermiteNumeros(sender))
+                ProcesadorCampo(e);
+        }
 
         async void ProcesadorCampo(TextChangedEventArgs e = null)
         {
@@ -151,7 +155,7 @@ namespace Sadora.CustomElements
 
                         ValueColumn =
                             int.TryParse(ValueColumn, out int intValue) ? ValueColumn :
-                            new string[] {string.Empty, null}.Contains(Text) ? 0.ToString() : Text;
+                            new string[] { string.Empty, null }.Contains(Text) ? 0.ToString() : Text;
 
                         ResultText.Text = await db.Database.SqlQuery<string>($"select Nombre from {BuscarPorTabla} where {await ColumnAsync} = {ValueColumn}").FirstOrDefaultAsync();
 
@@ -172,8 +176,7 @@ namespace Sadora.CustomElements
 
         private void MainText_KeyUp(object sender, KeyEventArgs e) => ClassControl.PasarConEnterProximoCampo(e, EstadoMainWindows, EnterPasarProximoCampo);
 
-        private void MainText_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
-
+        //private void MainText_PreviewKeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(sender);
 
     }
 }

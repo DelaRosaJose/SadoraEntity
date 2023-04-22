@@ -447,7 +447,7 @@ namespace Sadora.Ventas
 
         private void txtMontoDistribuido_KeyDown(object sender, KeyEventArgs e)
         {
-            ClassControl.CampoSoloPermiteNumeros(e);
+            ClassControl.CampoSoloPermiteNumeros(sender);
         }
     }
 }

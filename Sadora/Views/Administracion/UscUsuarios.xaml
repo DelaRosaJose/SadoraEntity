@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Sadora="clr-namespace:Sadora.CustomElements"
-             xmlns:local="clr-namespace:Sadora.Clientes"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="1024" d:DesignHeight="768"
              TextElement.Foreground="{DynamicResource SecundaryAccentForegroundBrush}" Loaded="UserControl_Loaded" Initialized="UserControl_Initialized"  
-             Tag="Configuracion de usuarios">
+             Tag="Configuracion de usuarios"
+             x:Name="root">
     <Grid x:Name="MainView">
 
         <Grid>
@@ -54,7 +54,7 @@
 
                             <Sadora:UscTextboxGeneral Title="Nombre" Text="{Binding Ventana.Nombre, Mode=TwoWay}" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="70" TabIndex="4"/>
 
-                            <Sadora:UscTextboxNumerico Title="Contraseña" Number="{Binding Ventana.Contraseña, Mode=TwoWay}" FieldDecimal="True" EstadoMainWindows="{Binding EstadoVentana}" MaxLength="6" TabIndex="12"/>
+                            <Sadora:UscTextboxGeneral Title="Contraseña" Text="{Binding Ventana.Contraseña, Mode=TwoWay}"  EstadoMainWindows="{Binding EstadoVentana}" MaxLength="6" TabIndex="12"/>
 
                         </StackPanel>
                     </Grid>
@@ -80,14 +80,62 @@
 
             </ScrollViewer>
 
-            <Grid Grid.Row="2">
+            <DataGrid Grid.Row="2" Margin="0 8 0 0" x:Name="Grilla" ColumnWidth="*" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding Ventana, IsAsync=True, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}"  CanUserSortColumns="True" CanUserAddRows="False" >
+                <DataGrid.Resources>
+                    <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource PrimaryHueDarkBrush}"/>
+                        <Setter Property="BorderThickness" Value="0.4"/>
+                        <Setter Property="Padding" Value="0,7"/>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.ColumnHeaderStyle>
+                    <StaticResource ResourceKey="DataGridHeaderStyle"/>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <materialDesign:DataGridTextColumn Header="Nombre" Binding="{Binding Nombre, Mode=TwoWay}" IsReadOnly="True"/>
+                    <materialDesign:DataGridTextColumn Header="Modulo" Binding="{Binding Modulo, Mode=TwoWay}" IsReadOnly="True"/>
+                    <materialDesign:DataGridTextColumn Header="Titulo" Binding="{Binding Titulo, Mode=TwoWay}" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Visualiza" Binding="{Binding Visualiza, Mode=TwoWay}"/>
+                    <DataGridCheckBoxColumn Header="Imprime" Binding="{Binding Imprime, Mode=TwoWay}"/>
+                    <DataGridCheckBoxColumn Header="Agrega" Binding="{Binding Agrega, Mode=TwoWay}"/>
+                    <DataGridCheckBoxColumn Header="Modifica" Binding="{Binding Modifica, Mode=TwoWay}"/>
+                    <DataGridCheckBoxColumn Header="Anula" Binding="{Binding Anula, Mode=TwoWay}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--<DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0" Background="BlanchedAlmond" Padding="10">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Nombre}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Phone: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Phone}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Sales Person: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding SalesPerson}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>-->
+            <!--<Grid Grid.Row="2">
                 <dxg:GridControl x:Name="GridMain"  AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
                     <dxg:GridControl.View>
                         <dxg:TableView ShowTotalSummary="True" ShowAutoFilterRow="True"  ShowGroupPanel="False" AutoWidth="True"/>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
-            </Grid>
+            </Grid>-->
         </Grid>
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="SnackbarThree" Background="{StaticResource PrimaryHueDarkBrush}"/>
+        <Sadora:UscBotonesGenerales HorizontalAlignment="Left" Margin="1999,673,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

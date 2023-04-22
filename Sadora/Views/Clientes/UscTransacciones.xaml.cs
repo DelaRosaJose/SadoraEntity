@@ -275,7 +275,7 @@ namespace Sadora.Clientes
             }
         }
 
-        private void txtClienteID_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+        private void txtClienteID_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(sender);
 
         private void btnClienteID_Click(object sender, RoutedEventArgs e)
         {
@@ -335,7 +335,7 @@ namespace Sadora.Clientes
                 ((Control)sender).MoveFocus(new TraversalRequest(new FocusNavigationDirection()));
         }
 
-        private void txtDiasCredito_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+        private void txtDiasCredito_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(sender);
 
         private void txtMontoGravado_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -357,9 +357,9 @@ namespace Sadora.Clientes
             }
         }
 
-        private void txtMontoExcento_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+        private void txtMontoExcento_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(sender);
 
-        private void txtMontoGravado_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(e);
+        private void txtMontoGravado_KeyDown(object sender, KeyEventArgs e) => ClassControl.CampoSoloPermiteNumeros(sender);
 
         void setDatos(int Flag, string Transaccion) //Este es el metodo principal del sistema encargado de conectar, enviar y recibir la informacion de sql
         {

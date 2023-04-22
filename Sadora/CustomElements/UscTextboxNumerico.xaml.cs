@@ -119,13 +119,13 @@ namespace Sadora.CustomElements
 
         private void MainText_KeyUp(object sender, KeyEventArgs e) => ClassControl.PasarConEnterProximoCampo(e, EstadoMainWindows, EnterPasarProximoCampo);
 
-        private void MainText_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (FieldDecimal)
-                ClassControl.CampoSoloPermiteDecimales(e);
-            else
-                ClassControl.CampoSoloPermiteNumeros(e);
-        }
+        //private void MainText_PreviewKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (FieldDecimal)
+        //        ClassControl.CampoSoloPermiteDecimales(sender);
+        //    else
+        //        ClassControl.CampoSoloPermiteNumeros(sender);
+        //}
 
         private static void EstadoMainWindowsPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs ea)
         {
@@ -134,7 +134,13 @@ namespace Sadora.CustomElements
             instance.MainText.IsReadOnly = instance.EstadoMainWindows == "Modo Consulta" ? true : false;
         }
 
-
+        private void MainText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (FieldDecimal)
+                ClassControl.CampoSoloPermiteDecimales(sender);
+            else
+                ClassControl.CampoSoloPermiteNumeros(sender);
+        }
     }
 
 }

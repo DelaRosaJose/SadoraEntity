@@ -3,10 +3,14 @@ using Sadora.Inventario;
 using Sadora.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,20 +34,26 @@ namespace Sadora.Administracion
         readonly ViewModels.BaseViewModel<TsysUsuario> ViewModel = new ViewModels.BaseViewModel<TsysUsuario>() { Ventana = new TsysUsuario() { UsuarioID = ClassVariables.UsuarioID } };
         Expression<Func<TsysUsuario, bool>> predicate;
 
+        readonly ViewModels.BaseViewModel<ObservableCollection<TsysAcceso>> ViewModelDataGrid = new ViewModels.BaseViewModel<ObservableCollection<TsysAcceso>>() { Ventana = new ObservableCollection<TsysAcceso>() {} };
 
         public UscUsuarios()
         {
-            InitializeComponent(); 
-            
+            InitializeComponent();
+
             Name = nameof(UscUsuarios);
             DataContext = ViewModel;
+            Grilla.DataContext = ViewModelDataGrid;
         }
+
+        //public ObservableCollection<TsysAcceso> Accesos { get; set; }
 
         bool Inicializador = false;
         bool Imprime, Modifica, Agrega;
         readonly bool PuedeUsarBotonAnular = false;
         private int? _FistID, _LastID, last;
         //DataTable TableGrid;
+
+
 
         private void UserControl_Initialized(object sender, EventArgs e) => Inicializador = true;
 
@@ -63,27 +73,29 @@ namespace Sadora.Administracion
             }
         }
 
+        #region SafeThisCode
         private void BtnSeleccionMasiva_Click(object sender, RoutedEventArgs e)
         {
 
-            new FrmValidarAccion("Puede Visualizar masivamente?").ShowDialog();
-            ClassControl.GridCheckEdit(GridMain, "Visualiza", ClassVariables.ValidarAccion);
+            //    new FrmValidarAccion("Puede Visualizar masivamente?").ShowDialog();
+            //    ClassControl.GridCheckEdit(GridMain, "Visualiza", ClassVariables.ValidarAccion);
 
-            new FrmValidarAccion("Puede Imprimir masivamente?").ShowDialog();
-            ClassControl.GridCheckEdit(GridMain, "Imprime", ClassVariables.ValidarAccion);
+            //    new FrmValidarAccion("Puede Imprimir masivamente?").ShowDialog();
+            //    ClassControl.GridCheckEdit(GridMain, "Imprime", ClassVariables.ValidarAccion);
 
-            new FrmValidarAccion("Puede Agregar masivamente?").ShowDialog();
-            ClassControl.GridCheckEdit(GridMain, "Agrega", ClassVariables.ValidarAccion);
+            //    new FrmValidarAccion("Puede Agregar masivamente?").ShowDialog();
+            //    ClassControl.GridCheckEdit(GridMain, "Agrega", ClassVariables.ValidarAccion);
 
-            new FrmValidarAccion("Puede Modificar masivamente?").ShowDialog();
-            ClassControl.GridCheckEdit(GridMain, "Modifica", ClassVariables.ValidarAccion);
+            //    new FrmValidarAccion("Puede Modificar masivamente?").ShowDialog();
+            //    ClassControl.GridCheckEdit(GridMain, "Modifica", ClassVariables.ValidarAccion);
 
-            new FrmValidarAccion("Puede Anular masivamente?").ShowDialog();
-            ClassControl.GridCheckEdit(GridMain, "Anula", ClassVariables.ValidarAccion);
+            //    new FrmValidarAccion("Puede Anular masivamente?").ShowDialog();
+            //    ClassControl.GridCheckEdit(GridMain, "Anula", ClassVariables.ValidarAccion);
 
         }
 
 
+        #endregion
 
 
 
@@ -356,6 +368,14 @@ namespace Sadora.Administracion
         //        BtnEditar.IsEnabled = Modifica;
         //}
 
+        async Task FillGrid()
+        {
+            using SadoraEntity db = new SadoraEntity();
+            var result = db.TsysAccesos.ToListAsync();
+
+            ObservableCollection<TsysAcceso> ac = new ObservableCollection<TsysAcceso>(await result);
+            ViewModelDataGrid.Ventana = ac;
+        }
 
         private async void UscBotones_Click(object sender, RoutedEventArgs e)
         {
@@ -411,6 +431,7 @@ namespace Sadora.Administracion
                     ControlesGenerales.BtnAnular.IsEnabled = PuedeUsarBotonAnular;
 
                 ViewModel.EstadoVentana = ControlesGenerales.EstadoVentana;
+                await FillGrid();
             }
             catch (Exception ex)
             {
