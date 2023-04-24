@@ -6,13 +6,14 @@ using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Model = Sadora.Models.TsysEmpresa; //Agregamos este alias para no tener que repetir el mismo tipo en varias partes.
 
 namespace Sadora.Administracion
 {
     public partial class UscEmpresa : UserControl
     {
-        readonly ViewModels.BaseViewModel<TsysEmpresa> ViewModel = new ViewModels.BaseViewModel<TsysEmpresa>() { Ventana = new TsysEmpresa() { UsuarioID = ClassVariables.UsuarioID } };
-        Expression<Func<TsysEmpresa, bool>> predicate;
+        readonly ViewModels.BaseViewModel<Model> ViewModel = new ViewModels.BaseViewModel<Model>() { Ventana = new Model() { UsuarioID = ClassVariables.UsuarioID } };
+        Expression<Func<Model, bool>> predicate;
 
         bool Imprime, Modifica, Agrega;
         readonly bool PuedeUsarBotonAnular = false;
@@ -86,7 +87,7 @@ namespace Sadora.Administracion
                     last = LastRegister;
                 }
                 else
-                    ClassControl.PresentadorSnackBar(SnackbarThree, "Debe completar los campos vacios");
+                    ClassControl.PresentadorSnackBar(SnackbarThree, Process.Item3);
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;

@@ -122,7 +122,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CustomElements\BindablePasswordBehavior.cs" />
     <Compile Include="CustomElements\UscTextboxButtonGeneral.xaml.cs">
       <DependentUpon>UscTextboxButtonGeneral.xaml</DependentUpon>
     </Compile>
@@ -134,9 +133,6 @@
     </Compile>
     <Compile Include="CustomElements\UscDatePickerGeneral.xaml.cs">
       <DependentUpon>UscDatePickerGeneral.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomElements\UscPasswordBox.xaml.cs">
-      <DependentUpon>UscPasswordBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomElements\UscTextboxNumerico.xaml.cs">
       <DependentUpon>UscTextboxNumerico.xaml</DependentUpon>
@@ -170,6 +166,9 @@
       <DependentUpon>SadoraEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TcliCliente.cs">
+      <DependentUpon>SadoraEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TcliTransaccione.cs">
       <DependentUpon>SadoraEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TconComprobante.cs">
@@ -295,10 +294,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomElements\UscDatePickerGeneral.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CustomElements\UscPasswordBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

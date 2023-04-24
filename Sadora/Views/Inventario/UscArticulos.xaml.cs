@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Model = Sadora.Models.TinvArticulo; //Agregamos este alias para no tener que repetir el mismo tipo en varias partes.
 
 namespace Sadora.Inventario
 {
@@ -17,8 +18,8 @@ namespace Sadora.Inventario
     /// </summary>
     public partial class UscArticulos : UserControl
     {
-        readonly ViewModels.BaseViewModel<TinvArticulo> ViewModel = new ViewModels.BaseViewModel<TinvArticulo>() { Ventana = new TinvArticulo() { UsuarioID = ClassVariables.UsuarioID } };
-        Expression<Func<TinvArticulo, bool>> predicate;
+        readonly ViewModels.BaseViewModel<Model> ViewModel = new ViewModels.BaseViewModel<Model>() { Ventana = new Model() { UsuarioID = ClassVariables.UsuarioID } };
+        Expression<Func<Model, bool>> predicate;
         public UscArticulos()
         {
             InitializeComponent();
@@ -92,7 +93,7 @@ namespace Sadora.Inventario
                     last = LastRegister;
                 }
                 else
-                    ClassControl.PresentadorSnackBar(SnackbarThree, "Debe completar los campos vacios");
+                    ClassControl.PresentadorSnackBar(SnackbarThree, Process.Item3);
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;

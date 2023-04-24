@@ -131,7 +131,10 @@ namespace Sadora.CustomElements
         {
             UscTextboxNumerico instance = dependencyObject as UscTextboxNumerico;
 
-            instance.MainText.IsReadOnly = instance.EstadoMainWindows == "Modo Consulta" ? true : false;
+            instance.MainText.IsReadOnly = 
+                instance.EstadoMainWindows == "Modo Consulta" ||
+                (instance.EstadoMainWindows == "Modo Editar" && instance.TabIndex == 1 && instance.Title.ToUpper().Contains("ID")) ? 
+                true : false;
         }
 
         private void MainText_TextChanged(object sender, TextChangedEventArgs e)

@@ -4,6 +4,7 @@ using System;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
+using Model = Sadora.Models.TinvClaseArticulo; //Agregamos este alias para no tener que repetir el mismo tipo en varias partes.
 
 namespace Sadora.Inventario
 {
@@ -12,8 +13,8 @@ namespace Sadora.Inventario
     /// </summary>
     public partial class UscClaseArticulos : UserControl
     {
-        readonly ViewModels.BaseViewModel<TinvClaseArticulo> ViewModel = new ViewModels.BaseViewModel<TinvClaseArticulo>() { Ventana = new TinvClaseArticulo() { UsuarioID = ClassVariables.UsuarioID } };
-        Expression<Func<TinvClaseArticulo, bool>> predicate;
+        readonly ViewModels.BaseViewModel<Model> ViewModel = new ViewModels.BaseViewModel<Model>() { Ventana = new Model() { UsuarioID = ClassVariables.UsuarioID } };
+        Expression<Func<Model, bool>> predicate;
 
         public UscClaseArticulos()
         {
@@ -87,7 +88,7 @@ namespace Sadora.Inventario
                     last = LastRegister;
                 }
                 else
-                    ClassControl.PresentadorSnackBar(SnackbarThree, "Debe completar los campos vacios");
+                    ClassControl.PresentadorSnackBar(SnackbarThree, Process.Item3);
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;

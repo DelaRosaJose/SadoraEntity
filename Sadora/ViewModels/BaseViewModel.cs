@@ -13,7 +13,6 @@ namespace Sadora.ViewModels
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-
         string _estadoVentana;
         public string EstadoVentana
         {

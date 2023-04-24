@@ -4,6 +4,7 @@ using System;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
+using Model = Sadora.Models.TsupProveedore; //Agregamos este alias para no tener que repetir el mismo tipo en varias partes.
 
 namespace Sadora.Proveedores
 {
@@ -12,8 +13,8 @@ namespace Sadora.Proveedores
     /// </summary>
     public partial class UscProveedores : UserControl
     {
-        readonly ViewModels.BaseViewModel<TsupProveedore> ViewModel = new ViewModels.BaseViewModel<TsupProveedore>() { Ventana= new TsupProveedore() {UsuarioID = ClassVariables.UsuarioID } };
-        Expression<Func<TsupProveedore, bool>> predicate;
+        readonly ViewModels.BaseViewModel<Model> ViewModel = new ViewModels.BaseViewModel<Model>() { Ventana= new Model() {UsuarioID = ClassVariables.UsuarioID } };
+        Expression<Func<Model, bool>> predicate;
 
         public UscProveedores()
         {
@@ -87,7 +88,7 @@ namespace Sadora.Proveedores
                     last = LastRegister;
                 }
                 else
-                    ClassControl.PresentadorSnackBar(SnackbarThree, "Debe completar los campos vacios");
+                    ClassControl.PresentadorSnackBar(SnackbarThree, Process.Item3);
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;

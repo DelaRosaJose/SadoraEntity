@@ -113,15 +113,15 @@ namespace Sadora.CustomElements
         
         private void MainText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (ClassControl.CampoSoloPermiteNumeros(sender))
-            {
+            //if (EstadoMainWindows == "Modo Consulta" || ClassControl.CampoSoloPermiteNumeros(sender))
+            //{
                 MainText.CaretIndex = MainText.Text.Length;
 
                 var tbEntry = sender as TextBox;
 
                 if (tbEntry != null && tbEntry.Text.Length > 0)
                     tbEntry.Text = formatNumber(tbEntry.Text, Mask);
-            }
+            //}
         }
 
         public static string formatNumber(string MaskedNum, TextBoxMask phoneFormat)

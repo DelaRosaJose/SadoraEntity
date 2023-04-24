@@ -46,6 +46,23 @@
           <Property Name="ClaseComprobanteID" Type="int" Nullable="false" />
           <Property Name="DiasCredito" Type="int" />
         </EntityType>
+        <EntityType Name="TcliTransacciones">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoTransaccion" Type="varchar" MaxLength="20" />
+          <Property Name="ClienteID" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="MontoExcento" Type="float" />
+          <Property Name="MontoGravado" Type="float" />
+          <Property Name="ITBIS" Type="float" />
+          <Property Name="Estado" Type="varchar" MaxLength="10" />
+          <Property Name="FacturaID" Type="varchar" MaxLength="25" />
+          <Property Name="Observacion" Type="varchar" MaxLength="100" />
+          <Property Name="UsuarioID" Type="int" />
+          <Property Name="DiasCredito" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TconComprobantes">
           <Key>
             <PropertyRef Name="ID" />
@@ -175,6 +192,7 @@
           <EntitySet Name="CeduladosJCE" EntityType="Self.CeduladosJCE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DGII_RNC" EntityType="Self.DGII_RNC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TcliClientes" EntityType="Self.TcliClientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TcliTransacciones" EntityType="Self.TcliTransacciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TconComprobantes" EntityType="Self.TconComprobantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinvArticulos" EntityType="Self.TinvArticulos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinvClaseArticulos" EntityType="Self.TinvClaseArticulos" Schema="dbo" store:Type="Tables" />
@@ -189,89 +207,21 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SadoraEntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="TsysAcceso">
-          <Key>
-            <PropertyRef Name="RowID" />
-          </Key>
-          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Modulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Titulo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Visualiza" Type="Boolean" />
-          <Property Name="Imprime" Type="Boolean" />
-          <Property Name="Agrega" Type="Boolean" />
-          <Property Name="Modifica" Type="Boolean" />
-          <Property Name="Anula" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="TsysFormulario">
-          <Key>
-            <PropertyRef Name="RowID" />
-          </Key>
-          <Property Name="RowID" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Modulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Titulo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="UsuarioID" Type="Int32" />
-        </EntityType>
         <EntityContainer Name="SadoraEntity" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TsysAccesos" EntityType="Self.TsysAcceso" />
-          <EntitySet Name="TsysFormularios" EntityType="Self.TsysFormulario" />
-          <EntitySet Name="TconComprobantes" EntityType="SadoraEntityModel.TconComprobante" />
-          <EntitySet Name="TsysEmpresas" EntityType="SadoraEntityModel.TsysEmpresa" />
-          <EntitySet Name="TsupProveedores" EntityType="SadoraEntityModel.TsupProveedore" />
           <EntitySet Name="CeduladosJCEs" EntityType="SadoraEntityModel.CeduladosJCE" />
           <EntitySet Name="DGII_RNC" EntityType="SadoraEntityModel.DGII_RNC" />
           <EntitySet Name="TcliClientes" EntityType="SadoraEntityModel.TcliCliente" />
-          <EntitySet Name="TrhnEmpleados" EntityType="SadoraEntityModel.TrhnEmpleado" />
+          <EntitySet Name="TconComprobantes" EntityType="SadoraEntityModel.TconComprobante" />
           <EntitySet Name="TinvArticulos" EntityType="SadoraEntityModel.TinvArticulo" />
           <EntitySet Name="TinvClaseArticulos" EntityType="SadoraEntityModel.TinvClaseArticulo" />
+          <EntitySet Name="TrhnEmpleados" EntityType="SadoraEntityModel.TrhnEmpleado" />
+          <EntitySet Name="TsupProveedores" EntityType="SadoraEntityModel.TsupProveedore" />
+          <EntitySet Name="TsysAccesos" EntityType="SadoraEntityModel.TsysAcceso" />
+          <EntitySet Name="TsysEmpresas" EntityType="SadoraEntityModel.TsysEmpresa" />
+          <EntitySet Name="TsysFormularios" EntityType="SadoraEntityModel.TsysFormulario" />
           <EntitySet Name="TsysUsuarios" EntityType="SadoraEntityModel.TsysUsuario" />
+          <EntitySet Name="TcliTransacciones" EntityType="SadoraEntityModel.TcliTransaccione" />
         </EntityContainer>
-        <EntityType Name="TconComprobante">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="Auxiliar" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Nomenclatura" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="Desde" Type="Int32" />
-          <Property Name="Hasta" Type="Int32" />
-          <Property Name="NextNCF" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Disponibles" Type="Int32" />
-          <Property Name="UsuarioID" Type="Int32" />
-          <Property Name="SinComprobantes" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="TsysEmpresa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="RNC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Razon_Social" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="UsuarioID" Type="Int32" />
-          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="TsupProveedore">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RNC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="Representante" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="ClaseID" Type="Int32" />
-          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="Boolean" />
-          <Property Name="UsuarioID" Type="Int32" />
-        </EntityType>
         <EntityType Name="CeduladosJCE">
           <Key>
             <PropertyRef Name="Cedula" />
@@ -313,21 +263,20 @@
           <Property Name="ClaseComprobanteID" Type="Int32" Nullable="false" />
           <Property Name="DiasCredito" Type="Int32" />
         </EntityType>
-        <EntityType Name="TrhnEmpleado">
+        <EntityType Name="TconComprobante">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Cedula" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
-          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="EstadoCivil" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Auxiliar" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Nomenclatura" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Desde" Type="Int32" />
+          <Property Name="Hasta" Type="Int32" />
+          <Property Name="NextNCF" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Disponibles" Type="Int32" />
           <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="SinComprobantes" Type="Boolean" />
         </EntityType>
         <EntityType Name="TinvArticulo">
           <Key>
@@ -357,6 +306,76 @@
           <Property Name="Servicio" Type="Boolean" />
           <Property Name="UsuarioID" Type="Int32" />
         </EntityType>
+        <EntityType Name="TrhnEmpleado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cedula" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoCivil" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="UsuarioID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TsupProveedore">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RNC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Representante" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="ClaseID" Type="Int32" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="UsuarioID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TsysAcceso">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Modulo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Visualiza" Type="Boolean" />
+          <Property Name="Imprime" Type="Boolean" />
+          <Property Name="Agrega" Type="Boolean" />
+          <Property Name="Modifica" Type="Boolean" />
+          <Property Name="Anula" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TsysEmpresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RNC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Razon_Social" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TsysFormulario">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Modulo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioID" Type="Int32" />
+        </EntityType>
         <EntityType Name="TsysUsuario">
           <Key>
             <PropertyRef Name="UsuarioID" />
@@ -369,86 +388,29 @@
           <Property Name="Contraseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
         </EntityType>
-      </Schema>
+        <EntityType Name="TcliTransaccione">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoTransaccion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ClienteID" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="MontoExcento" Type="Double" />
+          <Property Name="MontoGravado" Type="Double" />
+          <Property Name="ITBIS" Type="Double" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FacturaID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <Property Name="DiasCredito" Type="Int32" Nullable="false" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SadoraEntityModelStoreContainer" CdmEntityContainer="SadoraEntity">
-          <EntitySetMapping Name="TsysAccesos">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TsysAcceso">
-              <MappingFragment StoreEntitySet="TsysAccesos">
-                <ScalarProperty Name="RowID" ColumnName="RowID" />
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Visualiza" ColumnName="Visualiza" />
-                <ScalarProperty Name="Imprime" ColumnName="Imprime" />
-                <ScalarProperty Name="Agrega" ColumnName="Agrega" />
-                <ScalarProperty Name="Modifica" ColumnName="Modifica" />
-                <ScalarProperty Name="Anula" ColumnName="Anula" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TsysFormularios">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TsysFormulario">
-              <MappingFragment StoreEntitySet="TsysFormularios">
-                <ScalarProperty Name="RowID" ColumnName="RowID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TconComprobantes">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TconComprobante">
-              <MappingFragment StoreEntitySet="TconComprobantes">
-                <ScalarProperty Name="SinComprobantes" ColumnName="SinComprobantes" />
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Disponibles" ColumnName="Disponibles" />
-                <ScalarProperty Name="NextNCF" ColumnName="NextNCF" />
-                <ScalarProperty Name="Hasta" ColumnName="Hasta" />
-                <ScalarProperty Name="Desde" ColumnName="Desde" />
-                <ScalarProperty Name="Nomenclatura" ColumnName="Nomenclatura" />
-                <ScalarProperty Name="Auxiliar" ColumnName="Auxiliar" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TsysEmpresas">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TsysEmpresa">
-              <MappingFragment StoreEntitySet="TsysEmpresa">
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
-                <ScalarProperty Name="RNC" ColumnName="RNC" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TsupProveedores">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TsupProveedore">
-              <MappingFragment StoreEntitySet="TsupProveedores">
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Celular" ColumnName="Celular" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
-                <ScalarProperty Name="Representante" ColumnName="Representante" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="RNC" ColumnName="RNC" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CeduladosJCEs">
             <EntityTypeMapping TypeName="SadoraEntityModel.CeduladosJCE">
               <MappingFragment StoreEntitySet="CeduladosJCE">
@@ -493,19 +455,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TrhnEmpleados">
-            <EntityTypeMapping TypeName="SadoraEntityModel.TrhnEmpleado">
-              <MappingFragment StoreEntitySet="TrhnEmpleados">
+          <EntitySetMapping Name="TconComprobantes">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TconComprobante">
+              <MappingFragment StoreEntitySet="TconComprobantes">
+                <ScalarProperty Name="SinComprobantes" ColumnName="SinComprobantes" />
                 <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Celular" ColumnName="Celular" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Disponibles" ColumnName="Disponibles" />
+                <ScalarProperty Name="NextNCF" ColumnName="NextNCF" />
+                <ScalarProperty Name="Hasta" ColumnName="Hasta" />
+                <ScalarProperty Name="Desde" ColumnName="Desde" />
+                <ScalarProperty Name="Nomenclatura" ColumnName="Nomenclatura" />
+                <ScalarProperty Name="Auxiliar" ColumnName="Auxiliar" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -540,6 +501,81 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TrhnEmpleados">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TrhnEmpleado">
+              <MappingFragment StoreEntitySet="TrhnEmpleados">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsupProveedores">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsupProveedore">
+              <MappingFragment StoreEntitySet="TsupProveedores">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="ClaseID" ColumnName="ClaseID" />
+                <ScalarProperty Name="Representante" ColumnName="Representante" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RNC" ColumnName="RNC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsysAccesos">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsysAcceso">
+              <MappingFragment StoreEntitySet="TsysAccesos">
+                <ScalarProperty Name="Anula" ColumnName="Anula" />
+                <ScalarProperty Name="Modifica" ColumnName="Modifica" />
+                <ScalarProperty Name="Agrega" ColumnName="Agrega" />
+                <ScalarProperty Name="Imprime" ColumnName="Imprime" />
+                <ScalarProperty Name="Visualiza" ColumnName="Visualiza" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsysEmpresas">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsysEmpresa">
+              <MappingFragment StoreEntitySet="TsysEmpresa">
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
+                <ScalarProperty Name="RNC" ColumnName="RNC" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TsysFormularios">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TsysFormulario">
+              <MappingFragment StoreEntitySet="TsysFormularios">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TsysUsuarios">
             <EntityTypeMapping TypeName="SadoraEntityModel.TsysUsuario">
               <MappingFragment StoreEntitySet="TsysUsuarios">
@@ -549,6 +585,24 @@
                 <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TcliTransacciones">
+            <EntityTypeMapping TypeName="SadoraEntityModel.TcliTransaccione">
+              <MappingFragment StoreEntitySet="TcliTransacciones">
+                <ScalarProperty Name="DiasCredito" ColumnName="DiasCredito" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="FacturaID" ColumnName="FacturaID" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="ITBIS" ColumnName="ITBIS" />
+                <ScalarProperty Name="MontoGravado" ColumnName="MontoGravado" />
+                <ScalarProperty Name="MontoExcento" ColumnName="MontoExcento" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="TipoTransaccion" ColumnName="TipoTransaccion" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -567,7 +621,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

@@ -401,21 +401,22 @@ namespace Sadora.Clases
 
         public static bool CampoSoloPermiteNumeros(Object sender)
         {
-            Regex regex = new Regex("[^0-9]+");
+                Regex regex = new Regex("[^0-9]+");
 
-            // Obtenemos el texto del TextBox
-            var _text = (sender as TextBox).Text;
-            var _textBox = (sender as TextBox);
+                // Obtenemos el texto del TextBox
+                var _text = (sender as TextBox).Text;
+                var _textBox = (sender as TextBox);
 
-            // Validamos si contiene algún carácter no numérico
-            if (regex.IsMatch(_text))
-            {
-                // Si contiene algún carácter no numérico, eliminamos esos caracteres
-                _textBox.Text = regex.Replace(_text, "");
-                _textBox.SelectionStart = _textBox.Text.Length; // Posicionamos el cursor al final del texto
-                return false;
-            }
-            return true;
+                // Validamos si contiene algún carácter no numérico
+                if (regex.IsMatch(_text))
+                {
+                    // Si contiene algún carácter no numérico, eliminamos esos caracteres
+                    _textBox.Text = regex.Replace(_text, "");
+                    _textBox.SelectionStart = _textBox.Text.Length; // Posicionamos el cursor al final del texto
+                    return false;
+                }
+                return true;
+
         }
 
         public static void SetGridReadOnly(GridControl Grid, List<String> ListaColumnas = null, Boolean AllowEdit = true)
@@ -550,6 +551,10 @@ namespace Sadora.Clases
         {
             double opacity = 0.30;
             bool CanSave = true;
+            
+            SolidColorBrush ColorFieldDefault = (SolidColorBrush)new BrushConverter().ConvertFrom("#4CEDEDED");
+            SolidColorBrush ColorRedField = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+
             try
             {
                 for (int i = 0; i < view.Count; i++)
@@ -577,10 +582,10 @@ namespace Sadora.Clases
                         bool and = !new string[] { string.Empty, default }.Contains(UscTextBoxGeneral.Text) || UscTextBoxGeneral.GuardarCampoVacio;
                         CanSave &= and;
 
-                        if (and)
-                            UscTextBoxGeneral.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
-                        else
-                            UscTextBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                        //if (and)
+                            UscTextBoxGeneral.ColorCampoVacio = and ? ColorFieldDefault : ColorRedField;
+                        //else
+                        //    UscTextBoxGeneral.ColorCampoVacio = ColorRedField;
                     }
 
                     else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
@@ -589,7 +594,7 @@ namespace Sadora.Clases
                         CanSave &= and;
 
                         if (and)
-                            UscTextboxTelefono.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
+                            UscTextboxTelefono.ColorCampoVacio = ColorFieldDefault;
                         else
                             UscTextboxTelefono.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
                     }
@@ -599,10 +604,10 @@ namespace Sadora.Clases
                         bool and = !new string[] { string.Empty, default }.Contains(UscTextboxNumerico.Number) || UscTextboxNumerico.GuardarCampoVacio;
                         CanSave &= and;
 
-                        if (and)
-                            UscTextboxNumerico.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
-                        else
-                            UscTextboxNumerico.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                        //if (and)
+                            UscTextboxNumerico.ColorCampoVacio = and ? ColorFieldDefault : ColorRedField;
+                        //else
+                        //UscTextboxNumerico.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
                     }
 
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
@@ -610,10 +615,10 @@ namespace Sadora.Clases
                         bool and = (!new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.Text) && !new string[] { string.Empty, default }.Contains(UscTextboxButtonGeneral.ResultText.Text)) || UscTextboxButtonGeneral.GuardarCampoVacio;
                         CanSave &= and;
 
-                        if (and)
-                            UscTextboxButtonGeneral.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
-                        else
-                            UscTextboxButtonGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                        //if (and)
+                            UscTextboxButtonGeneral.ColorCampoVacio = and ? ColorFieldDefault : ColorRedField;
+                        //else
+                        //UscTextboxButtonGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
                     }
 
                     else if (Element is CustomElements.UscCheckBoxGeneral UscCheckBoxGeneral)
@@ -621,10 +626,10 @@ namespace Sadora.Clases
                         bool and = UscCheckBoxGeneral.IsChecked != default;
                         CanSave &= and;
 
-                        if (and)
-                            UscCheckBoxGeneral.ColorCampoVacio = default;
-                        else
-                            UscCheckBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                        //if (and)
+                            UscCheckBoxGeneral.ColorCampoVacio = and ? ColorFieldDefault : ColorRedField;
+                        //else
+                        //    UscCheckBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
                     }
 
                     else if (Element is CustomElements.UscDatePickerGeneral UscDatePickerGeneral)
@@ -632,10 +637,10 @@ namespace Sadora.Clases
                         bool and = UscDatePickerGeneral.Date != default;
                         CanSave &= and;
 
-                        if (and)
-                            UscDatePickerGeneral.Background = default;
-                        else
-                            UscDatePickerGeneral.Background = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                        //if (and)
+                            UscDatePickerGeneral.ColorCampoVacio = and ? ColorFieldDefault : ColorRedField;
+                        //else
+                        //    UscDatePickerGeneral.Background = 
                     }
 
                     else if (Element is CustomElements.UscComboBoxGeneral UscComboBoxGeneral)
@@ -643,10 +648,10 @@ namespace Sadora.Clases
                         bool and = !new string[] { string.Empty, default }.Contains(UscComboBoxGeneral.Text);
                         CanSave &= and;
 
-                        if (and)
-                            UscComboBoxGeneral.ColorCampoVacio = (SolidColorBrush)(new BrushConverter().ConvertFrom("#4CEDEDED"));
-                        else
-                            UscComboBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
+                        //if (and)
+                            UscComboBoxGeneral.ColorCampoVacio = and ? ColorFieldDefault : ColorRedField;
+                        //else
+                        //    UscComboBoxGeneral.ColorCampoVacio = new SolidColorBrush(Colors.DarkRed) { Opacity = opacity };
                     }
 
                     else
@@ -668,7 +673,7 @@ namespace Sadora.Clases
         #region SetDefaultColorELement(UIElementCollection view) --**-- Metodo que se encarga de validar todos los controles de una ventana y retorna si se puede guardar.
         public static void SetDefaultColorELement(UIElementCollection view)
         {
-            string Color = "#4CEDEDED";
+            SolidColorBrush Color = (SolidColorBrush)new BrushConverter().ConvertFrom("#4CEDEDED");
 
             try
             {
@@ -692,25 +697,25 @@ namespace Sadora.Clases
                         continue;
 
                     else if (Element is CustomElements.UscTextboxGeneral UscTextBoxGeneral)
-                        UscTextBoxGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+                        UscTextBoxGeneral.ColorCampoVacio = Color;
 
                     else if (Element is CustomElements.UscTextboxTelefono UscTextboxTelefono)
-                        UscTextboxTelefono.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+                        UscTextboxTelefono.ColorCampoVacio = Color;
 
                     else if (Element is CustomElements.UscTextboxNumerico UscTextboxNumerico)
-                        UscTextboxNumerico.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+                        UscTextboxNumerico.ColorCampoVacio = Color;
 
                     else if (Element is CustomElements.UscTextboxButtonGeneral UscTextboxButtonGeneral)
-                        UscTextboxButtonGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+                        UscTextboxButtonGeneral.ColorCampoVacio = Color;
 
                     else if (Element is CustomElements.UscCheckBoxGeneral UscCheckBoxGeneral)
-                        UscCheckBoxGeneral.ColorCampoVacio = default;
+                        UscCheckBoxGeneral.ColorCampoVacio = Color;
 
                     else if (Element is CustomElements.UscDatePickerGeneral UscDatePickerGeneral)
-                        UscDatePickerGeneral.Background = default;
+                        UscDatePickerGeneral.Background = Color;
 
                     else if (Element is CustomElements.UscComboBoxGeneral UscComboBoxGeneral)
-                        UscComboBoxGeneral.ColorCampoVacio = (SolidColorBrush)new BrushConverter().ConvertFrom(Color);
+                        UscComboBoxGeneral.ColorCampoVacio = Color;
 
                     else
                         new Administracion.FrmCompletarCamposHost($"Advertencia: \nEste control no esta registrado {Element} --ClassControl/SetDefaultColorELement \nComuniquese con soporte").ShowDialog();

@@ -25,17 +25,18 @@ namespace Sadora.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TsysAcceso> TsysAccesos { get; set; }
-        public virtual DbSet<TsysFormulario> TsysFormularios { get; set; }
-        public virtual DbSet<TconComprobante> TconComprobantes { get; set; }
-        public virtual DbSet<TsysEmpresa> TsysEmpresas { get; set; }
-        public virtual DbSet<TsupProveedore> TsupProveedores { get; set; }
         public virtual DbSet<CeduladosJCE> CeduladosJCEs { get; set; }
         public virtual DbSet<DGII_RNC> DGII_RNC { get; set; }
         public virtual DbSet<TcliCliente> TcliClientes { get; set; }
-        public virtual DbSet<TrhnEmpleado> TrhnEmpleados { get; set; }
+        public virtual DbSet<TconComprobante> TconComprobantes { get; set; }
         public virtual DbSet<TinvArticulo> TinvArticulos { get; set; }
         public virtual DbSet<TinvClaseArticulo> TinvClaseArticulos { get; set; }
+        public virtual DbSet<TrhnEmpleado> TrhnEmpleados { get; set; }
+        public virtual DbSet<TsupProveedore> TsupProveedores { get; set; }
+        public virtual DbSet<TsysAcceso> TsysAccesos { get; set; }
+        public virtual DbSet<TsysEmpresa> TsysEmpresas { get; set; }
+        public virtual DbSet<TsysFormulario> TsysFormularios { get; set; }
         public virtual DbSet<TsysUsuario> TsysUsuarios { get; set; }
+        public virtual DbSet<TcliTransaccione> TcliTransacciones { get; set; }
     }
 }

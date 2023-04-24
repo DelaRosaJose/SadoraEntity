@@ -9,13 +9,14 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace Sadora.Models
 {
     public class BaseModel
     {
 
-        public static async Task<Tuple<T, bool>> Procesar<T, J>(string BotonPulsado, J viewModel, string IdRegistro, Func<T, IComparable> getProp,
+        public static async Task<Tuple<T, bool, string>> Procesar<T, J>(string BotonPulsado, J viewModel, string IdRegistro, Func<T, IComparable> getProp,
             Expression<Func<T, bool>> getExpresion, UIElementCollection view, int? lastRegistro) where T : class where J : BaseViewModel<T>
         {
             string EstadoVentana = viewModel.EstadoVentana;
@@ -64,13 +65,13 @@ namespace Sadora.Models
 
                         case "BtnCancelar":
                             ClassControl.SetDefaultColorELement(view);
-                            Tsql = db.Set<T>().FindAsync(lastRegistro).Result;
+                            Tsql = lastRegistro == 0 ? default : db.Set<T>().FindAsync(lastRegistro).Result;
                             ViewModel = Tsql != default ? Tsql : UnChangedViewModel;
                             break;
 
                         case "BtnGuardar":
                             if (!ClassControl.CanSaveView(view))
-                                return new Tuple<T, bool>(ViewModel, false);
+                                return new Tuple<T, bool, string>(ViewModel, false, "Debe completar los campos vacios");
 
                             if (EstadoVentana == "Modo Agregar")
                                 db.Set<T>().Add(ViewModel);
@@ -83,12 +84,12 @@ namespace Sadora.Models
                     #endregion
                 }
 
-                return new Tuple<T, bool>(ViewModel, true);
+                return new Tuple<T, bool, string>(ViewModel, Cansave = true, string.Empty);
             }
             catch (Exception ex)
             {
                 new Administracion.FrmCompletarCamposHost($"Ha ocurrido un error:\n {ex}").ShowDialog();
-                return new Tuple<T, bool>(UnChangedViewModel, Cansave);
+                return new Tuple<T, bool, string>(UnChangedViewModel, Cansave = false, $"Ha ocurrido un error no puede guardar");
             }
         }
     }

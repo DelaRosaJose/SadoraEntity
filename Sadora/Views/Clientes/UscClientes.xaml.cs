@@ -4,13 +4,14 @@ using System;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
+using Model = Sadora.Models.TcliCliente; //Agregamos este alias para no tener que repetir el mismo tipo en varias partes.
 
 namespace Sadora.Clientes
 {
     public partial class UscClientes : UserControl
     {
-        readonly ViewModels.BaseViewModel<TcliCliente> ViewModel = new ViewModels.BaseViewModel<TcliCliente>() { Ventana = new TcliCliente() { UsuarioID = ClassVariables.UsuarioID } };
-        Expression<Func<TcliCliente, bool>> predicate;
+        readonly ViewModels.BaseViewModel<Model> ViewModel = new ViewModels.BaseViewModel<Model>() { Ventana = new Model() { UsuarioID = ClassVariables.UsuarioID } };
+        Expression<Func<Model, bool>> predicate;
 
         public UscClientes()
         {
@@ -84,7 +85,7 @@ namespace Sadora.Clientes
                     last = LastRegister;
                 }
                 else
-                    ClassControl.PresentadorSnackBar(SnackbarThree, "Debe completar los campos vacios");
+                    ClassControl.PresentadorSnackBar(SnackbarThree, Process.Item3);
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;

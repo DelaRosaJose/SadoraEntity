@@ -4,6 +4,7 @@ using System;
 using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
+using Model = Sadora.Models.TrhnEmpleado; //Agregamos este alias para no tener que repetir el mismo tipo en varias partes.
 
 namespace Sadora.Recursos_Humanos
 {
@@ -12,8 +13,8 @@ namespace Sadora.Recursos_Humanos
     /// </summary>
     public partial class UscEmpleados : UserControl
     {
-        readonly ViewModels.BaseViewModel<TrhnEmpleado> ViewModel = new ViewModels.BaseViewModel<TrhnEmpleado>() { Ventana = new TrhnEmpleado() { UsuarioID = ClassVariables.UsuarioID } };
-        Expression<Func<TrhnEmpleado, bool>> predicate;
+        readonly ViewModels.BaseViewModel<Model> ViewModel = new ViewModels.BaseViewModel<Model>() { Ventana = new Model() { UsuarioID = ClassVariables.UsuarioID } };
+        Expression<Func<Model, bool>> predicate;
 
         public UscEmpleados()
         {
@@ -87,7 +88,7 @@ namespace Sadora.Recursos_Humanos
                     last = LastRegister;
                 }
                 else
-                    ClassControl.PresentadorSnackBar(SnackbarThree, "Debe completar los campos vacios");
+                    ClassControl.PresentadorSnackBar(SnackbarThree, Process.Item3);
 
                 if (Imprime == false)
                     ControlesGenerales.BtnImprimir.IsEnabled = Imprime;
