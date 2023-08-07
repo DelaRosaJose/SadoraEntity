@@ -63,6 +63,7 @@
 
                             <Sadora:UscTextboxNumerico
                                 Title="ITBIS"
+                                FieldDecimal="True"
                                 EstadoMainWindows="{Binding EstadoVentana}"
                                 Number="{Binding Ventana.ITBIS, Mode=TwoWay}"
                                 TabIndex="9" />
@@ -123,7 +124,10 @@
 
                             <Sadora:UscTextboxNumerico
                                 Title="Monto Exento"
+                                x:Name="txtMontoExento"
+                                FieldDecimal="True"
                                 EstadoMainWindows="{Binding EstadoVentana}"
+                                KeyUp="txtNomenclatura_KeyUp"
                                 Number="{Binding Ventana.MontoExcento, Mode=TwoWay}"
                                 TabIndex="7" />
 
@@ -146,8 +150,8 @@
                             <Sadora:UscComboBoxGeneral
                                 Title="Estado"
                                 EstadoMainWindows="{Binding EstadoVentana}"
-                                Text="{Binding Ventana.Estado, Mode=TwoWay}"
-                                TabIndex="4">
+                                TabIndex="4"
+                                Text="{Binding Ventana.Estado, Mode=TwoWay}">
                                 <Sadora:UscComboBoxGeneral.Items>
                                     <ComboBoxItem Content="Abierta" />
                                     <ComboBoxItem Content="Cerrada" />
@@ -156,7 +160,10 @@
 
                             <Sadora:UscTextboxNumerico
                                 Title="Monto Gravado"
+                                x:Name="txtMontoGravado"
+                                FieldDecimal="True"
                                 EstadoMainWindows="{Binding EstadoVentana}"
+                                KeyUp="txtNomenclatura_KeyUp"
                                 Number="{Binding Ventana.MontoGravado, Mode=TwoWay}"
                                 TabIndex="8" />
 

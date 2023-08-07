@@ -153,7 +153,6 @@ namespace Sadora.Contabilidad
                 else if (ButtonName == "BtnCancelar" && ViewModel.Ventana != null)
                     ViewModel.Ventana.ID = last.Value;
 
-                //var result = ;
                 if (new string[] { "Modo Editar", "Modo Agregar" }.Contains(ViewModel.EstadoVentana) && (!PuedeGuardarSinComprobante(null) || !ValidarDesdeHastaComprobante("txtHasta")))
                     return;
 
